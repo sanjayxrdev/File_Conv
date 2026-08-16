@@ -1,0 +1,36 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Python virtual environment
+.venv/
+venv/
+ENV/
+env/
+
+# Backend storage
+backend/storage/uploads/*
+backend/storage/processing/*
+backend/storage/outputs/*
+!backend/storage/uploads/.gitkeep
+!backend/storage/processing/.gitkeep
+!backend/storage/outputs/.gitkeep
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Pytest / Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment / OS
+.env
+.DS_Store
+Thumbs.db

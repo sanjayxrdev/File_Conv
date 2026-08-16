@@ -1,0 +1,3 @@
+FILE CONV Test Document
+
+This is a sample plain text document for conversion testing.
