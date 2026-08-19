@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { FormatsRegistryResponse } from './types';
 import { fetchSupportedFormats } from './services/api';
 import { Header } from './components/Header';
 import { Home } from './pages/Home';
+import { ConverterPage } from './pages/ConverterPage';
 import { MergePage } from './pages/Merge';
 import { Formats } from './pages/Formats';
-import { About } from './pages/About';
-import { BackgroundCanvas } from './components/BackgroundCanvas';
 
-export const App: React.FC = () => {
-  const [currentTab, setCurrentTab] = useState<'home' | 'merge' | 'formats' | 'about'>('home');
+export const AppContent: React.FC = () => {
   const [registry, setRegistry] = useState<FormatsRegistryResponse | null>(null);
 
   useEffect(() => {
@@ -19,34 +18,74 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-dark-bg text-slate-100 selection:bg-blue-600 selection:text-white">
-      {/* Three.js Subtle Ambient Background */}
-      <BackgroundCanvas />
+    <div className="relative min-h-screen flex flex-col bg-[#0b0c10] text-slate-100 selection:bg-[#ff385c] selection:text-white overflow-x-hidden">
+      {/* Ninja Mascot Action Background Image */}
+      <div
+        className="fixed inset-0 pointer-events-none z-0 bg-cover bg-center sm:bg-top bg-no-repeat opacity-55 filter brightness-100 contrast-110"
+        style={{ backgroundImage: `url('/bg-ninja.jpg')` }}
+      />
+      <div className="fixed inset-0 pointer-events-none z-0 bg-gradient-to-b from-[#0b0c10]/40 via-[#0b0c10]/60 to-[#0b0c10]/85" />
 
       {/* Navigation Header */}
-      <Header currentTab={currentTab} onNavigate={setCurrentTab} />
+      <Header />
 
-      {/* Main Content Area */}
-      <main className="flex-1 relative z-10 py-6">
-        {currentTab === 'home' && <Home registry={registry} />}
-        {currentTab === 'merge' && <MergePage />}
-        {currentTab === 'formats' && <Formats registry={registry} />}
-        {currentTab === 'about' && <About />}
+
+
+
+
+      {/* Main Multi-Page Routed Content */}
+      <main className="flex-1 relative z-10">
+        <Routes>
+          <Route path="/" element={<Home registry={registry} />} />
+          <Route
+            path="/video-converter"
+            element={<ConverterPage categorySlug="video-converter" registry={registry} />}
+          />
+          <Route
+            path="/image-converter"
+            element={<ConverterPage categorySlug="image-converter" registry={registry} />}
+          />
+          <Route
+            path="/audio-converter"
+            element={<ConverterPage categorySlug="audio-converter" registry={registry} />}
+          />
+          <Route
+            path="/pdf-converter"
+            element={<ConverterPage categorySlug="pdf-converter" registry={registry} />}
+          />
+          <Route
+            path="/document-converter"
+            element={<ConverterPage categorySlug="document-converter" registry={registry} />}
+          />
+          <Route
+            path="/code-converter"
+            element={<ConverterPage categorySlug="code-converter" registry={registry} />}
+          />
+          <Route
+            path="/spreadsheet-converter"
+            element={<ConverterPage categorySlug="spreadsheet-converter" registry={registry} />}
+          />
+          <Route path="/merge-converter" element={<MergePage />} />
+          <Route path="/formats" element={<Formats registry={registry} />} />
+          <Route
+            path="/:categorySlug"
+            element={<ConverterPage registry={registry} />}
+          />
+        </Routes>
       </main>
-
-      {/* Footer */}
-      <footer className="w-full border-t border-slate-800/60 py-6 text-center text-xs text-slate-500 relative z-10">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div>
-            FILE CONV — Local-First File Conversion & Merging Platform. Open-source MIT License.
-          </div>
-          <div className="font-mono text-slate-600">
-            FastAPI • React • Vite • Tailwind • GSAP • Three.js
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };
 
+
+export const App: React.FC = () => {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
+};
+
 export default App;
+
+

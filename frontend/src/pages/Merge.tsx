@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Layers, ShieldCheck } from 'lucide-react';
+import { Layers } from 'lucide-react';
 import { startMerge, getJobStatus } from '../services/api';
 import { ConversionJobResponse } from '../types';
 import { MergeDropzone } from '../components/MergeDropzone';
@@ -59,31 +59,29 @@ export const MergePage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-12 pb-20 px-4">
+    <div className="space-y-12 pb-20 px-4 bg-transparent min-h-screen font-sans">
       
       {/* Hero Header */}
-      <div className="text-center space-y-3 pt-8 max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-600/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider">
-          <Layers className="w-4 h-4" />
+      <div className="text-center space-y-3 pt-10 max-w-3xl mx-auto">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#ff385c]/15 border border-[#ff385c]/30 text-[#ff385c] text-xs font-mono font-bold uppercase tracking-wider">
+          <Layers className="w-4 h-4 text-[#ff385c]" />
           <span>Multi-File Combiner</span>
         </div>
 
-        <h2 className="text-4xl font-black text-white tracking-tight">
-          MERGE PPT, PDF & DOCX <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
-            SEAMLESSLY.
-          </span>
+        <h2 className="font-syne text-3xl sm:text-5xl font-black text-white tracking-tight craft-title-gradient">
+          Merge PDF, PPTX & DOCX Files
         </h2>
 
-        <p className="text-slate-400 text-sm max-w-lg mx-auto">
-          Combine multiple PowerPoint presentations, PDF documents, or Word files into a single unified output.
+        <p className="font-heading text-slate-400 text-base sm:text-lg max-w-lg mx-auto font-medium">
+          Combine multiple PDF documents, PowerPoint presentations, or Word files into a single unified file.
         </p>
       </div>
+
 
       {/* Main Workflow */}
       {!jobState && (
         <MergeDropzone
-          onStartMerge={handleStartMerge}
+          onMergeSubmit={handleStartMerge}
           isSubmitting={isSubmitting}
         />
       )}
@@ -108,12 +106,12 @@ export const MergePage: React.FC = () => {
       )}
 
       {error && (
-        <div className="w-full max-w-2xl mx-auto p-6 rounded-2xl border border-red-500/30 bg-red-500/10 text-center space-y-4">
-          <h4 className="text-xl font-bold text-red-400">Merge Failed</h4>
-          <p className="text-sm text-slate-300">{error}</p>
+        <div className="w-full max-w-2xl mx-auto p-6 rounded-2xl border border-red-200 bg-red-50 text-center space-y-4 shadow-sm">
+          <h4 className="text-xl font-extrabold text-red-600">Merge Failed</h4>
+          <p className="text-sm text-slate-700 font-medium">{error}</p>
           <button
             onClick={handleClear}
-            className="px-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-sm font-medium"
+            className="px-5 py-2.5 rounded-xl bg-red-600 text-white font-bold text-sm hover:bg-red-700 transition-colors"
           >
             Try Again
           </button>
@@ -123,3 +121,4 @@ export const MergePage: React.FC = () => {
     </div>
   );
 };
+

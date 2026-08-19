@@ -8,9 +8,17 @@ interface FileDropzoneProps {
   registry: FormatsRegistryResponse | null;
   onFilesSelect: (files: File[]) => void;
   error?: string | null;
+  customTitle?: string;
+  customSubtitle?: string;
 }
 
-export const FileDropzone: React.FC<FileDropzoneProps> = ({ registry, onFilesSelect, error }) => {
+export const FileDropzone: React.FC<FileDropzoneProps> = ({
+  registry,
+  onFilesSelect,
+  error,
+  customTitle,
+  customSubtitle,
+}) => {
   const [isDragOver, setIsDragOver] = useState(false);
   const dropzoneRef = useRef<HTMLDivElement>(null);
   const iconRef = useRef<HTMLDivElement>(null);
@@ -21,8 +29,8 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({ registry, onFilesSel
     if (dropzoneRef.current) {
       gsap.fromTo(
         dropzoneRef.current,
-        { opacity: 0, scale: 0.96, y: 20 },
-        { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: 'power3.out' }
+        { opacity: 0, scale: 0.98, y: 15 },
+        { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'power2.out' }
       );
     }
   }, []);
@@ -35,10 +43,9 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({ registry, onFilesSel
       if (iconRef.current) {
         anime({
           targets: iconRef.current,
-          scale: [1, 1.25],
-          rotate: [0, 10, -10, 0],
-          duration: 600,
-          easing: 'easeOutElastic(1, .5)',
+          scale: [1, 1.2],
+          duration: 400,
+          easing: 'easeOutQuad',
         });
       }
     }
@@ -52,7 +59,7 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({ registry, onFilesSel
       anime({
         targets: iconRef.current,
         scale: 1,
-        duration: 400,
+        duration: 300,
         easing: 'easeOutQuad',
       });
     }
@@ -81,23 +88,19 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({ registry, onFilesSel
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-4">
+    <div className="w-full max-w-3xl mx-auto space-y-4 font-sans">
       <div
         ref={dropzoneRef}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
-        className={`relative cursor-pointer rounded-3xl p-10 sm:p-14 text-center transition-all duration-500 overflow-hidden border ${
+        className={`relative cursor-pointer rounded-3xl p-8 sm:p-12 text-center transition-all duration-300 overflow-hidden craft-card border-2 ${
           isDragOver
-            ? 'border-blue-500 bg-blue-600/15 scale-[1.02] shadow-[0_0_60px_rgba(59,130,246,0.25)]'
-            : 'border-white/10 glass-panel hover:border-blue-500/40 hover:bg-slate-900/80 hover:shadow-[0_0_40px_rgba(59,130,246,0.12)]'
+            ? 'border-[#ff385c] bg-[#ff385c]/10 scale-[1.01] shadow-2xl shadow-[#ff385c]/20'
+            : 'border-dashed border-white/20 hover:border-[#ff385c]/50 hover:bg-[#13151c]/90 shadow-2xl'
         }`}
       >
-        {/* Background Glowing Ambient Radial */}
-        <div className="absolute -top-24 -left-24 w-64 h-64 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
-
         <input
           type="file"
           ref={fileInputRef}
@@ -116,59 +119,66 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({ registry, onFilesSel
           className="hidden"
         />
 
-        {/* Upload Icon Container */}
-        <div
-          ref={iconRef}
-          className="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-tr from-blue-600/20 via-indigo-600/20 to-purple-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 shadow-xl shadow-blue-500/10"
-        >
-          <UploadCloud className="w-10 h-10" />
-        </div>
-
-        <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">
-          Drop Files or Folders Here
-        </h3>
-        <p className="text-sm text-slate-400 mb-8 max-w-sm mx-auto">
-          Drag and drop <span className="text-blue-400 font-semibold">1 to N files</span> or select an entire folder to start batch conversion.
-        </p>
-
-        <div className="flex flex-wrap items-center justify-center gap-3">
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              fileInputRef.current?.click();
-            }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-semibold text-xs shadow-lg shadow-blue-600/25 transition-all duration-300 active:scale-95"
+        {/* Handcrafted Electric Upload Box */}
+        <div className="space-y-6">
+          <div
+            ref={iconRef}
+            className="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-tr from-[#ff385c] to-[#e02847] text-white flex items-center justify-center shadow-lg shadow-[#ff385c]/30 border border-white/20"
           >
-            <Sparkles className="w-4 h-4" />
-            <span>Browse Files</span>
-          </button>
+            <UploadCloud className="w-10 h-10 animate-bounce" />
+          </div>
 
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              folderInputRef.current?.click();
-            }}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 border border-slate-700 text-xs text-slate-300 font-semibold transition-all duration-300"
-          >
-            <FolderPlus className="w-4 h-4 text-blue-400" />
-            <span>Select Folder</span>
-          </button>
-        </div>
+          <div>
+            <h3 className="font-syne text-2xl sm:text-4xl font-extrabold text-white mb-2 tracking-tight">
+              {customTitle || 'Drop files here or click to browse'}
+            </h3>
+            <p className="text-sm text-slate-400 max-w-md mx-auto font-sans font-medium">
+              {customSubtitle || '100% free, private, and local-first file converter. Drag single files or entire folders.'}
+            </p>
+          </div>
 
-        <div className="mt-6 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/60 border border-slate-800 text-[11px] text-slate-400 font-mono">
-          <Files className="w-3.5 h-3.5 text-indigo-400" />
-          <span>Supports Multi-File & Batch Conversions</span>
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-2 font-heading">
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                fileInputRef.current?.click();
+              }}
+              className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-[#ff385c] to-[#e02847] hover:from-[#ff4d6d] hover:to-[#ff385c] text-white font-extrabold text-base tracking-wide shadow-xl shadow-[#ff385c]/30 transition-all duration-200 active:scale-95"
+            >
+              <Sparkles className="w-5 h-5 text-[#ccff00]" />
+              <span>Select Files</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                folderInputRef.current?.click();
+              }}
+              className="inline-flex items-center gap-2 px-5 py-4 rounded-xl bg-white/10 hover:bg-white/20 border border-white/15 text-white font-bold text-sm transition-all"
+            >
+              <FolderPlus className="w-4 h-4 text-[#00f2fe]" />
+              <span>Folder</span>
+            </button>
+          </div>
+
+          <div className="pt-2 text-xs text-slate-400 font-mono flex items-center justify-center gap-2">
+            <Files className="w-3.5 h-3.5 text-[#ff385c]" />
+            <span>PDF, DOCX, PPTX, XLSX, HTML, PNG, JPG, MP4, MP3, TXT, PY & More</span>
+          </div>
         </div>
       </div>
 
       {error && (
-        <div className="p-4 rounded-2xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm flex items-center gap-3 glass-panel">
-          <AlertCircle className="w-5 h-5 shrink-0" />
+        <div className="p-4 rounded-2xl bg-[#ff385c]/10 border border-[#ff385c]/30 text-[#ff385c] text-sm font-medium flex items-center gap-3 shadow-lg">
+          <AlertCircle className="w-5 h-5 shrink-0 text-[#ff385c]" />
           <span>{error}</span>
         </div>
       )}
     </div>
   );
 };
+
+
+

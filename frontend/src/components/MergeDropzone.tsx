@@ -3,11 +3,11 @@ import { UploadCloud, Layers, Trash2, ArrowUp, ArrowDown, Merge, Sparkles } from
 import gsap from 'gsap';
 
 interface MergeDropzoneProps {
-  onStartMerge: (files: File[], mergeType: string) => void;
-  isSubmitting: boolean;
+  onMergeSubmit: (files: File[], mergeType: string) => void;
+  isSubmitting?: boolean;
 }
 
-export const MergeDropzone: React.FC<MergeDropzoneProps> = ({ onStartMerge, isSubmitting }) => {
+export const MergeDropzone: React.FC<MergeDropzoneProps> = ({ onMergeSubmit, isSubmitting }) => {
   const [files, setFiles] = useState<File[]>([]);
   const [mergeType, setMergeType] = useState<string>('pdf');
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -17,8 +17,8 @@ export const MergeDropzone: React.FC<MergeDropzoneProps> = ({ onStartMerge, isSu
     if (containerRef.current) {
       gsap.fromTo(
         containerRef.current,
-        { opacity: 0, scale: 0.96, y: 15 },
-        { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'power3.out' }
+        { opacity: 0, scale: 0.98, y: 15 },
+        { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: 'power2.out' }
       );
     }
   }, []);
@@ -45,22 +45,22 @@ export const MergeDropzone: React.FC<MergeDropzoneProps> = ({ onStartMerge, isSu
 
   const handleMergeSubmit = () => {
     if (files.length >= 2) {
-      onStartMerge(files, mergeType);
+      onMergeSubmit(files, mergeType);
     }
   };
 
   return (
-    <div ref={containerRef} className="w-full max-w-2xl mx-auto space-y-6">
+    <div ref={containerRef} className="w-full max-w-3xl mx-auto space-y-6">
       
       {/* Type Selector Tabs */}
-      <div className="p-2 rounded-2xl glass-panel grid grid-cols-3 gap-2 border border-white/10">
+      <div className="p-2 rounded-2xl bg-white border border-slate-200 shadow-md grid grid-cols-3 gap-2">
         <button
           type="button"
           onClick={() => setMergeType('pdf')}
-          className={`py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 ${
+          className={`py-3 px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all flex items-center justify-center gap-2 ${
             mergeType === 'pdf'
-              ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25 border border-blue-400'
-              : 'text-slate-400 hover:text-white hover:bg-white/5'
+              ? 'bg-red-600 text-white shadow-md'
+              : 'text-slate-700 hover:bg-slate-100'
           }`}
         >
           <Layers className="w-4 h-4" />
@@ -70,10 +70,10 @@ export const MergeDropzone: React.FC<MergeDropzoneProps> = ({ onStartMerge, isSu
         <button
           type="button"
           onClick={() => setMergeType('ppt')}
-          className={`py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 ${
+          className={`py-3 px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all flex items-center justify-center gap-2 ${
             mergeType === 'ppt'
-              ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25 border border-blue-400'
-              : 'text-slate-400 hover:text-white hover:bg-white/5'
+              ? 'bg-red-600 text-white shadow-md'
+              : 'text-slate-700 hover:bg-slate-100'
           }`}
         >
           <Layers className="w-4 h-4" />
@@ -83,10 +83,10 @@ export const MergeDropzone: React.FC<MergeDropzoneProps> = ({ onStartMerge, isSu
         <button
           type="button"
           onClick={() => setMergeType('docx')}
-          className={`py-3 px-4 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 flex items-center justify-center gap-2 ${
+          className={`py-3 px-4 rounded-xl text-xs sm:text-sm font-extrabold transition-all flex items-center justify-center gap-2 ${
             mergeType === 'docx'
-              ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/25 border border-blue-400'
-              : 'text-slate-400 hover:text-white hover:bg-white/5'
+              ? 'bg-red-600 text-white shadow-md'
+              : 'text-slate-700 hover:bg-slate-100'
           }`}
         >
           <Layers className="w-4 h-4" />
@@ -97,7 +97,7 @@ export const MergeDropzone: React.FC<MergeDropzoneProps> = ({ onStartMerge, isSu
       {/* Multi-File Upload Drop Area */}
       <div
         onClick={() => fileInputRef.current?.click()}
-        className="cursor-pointer rounded-3xl glass-panel p-10 text-center transition-all duration-500 hover:border-blue-500/40 hover:shadow-[0_0_40px_rgba(59,130,246,0.12)] border border-white/10 relative overflow-hidden"
+        className="cursor-pointer rounded-3xl bg-white p-10 text-center transition-all duration-300 hover:border-red-500 border-2 border-dashed border-slate-300 shadow-md hover:shadow-xl relative overflow-hidden"
       >
         <input
           type="file"
@@ -106,28 +106,28 @@ export const MergeDropzone: React.FC<MergeDropzoneProps> = ({ onStartMerge, isSu
           onChange={(e) => e.target.files && handleFileAdd(e.target.files)}
           className="hidden"
         />
-        <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-tr from-blue-600/20 to-purple-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 shadow-xl shadow-blue-500/10">
+        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-red-100 text-red-600 border border-red-200 flex items-center justify-center shadow-md">
           <UploadCloud className="w-8 h-8" />
         </div>
-        <h4 className="text-xl font-bold text-white tracking-tight">
+        <h4 className="text-2xl font-extrabold text-slate-900 tracking-tight">
           Select Multiple .{mergeType.toUpperCase()} Files
         </h4>
-        <p className="text-xs text-slate-400 mt-1 max-w-xs mx-auto">
+        <p className="text-xs text-slate-500 mt-1 max-w-xs mx-auto font-medium">
           Click to browse or drag & drop files to combine in sequence
         </p>
       </div>
 
       {/* Selected Files Reorder List */}
       {files.length > 0 && (
-        <div className="rounded-3xl glass-panel p-6 space-y-4 border border-white/10">
-          <div className="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-400 pb-2 border-b border-white/10">
+        <div className="rounded-3xl bg-white p-6 space-y-4 border border-slate-200 shadow-xl">
+          <div className="flex items-center justify-between text-xs font-extrabold uppercase tracking-wider text-slate-500 pb-3 border-b border-slate-100">
             <span className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-blue-400" />
+              <Sparkles className="w-4 h-4 text-red-600" />
               <span>Files to Merge ({files.length})</span>
             </span>
             <button
               onClick={() => setFiles([])}
-              className="text-red-400 hover:underline text-xs font-semibold"
+              className="text-red-600 hover:underline text-xs font-bold"
             >
               Clear All
             </button>
@@ -137,20 +137,20 @@ export const MergeDropzone: React.FC<MergeDropzoneProps> = ({ onStartMerge, isSu
             {files.map((file, idx) => (
               <div
                 key={`${file.name}-${idx}`}
-                className="p-3 rounded-2xl bg-slate-900/60 border border-white/5 flex items-center justify-between gap-3 text-sm hover:border-slate-700 transition-colors"
+                className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-3 text-sm hover:border-slate-300 transition-colors"
               >
                 <div className="flex items-center gap-3 overflow-hidden">
-                  <span className="w-7 h-7 rounded-xl bg-blue-600/20 border border-blue-500/30 text-blue-400 font-mono text-xs font-bold flex items-center justify-center shrink-0">
+                  <span className="w-8 h-8 rounded-xl bg-red-100 border border-red-200 text-red-600 font-mono text-xs font-bold flex items-center justify-center shrink-0">
                     {idx + 1}
                   </span>
-                  <span className="text-slate-200 truncate font-semibold">{file.name}</span>
+                  <span className="text-slate-900 truncate font-extrabold">{file.name}</span>
                 </div>
 
                 <div className="flex items-center gap-1 shrink-0">
                   <button
                     onClick={() => moveFile(idx, 'up')}
                     disabled={idx === 0}
-                    className="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 disabled:opacity-30 transition-colors"
+                    className="p-1.5 rounded-lg hover:bg-slate-200 text-slate-600 disabled:opacity-30 transition-colors"
                     title="Move Up"
                   >
                     <ArrowUp className="w-4 h-4" />
@@ -158,14 +158,14 @@ export const MergeDropzone: React.FC<MergeDropzoneProps> = ({ onStartMerge, isSu
                   <button
                     onClick={() => moveFile(idx, 'down')}
                     disabled={idx === files.length - 1}
-                    className="p-1.5 rounded-lg hover:bg-slate-800 text-slate-400 disabled:opacity-30 transition-colors"
+                    className="p-1.5 rounded-lg hover:bg-slate-200 text-slate-600 disabled:opacity-30 transition-colors"
                     title="Move Down"
                   >
                     <ArrowDown className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => removeFile(idx)}
-                    className="p-1.5 rounded-lg hover:bg-red-500/20 text-slate-400 hover:text-red-400 transition-colors"
+                    className="p-1.5 rounded-lg hover:bg-red-100 text-slate-400 hover:text-red-600 transition-colors"
                     title="Remove"
                   >
                     <Trash2 className="w-4 h-4" />
@@ -178,13 +178,13 @@ export const MergeDropzone: React.FC<MergeDropzoneProps> = ({ onStartMerge, isSu
           <button
             onClick={handleMergeSubmit}
             disabled={files.length < 2 || isSubmitting}
-            className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 disabled:opacity-50 text-white font-bold text-base transition-all duration-300 flex items-center justify-center gap-2.5 shadow-xl shadow-blue-600/30 active:scale-[0.99] border border-white/20"
+            className="w-full py-4 px-6 rounded-2xl bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-extrabold text-lg tracking-wide transition-all flex items-center justify-center gap-2.5 shadow-lg hover:shadow-red-600/30 active:scale-[0.99]"
           >
             {isSubmitting ? (
-              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
             ) : (
               <>
-                <Merge className="w-5 h-5" />
+                <Merge className="w-6 h-6" />
                 <span>Merge {files.length} {mergeType.toUpperCase()} Files Now</span>
               </>
             )}
@@ -195,3 +195,4 @@ export const MergeDropzone: React.FC<MergeDropzoneProps> = ({ onStartMerge, isSu
     </div>
   );
 };
+

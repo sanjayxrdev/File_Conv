@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Files, ArrowRight, Trash2, Zap, Check, FileCode, Layers } from 'lucide-react';
+import { Files, ArrowRight, Trash2, Zap, Check, Layers } from 'lucide-react';
 import gsap from 'gsap';
 import { FormatsRegistryResponse } from '../types';
 
@@ -27,8 +27,8 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
     if (cardRef.current) {
       gsap.fromTo(
         cardRef.current,
-        { opacity: 0, scale: 0.95, y: 20 },
-        { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'power3.out' }
+        { opacity: 0, scale: 0.98, y: 15 },
+        { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: 'power2.out' }
       );
     }
   }, []);
@@ -56,24 +56,20 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
   return (
     <div
       ref={cardRef}
-      className="w-full max-w-2xl mx-auto rounded-3xl glass-panel p-8 shadow-2xl space-y-6 border border-white/10 relative overflow-hidden"
+      className="w-full max-w-3xl mx-auto rounded-3xl bg-white p-8 shadow-xl space-y-6 border border-slate-200 relative overflow-hidden"
     >
-      {/* Background Neon Highlights */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
-
       {/* Header */}
-      <div className="flex items-center justify-between pb-5 border-b border-white/10">
-        <div className="flex items-center gap-3.5">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-600/30 to-indigo-600/30 border border-blue-500/40 flex items-center justify-center text-blue-400 shadow-lg shadow-blue-500/10">
-            <Files className="w-6 h-6" />
+      <div className="flex items-center justify-between pb-5 border-b border-slate-100">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 rounded-2xl bg-red-100 text-red-600 border border-red-200 flex items-center justify-center shrink-0 shadow-md">
+            <Files className="w-7 h-7" />
           </div>
           <div>
-            <h4 className="font-bold text-white text-lg tracking-tight">
-              Batch Conversion ({files.length} Files)
+            <h4 className="font-extrabold text-slate-900 text-xl tracking-tight">
+              Batch Conversion ({files.length} Files Selected)
             </h4>
-            <p className="text-xs text-slate-400 font-mono flex items-center gap-2">
-              <span>Total Size: {formatSize(totalBytes)}</span>
+            <p className="text-xs text-slate-500 font-semibold mt-0.5">
+              Total Size: {formatSize(totalBytes)}
             </p>
           </div>
         </div>
@@ -81,7 +77,7 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
         <button
           onClick={onClear}
           disabled={isSubmitting}
-          className="p-2.5 rounded-xl text-slate-400 hover:text-red-400 hover:bg-red-500/10 transition-colors border border-transparent hover:border-red-500/20"
+          className="p-2.5 rounded-xl text-slate-400 hover:text-red-600 hover:bg-red-50 transition-colors"
           title="Clear all files"
         >
           <Trash2 className="w-5 h-5" />
@@ -95,22 +91,22 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
           return (
             <div
               key={`${f.name}-${idx}`}
-              className="p-3 rounded-2xl bg-slate-900/60 border border-white/5 flex items-center justify-between text-xs hover:border-slate-700 transition-colors"
+              className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs hover:border-slate-300 transition-colors"
             >
               <div className="flex items-center gap-3 overflow-hidden">
-                <span className="px-2.5 py-1 rounded-lg bg-blue-600/20 border border-blue-500/30 text-blue-400 font-mono font-bold uppercase text-[10px]">
+                <span className="px-2.5 py-1 rounded-lg bg-red-100 border border-red-200 text-red-600 font-mono font-bold uppercase text-[10px]">
                   .{ext}
                 </span>
-                <span className="text-slate-200 truncate font-semibold">{f.name}</span>
+                <span className="text-slate-900 truncate font-extrabold">{f.name}</span>
                 <span className="text-slate-500 text-[11px] font-mono">({formatSize(f.size)})</span>
               </div>
 
               <button
                 onClick={() => onRemoveFile(idx)}
-                className="p-1.5 rounded-lg hover:bg-red-500/20 text-slate-400 hover:text-red-400 transition-colors"
+                className="p-1.5 rounded-lg hover:bg-red-100 text-slate-400 hover:text-red-600 transition-colors"
                 title="Remove file"
               >
-                <Trash2 className="w-3.5 h-3.5" />
+                <Trash2 className="w-4 h-4" />
               </button>
             </div>
           );
@@ -119,9 +115,9 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
 
       {/* Target Format Selector Grid */}
       <div>
-        <label className="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-1.5">
-          <Layers className="w-4 h-4 text-blue-400" />
-          <span>Choose Universal Target Format</span>
+        <label className="block text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-3 flex items-center gap-1.5">
+          <Layers className="w-4 h-4 text-red-600" />
+          <span>Choose Target Format for All Files</span>
         </label>
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
           {commonTargets.map((t) => {
@@ -131,17 +127,17 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
                 key={t.ext}
                 type="button"
                 onClick={() => setSelectedTarget(t.ext)}
-                className={`p-3 rounded-2xl text-left border transition-all duration-300 ${
+                className={`p-3.5 rounded-2xl text-left border transition-all ${
                   isSelected
-                    ? 'border-blue-500 bg-blue-600/25 text-white shadow-lg shadow-blue-500/20 scale-[1.02]'
-                    : 'border-white/5 bg-slate-900/40 hover:border-white/20 text-slate-300'
+                    ? 'border-red-600 bg-red-50 text-slate-900 font-extrabold shadow-md scale-[1.02]'
+                    : 'border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-semibold'
                 }`}
               >
                 <div className="font-extrabold text-xs uppercase flex items-center justify-between">
                   <span>.{t.ext}</span>
-                  {isSelected && <Check className="w-3.5 h-3.5 text-blue-400" />}
+                  {isSelected && <Check className="w-4 h-4 text-red-600" />}
                 </div>
-                <div className="text-[10px] text-slate-400 truncate mt-0.5 font-medium">{t.label}</div>
+                <div className="text-[10px] text-slate-500 truncate mt-1 font-medium">{t.label}</div>
               </button>
             );
           })}
@@ -153,15 +149,15 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
         <button
           onClick={() => onConvertBatch(selectedTarget)}
           disabled={isSubmitting || files.length === 0}
-          className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 disabled:opacity-50 text-white font-bold text-base transition-all duration-300 flex items-center justify-center gap-2.5 shadow-xl shadow-blue-600/30 active:scale-[0.99] border border-white/20"
+          className="w-full py-4 px-6 rounded-2xl bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-extrabold text-lg tracking-wide transition-all flex items-center justify-center gap-3 shadow-lg hover:shadow-red-600/30 active:scale-[0.99]"
         >
           {isSubmitting ? (
-            <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
           ) : (
             <>
-              <Zap className="w-5 h-5" />
+              <Zap className="w-6 h-6 fill-white" />
               <span>Convert All {files.length} Files to .{selectedTarget.toUpperCase()}</span>
-              <ArrowRight className="w-4 h-4 ml-1" />
+              <ArrowRight className="w-5 h-5 ml-1" />
             </>
           )}
         </button>
@@ -170,3 +166,4 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
     </div>
   );
 };
+

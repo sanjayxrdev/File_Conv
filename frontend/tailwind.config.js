@@ -8,29 +8,30 @@ export default {
   theme: {
     extend: {
       colors: {
-        brand: {
-          50: '#f0f6ff',
-          100: '#e0edff',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          900: '#0f172a',
+        coral: {
+          500: '#ff385c',
+          600: '#e02847',
         },
-        dark: {
-          bg: '#090d16',
-          card: '#111827',
-          border: '#1f293d',
-          hover: '#1a2336'
+        cyber: {
+          lime: '#ccff00',
+          cyan: '#00f2fe',
+        },
+        obsidian: {
+          bg: '#0b0c10',
+          card: '#12141d',
+          border: '#1f2333',
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        syne: ['Syne', 'sans-serif'],
+        heading: ['Space Grotesk', 'sans-serif'],
+        sans: ['Outfit', 'sans-serif'],
+        mono: ['Space Mono', 'monospace'],
       },
-      animation: {
-        'pulse-subtle': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      }
     },
   },
   plugins: [],
 }
+
+
+

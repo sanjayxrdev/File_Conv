@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { FormatsRegistryResponse } from '../types';
 import { FileDropzone } from '../components/FileDropzone';
@@ -10,16 +11,194 @@ import { BatchProgressBar } from '../components/BatchProgressBar';
 import { BatchResultCard } from '../components/BatchResultCard';
 import { useConversion } from '../hooks/useConversion';
 import { startBatchConversion, getBatchStatus } from '../services/api';
-import { Video, Music, FileText, Image as ImageIcon, ShieldCheck, Code } from 'lucide-react';
+import {
+  Combine,
+  Scissors,
+  Minimize2,
+  FileText,
+  Table,
+  Presentation,
+  Image as ImageIcon,
+  Code,
+  Music,
+  Video,
+  Globe,
+  Search,
+  Zap,
+} from 'lucide-react';
+
+export interface ToolConfig {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  iconName: string;
+  bgLight: string;
+  textColor: string;
+  borderColor: string;
+  route: string;
+  targetFormat?: string;
+}
+
+export const TOOLS_LIST: ToolConfig[] = [
+  {
+    id: 'video-converter',
+    title: 'Video Converter',
+    category: 'Audio & Video',
+    description: 'Convert MP4, AVI, MKV, WEBM, MOV, GIF files locally.',
+    iconName: 'Video',
+    bgLight: 'bg-[#00f2fe]/10',
+    textColor: 'text-[#00f2fe]',
+    borderColor: 'border-[#00f2fe]/30',
+    route: '/video-converter',
+    targetFormat: 'mp4',
+  },
+  {
+    id: 'image-converter',
+    title: 'Image Converter',
+    category: 'Image',
+    description: 'Convert PNG, JPG, WEBP, BMP, GIF, and PDF page images.',
+    iconName: 'ImageIcon',
+    bgLight: 'bg-[#ccff00]/10',
+    textColor: 'text-[#ccff00]',
+    borderColor: 'border-[#ccff00]/30',
+    route: '/image-converter',
+    targetFormat: 'jpg',
+  },
+  {
+    id: 'audio-converter',
+    title: 'Audio Converter',
+    category: 'Audio & Video',
+    description: 'Convert MP3, WAV, FLAC, OGG, OPUS, AAC files locally.',
+    iconName: 'Music',
+    bgLight: 'bg-[#a855f7]/15',
+    textColor: 'text-[#a855f7]',
+    borderColor: 'border-[#a855f7]/30',
+    route: '/audio-converter',
+    targetFormat: 'mp3',
+  },
+  {
+    id: 'pdf-converter',
+    title: 'PDF Converter',
+    category: 'Convert PDF',
+    description: 'Convert PDFs to editable DOCX, XLSX, PPTX, JPG, and TXT.',
+    iconName: 'FileText',
+    bgLight: 'bg-[#ff385c]/15',
+    textColor: 'text-[#ff385c]',
+    borderColor: 'border-[#ff385c]/30',
+    route: '/pdf-converter',
+    targetFormat: 'docx',
+  },
+  {
+    id: 'document-converter',
+    title: 'Document Converter',
+    category: 'Documents',
+    description: 'Convert Word, PowerPoint, Excel, and HTML files to PDF.',
+    iconName: 'FileText',
+    bgLight: 'bg-[#00f2fe]/15',
+    textColor: 'text-[#00f2fe]',
+    borderColor: 'border-[#00f2fe]/30',
+    route: '/document-converter',
+    targetFormat: 'pdf',
+  },
+  {
+    id: 'code-converter',
+    title: 'Code & Notebook Converter',
+    category: 'Code & Text',
+    description: 'Convert Python, JS, C, Java, HTML, Jupyter Notebooks (.ipynb).',
+    iconName: 'Code',
+    bgLight: 'bg-[#ccff00]/15',
+    textColor: 'text-[#ccff00]',
+    borderColor: 'border-[#ccff00]/30',
+    route: '/code-converter',
+    targetFormat: 'html',
+  },
+  {
+    id: 'spreadsheet-converter',
+    title: 'Spreadsheet Converter',
+    category: 'Spreadsheets',
+    description: 'Convert CSV to Excel, JSON to CSV, or Excel to CSV.',
+    iconName: 'Table',
+    bgLight: 'bg-[#10b981]/15',
+    textColor: 'text-[#10b981]',
+    borderColor: 'border-[#10b981]/30',
+    route: '/spreadsheet-converter',
+    targetFormat: 'csv',
+  },
+  {
+    id: 'merge-converter',
+    title: 'Merge PDF & Documents',
+    category: 'Merge & Edit',
+    description: 'Combine multiple PDFs, PPTX presentations, or DOCX files.',
+    iconName: 'Combine',
+    bgLight: 'bg-[#ff385c]/15',
+    textColor: 'text-[#ff385c]',
+    borderColor: 'border-[#ff385c]/30',
+    route: '/merge-converter',
+    targetFormat: 'pdf',
+  },
+  {
+    id: 'pdf-to-word',
+    title: 'PDF to Word',
+    category: 'Convert PDF',
+    description: 'Easily convert PDF files into editable Word documents.',
+    iconName: 'FileText',
+    bgLight: 'bg-[#00f2fe]/15',
+    textColor: 'text-[#00f2fe]',
+    borderColor: 'border-[#00f2fe]/30',
+    route: '/pdf-converter',
+    targetFormat: 'docx',
+  },
+  {
+    id: 'pdf-to-excel',
+    title: 'PDF to Excel',
+    category: 'Convert PDF',
+    description: 'Pull data straight from PDFs into Excel spreadsheets.',
+    iconName: 'Table',
+    bgLight: 'bg-[#10b981]/15',
+    textColor: 'text-[#10b981]',
+    borderColor: 'border-[#10b981]/30',
+    route: '/pdf-converter',
+    targetFormat: 'xlsx',
+  },
+  {
+    id: 'word-to-pdf',
+    title: 'Word to PDF',
+    category: 'Convert to PDF',
+    description: 'Convert DOC and DOCX files to PDF in seconds.',
+    iconName: 'FileText',
+    bgLight: 'bg-[#00f2fe]/15',
+    textColor: 'text-[#00f2fe]',
+    borderColor: 'border-[#00f2fe]/30',
+    route: '/document-converter',
+    targetFormat: 'pdf',
+  },
+  {
+    id: 'jpg-to-pdf',
+    title: 'JPG to PDF',
+    category: 'Convert to PDF',
+    description: 'Convert JPG & PNG images to PDF documents.',
+    iconName: 'ImageIcon',
+    bgLight: 'bg-[#ccff00]/15',
+    textColor: 'text-[#ccff00]',
+    borderColor: 'border-[#ccff00]/30',
+    route: '/image-converter',
+    targetFormat: 'pdf',
+  },
+];
 
 interface HomeProps {
   registry: FormatsRegistryResponse | null;
+  activeCategoryFilter?: string;
 }
 
-export const Home: React.FC<HomeProps> = ({ registry }) => {
+export const Home: React.FC<HomeProps> = ({ registry, activeCategoryFilter }) => {
+  const navigate = useNavigate();
   const heroRef = useRef<HTMLDivElement>(null);
-  
-  // Single File hook
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
+  // Single file conversion hook
   const {
     selectedFile,
     jobState,
@@ -30,7 +209,7 @@ export const Home: React.FC<HomeProps> = ({ registry }) => {
     startJob,
   } = useConversion();
 
-  // Multi File Batch state
+  // Multi-file batch state
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [batchState, setBatchState] = useState<any | null>(null);
   const [isBatchSubmitting, setIsBatchSubmitting] = useState(false);
@@ -38,14 +217,40 @@ export const Home: React.FC<HomeProps> = ({ registry }) => {
   const batchPollTimerRef = useRef<any>(null);
 
   useEffect(() => {
+    if (activeCategoryFilter) {
+      setSelectedCategory(activeCategoryFilter);
+    }
+  }, [activeCategoryFilter]);
+
+  useEffect(() => {
     if (heroRef.current) {
       gsap.fromTo(
         heroRef.current,
-        { opacity: 0, y: 25 },
-        { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }
       );
     }
   }, []);
+
+  const categories = [
+    'All',
+    'Merge & Edit',
+    'Documents',
+    'Spreadsheets',
+    'Audio & Video',
+    'Code & Text',
+  ];
+
+  const filteredTools = useMemo(() => {
+    return TOOLS_LIST.filter((tool) => {
+      const matchCat = selectedCategory === 'All' || tool.category === selectedCategory;
+      const matchSearch =
+        tool.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        tool.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        tool.targetFormat?.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchCat && matchSearch;
+    });
+  }, [selectedCategory, searchQuery]);
 
   const handleFilesSelect = (files: File[]) => {
     if (files.length === 1) {
@@ -57,10 +262,13 @@ export const Home: React.FC<HomeProps> = ({ registry }) => {
     }
   };
 
+  const handleToolCardClick = (tool: ToolConfig) => {
+    navigate(tool.route);
+  };
+
   const handleBatchClear = () => {
     if (batchPollTimerRef.current) {
       clearInterval(batchPollTimerRef.current);
-      batchPollTimerRef.current = null;
     }
     setSelectedFiles([]);
     setBatchState(null);
@@ -109,32 +317,53 @@ export const Home: React.FC<HomeProps> = ({ registry }) => {
     }
   };
 
+  const renderIcon = (iconName: string) => {
+    switch (iconName) {
+      case 'Combine': return <Combine className="w-8 h-8" />;
+      case 'Scissors': return <Scissors className="w-8 h-8" />;
+      case 'Minimize2': return <Minimize2 className="w-8 h-8" />;
+      case 'FileText': return <FileText className="w-8 h-8" />;
+      case 'Presentation': return <Presentation className="w-8 h-8" />;
+      case 'Table': return <Table className="w-8 h-8" />;
+      case 'ImageIcon': return <ImageIcon className="w-8 h-8" />;
+      case 'Globe': return <Globe className="w-8 h-8" />;
+      case 'Code': return <Code className="w-8 h-8" />;
+      case 'Music': return <Music className="w-8 h-8" />;
+      case 'Video': return <Video className="w-8 h-8" />;
+      default: return <Zap className="w-8 h-8" />;
+    }
+  };
+
   return (
-    <div className="space-y-16 pb-20">
-      
-      {/* Hero Section */}
-      <div ref={heroRef} className="text-center space-y-4 pt-8 sm:pt-12 max-w-3xl mx-auto px-4">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-600/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider">
-          <ShieldCheck className="w-4 h-4" />
-          <span>Local-First & Multi-File Batch Converter</span>
+    <div className="space-y-12 pb-24 bg-transparent min-h-screen text-slate-100 relative font-sans">
+
+      {/* Handcrafted Mesh Light Effects */}
+      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#ff385c]/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-[#00f2fe]/10 rounded-full blur-[150px] pointer-events-none" />
+
+      {/* Syne Editorial Hero Title with Ninja Mascot */}
+      <div ref={heroRef} className="text-center space-y-4 pt-10 sm:pt-14 max-w-5xl mx-auto px-4 relative z-10">
+        <div className="flex justify-center mb-2">
+          <img
+            src="/logo.png"
+            alt="Ninja File Converter"
+            className="w-24 h-24 sm:w-28 sm:h-28 object-contain filter drop-shadow-[0_10px_25px_rgba(0,242,254,0.4)] hover:scale-105 transition-transform"
+          />
         </div>
 
-        <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight leading-tight">
-          CONVERT ANYTHING <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
-            SIMPLY & IN BATCH.
-          </span>
+        <h1 className="font-syne text-3xl sm:text-5xl font-black tracking-tight leading-[1.1] craft-title-gradient">
+          CONVERT ANY FILE INSTANTLY
         </h1>
 
-        <p className="text-slate-400 text-base sm:text-lg max-w-xl mx-auto">
-          Convert 1 to N files or folders at once. Supports video, audio, image, document, text, and source code formats locally.
+
+        <p className="font-heading text-slate-400 text-base sm:text-xl max-w-2xl mx-auto font-medium">
+          Fast, local-first digital file converter. Convert documents, images, audio, video, code, and spreadsheets with zero telemetry.
         </p>
       </div>
 
-      {/* Main Conversion Workflow */}
-      <div className="px-4">
-        
-        {/* Upload Dropzone (When nothing selected and no job in progress) */}
+
+      {/* Main Conversion Workflow Area */}
+      <div className="px-4 max-w-6xl mx-auto relative z-10">
         {!selectedFile && selectedFiles.length === 0 && !jobState && !batchState && (
           <FileDropzone
             registry={registry}
@@ -143,7 +372,6 @@ export const Home: React.FC<HomeProps> = ({ registry }) => {
           />
         )}
 
-        {/* Single File Card */}
         {selectedFile && (!jobState || jobState.status === 'queued') && (
           <ConversionCard
             file={selectedFile}
@@ -154,7 +382,6 @@ export const Home: React.FC<HomeProps> = ({ registry }) => {
           />
         )}
 
-        {/* Single File Progress */}
         {jobState && jobState.status === 'processing' && (
           <ProgressBar
             progress={jobState.progress}
@@ -164,7 +391,6 @@ export const Home: React.FC<HomeProps> = ({ registry }) => {
           />
         )}
 
-        {/* Single File Result */}
         {jobState && jobState.status === 'completed' && jobState.download_url && (
           <ResultCard
             originalFilename={jobState.original_filename}
@@ -175,7 +401,6 @@ export const Home: React.FC<HomeProps> = ({ registry }) => {
           />
         )}
 
-        {/* Multi-File Batch Card */}
         {selectedFiles.length > 1 && (!batchState || batchState.status === 'queued') && (
           <BatchConversionCard
             files={selectedFiles}
@@ -187,7 +412,6 @@ export const Home: React.FC<HomeProps> = ({ registry }) => {
           />
         )}
 
-        {/* Multi-File Batch Progress */}
         {batchState && batchState.status === 'processing' && (
           <BatchProgressBar
             progress={batchState.progress}
@@ -199,7 +423,6 @@ export const Home: React.FC<HomeProps> = ({ registry }) => {
           />
         )}
 
-        {/* Multi-File Batch Result */}
         {batchState && batchState.status === 'completed' && (
           <BatchResultCard
             batchId={batchState.batch_id}
@@ -211,58 +434,83 @@ export const Home: React.FC<HomeProps> = ({ registry }) => {
             onReset={handleBatchClear}
           />
         )}
-
       </div>
 
-      {/* Format Category Badges Grid */}
-      <div className="max-w-5xl mx-auto px-4 pt-8 border-t border-slate-800/80">
-        <h3 className="text-center text-xs font-semibold uppercase tracking-wider text-slate-500 mb-8">
-          Supported Conversion Categories
-        </h3>
-
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
-          <div className="p-5 rounded-2xl bg-dark-card/60 border border-slate-800 text-center space-y-2 hover:border-slate-700 transition-colors">
-            <div className="w-10 h-10 mx-auto rounded-xl bg-blue-600/10 text-blue-400 flex items-center justify-center">
-              <Video className="w-5 h-5" />
-            </div>
-            <h4 className="font-semibold text-white text-xs">VIDEO</h4>
-            <p className="text-[11px] text-slate-400">MP4, AVI, MKV, WEBM, MOV, GIF</p>
+      {/* Category Filter Pills & Search Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 relative z-10">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+          {/* Handcrafted Category Pill Buttons */}
+          <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-2 sm:pb-0 scrollbar-none font-heading">
+            {categories.map((cat) => {
+              const isActive = selectedCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-4 py-2 rounded-xl text-xs font-extrabold whitespace-nowrap transition-all ${
+                    isActive
+                      ? 'bg-[#ff385c] text-white shadow-lg shadow-[#ff385c]/30'
+                      : 'bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 border border-white/10'
+                  }`}
+                >
+                  {cat}
+                </button>
+              );
+            })}
           </div>
 
-          <div className="p-5 rounded-2xl bg-dark-card/60 border border-slate-800 text-center space-y-2 hover:border-slate-700 transition-colors">
-            <div className="w-10 h-10 mx-auto rounded-xl bg-purple-600/10 text-purple-400 flex items-center justify-center">
-              <Music className="w-5 h-5" />
-            </div>
-            <h4 className="font-semibold text-white text-xs">AUDIO</h4>
-            <p className="text-[11px] text-slate-400">MP3, WAV, FLAC, OGG, OPUS, AAC</p>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-dark-card/60 border border-slate-800 text-center space-y-2 hover:border-slate-700 transition-colors">
-            <div className="w-10 h-10 mx-auto rounded-xl bg-emerald-600/10 text-emerald-400 flex items-center justify-center">
-              <ImageIcon className="w-5 h-5" />
-            </div>
-            <h4 className="font-semibold text-white text-xs">IMAGE</h4>
-            <p className="text-[11px] text-slate-400">PNG, JPG, WEBP, BMP, GIF, PDF</p>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-dark-card/60 border border-slate-800 text-center space-y-2 hover:border-slate-700 transition-colors">
-            <div className="w-10 h-10 mx-auto rounded-xl bg-amber-600/10 text-amber-400 flex items-center justify-center">
-              <FileText className="w-5 h-5" />
-            </div>
-            <h4 className="font-semibold text-white text-xs">DOCUMENTS</h4>
-            <p className="text-[11px] text-slate-400">PPTX, DOCX, XLSX, HTML, PDF, MD</p>
-          </div>
-
-          <div className="p-5 rounded-2xl bg-dark-card/60 border border-slate-800 text-center space-y-2 hover:border-slate-700 transition-colors col-span-2 sm:col-span-1">
-            <div className="w-10 h-10 mx-auto rounded-xl bg-cyan-600/10 text-cyan-400 flex items-center justify-center">
-              <Code className="w-5 h-5" />
-            </div>
-            <h4 className="font-semibold text-white text-xs">TEXT & CODE</h4>
-            <p className="text-[11px] text-slate-400">TXT, PY, C, IPYNB, JS, CSS, HTML, JAVA, RS, CS</p>
+          {/* Quick Tool Search Bar */}
+          <div className="relative w-full sm:w-72 font-sans">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <input
+              type="text"
+              placeholder="Search all tools..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-10 pr-4 py-2 rounded-xl bg-[#12141d] border border-white/10 text-white text-xs font-medium focus:outline-none focus:border-[#ff385c] shadow-inner placeholder:text-slate-500"
+            />
           </div>
         </div>
-      </div>
 
+        {/* All Converter Tool Buttons Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {filteredTools.map((tool) => (
+            <div
+              key={tool.id}
+              onClick={() => handleToolCardClick(tool)}
+              className="craft-card group cursor-pointer p-6 flex flex-col justify-between h-full bg-[#12141d]/90 border border-white/10 rounded-2xl hover:border-[#ff385c]/50 hover:shadow-2xl transition-all duration-300 active:scale-[0.98]"
+            >
+              <div className="space-y-4">
+                {/* Custom Color Badge Box */}
+                <div
+                  className={`w-14 h-14 rounded-2xl ${tool.bgLight} ${tool.textColor} ${tool.borderColor} border flex items-center justify-center group-hover:scale-110 transition-transform shadow-md`}
+                >
+                  {renderIcon(tool.iconName)}
+                </div>
+
+                <div>
+                  <h3 className="font-heading font-extrabold text-white text-xl tracking-tight group-hover:text-[#ff385c] transition-colors">
+                    {tool.title}
+                  </h3>
+                  <p className="text-slate-400 text-xs mt-2 leading-relaxed font-sans font-medium">
+                    {tool.description}
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-4 mt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider">
+                <span>{tool.category}</span>
+                <span className="text-[#ff385c] group-hover:translate-x-1 transition-transform">Use Tool →</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
+
+
+
+
+
