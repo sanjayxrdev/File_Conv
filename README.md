@@ -182,10 +182,7 @@ python tests/generate_fixtures.py
 pytest tests -v
 ```
 
-Output:
-```text
-======================= 35 passed in 12.81s =======================
-```
+
 
 ---
 
