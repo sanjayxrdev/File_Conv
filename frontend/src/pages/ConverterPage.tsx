@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { FormatsRegistryResponse } from '../types';
 import { FileDropzone } from '../components/FileDropzone';
 import { ConversionCard } from '../components/ConversionCard';
@@ -12,17 +12,18 @@ import { useConversion } from '../hooks/useConversion';
 import { startBatchConversion, getBatchStatus } from '../services/api';
 import {
   Video,
-  Music,
+  MusicNotes,
   FileText,
   Image as ImageIcon,
   Code,
   Table,
-  Combine,
+  GitMerge,
   ArrowLeft,
-  Sparkles,
-  ShieldCheck,
-  Zap,
-} from 'lucide-react';
+} from '@phosphor-icons/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export interface ConverterCategoryConfig {
   id: string;
@@ -31,9 +32,8 @@ export interface ConverterCategoryConfig {
   categoryName: string;
   description: string;
   icon: React.ReactNode;
-  bgLight: string;
-  textColor: string;
-  borderColor: string;
+  accentBg: string;
+  accentText: string;
   acceptedFormatsText: string;
   defaultTargetFormat: string;
 }
@@ -45,10 +45,9 @@ export const CONVERTER_CATEGORIES: Record<string, ConverterCategoryConfig> = {
     title: 'Video & GIF Converter',
     categoryName: 'Audio & Video',
     description: 'Convert MP4, AVI, MKV, WEBM, MOV, and GIF files locally with full audio track preservation.',
-    icon: <Video className="w-8 h-8" />,
-    bgLight: 'bg-indigo-500/20',
-    textColor: 'text-indigo-400',
-    borderColor: 'border-indigo-500/30',
+    icon: <Video className="w-7 h-7" weight="bold" />,
+    accentBg: 'bg-accent-blue',
+    accentText: 'text-accent-blue-text',
     acceptedFormatsText: 'MP4, AVI, MKV, WEBM, MOV, GIF',
     defaultTargetFormat: 'mp4',
   },
@@ -58,10 +57,9 @@ export const CONVERTER_CATEGORIES: Record<string, ConverterCategoryConfig> = {
     title: 'Image Converter',
     categoryName: 'Image',
     description: 'Convert PNG, JPG, WEBP, BMP, GIF, and PDF page images in seconds.',
-    icon: <ImageIcon className="w-8 h-8" />,
-    bgLight: 'bg-amber-500/20',
-    textColor: 'text-amber-400',
-    borderColor: 'border-amber-500/30',
+    icon: <ImageIcon className="w-7 h-7" weight="bold" />,
+    accentBg: 'bg-accent-yellow',
+    accentText: 'text-accent-yellow-text',
     acceptedFormatsText: 'PNG, JPG, WEBP, BMP, GIF, PDF',
     defaultTargetFormat: 'jpg',
   },
@@ -70,11 +68,10 @@ export const CONVERTER_CATEGORIES: Record<string, ConverterCategoryConfig> = {
     slug: 'audio-converter',
     title: 'Audio Converter',
     categoryName: 'Audio & Video',
-    description: 'Convert MP3, WAV, FLAC, OGG, OPUS, AAC audio tracks locally with crystal clarity.',
-    icon: <Music className="w-8 h-8" />,
-    bgLight: 'bg-purple-500/20',
-    textColor: 'text-purple-400',
-    borderColor: 'border-purple-500/30',
+    description: 'Convert MP3, WAV, FLAC, OGG, OPUS, and AAC audio tracks locally.',
+    icon: <MusicNotes className="w-7 h-7" weight="bold" />,
+    accentBg: 'bg-accent-red',
+    accentText: 'text-accent-red-text',
     acceptedFormatsText: 'MP3, WAV, FLAC, OGG, OPUS, AAC',
     defaultTargetFormat: 'mp3',
   },
@@ -84,10 +81,9 @@ export const CONVERTER_CATEGORIES: Record<string, ConverterCategoryConfig> = {
     title: 'PDF Converter',
     categoryName: 'Convert PDF',
     description: 'Convert PDF documents to editable DOCX, XLSX, PPTX, JPG, TXT, and Markdown files.',
-    icon: <FileText className="w-8 h-8" />,
-    bgLight: 'bg-red-500/20',
-    textColor: 'text-red-400',
-    borderColor: 'border-red-500/30',
+    icon: <FileText className="w-7 h-7" weight="bold" />,
+    accentBg: 'bg-accent-red',
+    accentText: 'text-accent-red-text',
     acceptedFormatsText: 'PDF to DOCX, XLSX, PPTX, JPG, TXT, MD',
     defaultTargetFormat: 'docx',
   },
@@ -97,10 +93,9 @@ export const CONVERTER_CATEGORIES: Record<string, ConverterCategoryConfig> = {
     title: 'Document Converter',
     categoryName: 'Documents',
     description: 'Convert Word (DOCX), PowerPoint (PPTX), Excel (XLSX), and HTML documents to PDF and text.',
-    icon: <FileText className="w-8 h-8" />,
-    bgLight: 'bg-blue-500/20',
-    textColor: 'text-blue-400',
-    borderColor: 'border-blue-500/30',
+    icon: <FileText className="w-7 h-7" weight="bold" />,
+    accentBg: 'bg-accent-blue',
+    accentText: 'text-accent-blue-text',
     acceptedFormatsText: 'DOCX, PPTX, XLSX, HTML, TXT, MD',
     defaultTargetFormat: 'pdf',
   },
@@ -109,11 +104,10 @@ export const CONVERTER_CATEGORIES: Record<string, ConverterCategoryConfig> = {
     slug: 'code-converter',
     title: 'Code & Notebook Converter',
     categoryName: 'Code & Text',
-    description: 'Convert Python, JS, C, Java, HTML, and Jupyter Notebooks (.ipynb) to formatted HTML, PDF, or TXT.',
-    icon: <Code className="w-8 h-8" />,
-    bgLight: 'bg-cyan-500/20',
-    textColor: 'text-cyan-400',
-    borderColor: 'border-cyan-500/30',
+    description: 'Convert Python, JS, C, Java, HTML, and Jupyter Notebooks to formatted HTML, PDF, or TXT.',
+    icon: <Code className="w-7 h-7" weight="bold" />,
+    accentBg: 'bg-accent-green',
+    accentText: 'text-accent-green-text',
     acceptedFormatsText: 'PY, JS, C, JAVA, HTML, IPYNB, TXT',
     defaultTargetFormat: 'html',
   },
@@ -123,10 +117,9 @@ export const CONVERTER_CATEGORIES: Record<string, ConverterCategoryConfig> = {
     title: 'Spreadsheet & Data Converter',
     categoryName: 'Spreadsheets',
     description: 'Convert CSV to Excel, JSON tables to CSV, or Excel spreadsheets to clean CSV data.',
-    icon: <Table className="w-8 h-8" />,
-    bgLight: 'bg-emerald-500/20',
-    textColor: 'text-emerald-400',
-    borderColor: 'border-emerald-500/30',
+    icon: <Table className="w-7 h-7" weight="bold" />,
+    accentBg: 'bg-accent-green',
+    accentText: 'text-accent-green-text',
     acceptedFormatsText: 'XLSX, XLS, CSV, JSON',
     defaultTargetFormat: 'csv',
   },
@@ -144,7 +137,9 @@ export const ConverterPage: React.FC<ConverterPageProps> = ({ categorySlug: prop
   const slug = propSlug || urlSlug || 'pdf-converter';
   const categoryConfig = CONVERTER_CATEGORIES[slug] || CONVERTER_CATEGORIES['pdf-converter'];
 
-  // Single file conversion hook
+  const heroRef = useRef<HTMLDivElement>(null);
+  const crossNavRef = useRef<HTMLDivElement>(null);
+
   const {
     selectedFile,
     jobState,
@@ -155,7 +150,6 @@ export const ConverterPage: React.FC<ConverterPageProps> = ({ categorySlug: prop
     startJob,
   } = useConversion();
 
-  // Multi-file batch state
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [batchState, setBatchState] = useState<any | null>(null);
   const [isBatchSubmitting, setIsBatchSubmitting] = useState(false);
@@ -163,10 +157,62 @@ export const ConverterPage: React.FC<ConverterPageProps> = ({ categorySlug: prop
   const batchPollTimerRef = useRef<any>(null);
 
   useEffect(() => {
-    // Reset file selections when navigating between different conversion pages
     handleSingleClear();
     handleBatchClear();
   }, [slug]);
+
+  useEffect(() => {
+    if (!heroRef.current) return;
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      tl.from(heroRef.current!.querySelector('.back-btn'), {
+        x: -10,
+        opacity: 0,
+        duration: 0.3,
+      })
+      .from(heroRef.current!.querySelector('.icon-box'), {
+        scale: 0.5,
+        opacity: 0,
+        duration: 0.5,
+        ease: "back.out(2)",
+      }, "-=0.1")
+      .from(heroRef.current!.querySelector('h1'), {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+      }, "-=0.3")
+      .from(heroRef.current!.querySelector('p'), {
+        y: 15,
+        opacity: 0,
+        duration: 0.4,
+      }, "-=0.3")
+      .from(heroRef.current!.querySelector('.formats-badge'), {
+        y: 8,
+        opacity: 0,
+        duration: 0.3,
+      }, "-=0.2");
+    }, heroRef);
+    return () => ctx.revert();
+  }, [slug]);
+
+  useEffect(() => {
+    if (!crossNavRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.from(crossNavRef.current!.querySelectorAll('button'), {
+        scrollTrigger: {
+          trigger: crossNavRef.current!,
+          start: "top 90%",
+          once: true,
+        },
+        y: 12,
+        opacity: 0,
+        duration: 0.35,
+        stagger: 0.04,
+        ease: "power2.out",
+      });
+    }, crossNavRef);
+    return () => ctx.revert();
+  }, []);
 
   const handleFilesSelect = (files: File[]) => {
     if (files.length === 1) {
@@ -231,58 +277,51 @@ export const ConverterPage: React.FC<ConverterPageProps> = ({ categorySlug: prop
   };
 
   return (
-    <div className="space-y-12 pb-24 bg-transparent min-h-screen text-slate-100 relative font-sans">
+    <div className="space-y-16 pb-24 bg-transparent min-h-screen text-ink-primary relative font-sans">
 
-      {/* Background Glowing Lights */}
-      <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
-
-      {/* Breadcrumb & Navigation Header */}
-      <div className="max-w-6xl mx-auto px-4 pt-8 relative z-10">
+      {/* Breadcrumb & Hero */}
+      <div ref={heroRef} className="max-w-4xl mx-auto px-4 pt-8 relative z-10">
         <button
           onClick={() => navigate('/')}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 border border-white/15 text-xs font-bold text-slate-200 hover:text-white hover:bg-white/20 transition-all shadow-md mb-6"
+          className="back-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-card bg-surface-raised border border-surface-border text-xs font-medium text-ink-muted hover:text-ink-primary hover:bg-surface-border/50 transition-all mb-8"
         >
-          <ArrowLeft className="w-4 h-4 text-blue-400" />
-          <span>Back to All Converters</span>
+          <ArrowLeft className="w-3.5 h-3.5" weight="bold" />
+          <span>All Converters</span>
         </button>
 
-        {/* Hero Banner for Dedicated Page */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <div className="flex items-center justify-center gap-3">
-            <div className={`w-14 h-14 rounded-2xl ${categoryConfig.bgLight} ${categoryConfig.textColor} ${categoryConfig.borderColor} border flex items-center justify-center shadow-lg`}>
+          <div className="flex items-center justify-center">
+            <div className={`icon-box w-14 h-14 rounded-card-lg ${categoryConfig.accentBg} ${categoryConfig.accentText} flex items-center justify-center`}>
               {categoryConfig.icon}
             </div>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight gradient-heading">
+          <h1 className="font-serif text-4xl sm:text-5xl text-ink-primary">
             {categoryConfig.title}
           </h1>
 
-          <p className="text-slate-400 text-base sm:text-lg max-w-xl mx-auto font-medium">
+          <p className="text-ink-muted text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
             {categoryConfig.description}
           </p>
 
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-mono font-bold">
-            <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-            <span>Supported: {categoryConfig.acceptedFormatsText}</span>
+          <div className="formats-badge inline-flex items-center gap-1.5 px-3 py-1 rounded bg-surface-raised border border-surface-border text-xs font-mono text-ink-muted">
+            <span>{categoryConfig.acceptedFormatsText}</span>
           </div>
         </div>
       </div>
 
       {/* Main Conversion Workflow Area */}
-      <div className="px-4 max-w-6xl mx-auto relative z-10">
-        {/* Category File Dropzone */}
+      <div className="px-4 max-w-4xl mx-auto relative z-10">
         {!selectedFile && selectedFiles.length === 0 && !jobState && !batchState && (
           <FileDropzone
             registry={registry}
             onFilesSelect={handleFilesSelect}
             error={singleError || batchError}
-            customTitle={`Upload ${categoryConfig.title.split(' ')[0]} Files`}
-            customSubtitle={`Select single or multiple files for instant ${categoryConfig.title.toLowerCase()}.`}
+            customTitle={`Upload ${categoryConfig.title.split(' ')[0]} files`}
+            customSubtitle={`Select single or multiple files for ${categoryConfig.title.toLowerCase()}.`}
           />
         )}
 
-        {/* Single File Conversion Card */}
         {selectedFile && (!jobState || jobState.status === 'queued') && (
           <ConversionCard
             file={selectedFile}
@@ -294,7 +333,6 @@ export const ConverterPage: React.FC<ConverterPageProps> = ({ categorySlug: prop
           />
         )}
 
-        {/* Single File Progress */}
         {jobState && jobState.status === 'processing' && (
           <ProgressBar
             progress={jobState.progress}
@@ -304,7 +342,6 @@ export const ConverterPage: React.FC<ConverterPageProps> = ({ categorySlug: prop
           />
         )}
 
-        {/* Single File Result */}
         {jobState && jobState.status === 'completed' && jobState.download_url && (
           <ResultCard
             originalFilename={jobState.original_filename}
@@ -315,7 +352,6 @@ export const ConverterPage: React.FC<ConverterPageProps> = ({ categorySlug: prop
           />
         )}
 
-        {/* Multi-File Batch Conversion Card */}
         {selectedFiles.length > 1 && (!batchState || batchState.status === 'queued') && (
           <BatchConversionCard
             files={selectedFiles}
@@ -327,7 +363,6 @@ export const ConverterPage: React.FC<ConverterPageProps> = ({ categorySlug: prop
           />
         )}
 
-        {/* Multi-File Batch Progress */}
         {batchState && batchState.status === 'processing' && (
           <BatchProgressBar
             progress={batchState.progress}
@@ -339,7 +374,6 @@ export const ConverterPage: React.FC<ConverterPageProps> = ({ categorySlug: prop
           />
         )}
 
-        {/* Multi-File Batch Result */}
         {batchState && batchState.status === 'completed' && (
           <BatchResultCard
             batchId={batchState.batch_id}
@@ -353,25 +387,25 @@ export const ConverterPage: React.FC<ConverterPageProps> = ({ categorySlug: prop
         )}
       </div>
 
-      {/* Cross Navigation to Other Conversion Pages */}
-      <div className="max-w-6xl mx-auto px-4 pt-12 border-t border-white/10 relative z-10">
-        <h3 className="text-center text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-6">
-          Explore Other Conversion Tools
+      {/* Cross Navigation */}
+      <div ref={crossNavRef} className="max-w-4xl mx-auto px-4 pt-10 border-t border-surface-border relative z-10">
+        <h3 className="text-center text-[11px] font-medium uppercase tracking-wider text-ink-muted mb-6">
+          Other conversion tools
         </h3>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
           {Object.values(CONVERTER_CATEGORIES)
             .filter((c) => c.slug !== slug)
             .map((c) => (
               <button
                 key={c.slug}
                 onClick={() => navigate(`/${c.slug}`)}
-                className="p-4 rounded-2xl glass-card bg-slate-900/70 border border-white/10 hover:border-blue-500/50 text-center space-y-2 transition-all group"
+                className="card-lift p-3 rounded-card bg-surface-card border border-surface-border text-center space-y-2 group"
               >
-                <div className={`w-10 h-10 mx-auto rounded-xl ${c.bgLight} ${c.textColor} flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                <div className={`w-9 h-9 mx-auto rounded-card ${c.accentBg} ${c.accentText} flex items-center justify-center`}>
                   {c.icon}
                 </div>
-                <div className="font-extrabold text-white text-xs truncate group-hover:text-blue-400 transition-colors">
+                <div className="font-medium text-ink-primary text-[11px] truncate">
                   {c.title}
                 </div>
               </button>
@@ -381,4 +415,3 @@ export const ConverterPage: React.FC<ConverterPageProps> = ({ categorySlug: prop
     </div>
   );
 };
-

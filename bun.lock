@@ -1,0 +1,14 @@
+{
+  "lockfileVersion": 1,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "dependencies": {
+        "npmx": "^0.0.0",
+      },
+    },
+  },
+  "packages": {
+    "npmx": ["npmx@0.0.0", "", {}, "sha512-UMK+043+igQPvNBIYfVsEDWYz09vuj4BiGCHlfBZUejwZsFX7V1VORSkhAbSqysDHE6N+Gic73Sz6V10DKbkJQ=="],
+  }
+}

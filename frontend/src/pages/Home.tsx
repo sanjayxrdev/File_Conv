@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import gsap from 'gsap';
 import { FormatsRegistryResponse } from '../types';
 import { FileDropzone } from '../components/FileDropzone';
 import { ConversionCard } from '../components/ConversionCard';
@@ -12,20 +11,20 @@ import { BatchResultCard } from '../components/BatchResultCard';
 import { useConversion } from '../hooks/useConversion';
 import { startBatchConversion, getBatchStatus } from '../services/api';
 import {
-  Combine,
-  Scissors,
-  Minimize2,
+  GitMerge,
   FileText,
   Table,
-  Presentation,
   Image as ImageIcon,
   Code,
-  Music,
+  MusicNotes,
   Video,
-  Globe,
-  Search,
-  Zap,
-} from 'lucide-react';
+  MagnifyingGlass,
+  ArrowRight,
+} from '@phosphor-icons/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export interface ToolConfig {
   id: string;
@@ -33,9 +32,8 @@ export interface ToolConfig {
   category: string;
   description: string;
   iconName: string;
-  bgLight: string;
-  textColor: string;
-  borderColor: string;
+  accentBg: string;
+  accentText: string;
   route: string;
   targetFormat?: string;
 }
@@ -45,11 +43,10 @@ export const TOOLS_LIST: ToolConfig[] = [
     id: 'video-converter',
     title: 'Video Converter',
     category: 'Audio & Video',
-    description: 'Convert MP4, AVI, MKV, WEBM, MOV, GIF files locally.',
+    description: 'Convert MP4, AVI, MKV, WEBM, MOV, and GIF files locally.',
     iconName: 'Video',
-    bgLight: 'bg-[#00f2fe]/10',
-    textColor: 'text-[#00f2fe]',
-    borderColor: 'border-[#00f2fe]/30',
+    accentBg: 'bg-accent-blue',
+    accentText: 'text-accent-blue-text',
     route: '/video-converter',
     targetFormat: 'mp4',
   },
@@ -59,9 +56,8 @@ export const TOOLS_LIST: ToolConfig[] = [
     category: 'Image',
     description: 'Convert PNG, JPG, WEBP, BMP, GIF, and PDF page images.',
     iconName: 'ImageIcon',
-    bgLight: 'bg-[#ccff00]/10',
-    textColor: 'text-[#ccff00]',
-    borderColor: 'border-[#ccff00]/30',
+    accentBg: 'bg-accent-yellow',
+    accentText: 'text-accent-yellow-text',
     route: '/image-converter',
     targetFormat: 'jpg',
   },
@@ -69,11 +65,10 @@ export const TOOLS_LIST: ToolConfig[] = [
     id: 'audio-converter',
     title: 'Audio Converter',
     category: 'Audio & Video',
-    description: 'Convert MP3, WAV, FLAC, OGG, OPUS, AAC files locally.',
+    description: 'Convert MP3, WAV, FLAC, OGG, OPUS, and AAC files locally.',
     iconName: 'Music',
-    bgLight: 'bg-[#a855f7]/15',
-    textColor: 'text-[#a855f7]',
-    borderColor: 'border-[#a855f7]/30',
+    accentBg: 'bg-accent-red',
+    accentText: 'text-accent-red-text',
     route: '/audio-converter',
     targetFormat: 'mp3',
   },
@@ -83,9 +78,8 @@ export const TOOLS_LIST: ToolConfig[] = [
     category: 'Convert PDF',
     description: 'Convert PDFs to editable DOCX, XLSX, PPTX, JPG, and TXT.',
     iconName: 'FileText',
-    bgLight: 'bg-[#ff385c]/15',
-    textColor: 'text-[#ff385c]',
-    borderColor: 'border-[#ff385c]/30',
+    accentBg: 'bg-accent-red',
+    accentText: 'text-accent-red-text',
     route: '/pdf-converter',
     targetFormat: 'docx',
   },
@@ -95,9 +89,8 @@ export const TOOLS_LIST: ToolConfig[] = [
     category: 'Documents',
     description: 'Convert Word, PowerPoint, Excel, and HTML files to PDF.',
     iconName: 'FileText',
-    bgLight: 'bg-[#00f2fe]/15',
-    textColor: 'text-[#00f2fe]',
-    borderColor: 'border-[#00f2fe]/30',
+    accentBg: 'bg-accent-blue',
+    accentText: 'text-accent-blue-text',
     route: '/document-converter',
     targetFormat: 'pdf',
   },
@@ -105,11 +98,10 @@ export const TOOLS_LIST: ToolConfig[] = [
     id: 'code-converter',
     title: 'Code & Notebook Converter',
     category: 'Code & Text',
-    description: 'Convert Python, JS, C, Java, HTML, Jupyter Notebooks (.ipynb).',
+    description: 'Convert Python, JS, C, Java, HTML, and Jupyter Notebooks.',
     iconName: 'Code',
-    bgLight: 'bg-[#ccff00]/15',
-    textColor: 'text-[#ccff00]',
-    borderColor: 'border-[#ccff00]/30',
+    accentBg: 'bg-accent-green',
+    accentText: 'text-accent-green-text',
     route: '/code-converter',
     targetFormat: 'html',
   },
@@ -119,9 +111,8 @@ export const TOOLS_LIST: ToolConfig[] = [
     category: 'Spreadsheets',
     description: 'Convert CSV to Excel, JSON to CSV, or Excel to CSV.',
     iconName: 'Table',
-    bgLight: 'bg-[#10b981]/15',
-    textColor: 'text-[#10b981]',
-    borderColor: 'border-[#10b981]/30',
+    accentBg: 'bg-accent-green',
+    accentText: 'text-accent-green-text',
     route: '/spreadsheet-converter',
     targetFormat: 'csv',
   },
@@ -131,9 +122,8 @@ export const TOOLS_LIST: ToolConfig[] = [
     category: 'Merge & Edit',
     description: 'Combine multiple PDFs, PPTX presentations, or DOCX files.',
     iconName: 'Combine',
-    bgLight: 'bg-[#ff385c]/15',
-    textColor: 'text-[#ff385c]',
-    borderColor: 'border-[#ff385c]/30',
+    accentBg: 'bg-accent-yellow',
+    accentText: 'text-accent-yellow-text',
     route: '/merge-converter',
     targetFormat: 'pdf',
   },
@@ -143,9 +133,8 @@ export const TOOLS_LIST: ToolConfig[] = [
     category: 'Convert PDF',
     description: 'Easily convert PDF files into editable Word documents.',
     iconName: 'FileText',
-    bgLight: 'bg-[#00f2fe]/15',
-    textColor: 'text-[#00f2fe]',
-    borderColor: 'border-[#00f2fe]/30',
+    accentBg: 'bg-accent-blue',
+    accentText: 'text-accent-blue-text',
     route: '/pdf-converter',
     targetFormat: 'docx',
   },
@@ -155,9 +144,8 @@ export const TOOLS_LIST: ToolConfig[] = [
     category: 'Convert PDF',
     description: 'Pull data straight from PDFs into Excel spreadsheets.',
     iconName: 'Table',
-    bgLight: 'bg-[#10b981]/15',
-    textColor: 'text-[#10b981]',
-    borderColor: 'border-[#10b981]/30',
+    accentBg: 'bg-accent-green',
+    accentText: 'text-accent-green-text',
     route: '/pdf-converter',
     targetFormat: 'xlsx',
   },
@@ -167,9 +155,8 @@ export const TOOLS_LIST: ToolConfig[] = [
     category: 'Convert to PDF',
     description: 'Convert DOC and DOCX files to PDF in seconds.',
     iconName: 'FileText',
-    bgLight: 'bg-[#00f2fe]/15',
-    textColor: 'text-[#00f2fe]',
-    borderColor: 'border-[#00f2fe]/30',
+    accentBg: 'bg-accent-blue',
+    accentText: 'text-accent-blue-text',
     route: '/document-converter',
     targetFormat: 'pdf',
   },
@@ -177,11 +164,10 @@ export const TOOLS_LIST: ToolConfig[] = [
     id: 'jpg-to-pdf',
     title: 'JPG to PDF',
     category: 'Convert to PDF',
-    description: 'Convert JPG & PNG images to PDF documents.',
+    description: 'Convert JPG and PNG images to PDF documents.',
     iconName: 'ImageIcon',
-    bgLight: 'bg-[#ccff00]/15',
-    textColor: 'text-[#ccff00]',
-    borderColor: 'border-[#ccff00]/30',
+    accentBg: 'bg-accent-yellow',
+    accentText: 'text-accent-yellow-text',
     route: '/image-converter',
     targetFormat: 'pdf',
   },
@@ -195,10 +181,11 @@ interface HomeProps {
 export const Home: React.FC<HomeProps> = ({ registry, activeCategoryFilter }) => {
   const navigate = useNavigate();
   const heroRef = useRef<HTMLDivElement>(null);
+  const toolsGridRef = useRef<HTMLDivElement>(null);
+  const sectionHeaderRef = useRef<HTMLDivElement>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  // Single file conversion hook
   const {
     selectedFile,
     jobState,
@@ -209,7 +196,6 @@ export const Home: React.FC<HomeProps> = ({ registry, activeCategoryFilter }) =>
     startJob,
   } = useConversion();
 
-  // Multi-file batch state
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [batchState, setBatchState] = useState<any | null>(null);
   const [isBatchSubmitting, setIsBatchSubmitting] = useState(false);
@@ -223,13 +209,63 @@ export const Home: React.FC<HomeProps> = ({ registry, activeCategoryFilter }) =>
   }, [activeCategoryFilter]);
 
   useEffect(() => {
-    if (heroRef.current) {
-      gsap.fromTo(
-        heroRef.current,
-        { opacity: 0, y: 15 },
-        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }
-      );
-    }
+    if (!heroRef.current) return;
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      const hero = heroRef.current;
+      if (!hero) return;
+
+      tl.from(hero.querySelector('h1'), {
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
+      })
+      .from(hero.querySelector('p'), {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+      }, '-=0.4')
+      .from(Array.from(hero.querySelectorAll('kbd, span')).filter(el => el.closest('div.flex')), {
+        y: 10,
+        opacity: 0,
+        duration: 0.4,
+        stagger: 0.04,
+      }, '-=0.3');
+    }, heroRef);
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    if (!toolsGridRef.current || !sectionHeaderRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.from(sectionHeaderRef.current!.children, {
+        scrollTrigger: {
+          trigger: sectionHeaderRef.current!,
+          start: 'top 85%',
+          once: true,
+        },
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.1,
+        ease: 'power3.out',
+      });
+
+      gsap.from(toolsGridRef.current!.children, {
+        scrollTrigger: {
+          trigger: toolsGridRef.current!,
+          start: 'top 85%',
+          once: true,
+        },
+        y: 24,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.05,
+        ease: 'power3.out',
+      });
+    }, toolsGridRef);
+    return () => ctx.revert();
   }, []);
 
   const categories = [
@@ -318,52 +354,43 @@ export const Home: React.FC<HomeProps> = ({ registry, activeCategoryFilter }) =>
   };
 
   const renderIcon = (iconName: string) => {
+    const iconClass = "w-7 h-7";
     switch (iconName) {
-      case 'Combine': return <Combine className="w-8 h-8" />;
-      case 'Scissors': return <Scissors className="w-8 h-8" />;
-      case 'Minimize2': return <Minimize2 className="w-8 h-8" />;
-      case 'FileText': return <FileText className="w-8 h-8" />;
-      case 'Presentation': return <Presentation className="w-8 h-8" />;
-      case 'Table': return <Table className="w-8 h-8" />;
-      case 'ImageIcon': return <ImageIcon className="w-8 h-8" />;
-      case 'Globe': return <Globe className="w-8 h-8" />;
-      case 'Code': return <Code className="w-8 h-8" />;
-      case 'Music': return <Music className="w-8 h-8" />;
-      case 'Video': return <Video className="w-8 h-8" />;
-      default: return <Zap className="w-8 h-8" />;
+      case 'Combine': return <GitMerge className={iconClass} weight="bold" />;
+      case 'FileText': return <FileText className={iconClass} weight="bold" />;
+      case 'Table': return <Table className={iconClass} weight="bold" />;
+      case 'ImageIcon': return <ImageIcon className={iconClass} weight="bold" />;
+      case 'Code': return <Code className={iconClass} weight="bold" />;
+      case 'Music': return <MusicNotes className={iconClass} weight="bold" />;
+      case 'Video': return <Video className={iconClass} weight="bold" />;
+      default: return <FileText className={iconClass} weight="bold" />;
     }
   };
 
   return (
-    <div className="space-y-12 pb-24 bg-transparent min-h-screen text-slate-100 relative font-sans">
+    <div className="space-y-20 pb-24 bg-transparent min-h-screen text-ink-primary relative font-sans">
 
-      {/* Handcrafted Mesh Light Effects */}
-      <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-[#ff385c]/10 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-[#00f2fe]/10 rounded-full blur-[150px] pointer-events-none" />
-
-      {/* Syne Editorial Hero Title with Ninja Mascot */}
-      <div ref={heroRef} className="text-center space-y-4 pt-10 sm:pt-14 max-w-5xl mx-auto px-4 relative z-10">
-        <div className="flex justify-center mb-2">
-          <img
-            src="/logo.png"
-            alt="Ninja File Converter"
-            className="w-24 h-24 sm:w-28 sm:h-28 object-contain filter drop-shadow-[0_10px_25px_rgba(0,242,254,0.4)] hover:scale-105 transition-transform"
-          />
-        </div>
-
-        <h1 className="font-syne text-3xl sm:text-5xl font-black tracking-tight leading-[1.1] craft-title-gradient">
-          CONVERT ANY FILE INSTANTLY
+      {/* Hero Section */}
+      <div ref={heroRef} className="text-center space-y-6 pt-16 sm:pt-24 max-w-4xl mx-auto px-4 relative z-10">
+        <h1 className="font-serif text-5xl sm:text-7xl font-normal text-ink-primary tracking-tight">
+          Convert any file instantly
         </h1>
-
-
-        <p className="font-heading text-slate-400 text-base sm:text-xl max-w-2xl mx-auto font-medium">
+        <p className="text-ink-muted text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
           Fast, local-first digital file converter. Convert documents, images, audio, video, code, and spreadsheets with zero telemetry.
         </p>
+        <div className="flex items-center justify-center gap-2 text-xs text-ink-muted font-mono">
+          <kbd>PDF</kbd>
+          <kbd>DOCX</kbd>
+          <kbd>MP4</kbd>
+          <kbd>MP3</kbd>
+          <kbd>PNG</kbd>
+          <kbd>PY</kbd>
+          <span className="text-ink-faint">+12 more</span>
+        </div>
       </div>
 
-
       {/* Main Conversion Workflow Area */}
-      <div className="px-4 max-w-6xl mx-auto relative z-10">
+      <div className="px-4 max-w-4xl mx-auto relative z-10">
         {!selectedFile && selectedFiles.length === 0 && !jobState && !batchState && (
           <FileDropzone
             registry={registry}
@@ -436,21 +463,31 @@ export const Home: React.FC<HomeProps> = ({ registry, activeCategoryFilter }) =>
         )}
       </div>
 
-      {/* Category Filter Pills & Search Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6 relative z-10">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
-          {/* Handcrafted Category Pill Buttons */}
-          <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-2 sm:pb-0 scrollbar-none font-heading">
+      {/* Tools Section */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Section Header */}
+        <div ref={sectionHeaderRef} className="mb-10">
+          <h2 className="font-serif text-3xl sm:text-4xl text-ink-primary tracking-tight mb-2">
+            All conversion tools
+          </h2>
+          <p className="text-ink-muted text-sm">
+            Every format route is validated against our backend conversion matrix.
+          </p>
+        </div>
+
+        {/* Filter & Search */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+          <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 sm:pb-0 font-sans">
             {categories.map((cat) => {
               const isActive = selectedCategory === cat;
               return (
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-xl text-xs font-extrabold whitespace-nowrap transition-all ${
+                  className={`px-3 py-1.5 rounded-card text-xs font-medium whitespace-nowrap transition-all ${
                     isActive
-                      ? 'bg-[#ff385c] text-white shadow-lg shadow-[#ff385c]/30'
-                      : 'bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 border border-white/10'
+                      ? 'bg-ink-primary text-white'
+                      : 'text-ink-muted hover:text-ink-primary hover:bg-surface-raised border border-surface-border'
                   }`}
                 >
                   {cat}
@@ -459,48 +496,44 @@ export const Home: React.FC<HomeProps> = ({ registry, activeCategoryFilter }) =>
             })}
           </div>
 
-          {/* Quick Tool Search Bar */}
-          <div className="relative w-full sm:w-72 font-sans">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <div className="relative w-full sm:w-64">
+            <MagnifyingGlass className="w-4 h-4 text-ink-faint absolute left-3 top-1/2 -translate-y-1/2" weight="bold" />
             <input
               type="text"
-              placeholder="Search all tools..."
+              placeholder="Search tools..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 rounded-xl bg-[#12141d] border border-white/10 text-white text-xs font-medium focus:outline-none focus:border-[#ff385c] shadow-inner placeholder:text-slate-500"
+              className="w-full pl-9 pr-4 py-2 rounded-card bg-surface-card border border-surface-border text-ink-primary text-xs focus:outline-none focus:border-ink-primary/30 placeholder:text-ink-faint transition-colors"
             />
           </div>
         </div>
 
-        {/* All Converter Tool Buttons Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {/* Tool Grid */}
+        <div ref={toolsGridRef} className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredTools.map((tool) => (
             <div
               key={tool.id}
               onClick={() => handleToolCardClick(tool)}
-              className="craft-card group cursor-pointer p-6 flex flex-col justify-between h-full bg-[#12141d]/90 border border-white/10 rounded-2xl hover:border-[#ff385c]/50 hover:shadow-2xl transition-all duration-300 active:scale-[0.98]"
+              className="card-lift bg-surface-card border border-surface-border rounded-card-lg p-5 flex flex-col justify-between h-full cursor-pointer group"
             >
-              <div className="space-y-4">
-                {/* Custom Color Badge Box */}
-                <div
-                  className={`w-14 h-14 rounded-2xl ${tool.bgLight} ${tool.textColor} ${tool.borderColor} border flex items-center justify-center group-hover:scale-110 transition-transform shadow-md`}
-                >
+              <div className="space-y-3">
+                <div className={`w-12 h-12 rounded-card ${tool.accentBg} ${tool.accentText} flex items-center justify-center`}>
                   {renderIcon(tool.iconName)}
                 </div>
 
                 <div>
-                  <h3 className="font-heading font-extrabold text-white text-xl tracking-tight group-hover:text-[#ff385c] transition-colors">
+                  <h3 className="font-sans font-semibold text-ink-primary text-sm tracking-tight group-hover:text-ink-secondary transition-colors">
                     {tool.title}
                   </h3>
-                  <p className="text-slate-400 text-xs mt-2 leading-relaxed font-sans font-medium">
+                  <p className="text-ink-muted text-xs mt-1 leading-relaxed">
                     {tool.description}
                   </p>
                 </div>
               </div>
 
-              <div className="pt-4 mt-4 border-t border-white/10 flex items-center justify-between text-[11px] font-mono font-bold text-slate-400 uppercase tracking-wider">
+              <div className="pt-3 mt-3 border-t border-surface-border flex items-center justify-between text-[11px] font-mono text-ink-muted uppercase tracking-wider">
                 <span>{tool.category}</span>
-                <span className="text-[#ff385c] group-hover:translate-x-1 transition-transform">Use Tool →</span>
+                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform text-ink-primary" weight="bold" />
               </div>
             </div>
           ))}
@@ -509,8 +542,3 @@ export const Home: React.FC<HomeProps> = ({ registry, activeCategoryFilter }) =>
     </div>
   );
 };
-
-
-
-
-

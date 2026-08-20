@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import { CheckCircle2, Download, RefreshCw, FileCheck } from 'lucide-react';
-import anime from 'animejs';
+import React, { useRef, useEffect } from 'react';
+import { CheckCircle, Download, ArrowClockwise, FileText } from '@phosphor-icons/react';
+import gsap from 'gsap';
 
 interface ResultCardProps {
   originalFilename: string;
@@ -17,18 +17,32 @@ export const ResultCard: React.FC<ResultCardProps> = ({
   outputSizeBytes,
   onReset,
 }) => {
-  const checkIconRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const badgeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (checkIconRef.current) {
-      anime({
-        targets: checkIconRef.current,
-        scale: [0.3, 1],
-        opacity: [0, 1],
-        duration: 500,
-        easing: 'easeOutQuad',
-      });
-    }
+    if (!cardRef.current) return;
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      tl.from(cardRef.current, {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+      })
+      .from(badgeRef.current, {
+        scale: 0.3,
+        opacity: 0,
+        duration: 0.6,
+        ease: "back.out(2)",
+      }, "-=0.2")
+      .from(Array.from(cardRef.current?.querySelectorAll('h3, p') || []), {
+        y: 10,
+        opacity: 0,
+        duration: 0.4,
+        stagger: 0.08,
+      }, "-=0.3");
+    }, cardRef);
+    return () => ctx.revert();
   }, []);
 
   const lastDot = originalFilename.lastIndexOf('.');
@@ -42,29 +56,32 @@ export const ResultCard: React.FC<ResultCardProps> = ({
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto rounded-3xl glass-panel p-8 shadow-2xl space-y-6 text-center">
-      
-      {/* Animated Success Badge */}
-      <div ref={checkIconRef} className="w-20 h-20 mx-auto rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shadow-lg shadow-emerald-500/20">
-        <CheckCircle2 className="w-12 h-12" />
+    <div ref={cardRef} className="w-full max-w-2xl mx-auto rounded-card-lg bg-surface-card border border-surface-border p-8 space-y-5 text-center">
+
+      {/* Success Badge */}
+      <div
+        ref={badgeRef}
+        className="w-16 h-16 mx-auto rounded-card bg-accent-green text-accent-green-text border border-accent-green-text/10 flex items-center justify-center"
+      >
+        <CheckCircle className="w-9 h-9" weight="fill" />
       </div>
 
       <div>
-        <h3 className="text-3xl font-extrabold text-white mb-1 tracking-tight">Conversion Complete!</h3>
-        <p className="text-sm text-slate-400 font-medium">Your file has been converted successfully and is ready for download.</p>
+        <h3 className="font-serif text-2xl text-ink-primary mb-1">Conversion complete</h3>
+        <p className="text-sm text-ink-muted">Your file is ready for download.</p>
       </div>
 
       {/* Result File Details */}
-      <div className="p-5 rounded-2xl bg-slate-900/80 border border-white/10 flex items-center justify-between gap-4">
-        <div className="flex items-center gap-3.5 text-left overflow-hidden">
-          <div className="w-12 h-12 rounded-xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-md">
-            <FileCheck className="w-6 h-6" />
+      <div className="p-4 rounded-card bg-surface-raised border border-surface-border flex items-center justify-between gap-4">
+        <div className="flex items-center gap-3 text-left overflow-hidden">
+          <div className="w-10 h-10 rounded-card bg-ink-primary text-white flex items-center justify-center shrink-0">
+            <FileText className="w-5 h-5" weight="bold" />
           </div>
           <div className="overflow-hidden">
-            <div className="font-extrabold text-white truncate text-base">{outputFilename}</div>
-            <div className="text-xs text-slate-400 font-mono mt-0.5">
-              <span className="uppercase text-emerald-400 font-bold bg-emerald-500/20 px-2 py-0.5 rounded border border-emerald-500/30">{targetFormat}</span>
-              {outputSizeBytes && <span className="ml-2">• {formatSize(outputSizeBytes)}</span>}
+            <div className="font-semibold text-ink-primary truncate text-sm">{outputFilename}</div>
+            <div className="text-xs text-ink-muted font-mono mt-0.5 flex items-center gap-2">
+              <kbd className="uppercase text-[10px]">{targetFormat}</kbd>
+              {outputSizeBytes && <span>{formatSize(outputSizeBytes)}</span>}
             </div>
           </div>
         </div>
@@ -72,26 +89,21 @@ export const ResultCard: React.FC<ResultCardProps> = ({
         <a
           href={downloadUrl}
           download={outputFilename}
-          className="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-base font-extrabold flex items-center gap-2 transition-all shadow-lg shadow-emerald-500/30 active:scale-95 shrink-0"
+          className="px-5 py-2.5 rounded-card bg-ink-primary hover:bg-[#333333] text-white text-sm font-semibold flex items-center gap-2 active:scale-[0.98] transition-all shrink-0"
         >
-          <Download className="w-5 h-5" />
+          <Download className="w-4 h-4" weight="bold" />
           <span>Download</span>
         </a>
       </div>
 
-      {/* Convert Another File */}
-      <div className="pt-2">
-        <button
-          onClick={onReset}
-          className="w-full py-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-sm flex items-center justify-center gap-2 transition-colors border border-white/15"
-        >
-          <RefreshCw className="w-4 h-4" />
-          <span>Convert another file</span>
-        </button>
-      </div>
-
+      {/* Convert Another */}
+      <button
+        onClick={onReset}
+        className="w-full py-3 rounded-card bg-surface-raised border border-surface-border hover:bg-surface-border/50 text-ink-secondary text-sm font-medium flex items-center justify-center gap-2 transition-colors"
+      >
+        <ArrowClockwise className="w-4 h-4" weight="bold" />
+        <span>Convert another file</span>
+      </button>
     </div>
   );
 };
-
-

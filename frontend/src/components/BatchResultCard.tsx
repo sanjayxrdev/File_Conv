@@ -1,6 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import { CheckCircle2, Download, Archive, RefreshCw, Sparkles } from 'lucide-react';
-import anime from 'animejs';
+import React, { useRef, useEffect } from 'react';
+import { CheckCircle, Download, Archive, ArrowClockwise } from '@phosphor-icons/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface BatchResultCardProps {
   batchId: string;
@@ -27,85 +30,109 @@ export const BatchResultCard: React.FC<BatchResultCardProps> = ({
   files,
   onReset,
 }) => {
-  const checkIconRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const badgeRef = useRef<HTMLDivElement>(null);
+  const fileListRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (checkIconRef.current) {
-      anime({
-        targets: checkIconRef.current,
-        scale: [0.2, 1],
-        opacity: [0, 1],
-        rotateZ: [-45, 0],
-        duration: 800,
-        easing: 'easeOutElastic(1, .5)',
-      });
-    }
+    if (!cardRef.current) return;
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      tl.from(cardRef.current, {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+      })
+      .from(badgeRef.current, {
+        scale: 0.3,
+        opacity: 0,
+        duration: 0.6,
+        ease: "back.out(2)",
+      }, "-=0.2")
+      .from(Array.from(cardRef.current?.querySelectorAll('h3, p') || []), {
+        y: 10,
+        opacity: 0,
+        duration: 0.4,
+        stagger: 0.08,
+      }, "-=0.3");
+
+      if (fileListRef.current) {
+        gsap.from(fileListRef.current.children, {
+          scrollTrigger: {
+            trigger: fileListRef.current,
+            start: "top 90%",
+            once: true,
+          },
+          x: -12,
+          opacity: 0,
+          duration: 0.35,
+          stagger: 0.04,
+          ease: "power2.out",
+        });
+      }
+    }, cardRef);
+    return () => ctx.revert();
   }, []);
 
   return (
-    <div className="w-full max-w-2xl mx-auto rounded-3xl glass-panel p-8 shadow-2xl space-y-6 text-center border border-white/10 relative overflow-hidden">
-      
-      {/* Background Ambient Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+    <div ref={cardRef} className="w-full max-w-2xl mx-auto rounded-card-lg bg-surface-card border border-surface-border p-8 space-y-5 text-center">
 
-      {/* Animated Check Badge */}
+      {/* Success Badge */}
       <div
-        ref={checkIconRef}
-        className="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-tr from-emerald-600/30 to-cyan-600/30 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shadow-xl shadow-emerald-500/20"
+        ref={badgeRef}
+        className="w-16 h-16 mx-auto rounded-card bg-accent-green text-accent-green-text border border-accent-green-text/10 flex items-center justify-center"
       >
-        <CheckCircle2 className="w-10 h-10" />
+        <CheckCircle className="w-9 h-9" weight="fill" />
       </div>
 
       <div>
-        <h3 className="text-3xl font-black text-white tracking-tight mb-2 flex items-center justify-center gap-2">
-          <span>Batch Conversion Complete!</span>
-          <Sparkles className="w-5 h-5 text-emerald-400" />
-        </h3>
-        <p className="text-sm text-slate-300">
-          Successfully converted <span className="text-emerald-400 font-bold">{completedFiles}</span> of <span className="text-white font-bold">{totalFiles}</span> files to .{targetFormat.toUpperCase()}
+        <h3 className="font-serif text-2xl text-ink-primary mb-1">Batch conversion complete</h3>
+        <p className="text-sm text-ink-muted">
+          Converted <span className="font-semibold text-ink-primary">{completedFiles}</span> of{' '}
+          <span className="font-semibold text-ink-primary">{totalFiles}</span> files to .{targetFormat.toUpperCase()}
         </p>
       </div>
 
-      {/* Primary ZIP Archive Download Action */}
+      {/* Primary ZIP Download */}
       {zipDownloadUrl && (
         <a
           href={zipDownloadUrl}
           download={`converted_batch_${batchId.substring(0, 8)}.zip`}
-          className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white font-bold text-base flex items-center justify-center gap-2.5 transition-all duration-300 shadow-xl shadow-emerald-600/30 active:scale-[0.99] border border-white/20"
+          className="w-full py-3.5 px-6 rounded-card bg-ink-primary hover:bg-[#333333] text-white font-semibold text-sm flex items-center justify-center gap-2.5 active:scale-[0.99] transition-all"
         >
-          <Archive className="w-5 h-5" />
-          <span>Download All Converted Files (.ZIP)</span>
-          <Download className="w-4 h-4 ml-1" />
+          <Archive className="w-4 h-4" weight="bold" />
+          <span>Download all as ZIP</span>
+          <Download className="w-3.5 h-3.5" weight="bold" />
         </a>
       )}
 
-      {/* Individual File Download List */}
-      <div className="text-left space-y-3 pt-2">
-        <div className="text-xs font-bold uppercase tracking-wider text-slate-400">
-          Individual File Downloads:
+      {/* Individual Downloads */}
+      <div className="text-left space-y-2 pt-2">
+        <div className="text-[11px] font-medium uppercase tracking-wider text-ink-muted">
+          Individual files
         </div>
 
-        <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
+        <div ref={fileListRef} className="space-y-1.5 max-h-48 overflow-y-auto pr-1">
           {files.map((f) => {
             const baseName = f.original_filename.split('.')[0];
             const outName = `${baseName}.${f.target_format}`;
             return (
               <div
                 key={f.job_id}
-                className="p-3 rounded-2xl bg-slate-900/60 border border-white/5 flex items-center justify-between text-xs hover:border-slate-700 transition-colors"
+                className="p-2.5 rounded-card bg-surface-raised border border-surface-border flex items-center justify-between text-xs"
               >
-                <span className="text-slate-200 font-semibold truncate max-w-[70%]">{outName}</span>
+                <span className="text-ink-primary font-medium truncate max-w-[70%]">{outName}</span>
                 {f.download_url ? (
                   <a
                     href={f.download_url}
                     download={outName}
-                    className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-emerald-400 hover:text-emerald-300 font-semibold flex items-center gap-1.5 transition-colors border border-slate-700"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-card bg-surface-card border border-surface-border hover:border-ink-faint text-ink-secondary font-medium transition-colors"
                   >
-                    <Download className="w-3.5 h-3.5" />
-                    <span>Download</span>
+                    <Download className="w-3 h-3" weight="bold" />
+                    <span>Get</span>
                   </a>
                 ) : (
-                  <span className="text-red-400 font-semibold">Failed</span>
+                  <span className="text-accent-red-text font-medium">Failed</span>
                 )}
               </div>
             );
@@ -114,16 +141,13 @@ export const BatchResultCard: React.FC<BatchResultCardProps> = ({
       </div>
 
       {/* Convert Another Batch */}
-      <div className="pt-2">
-        <button
-          onClick={onReset}
-          className="w-full py-3.5 rounded-2xl bg-slate-800/80 hover:bg-slate-700/80 text-slate-300 hover:text-white text-sm font-semibold flex items-center justify-center gap-2 transition-colors border border-slate-700"
-        >
-          <RefreshCw className="w-4 h-4" />
-          <span>Convert another batch</span>
-        </button>
-      </div>
-
+      <button
+        onClick={onReset}
+        className="w-full py-3 rounded-card bg-surface-raised border border-surface-border hover:bg-surface-border/50 text-ink-secondary text-sm font-medium flex items-center justify-center gap-2 transition-colors"
+      >
+        <ArrowClockwise className="w-4 h-4" weight="bold" />
+        <span>Convert another batch</span>
+      </button>
     </div>
   );
 };

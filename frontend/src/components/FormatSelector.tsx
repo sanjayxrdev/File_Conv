@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { TargetFormatInfo, FormatOption } from '../types';
-import { Sliders } from 'lucide-react';
+import { SlidersHorizontal } from '@phosphor-icons/react';
+import gsap from 'gsap';
 
 interface FormatSelectorProps {
   targets: TargetFormatInfo[];
@@ -18,6 +19,21 @@ export const FormatSelector: React.FC<FormatSelectorProps> = ({
   onOptionsChange,
 }) => {
   const currentTargetObj = targets.find((t) => t.target_ext === selectedTarget) || targets[0];
+  const gridRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!gridRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.from(gridRef.current!.children, {
+        y: 12,
+        opacity: 0,
+        duration: 0.4,
+        stagger: 0.04,
+        ease: "power3.out",
+      });
+    }, gridRef);
+    return () => ctx.revert();
+  }, []);
 
   const handleOptionUpdate = (optName: string, value: any) => {
     onOptionsChange({ ...options, [optName]: value });
@@ -27,10 +43,10 @@ export const FormatSelector: React.FC<FormatSelectorProps> = ({
     <div className="w-full space-y-4">
       {/* Target Format Selector Grid */}
       <div>
-        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">
-          Convert To Format
+        <label className="block text-[11px] font-medium uppercase tracking-wider text-ink-muted mb-2">
+          Convert to
         </label>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div ref={gridRef} className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           {targets.map((t) => {
             const isSelected = t.target_ext === selectedTarget;
             return (
@@ -38,14 +54,16 @@ export const FormatSelector: React.FC<FormatSelectorProps> = ({
                 key={t.target_ext}
                 onClick={() => onSelectTarget(t.target_ext)}
                 type="button"
-                className={`p-3 rounded-xl text-left border transition-all ${
+                className={`p-3 rounded-card text-left border transition-all ${
                   isSelected
-                    ? 'border-blue-500 bg-blue-600/20 text-white shadow-lg shadow-blue-500/10'
-                    : 'border-slate-800 bg-dark-card hover:border-slate-700 text-slate-300'
+                    ? "border-ink-primary bg-ink-primary text-white"
+                    : "border-surface-border bg-surface-card hover:border-ink-faint text-ink-secondary"
                 }`}
               >
-                <div className="font-bold text-sm uppercase">{t.target_ext}</div>
-                <div className="text-[11px] text-slate-400 truncate">{t.label}</div>
+                <div className="font-semibold text-xs uppercase font-mono">{t.target_ext}</div>
+                <div className={`text-[11px] truncate mt-0.5 ${isSelected ? "text-white/70" : "text-ink-muted"}`}>
+                  {t.label}
+                </div>
               </button>
             );
           })}
@@ -54,21 +72,21 @@ export const FormatSelector: React.FC<FormatSelectorProps> = ({
 
       {/* Context-Sensitive Options */}
       {currentTargetObj && currentTargetObj.options && currentTargetObj.options.length > 0 && (
-        <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
-          <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-300 uppercase tracking-wider">
-            <Sliders className="w-3.5 h-3.5 text-blue-400" />
-            <span>Conversion Options ({currentTargetObj.target_ext.toUpperCase()})</span>
+        <div className="p-4 rounded-card bg-surface-raised border border-surface-border space-y-3">
+          <div className="flex items-center gap-1.5 text-[11px] font-medium text-ink-muted uppercase tracking-wider">
+            <SlidersHorizontal className="w-3.5 h-3.5" weight="bold" />
+            <span>Options ({currentTargetObj.target_ext.toUpperCase()})</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {currentTargetObj.options.map((opt: FormatOption) => (
               <div key={opt.name}>
-                <label className="block text-xs text-slate-400 mb-1">{opt.label}</label>
+                <label className="block text-xs text-ink-muted mb-1">{opt.label}</label>
                 {opt.type === 'select' && (
                   <select
                     value={options[opt.name] ?? opt.default}
                     onChange={(e) => handleOptionUpdate(opt.name, e.target.value)}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-surface-card border border-surface-border rounded-card px-3 py-1.5 text-xs text-ink-primary focus:border-ink-primary/30 focus:outline-none"
                   >
                     {opt.options?.map((o) => (
                       <option key={o} value={o}>
@@ -85,7 +103,7 @@ export const FormatSelector: React.FC<FormatSelectorProps> = ({
                     max={opt.max}
                     value={options[opt.name] ?? opt.default}
                     onChange={(e) => handleOptionUpdate(opt.name, Number(e.target.value))}
-                    className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:border-blue-500 focus:outline-none"
+                    className="w-full bg-surface-card border border-surface-border rounded-card px-3 py-1.5 text-xs text-ink-primary focus:border-ink-primary/30 focus:outline-none"
                   />
                 )}
               </div>

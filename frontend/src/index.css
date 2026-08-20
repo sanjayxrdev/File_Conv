@@ -1,101 +1,98 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Grotesk:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    background-color: #0b0c10;
-    color: #f1f5f9;
-    font-family: 'Outfit', -apple-system, sans-serif;
+    background-color: #FBFBFA;
+    color: #111111;
+    font-family: 'DM Sans', -apple-system, sans-serif;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  h1, h2, .font-syne {
-    font-family: 'Syne', sans-serif;
+  h1, h2 {
+    font-family: 'Instrument Serif', 'Lyon Text', 'serif';
+    letter-spacing: -0.03em;
+    line-height: 1.1;
   }
 
-  h3, h4, .font-heading {
-    font-family: 'Space Grotesk', sans-serif;
+  h3, h4, h5 {
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: -0.01em;
   }
 
-  code, pre, .font-mono {
-    font-family: 'Space Mono', monospace;
+  code, pre, kbd {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  ::selection {
+    background: #111111;
+    color: #FFFFFF;
   }
 }
 
-/* Custom Handcrafted Scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #0b0c10;
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.12);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #ff385c;
+  background: rgba(0, 0, 0, 0.22);
 }
 
-/* Handcrafted Non-AI Dark Theme Cards & Glass */
-.craft-card {
-  background: rgba(18, 20, 29, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.7);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+/* Card hover lift */
+.card-lift {
+  transition: box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.craft-card:hover {
-  transform: translateY(-5px);
-  border-color: rgba(255, 56, 92, 0.4);
-  box-shadow: 0 20px 40px -15px rgba(255, 56, 92, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+.card-lift:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  transform: translateY(-1px);
 }
 
-/* Handcrafted Gradient Headings */
-.craft-title-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 40%, #ff385c 75%, #ccff00 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Kbd key style */
+kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #EAEAEA;
+  border-radius: 4px;
+  background: #F7F6F3;
+  padding: 2px 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: #2F3437;
+  line-height: 1.4;
+  min-width: 22px;
 }
 
-.craft-title-cyan {
-  background: linear-gradient(135deg, #ffffff 0%, #00f2fe 50%, #4facfe 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-
-
-/* Electric Glow Borders */
-.border-coral-glow {
-  border-color: rgba(255, 56, 92, 0.3);
-  box-shadow: 0 0 20px rgba(255, 56, 92, 0.15);
-}
-
-/* Shimmer Animation */
-@keyframes shimmer {
+/* Shimmer on progress bars */
+@keyframes shimmer-slide {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
 }
 
-.animate-shimmer {
-  position: relative;
-  overflow: hidden;
-}
-
-.animate-shimmer::after {
+.progress-shimmer::after {
   content: '';
   position: absolute;
   top: 0; right: 0; bottom: 0; left: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-  animation: shimmer 2.2s infinite;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  animation: shimmer-slide 2s infinite;
 }
 
-
-
+/* Drag over state */
+.drag-active {
+  border-color: #111111 !important;
+  background-color: #F7F6F3 !important;
+}

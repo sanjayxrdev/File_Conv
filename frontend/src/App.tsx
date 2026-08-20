@@ -18,22 +18,19 @@ export const AppContent: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-[#0b0c10] text-slate-100 selection:bg-[#ff385c] selection:text-white overflow-x-hidden">
-      {/* Ninja Mascot Action Background Image */}
-      <div
-        className="fixed inset-0 pointer-events-none z-0 bg-cover bg-center sm:bg-top bg-no-repeat opacity-55 filter brightness-100 contrast-110"
-        style={{ backgroundImage: `url('/bg-ninja.jpg')` }}
-      />
-      <div className="fixed inset-0 pointer-events-none z-0 bg-gradient-to-b from-[#0b0c10]/40 via-[#0b0c10]/60 to-[#0b0c10]/85" />
+    <div className="relative min-h-screen flex flex-col bg-[#FBFBFA] text-[#111111] overflow-x-hidden">
+      {/* Ambient background gradient blob */}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div
+          className="absolute -top-[200px] left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full opacity-[0.03] animate-ambient-drift"
+          style={{
+            background: 'radial-gradient(ellipse at center, #D4C5B0 0%, transparent 70%)',
+          }}
+        />
+      </div>
 
-      {/* Navigation Header */}
       <Header />
 
-
-
-
-
-      {/* Main Multi-Page Routed Content */}
       <main className="flex-1 relative z-10">
         <Routes>
           <Route path="/" element={<Home registry={registry} />} />
@@ -73,10 +70,25 @@ export const AppContent: React.FC = () => {
           />
         </Routes>
       </main>
+
+      {/* Minimal Footer */}
+      <footer className="relative z-10 border-t border-surface-border py-8 px-4">
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ink-muted font-sans">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-ink-primary">FILE CONV</span>
+            <span className="text-ink-faint">/</span>
+            <span>Local-first file conversion</span>
+          </div>
+          <div className="flex items-center gap-4">
+            <span className="font-mono text-[11px]">0 telemetry</span>
+            <span className="text-ink-faint">&middot;</span>
+            <span className="font-mono text-[11px]">open source</span>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
-
 
 export const App: React.FC = () => {
   return (
@@ -87,5 +99,3 @@ export const App: React.FC = () => {
 };
 
 export default App;
-
-

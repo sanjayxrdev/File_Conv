@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { FormatsRegistryResponse } from '../types';
-import { Cpu, Search, Sparkles } from 'lucide-react';
+import { MagnifyingGlass, Cpu, Stack } from '@phosphor-icons/react';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface FormatsProps {
   registry: FormatsRegistryResponse | null;
@@ -10,23 +13,78 @@ interface FormatsProps {
 export const Formats: React.FC<FormatsProps> = ({ registry }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const headerRef = useRef<HTMLDivElement>(null);
+  const filterRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (containerRef.current && registry) {
-      gsap.fromTo(
-        containerRef.current.children,
-        { opacity: 0, y: 15 },
-        { opacity: 1, y: 0, duration: 0.4, stagger: 0.04, ease: 'power2.out' }
-      );
-    }
+    if (!headerRef.current) return;
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      tl.from(headerRef.current!.querySelector('.badge'), {
+        y: -10,
+        opacity: 0,
+        duration: 0.4,
+      })
+      .from(headerRef.current!.querySelector('h1'), {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+      }, "-=0.2")
+      .from(headerRef.current!.querySelector('p'), {
+        y: 15,
+        opacity: 0,
+        duration: 0.4,
+      }, "-=0.3");
+    }, headerRef);
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    if (!filterRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.from(filterRef.current, {
+        scrollTrigger: {
+          trigger: filterRef.current,
+          start: "top 85%",
+          once: true,
+        },
+        y: 12,
+        opacity: 0,
+        duration: 0.4,
+        ease: "power2.out",
+      });
+    }, filterRef);
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const ctx = gsap.context(() => {
+      const items = containerRef.current!.children;
+      if (items.length > 0) {
+        gsap.from(items, {
+          scrollTrigger: {
+            trigger: containerRef.current!,
+            start: "top 85%",
+            once: true,
+          },
+          y: 16,
+          opacity: 0,
+          duration: 0.4,
+          stagger: 0.04,
+          ease: "power2.out",
+        });
+      }
+    }, containerRef);
+    return () => ctx.revert();
   }, [registry, searchQuery, selectedCategory]);
 
   if (!registry) {
     return (
-      <div className="text-center py-20 text-slate-500">
-        <div className="w-8 h-8 mx-auto border-2 border-red-600 border-t-transparent rounded-full animate-spin mb-3" />
-        Loading supported conversion matrix...
+      <div className="text-center py-20 text-ink-muted">
+        <div className="w-6 h-6 mx-auto border-2 border-ink-primary border-t-transparent rounded-full animate-spin mb-3" />
+        <span className="text-sm">Loading format matrix...</span>
       </div>
     );
   }
@@ -47,47 +105,46 @@ export const Formats: React.FC<FormatsProps> = ({ registry }) => {
   });
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-10 space-y-8 bg-[#f8f9fa]">
-      {/* Header Title */}
-      <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 border border-red-200 text-red-600 text-xs font-bold uppercase tracking-wider">
-          <Sparkles className="w-3.5 h-3.5" />
+    <div className="max-w-4xl mx-auto px-4 py-12 space-y-8">
+
+      {/* Header */}
+      <div ref={headerRef} className="text-center space-y-3">
+        <div className="badge inline-flex items-center gap-1.5 px-3 py-1 rounded bg-surface-raised border border-surface-border text-xs font-mono text-ink-muted">
+          <Stack className="w-3.5 h-3.5" weight="bold" />
           <span>Format Support Matrix</span>
         </div>
 
-        <h2 className="text-4xl font-extrabold text-slate-900 tracking-tight">
-          Supported Conversion Matrix
-        </h2>
+        <h1 className="font-serif text-4xl text-ink-primary">
+          Supported conversion matrix
+        </h1>
 
-        <p className="text-slate-600 text-sm max-w-xl mx-auto font-medium">
-          FILE CONV strictly enforces supported format routes to guarantee 100% valid conversion outputs.
+        <p className="text-ink-muted text-sm max-w-lg mx-auto">
+          FILE CONV validates every format route against our backend conversion matrix to guarantee valid outputs.
         </p>
       </div>
 
-      {/* Search & Category Filter Controls */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-        {/* Search Bar */}
-        <div className="relative w-full sm:w-72">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+      {/* Search & Category Filters */}
+      <div ref={filterRef} className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-card-lg bg-surface-card border border-surface-border">
+        <div className="relative w-full sm:w-64">
+          <MagnifyingGlass className="w-4 h-4 text-ink-faint absolute left-3 top-1/2 -translate-y-1/2" weight="bold" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search formats (e.g., pdf, pptx, py)..."
-            className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-red-500 font-medium transition-colors"
+            placeholder="Search formats..."
+            className="w-full pl-9 pr-4 py-2 rounded-card bg-surface-raised border border-surface-border text-xs text-ink-primary placeholder:text-ink-faint focus:outline-none focus:border-ink-primary/30 transition-colors"
           />
         </div>
 
-        {/* Category Pills */}
         <div className="flex flex-wrap items-center gap-1.5 w-full sm:w-auto">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold uppercase transition-all ${
+              className={`px-2.5 py-1 rounded-card text-[11px] font-medium uppercase transition-all ${
                 selectedCategory === cat
-                  ? 'bg-slate-900 text-white shadow-md'
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
+                  ? 'bg-ink-primary text-white'
+                  : 'bg-surface-raised text-ink-muted hover:text-ink-primary border border-surface-border'
               }`}
             >
               {cat}
@@ -96,39 +153,37 @@ export const Formats: React.FC<FormatsProps> = ({ registry }) => {
         </div>
       </div>
 
-      {/* Format Entries Cards Grid */}
-      <div ref={containerRef} className="space-y-4">
+      {/* Format Entries */}
+      <div ref={containerRef} className="space-y-3">
         {filteredEntries.map(([sourceExt, sourceInfo]) => (
           <div
             key={sourceExt}
-            className="p-6 rounded-3xl bg-white border border-slate-200 space-y-4 hover:border-slate-300 transition-all duration-200 shadow-sm hover:shadow-md"
+            className="p-5 rounded-card-lg bg-surface-card border border-surface-border space-y-3 hover:border-ink-faint/50 transition-colors"
           >
-            <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+            <div className="flex items-center justify-between border-b border-surface-border pb-3">
               <div className="flex items-center gap-3">
-                <span className="px-3 py-1 rounded-xl bg-red-100 text-red-600 border border-red-200 text-xs font-mono font-bold uppercase">
-                  .{sourceExt}
-                </span>
-                <span className="font-extrabold text-slate-900 text-lg tracking-tight">{sourceInfo.label}</span>
+                <kbd className="uppercase text-[11px]">.{sourceExt}</kbd>
+                <span className="font-semibold text-ink-primary text-sm tracking-tight">{sourceInfo.label}</span>
               </div>
-              <span className="text-[11px] text-slate-600 uppercase font-mono px-2.5 py-1 rounded-lg bg-slate-100 border border-slate-200 font-bold">
+              <span className="text-[10px] text-ink-muted uppercase font-mono px-2 py-0.5 rounded bg-surface-raised border border-surface-border">
                 {sourceInfo.category}
               </span>
             </div>
 
             <div>
-              <div className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2.5">
-                Valid Target Routes:
+              <div className="text-[11px] font-medium text-ink-muted uppercase tracking-wider mb-2">
+                Valid target routes
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5">
                 {sourceInfo.targets.map((t) => (
                   <div
                     key={t.target_ext}
-                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-800 hover:border-slate-300 transition-colors"
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-card bg-surface-raised border border-surface-border text-[11px]"
                   >
-                    <span className="font-mono font-extrabold text-red-600 uppercase">.{t.target_ext}</span>
-                    <span className="text-slate-400">•</span>
-                    <span className="text-slate-600 flex items-center gap-1.5 font-mono text-[11px] font-medium">
-                      <Cpu className="w-3.5 h-3.5 text-slate-500" />
+                    <kbd className="uppercase text-[10px]">.{t.target_ext}</kbd>
+                    <span className="text-ink-faint">&middot;</span>
+                    <span className="text-ink-muted flex items-center gap-1 font-mono">
+                      <Cpu className="w-3 h-3" weight="bold" />
                       {t.engine}
                     </span>
                   </div>
@@ -139,12 +194,11 @@ export const Formats: React.FC<FormatsProps> = ({ registry }) => {
         ))}
 
         {filteredEntries.length === 0 && (
-          <div className="text-center py-12 text-slate-500 text-sm font-medium">
-            No formats found matching your search query.
+          <div className="text-center py-12 text-ink-muted text-sm">
+            No formats found matching your search.
           </div>
         )}
       </div>
     </div>
   );
 };
-

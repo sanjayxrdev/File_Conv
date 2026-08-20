@@ -1,16 +1,53 @@
-import React, { useState, useRef } from 'react';
-import { Layers } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Stack } from '@phosphor-icons/react';
 import { startMerge, getJobStatus } from '../services/api';
 import { ConversionJobResponse } from '../types';
 import { MergeDropzone } from '../components/MergeDropzone';
 import { ProgressBar } from '../components/ProgressBar';
 import { ResultCard } from '../components/ResultCard';
+import gsap from 'gsap';
 
 export const MergePage: React.FC = () => {
   const [jobState, setJobState] = useState<ConversionJobResponse | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const pollTimerRef = useRef<any>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
+  const errorRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!heroRef.current) return;
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      tl.from(heroRef.current!.querySelector('.badge'), {
+        y: -10,
+        opacity: 0,
+        duration: 0.4,
+      })
+      .from(heroRef.current!.querySelector('h1'), {
+        y: 20,
+        opacity: 0,
+        duration: 0.5,
+      }, "-=0.2")
+      .from(heroRef.current!.querySelector('p'), {
+        y: 15,
+        opacity: 0,
+        duration: 0.4,
+      }, "-=0.3");
+    }, heroRef);
+    return () => ctx.revert();
+  }, []);
+
+  useEffect(() => {
+    if (error && errorRef.current) {
+      gsap.from(errorRef.current, {
+        y: 12,
+        opacity: 0,
+        duration: 0.4,
+        ease: "power2.out",
+      });
+    }
+  }, [error]);
 
   const clearPollTimer = () => {
     if (pollTimerRef.current) {
@@ -59,24 +96,23 @@ export const MergePage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-12 pb-20 px-4 bg-transparent min-h-screen font-sans">
-      
+    <div className="space-y-16 pb-20 px-4 bg-transparent min-h-screen font-sans">
+
       {/* Hero Header */}
-      <div className="text-center space-y-3 pt-10 max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#ff385c]/15 border border-[#ff385c]/30 text-[#ff385c] text-xs font-mono font-bold uppercase tracking-wider">
-          <Layers className="w-4 h-4 text-[#ff385c]" />
+      <div ref={heroRef} className="text-center space-y-4 pt-12 max-w-3xl mx-auto">
+        <div className="badge inline-flex items-center gap-1.5 px-3 py-1 rounded bg-surface-raised border border-surface-border text-xs font-mono text-ink-muted">
+          <Stack className="w-3.5 h-3.5" weight="bold" />
           <span>Multi-File Combiner</span>
         </div>
 
-        <h2 className="font-syne text-3xl sm:text-5xl font-black text-white tracking-tight craft-title-gradient">
-          Merge PDF, PPTX & DOCX Files
-        </h2>
+        <h1 className="font-serif text-4xl sm:text-5xl text-ink-primary">
+          Merge PDF, PPTX & DOCX files
+        </h1>
 
-        <p className="font-heading text-slate-400 text-base sm:text-lg max-w-lg mx-auto font-medium">
+        <p className="text-ink-muted text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
           Combine multiple PDF documents, PowerPoint presentations, or Word files into a single unified file.
         </p>
       </div>
-
 
       {/* Main Workflow */}
       {!jobState && (
@@ -106,19 +142,17 @@ export const MergePage: React.FC = () => {
       )}
 
       {error && (
-        <div className="w-full max-w-2xl mx-auto p-6 rounded-2xl border border-red-200 bg-red-50 text-center space-y-4 shadow-sm">
-          <h4 className="text-xl font-extrabold text-red-600">Merge Failed</h4>
-          <p className="text-sm text-slate-700 font-medium">{error}</p>
+        <div ref={errorRef} className="w-full max-w-2xl mx-auto p-6 rounded-card-lg bg-accent-red border border-accent-red-text/10 text-center space-y-3">
+          <h4 className="text-lg font-semibold text-accent-red-text">Merge failed</h4>
+          <p className="text-sm text-ink-secondary">{error}</p>
           <button
             onClick={handleClear}
-            className="px-5 py-2.5 rounded-xl bg-red-600 text-white font-bold text-sm hover:bg-red-700 transition-colors"
+            className="px-5 py-2 rounded-card bg-ink-primary text-white text-sm font-semibold hover:bg-[#333333] transition-colors"
           >
-            Try Again
+            Try again
           </button>
         </div>
       )}
-
     </div>
   );
 };
-

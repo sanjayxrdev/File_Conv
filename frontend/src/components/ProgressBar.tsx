@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
+import { Spinner } from '@phosphor-icons/react';
 import gsap from 'gsap';
-import { Loader2 } from 'lucide-react';
 
 interface ProgressBarProps {
   progress: number;
@@ -15,47 +15,59 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   sourceFormat,
   targetFormat,
 }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!cardRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.from(cardRef.current, {
+        y: 16,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power3.out",
+      });
+    }, cardRef);
+    return () => ctx.revert();
+  }, []);
 
   useEffect(() => {
     if (barRef.current) {
       gsap.to(barRef.current, {
         width: `${progress}%`,
         duration: 0.4,
-        ease: 'power1.out',
+        ease: "power2.out",
       });
     }
   }, [progress]);
 
   return (
-    <div className="w-full max-w-2xl mx-auto rounded-2xl border border-slate-800 bg-dark-card/90 p-8 shadow-2xl space-y-6 text-center">
+    <div ref={cardRef} className="w-full max-w-2xl mx-auto rounded-card-lg border border-surface-border bg-surface-card p-8 space-y-5 text-center">
       <div className="flex items-center justify-center gap-3">
-        <div className="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400">
-          <Loader2 className="w-5 h-5 animate-spin" />
+        <div className="w-10 h-10 rounded-card bg-surface-raised border border-surface-border flex items-center justify-center text-ink-muted">
+          <Spinner className="w-5 h-5 animate-spin" weight="bold" />
         </div>
         <div className="text-left">
-          <h4 className="text-lg font-semibold text-white">Converting File...</h4>
-          <p className="text-xs text-slate-400 font-mono">
-            {sourceFormat.toUpperCase()} → {targetFormat.toUpperCase()}
+          <h4 className="text-sm font-semibold text-ink-primary">Converting file</h4>
+          <p className="text-xs text-ink-muted font-mono">
+            {sourceFormat.toUpperCase()} &rarr; {targetFormat.toUpperCase()}
           </p>
         </div>
       </div>
 
       {/* Progress Track */}
       <div className="w-full space-y-2">
-        <div className="w-full h-3 rounded-full bg-slate-800 overflow-hidden relative">
+        <div className="w-full h-2 rounded-full bg-surface-raised overflow-hidden relative border border-surface-border">
           <div
             ref={barRef}
-            className="h-full bg-gradient-to-r from-blue-600 to-indigo-500 rounded-full transition-all duration-300 relative"
+            className="h-full bg-ink-primary rounded-full relative progress-shimmer"
             style={{ width: `${progress}%` }}
-          >
-            <div className="absolute inset-0 bg-white/20 animate-pulse" />
-          </div>
+          />
         </div>
 
-        <div className="flex items-center justify-between text-xs text-slate-400 font-mono">
+        <div className="flex items-center justify-between text-xs text-ink-muted font-mono">
           <span>{message || 'Processing...'}</span>
-          <span className="font-bold text-blue-400">{progress}%</span>
+          <span className="font-semibold text-ink-primary">{progress}%</span>
         </div>
       </div>
     </div>
