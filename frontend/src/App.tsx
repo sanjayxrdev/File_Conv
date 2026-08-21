@@ -8,6 +8,15 @@ import { ConverterPage } from './pages/ConverterPage';
 import { MergePage } from './pages/Merge';
 import { Formats } from './pages/Formats';
 
+import { RearrangePdfPage } from './pages/pdf/RearrangePdfPage';
+import { ComparePdfPage } from './pages/pdf/ComparePdfPage';
+import { SplitPdfPage } from './pages/pdf/SplitPdfPage';
+import { AddPageNumbersPage } from './pages/pdf/AddPageNumbersPage';
+import { RotatePdfPage } from './pages/pdf/RotatePdfPage';
+import { ExtractPdfPage } from './pages/pdf/ExtractPdfPage';
+import { ProtectPdfPage } from './pages/pdf/ProtectPdfPage';
+import { TransparentSignaturePage } from './pages/pdf/TransparentSignaturePage';
+
 export const AppContent: React.FC = () => {
   const [registry, setRegistry] = useState<FormatsRegistryResponse | null>(null);
 
@@ -63,6 +72,14 @@ export const AppContent: React.FC = () => {
             element={<ConverterPage categorySlug="spreadsheet-converter" registry={registry} />}
           />
           <Route path="/merge-converter" element={<MergePage />} />
+          <Route path="/pdf/rearrange" element={<RearrangePdfPage />} />
+          <Route path="/pdf/compare" element={<ComparePdfPage />} />
+          <Route path="/pdf/split" element={<SplitPdfPage />} />
+          <Route path="/pdf/page-numbers" element={<AddPageNumbersPage />} />
+          <Route path="/pdf/rotate" element={<RotatePdfPage />} />
+          <Route path="/pdf/extract" element={<ExtractPdfPage />} />
+          <Route path="/pdf/protect" element={<ProtectPdfPage />} />
+          <Route path="/pdf/transparent-signature" element={<TransparentSignaturePage />} />
           <Route path="/formats" element={<Formats registry={registry} />} />
           <Route
             path="/:categorySlug"

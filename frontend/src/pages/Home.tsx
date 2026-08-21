@@ -40,6 +40,86 @@ export interface ToolConfig {
 
 export const TOOLS_LIST: ToolConfig[] = [
   {
+    id: 'rearrange-pdf',
+    title: 'Rearrange PDF',
+    category: 'PDF Tools',
+    description: 'Drag & drop pages to reorder, delete, and export updated PDF.',
+    iconName: 'FileText',
+    accentBg: 'bg-accent-green',
+    accentText: 'text-accent-green-text',
+    route: '/pdf/rearrange',
+  },
+  {
+    id: 'compare-pdf',
+    title: 'Compare PDFs',
+    category: 'PDF Tools',
+    description: 'Compare two PDFs side-by-side, overlay, or difference view.',
+    iconName: 'Combine',
+    accentBg: 'bg-accent-blue',
+    accentText: 'text-accent-blue-text',
+    route: '/pdf/compare',
+  },
+  {
+    id: 'split-pdf',
+    title: 'Split PDF',
+    category: 'PDF Tools',
+    description: 'Split PDFs by ranges, selected pages, or custom groups.',
+    iconName: 'FileText',
+    accentBg: 'bg-accent-red',
+    accentText: 'text-accent-red-text',
+    route: '/pdf/split',
+  },
+  {
+    id: 'page-numbers-pdf',
+    title: 'Add Page Numbers',
+    category: 'PDF Tools',
+    description: 'Add page numbers with custom position, margins, and styling.',
+    iconName: 'FileText',
+    accentBg: 'bg-accent-yellow',
+    accentText: 'text-accent-yellow-text',
+    route: '/pdf/page-numbers',
+  },
+  {
+    id: 'rotate-pdf',
+    title: 'Rotate PDF Pages',
+    category: 'PDF Tools',
+    description: 'Rotate single pages, ranges, or all pages by 90°, 180°, 270°.',
+    iconName: 'FileText',
+    accentBg: 'bg-accent-green',
+    accentText: 'text-accent-green-text',
+    route: '/pdf/rotate',
+  },
+  {
+    id: 'extract-pdf',
+    title: 'Extract PDF Pages',
+    category: 'PDF Tools',
+    description: 'Select and extract specific pages into a new PDF document.',
+    iconName: 'FileText',
+    accentBg: 'bg-accent-blue',
+    accentText: 'text-accent-blue-text',
+    route: '/pdf/extract',
+  },
+  {
+    id: 'protect-pdf',
+    title: 'Protect PDF',
+    category: 'PDF Tools',
+    description: 'Encrypt PDFs with AES-256 passwords and permission flags.',
+    iconName: 'FileText',
+    accentBg: 'bg-accent-red',
+    accentText: 'text-accent-red-text',
+    route: '/pdf/protect',
+  },
+  {
+    id: 'transparent-signature',
+    title: 'Transparent Signature',
+    category: 'PDF Tools',
+    description: 'Remove background from signature images and stamp on PDFs.',
+    iconName: 'ImageIcon',
+    accentBg: 'bg-accent-yellow',
+    accentText: 'text-accent-yellow-text',
+    route: '/pdf/transparent-signature',
+  },
+  {
     id: 'video-converter',
     title: 'Video Converter',
     category: 'Audio & Video',
@@ -127,50 +207,6 @@ export const TOOLS_LIST: ToolConfig[] = [
     route: '/merge-converter',
     targetFormat: 'pdf',
   },
-  {
-    id: 'pdf-to-word',
-    title: 'PDF to Word',
-    category: 'Convert PDF',
-    description: 'Easily convert PDF files into editable Word documents.',
-    iconName: 'FileText',
-    accentBg: 'bg-accent-blue',
-    accentText: 'text-accent-blue-text',
-    route: '/pdf-converter',
-    targetFormat: 'docx',
-  },
-  {
-    id: 'pdf-to-excel',
-    title: 'PDF to Excel',
-    category: 'Convert PDF',
-    description: 'Pull data straight from PDFs into Excel spreadsheets.',
-    iconName: 'Table',
-    accentBg: 'bg-accent-green',
-    accentText: 'text-accent-green-text',
-    route: '/pdf-converter',
-    targetFormat: 'xlsx',
-  },
-  {
-    id: 'word-to-pdf',
-    title: 'Word to PDF',
-    category: 'Convert to PDF',
-    description: 'Convert DOC and DOCX files to PDF in seconds.',
-    iconName: 'FileText',
-    accentBg: 'bg-accent-blue',
-    accentText: 'text-accent-blue-text',
-    route: '/document-converter',
-    targetFormat: 'pdf',
-  },
-  {
-    id: 'jpg-to-pdf',
-    title: 'JPG to PDF',
-    category: 'Convert to PDF',
-    description: 'Convert JPG and PNG images to PDF documents.',
-    iconName: 'ImageIcon',
-    accentBg: 'bg-accent-yellow',
-    accentText: 'text-accent-yellow-text',
-    route: '/image-converter',
-    targetFormat: 'pdf',
-  },
 ];
 
 interface HomeProps {
@@ -220,17 +256,17 @@ export const Home: React.FC<HomeProps> = ({ registry, activeCategoryFilter }) =>
         opacity: 0,
         duration: 0.7,
       })
-      .from(hero.querySelector('p'), {
-        y: 20,
-        opacity: 0,
-        duration: 0.5,
-      }, '-=0.4')
-      .from(Array.from(hero.querySelectorAll('kbd, span')).filter(el => el.closest('div.flex')), {
-        y: 10,
-        opacity: 0,
-        duration: 0.4,
-        stagger: 0.04,
-      }, '-=0.3');
+        .from(hero.querySelector('p'), {
+          y: 20,
+          opacity: 0,
+          duration: 0.5,
+        }, '-=0.4')
+        .from(Array.from(hero.querySelectorAll('kbd, span')).filter(el => el.closest('div.flex')), {
+          y: 10,
+          opacity: 0,
+          duration: 0.4,
+          stagger: 0.04,
+        }, '-=0.3');
     }, heroRef);
     return () => ctx.revert();
   }, []);
@@ -270,6 +306,7 @@ export const Home: React.FC<HomeProps> = ({ registry, activeCategoryFilter }) =>
 
   const categories = [
     'All',
+    'PDF Tools',
     'Merge & Edit',
     'Documents',
     'Spreadsheets',
@@ -484,11 +521,10 @@ export const Home: React.FC<HomeProps> = ({ registry, activeCategoryFilter }) =>
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3 py-1.5 rounded-card text-xs font-medium whitespace-nowrap transition-all ${
-                    isActive
+                  className={`px-3 py-1.5 rounded-card text-xs font-medium whitespace-nowrap transition-all ${isActive
                       ? 'bg-ink-primary text-white'
                       : 'text-ink-muted hover:text-ink-primary hover:bg-surface-raised border border-surface-border'
-                  }`}
+                    }`}
                 >
                   {cat}
                 </button>

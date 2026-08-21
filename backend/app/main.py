@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app.core.config import settings
-from app.api import routes_health, routes_formats, routes_convert
+from app.api import routes_health, routes_formats, routes_convert, routes_pdf_tools
 from app.services.cleanup_service import CleanupService
 
 # Configure logging
@@ -73,6 +73,7 @@ async def global_exception_handler(request: Request, exc: Exception):
 app.include_router(routes_health.router, prefix=settings.API_V1_STR, tags=["Health"])
 app.include_router(routes_formats.router, prefix=settings.API_V1_STR, tags=["Formats"])
 app.include_router(routes_convert.router, prefix=settings.API_V1_STR, tags=["Convert"])
+app.include_router(routes_pdf_tools.router, prefix=settings.API_V1_STR, tags=["PDF Tools"])
 
 if __name__ == "__main__":
     import uvicorn

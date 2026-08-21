@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
-import { ArrowsLeftRight, GridFour, GitMerge } from '@phosphor-icons/react';
+import { ArrowsLeftRight, GridFour, GitMerge, FileText } from '@phosphor-icons/react';
 import gsap from 'gsap';
 
 export const Header: React.FC = () => {
@@ -49,12 +49,22 @@ export const Header: React.FC = () => {
 
         <nav className="flex items-center gap-1 font-sans">
           <Link
-            to="/merge-converter"
-            className={`px-3 py-1.5 rounded-card text-xs font-medium transition-all flex items-center gap-1.5 ${
-              location.pathname === '/merge-converter'
+            to="/pdf/rearrange"
+            className={`px-3 py-1.5 rounded-card text-xs font-medium transition-all flex items-center gap-1.5 ${location.pathname.startsWith('/pdf')
                 ? 'bg-ink-primary text-white'
                 : 'text-ink-muted hover:text-ink-primary hover:bg-surface-raised'
-            }`}
+              }`}
+          >
+            <FileText className="w-3.5 h-3.5" weight="bold" />
+            <span>PDF Tools</span>
+          </Link>
+
+          <Link
+            to="/merge-converter"
+            className={`px-3 py-1.5 rounded-card text-xs font-medium transition-all flex items-center gap-1.5 ${location.pathname === '/merge-converter'
+                ? 'bg-ink-primary text-white'
+                : 'text-ink-muted hover:text-ink-primary hover:bg-surface-raised'
+              }`}
           >
             <GitMerge className="w-3.5 h-3.5" weight="bold" />
             <span>Merge</span>
@@ -62,11 +72,10 @@ export const Header: React.FC = () => {
 
           <Link
             to="/formats"
-            className={`px-3 py-1.5 rounded-card text-xs font-medium transition-all flex items-center gap-1.5 ${
-              location.pathname === '/formats'
+            className={`px-3 py-1.5 rounded-card text-xs font-medium transition-all flex items-center gap-1.5 ${location.pathname === '/formats'
                 ? 'bg-ink-primary text-white'
                 : 'text-ink-muted hover:text-ink-primary hover:bg-surface-raised'
-            }`}
+              }`}
           >
             <GridFour className="w-3.5 h-3.5" weight="bold" />
             <span>Formats</span>
