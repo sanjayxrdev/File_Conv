@@ -100,6 +100,9 @@ export async function getJobStatus(jobId: string): Promise<ConversionJobResponse
   return res.json();
 }
 
-export function getDownloadUrl(jobId: string): string {
+export function getDownloadUrl(jobId: string, customFilename?: string): string {
+  if (customFilename) {
+    return `${API_BASE}/download/${jobId}?custom_filename=${encodeURIComponent(customFilename)}`;
+  }
   return `${API_BASE}/download/${jobId}`;
 }

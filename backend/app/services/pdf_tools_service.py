@@ -576,3 +576,22 @@ class PdfToolsService:
         except Exception as e:
             logger.error(f"Error stamping signature on PDF: {e}")
             return False, str(e)
+
+    @staticmethod
+    def rename_pdf(file_path: str, new_filename: str, output_path: str) -> Tuple[bool, Optional[str]]:
+        """Copies original PDF content intact to output path with requested target filename."""
+        try:
+            import shutil
+            if not os.path.exists(file_path):
+                return False, f"File not found: {file_path}"
+            
+            # Open PDF with PyMuPDF to verify validity
+            doc = fitz.open(file_path)
+            doc.close()
+
+            shutil.copy2(file_path, output_path)
+            return True, None
+        except Exception as e:
+            logger.error(f"Error renaming PDF: {e}")
+            return False, str(e)
+

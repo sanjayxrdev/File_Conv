@@ -120,6 +120,16 @@ export const TOOLS_LIST: ToolConfig[] = [
     route: '/pdf/transparent-signature',
   },
   {
+    id: 'rename-pdf',
+    title: 'Rename PDF',
+    category: 'PDF Tools',
+    description: 'Change PDF document filename while preserving contents and extension.',
+    iconName: 'FileText',
+    accentBg: 'bg-accent-blue',
+    accentText: 'text-accent-blue-text',
+    route: '/pdf/rename',
+  },
+  {
     id: 'video-converter',
     title: 'Video Converter',
     category: 'Audio & Video',

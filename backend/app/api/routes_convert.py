@@ -326,9 +326,9 @@ async def get_conversion_status(job_id: str):
     return res
 
 @router.get("/download/{job_id}")
-async def download_converted_file(job_id: str):
+async def download_converted_file(job_id: str, custom_filename: Optional[str] = None):
     """
-    Download converted file.
+    Download converted file with optional custom download filename.
     """
     job = conversion_service.get_job(job_id)
     if not job:
@@ -343,8 +343,23 @@ async def download_converted_file(job_id: str):
             detail={"code": "FILE_NOT_READY", "message": "Converted file is not ready for download."}
         )
 
-    base_name = job.original_filename.rsplit(".", 1)[0]
-    output_filename = f"{base_name}.{job.target_format}"
+    if custom_filename:
+        # Sanitize custom filename and ensure correct extension
+        clean_name = custom_filename.replace("/", "_").replace("\\", "_").replace(":", "_").replace("*", "_").replace("?", "_").replace('"', "_").replace("<", "_").replace(">", "_").replace("|", "_").strip()
+        target_ext = f".{job.target_format.lower()}"
+        # Strip repeated target extension
+        while clean_name.lower().endswith(f"{target_ext}{target_ext}"):
+            clean_name = clean_name[:-len(target_ext)]
+        if not clean_name.lower().endswith(target_ext):
+            # Strip any trailing extension and append target_ext
+            if "." in clean_name and clean_name.rsplit(".", 1)[1].lower() == job.target_format.lower():
+                pass
+            else:
+                clean_name = f"{clean_name.rsplit('.', 1)[0] if '.' in clean_name else clean_name}{target_ext}"
+        output_filename = clean_name
+    else:
+        base_name = job.original_filename.rsplit(".", 1)[0]
+        output_filename = f"{base_name}.{job.target_format}"
 
     return FileResponse(
         path=job.output_path,

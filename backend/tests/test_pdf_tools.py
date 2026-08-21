@@ -226,3 +226,26 @@ def test_service_transparent_signature(sample_signature_image, tmp_path):
     # Check top-left pixel (was white) is now transparent alpha 0
     pixel = img.getpixel((0, 0))
     assert pixel[3] == 0
+
+def test_pdf_rename_endpoint(sample_pdf_path):
+    with open(sample_pdf_path, "rb") as f:
+        response = client.post(
+            "/api/pdf/rename",
+            files={"file": ("test_doc.pdf", f, "application/pdf")},
+            data={"new_filename": "my-renamed-doc"}
+        )
+    assert response.status_code == 200
+    data = response.json()
+    assert data["status"] == "queued"
+
+def test_service_rename_pdf(sample_pdf_path, tmp_path):
+    out_pdf = tmp_path / "renamed.pdf"
+    success, err = PdfToolsService.rename_pdf(sample_pdf_path, "renamed.pdf", str(out_pdf))
+    assert success is True
+    assert err is None
+    assert os.path.exists(out_pdf)
+
+    # Verify PDF content is untouched
+    doc = fitz.open(str(out_pdf))
+    assert len(doc) == 3
+    doc.close()

@@ -272,3 +272,21 @@ export async function apiStampSignature(
 
   return res.json();
 }
+
+export async function apiRenamePdf(file: File, newFilename: string): Promise<{ job_id: string; status: string }> {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('new_filename', newFilename);
+
+  const res = await fetch(`${API_BASE}/pdf/rename`, {
+    method: 'POST',
+    body: formData,
+  });
+
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail?.message || 'Failed to rename PDF document.');
+  }
+
+  return res.json();
+}

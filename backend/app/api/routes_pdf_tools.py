@@ -599,3 +599,63 @@ async def stamp_signature(
         "status": job.status,
         "message": "PDF signature stamping job submitted."
     }
+
+@router.post("/pdf/rename")
+async def rename_pdf(
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...),
+    new_filename: str = Form(...)
+):
+    """
+    Rename PDF document file without altering its contents or pages.
+    """
+    job_id = str(uuid.uuid4())
+    original_name = file.filename or "document.pdf"
+    
+    # Save uploaded file
+    input_path, bytes_len = await FileService.save_uploaded_file(file, job_id, "pdf")
+
+    # Clean target filename
+    clean_target = new_filename.replace("/", "_").replace("\\", "_").replace(":", "_").replace("*", "_").replace("?", "_").replace('"', "_").replace("<", "_").replace(">", "_").replace("|", "_").strip()
+    if not clean_target.lower().endswith(".pdf"):
+        clean_target = f"{clean_target.rsplit('.', 1)[0] if '.' in clean_target else clean_target}.pdf"
+
+    job = conversion_service.create_job(
+        job_id=job_id,
+        original_filename=clean_target,
+        source_ext="pdf",
+        target_ext="pdf",
+        input_path=input_path,
+        file_size_bytes=bytes_len
+    )
+
+    async def async_worker():
+        job.status = JobStatus.PROCESSING
+        job.progress = 50
+        job.message = "Renaming PDF document..."
+
+        success, err = PdfToolsService.rename_pdf(input_path, clean_target, job.output_path)
+
+        try:
+            os.remove(input_path)
+        except Exception:
+            pass
+
+        if success and os.path.exists(job.output_path):
+            job.status = JobStatus.COMPLETED
+            job.progress = 100
+            job.message = "PDF renamed successfully!"
+            job.output_size_bytes = os.path.getsize(job.output_path)
+        else:
+            job.status = JobStatus.FAILED
+            job.progress = 0
+            job.error = err or "PDF renaming failed."
+
+    background_tasks.add_task(async_worker)
+
+    return {
+        "job_id": job_id,
+        "status": job.status,
+        "message": "PDF rename job submitted."
+    }
+

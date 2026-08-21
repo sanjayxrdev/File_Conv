@@ -16,6 +16,7 @@ import { RotatePdfPage } from './pages/pdf/RotatePdfPage';
 import { ExtractPdfPage } from './pages/pdf/ExtractPdfPage';
 import { ProtectPdfPage } from './pages/pdf/ProtectPdfPage';
 import { TransparentSignaturePage } from './pages/pdf/TransparentSignaturePage';
+import { RenamePdfPage } from './pages/pdf/RenamePdfPage';
 
 export const AppContent: React.FC = () => {
   const [registry, setRegistry] = useState<FormatsRegistryResponse | null>(null);
@@ -80,6 +81,7 @@ export const AppContent: React.FC = () => {
           <Route path="/pdf/extract" element={<ExtractPdfPage />} />
           <Route path="/pdf/protect" element={<ProtectPdfPage />} />
           <Route path="/pdf/transparent-signature" element={<TransparentSignaturePage />} />
+          <Route path="/pdf/rename" element={<RenamePdfPage />} />
           <Route path="/formats" element={<Formats registry={registry} />} />
           <Route
             path="/:categorySlug"
