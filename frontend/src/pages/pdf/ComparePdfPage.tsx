@@ -203,6 +203,47 @@ export const ComparePdfPage: React.FC = () => {
                 <span className="text-[11px] font-mono text-accent-blue-text">Total Changes</span>
               </div>
             </div>
+
+            {/* Changed Pages Direct Jump List */}
+            {compareResults.pages.some((p) => p.status !== 'identical') && (
+              <div className="pt-3 border-t border-surface-border space-y-2 text-left">
+                <span className="text-xs font-semibold text-ink-primary flex items-center gap-1.5">
+                  <GitDiff className="w-3.5 h-3.5 text-accent-blue-text" weight="bold" />
+                  <span>Exact Changed Pages (Click to Jump Directly):</span>
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  {compareResults.pages
+                    .filter((p) => p.status !== 'identical')
+                    .map((p) => {
+                      const isCurrent = p.page_number - 1 === currentPageIndex;
+                      let badgeColor = 'bg-amber-100 border-amber-300 text-amber-900 hover:bg-amber-200';
+                      if (p.status === 'completely_different') {
+                        badgeColor = 'bg-red-100 border-red-300 text-red-900 hover:bg-red-200';
+                      } else if (p.status === 'added') {
+                        badgeColor = 'bg-green-100 border-green-300 text-green-900 hover:bg-green-200';
+                      } else if (p.status === 'removed') {
+                        badgeColor = 'bg-red-100 border-red-300 text-red-900 hover:bg-red-200';
+                      }
+
+                      return (
+                        <button
+                          key={p.page_number}
+                          type="button"
+                          onClick={() => setCurrentPageIndex(p.page_number - 1)}
+                          className={`px-2.5 py-1 rounded-card border text-xs font-mono font-medium transition-all flex items-center gap-1.5 ${badgeColor} ${
+                            isCurrent ? 'ring-2 ring-ink-primary shadow-xs font-bold' : ''
+                          }`}
+                        >
+                          <span>Page {p.page_number}</span>
+                          <span className="text-[10px] uppercase opacity-80">
+                            ({p.status === 'completely_different' ? 'Completely Different' : p.status})
+                          </span>
+                        </button>
+                      );
+                    })}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Viewing Mode Tabs & Toolbar */}
@@ -297,6 +338,8 @@ export const ComparePdfPage: React.FC = () => {
             <div
               className={`p-3 rounded-card border flex items-center justify-between text-xs font-sans ${currentPage.status === 'identical'
                 ? 'bg-green-50 border-green-200 text-green-800'
+                : currentPage.status === 'completely_different'
+                ? 'bg-red-50 border-red-300 text-red-900'
                 : 'bg-amber-50 border-amber-200 text-amber-900'
                 }`}
             >
@@ -304,9 +347,11 @@ export const ComparePdfPage: React.FC = () => {
                 {currentPage.status === 'identical' ? (
                   <CheckCircle className="w-4 h-4 text-green-600" weight="bold" />
                 ) : (
-                  <WarningCircle className="w-4 h-4 text-amber-600" weight="bold" />
+                  <WarningCircle className="w-4 h-4 text-red-600 shrink-0" weight="bold" />
                 )}
-                <span className="font-semibold capitalize">Status: {currentPage.status}</span>
+                <span className="font-semibold capitalize">
+                  Status: {currentPage.status === 'completely_different' ? 'Completely Different' : currentPage.status}
+                </span>
                 <span>&middot;</span>
                 <span>{currentPage.diff_summary}</span>
               </div>
@@ -421,23 +466,6 @@ export const ComparePdfPage: React.FC = () => {
                   </div>
                 </div>
               )}
-
-              {/* Text Diff Breakdown */}
-              {(currentPage.added_lines?.length || 0) > 0 || (currentPage.removed_lines?.length || 0) > 0 ? (
-                <div className="mt-6 border-t border-surface-border pt-4 space-y-3 font-mono text-xs">
-                  <h4 className="font-sans font-semibold text-ink-primary text-xs">Line-by-Line Text Differences</h4>
-                  {currentPage.added_lines?.map((line, idx) => (
-                    <div key={`add-${idx}`} className="p-2 bg-green-50 text-green-900 rounded border border-green-200">
-                      + {line}
-                    </div>
-                  ))}
-                  {currentPage.removed_lines?.map((line, idx) => (
-                    <div key={`rem-${idx}`} className="p-2 bg-red-50 text-red-900 rounded border border-red-200">
-                      - {line}
-                    </div>
-                  ))}
-                </div>
-              ) : null}
             </div>
           )}
         </div>

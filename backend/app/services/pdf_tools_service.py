@@ -436,38 +436,54 @@ class PdfToolsService:
             bbox = diff_img.getbbox()
             has_visual_diff = bbox is not None
 
-            # Render diff heatmap image
-            diff_b64 = None
-            if has_visual_diff:
-                # Enhance difference for display
-                enhancer = ImageEnhance.Brightness(diff_img)
-                diff_enhanced = enhancer.enhance(3.0)
-                
-                # Convert diff mask to red tint overlay on original image A
-                mask = diff_img.convert("L").point(lambda p: 255 if p > 20 else 0)
-                red_layer = Image.new("RGB", img_a.size, (255, 0, 0))
-                overlay_img = Image.composite(red_layer, img_a, mask)
-                
-                buf = io.BytesIO()
-                overlay_img.save(buf, format="PNG")
-                diff_b64 = f"data:image/png;base64,{base64.b64encode(buf.getvalue()).decode('utf-8')}"
-
             # Text line diffs
             lines_a = [l.strip() for l in text_a.splitlines() if l.strip()]
             lines_b = [l.strip() for l in text_b.splitlines() if l.strip()]
 
             added_lines = [l for l in lines_b if l not in lines_a]
             removed_lines = [l for l in lines_a if l not in lines_b]
+            common_lines = [l for l in lines_a if l in lines_b]
             line_diff_count = len(added_lines) + len(removed_lines)
 
+            # Render diff heatmap image with bounding box highlight
+            diff_b64 = None
+            if has_visual_diff:
+                # Convert diff mask to red tint overlay on original image A
+                mask = diff_img.convert("L").point(lambda p: 255 if p > 20 else 0)
+                red_layer = Image.new("RGB", img_a.size, (255, 0, 0))
+                overlay_img = Image.composite(red_layer, img_a, mask)
+
+                # Draw bounding box rectangle over main diff region
+                if bbox:
+                    from PIL import ImageDraw
+                    draw = ImageDraw.Draw(overlay_img)
+                    draw.rectangle(bbox, outline=(255, 0, 0), width=3)
+
+                buf = io.BytesIO()
+                overlay_img.save(buf, format="PNG")
+                diff_b64 = f"data:image/png;base64,{base64.b64encode(buf.getvalue()).decode('utf-8')}"
+
+            # Status evaluation
             status = "identical"
-            if line_diff_count > 0 or has_visual_diff:
+            diff_summary = "No differences detected."
+
+            # Completely Different criteria:
+            # If both pages have text but zero overlapping lines, or if all lines in A & B are replaced
+            is_completely_different = False
+            if len(lines_a) > 0 and len(lines_b) > 0 and len(common_lines) == 0:
+                is_completely_different = True
+            elif len(lines_a) == 0 and len(lines_b) == 0 and has_visual_diff:
+                is_completely_different = True
+
+            if is_completely_different:
+                status = "completely_different"
+                changed_pages_count += 1
+                total_changes_count += max(line_diff_count, 1)
+                diff_summary = "This page is completely different (no matching content or layout found)."
+            elif line_diff_count > 0 or has_visual_diff:
                 status = "changed"
                 changed_pages_count += 1
                 total_changes_count += max(line_diff_count, 1)
-
-            diff_summary = "No differences detected."
-            if status == "changed":
                 diff_summary = f"Detected {len(added_lines)} added text lines, {len(removed_lines)} removed text lines." if line_diff_count > 0 else "Detected visual layout differences."
 
             page_results.append({

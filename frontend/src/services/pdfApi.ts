@@ -36,7 +36,7 @@ export interface CompareResultResponse {
   };
   pages: Array<{
     page_number: number;
-    status: 'identical' | 'changed' | 'added' | 'removed';
+    status: 'identical' | 'changed' | 'added' | 'removed' | 'completely_different';
     diff_count: number;
     text_a: string;
     text_b: string;

@@ -65,10 +65,101 @@ export const SplitPdfPage: React.FC = () => {
     }
   };
 
+  // Helper: Convert Range String (e.g. "1-4, 5, 6-29, 30") -> Selected Split Cut Points (['page-3', 'page-4', 'page-28'])
+  const updateSplitPointsFromRange = (rangeStr: string, total: number) => {
+    if (!rangeStr.trim() || total <= 0) return;
+    const segments = rangeStr.split(',');
+    const newPoints: string[] = [];
+
+    segments.forEach((seg) => {
+      const trimmed = seg.trim();
+      if (!trimmed) return;
+      if (trimmed.includes('-')) {
+        const parts = trimmed.split('-');
+        if (parts.length === 2) {
+          const endP = parseInt(parts[1].trim(), 10);
+          if (!isNaN(endP) && endP >= 1 && endP < total) {
+            const id = `page-${endP - 1}`;
+            if (!newPoints.includes(id)) newPoints.push(id);
+          }
+        }
+      } else {
+        const p = parseInt(trimmed, 10);
+        if (!isNaN(p) && p >= 1 && p < total) {
+          const id = `page-${p - 1}`;
+          if (!newPoints.includes(id)) newPoints.push(id);
+        }
+      }
+    });
+
+    setSelectedSplitPoints(newPoints);
+  };
+
+  // Helper: Convert Selected Split Cut Points (['page-3', 'page-4', 'page-28']) -> Range String ("1-4, 5, 6-29, 30")
+  const updateRangeFromSplitPoints = (points: string[], total: number) => {
+    if (total <= 0) return;
+    if (points.length === 0) {
+      setRangeInput(`1-${total}`);
+      return;
+    }
+
+    const indices = points
+      .map((id) => parseInt(id.replace('page-', ''), 10))
+      .filter((i) => !isNaN(i) && i >= 0 && i < total - 1)
+      .sort((a, b) => a - b);
+
+    if (indices.length === 0) {
+      setRangeInput(`1-${total}`);
+      return;
+    }
+
+    const rangeSegments: string[] = [];
+    let currentStart = 0;
+
+    indices.forEach((cutIdx) => {
+      if (cutIdx >= currentStart) {
+        const startPage = currentStart + 1;
+        const endPage = cutIdx + 1;
+        if (startPage === endPage) {
+          rangeSegments.push(`${startPage}`);
+        } else {
+          rangeSegments.push(`${startPage}-${endPage}`);
+        }
+        currentStart = cutIdx + 1;
+      }
+    });
+
+    if (currentStart < total) {
+      const startPage = currentStart + 1;
+      const endPage = total;
+      if (startPage === endPage) {
+        rangeSegments.push(`${startPage}`);
+      } else {
+        rangeSegments.push(`${startPage}-${endPage}`);
+      }
+    }
+
+    setRangeInput(rangeSegments.join(', '));
+  };
+
+  const handleRangeInputChange = (val: string, indices: number[], valid: boolean) => {
+    setRangeInput(val);
+    setRangeIndices(indices);
+    setIsRangeValid(valid);
+    if (valid && totalPages > 0) {
+      updateSplitPointsFromRange(val, totalPages);
+    }
+  };
+
   const handleToggleSplitPoint = (id: string) => {
-    setSelectedSplitPoints((prev) =>
-      prev.includes(id) ? prev.filter((p) => p !== id) : [...prev, id]
-    );
+    const nextPoints = selectedSplitPoints.includes(id)
+      ? selectedSplitPoints.filter((p) => p !== id)
+      : [...selectedSplitPoints, id];
+
+    setSelectedSplitPoints(nextPoints);
+    if (totalPages > 0) {
+      updateRangeFromSplitPoints(nextPoints, totalPages);
+    }
   };
 
   const handleClear = () => {
@@ -271,7 +362,10 @@ export const SplitPdfPage: React.FC = () => {
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 font-sans text-xs">
                   <button
                     type="button"
-                    onClick={() => setSplitMode('range')}
+                    onClick={() => {
+                      setSplitMode('range');
+                      if (totalPages > 0) updateRangeFromSplitPoints(selectedSplitPoints, totalPages);
+                    }}
                     className={`p-3 rounded-card border flex items-center justify-center gap-2 transition-all ${
                       splitMode === 'range'
                         ? 'bg-ink-primary text-white border-ink-primary font-semibold'
@@ -284,7 +378,10 @@ export const SplitPdfPage: React.FC = () => {
 
                   <button
                     type="button"
-                    onClick={() => setSplitMode('selected')}
+                    onClick={() => {
+                      setSplitMode('selected');
+                      if (totalPages > 0) updateSplitPointsFromRange(rangeInput, totalPages);
+                    }}
                     className={`p-3 rounded-card border flex items-center justify-center gap-2 transition-all ${
                       splitMode === 'selected'
                         ? 'bg-ink-primary text-white border-ink-primary font-semibold'
@@ -328,12 +425,8 @@ export const SplitPdfPage: React.FC = () => {
                 <PageRangeInput
                   totalPages={totalPages}
                   value={rangeInput}
-                  onChange={(val, indices, valid) => {
-                    setRangeInput(val);
-                    setRangeIndices(indices);
-                    setIsRangeValid(valid);
-                  }}
-                  description="Enter page numbers or ranges to extract into a single file (e.g. 1-3, 5, 8-10)."
+                  onChange={handleRangeInputChange}
+                  description="Enter page numbers or ranges to extract into a single file (e.g. 1-4, 5, 6-29, 30)."
                 />
               )}
 
