@@ -103,6 +103,25 @@ export const ConversionCard: React.FC<ConversionCardProps> = ({
         </div>
       )}
 
+      {/* Active Target Format Banner */}
+      {selectedTarget && (
+        <div className="p-3.5 rounded-card bg-surface-raised border border-surface-border flex items-center justify-between text-xs">
+          <div className="flex items-center gap-2 font-mono">
+            <span className="text-ink-muted font-sans text-[11px] font-medium">Target Route:</span>
+            <span className="px-2 py-0.5 rounded bg-surface-card border border-surface-border text-ink-primary font-bold uppercase text-[11px]">
+              .{sourceExt}
+            </span>
+            <ArrowRight className="w-3.5 h-3.5 text-accent-red-text" weight="bold" />
+            <span className="px-2.5 py-0.5 rounded bg-ink-primary text-white font-bold uppercase text-[11px] shadow-sm">
+              .{selectedTarget}
+            </span>
+          </div>
+          <div className="text-ink-muted text-[11px] font-medium truncate max-w-[210px] hidden sm:block">
+            Outputs: &ldquo;{file.name.replace(/\.[^/.]+$/, "")}.{selectedTarget}&rdquo;
+          </div>
+        </div>
+      )}
+
       {/* Submit Conversion Action */}
       <div className="pt-1">
         <button
@@ -115,7 +134,7 @@ export const ConversionCard: React.FC<ConversionCardProps> = ({
           ) : (
             <>
               <Lightning className="w-4 h-4" weight="fill" />
-              <span>Convert File</span>
+              <span>Convert File to .{selectedTarget.toUpperCase()}</span>
               <ArrowRight className="w-4 h-4" weight="bold" />
             </>
           )}

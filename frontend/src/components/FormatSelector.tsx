@@ -43,27 +43,49 @@ export const FormatSelector: React.FC<FormatSelectorProps> = ({
     <div className="w-full space-y-4">
       {/* Target Format Selector Grid */}
       <div>
-        <label className="block text-[11px] font-medium uppercase tracking-wider text-ink-muted mb-2">
-          Convert to
-        </label>
-        <div ref={gridRef} className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          {targets.map((t) => {
+        <div className="flex items-center justify-between mb-2.5">
+          <label className="block text-[11px] font-semibold uppercase tracking-wider text-ink-muted">
+            Suggested Conversion Formats ({targets.length})
+          </label>
+          <span className="text-[10px] text-ink-muted bg-surface-raised px-2 py-0.5 rounded-full border border-surface-border font-medium">
+            Select Target Format
+          </span>
+        </div>
+        <div ref={gridRef} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
+          {targets.map((t, idx) => {
             const isSelected = t.target_ext === selectedTarget;
+            const isRecommended = idx === 0;
             return (
               <button
                 key={t.target_ext}
                 onClick={() => onSelectTarget(t.target_ext)}
                 type="button"
-                className={`p-3 rounded-card text-left border transition-all ${
+                className={`p-3.5 rounded-card text-left border transition-all relative overflow-hidden ${
                   isSelected
-                    ? "border-ink-primary bg-ink-primary text-white"
-                    : "border-surface-border bg-surface-card hover:border-ink-faint text-ink-secondary"
+                    ? "border-ink-primary bg-ink-primary text-white shadow-sm scale-[1.01]"
+                    : "border-surface-border bg-surface-card hover:border-ink-faint text-ink-secondary hover:bg-surface-raised"
                 }`}
               >
-                <div className="font-semibold text-xs uppercase font-mono">{t.target_ext}</div>
-                <div className={`text-[11px] truncate mt-0.5 ${isSelected ? "text-white/70" : "text-ink-muted"}`}>
+                <div className="flex items-center justify-between gap-1 mb-1">
+                  <span className="font-bold text-xs uppercase font-mono tracking-wide">{t.target_ext}</span>
+                  {isRecommended && (
+                    <span
+                      className={`text-[9px] px-1.5 py-0.2 rounded font-semibold uppercase tracking-wider ${
+                        isSelected ? "bg-white/20 text-white" : "bg-accent-red/20 text-accent-red-text"
+                      }`}
+                    >
+                      Top Pick
+                    </span>
+                  )}
+                </div>
+                <div className={`text-[11px] truncate font-medium ${isSelected ? "text-white/80" : "text-ink-muted"}`}>
                   {t.label}
                 </div>
+                {t.category && (
+                  <div className={`text-[9px] uppercase font-mono mt-1 tracking-wider ${isSelected ? "text-white/50" : "text-ink-faint"}`}>
+                    &bull; {t.category}
+                  </div>
+                )}
               </button>
             );
           })}
