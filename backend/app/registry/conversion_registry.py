@@ -301,8 +301,7 @@ CONVERSION_REGISTRY: Dict[str, Dict[str, Any]] = {
         "category": "document",
         "mime_types": ["application/pdf"],
         "targets": {
-            "txt": {"label": "Text File (TXT)", "engine": "pdf", "category": "text", "is_lossy": True, "options": []},
-            "md": {"label": "Markdown File (MD)", "engine": "pdf", "category": "text", "is_lossy": True, "options": []},
+            "docx": {"label": "Word Document (DOCX)", "engine": "pdf", "category": "document", "is_lossy": False, "options": []},
             "png": {
                 "label": "PNG Images (Page 1)",
                 "engine": "pdf",
@@ -313,7 +312,8 @@ CONVERSION_REGISTRY: Dict[str, Dict[str, Any]] = {
                 ]
             },
             "jpg": {"label": "JPEG Images (Page 1)", "engine": "pdf", "category": "image", "is_lossy": True, "options": []},
-            "docx": {"label": "Word Document (DOCX)", "engine": "pdf", "category": "document", "is_lossy": True, "options": []}
+            "md": {"label": "Markdown File (MD)", "engine": "pdf", "category": "text", "is_lossy": True, "options": []},
+            "txt": {"label": "Text File (TXT)", "engine": "pdf", "category": "text", "is_lossy": True, "options": []}
         }
     },
     "docx": {

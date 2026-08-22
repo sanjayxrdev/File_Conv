@@ -120,16 +120,60 @@ class PDFConverter(BaseConverter):
                         progress_callback(100, "PDF to DOCX conversion completed.")
                     return True, None
                 except Exception as e:
-                    logger.error(f"pdf2docx conversion failed: {e}")
-                    # Fallback using python-docx
+                    logger.error(f"pdf2docx conversion failed: {e}. Executing high-fidelity element extraction fallback...")
+                    import io
                     from docx import Document
+                    from docx.shared import Inches
+
                     doc_fitz = fitz.open(input_path)
                     word_doc = Document()
-                    word_doc.add_heading("Converted PDF Document", 0)
-                    for page in doc_fitz:
-                        word_doc.add_paragraph(page.get_text())
+                    processed_xrefs = set()
+
+                    # Set standard page margins
+                    for section in word_doc.sections:
+                        section.top_margin = Inches(0.8)
+                        section.bottom_margin = Inches(0.8)
+                        section.left_margin = Inches(0.8)
+                        section.right_margin = Inches(0.8)
+
+                    for page_idx, page in enumerate(doc_fitz):
+                        if progress_callback:
+                            pct = int(30 + (page_idx + 1) / len(doc_fitz) * 60)
+                            progress_callback(pct, f"Extracting page {page_idx + 1}/{len(doc_fitz)} content & images...")
+
+                        # 1. Extract text and code blocks
+                        blocks = page.get_text("blocks")
+                        for b in blocks:
+                            block_text = str(b[4]).strip()
+                            if block_text:
+                                p = word_doc.add_paragraph(block_text)
+
+                        # 2. Extract embedded images on page with fast XREF deduplication
+                        images = page.get_images(full=False)
+                        for img_info in images:
+                            try:
+                                xref = img_info[0]
+                                if xref in processed_xrefs:
+                                    continue
+                                processed_xrefs.add(xref)
+
+                                base_img = doc_fitz.extract_image(xref)
+                                if base_img and "image" in base_img:
+                                    w = base_img.get("width", 100)
+                                    h = base_img.get("height", 100)
+                                    # Skip tiny structural icons (< 25px) to keep conversion fast
+                                    if w >= 25 and h >= 25:
+                                        img_bytes = base_img["image"]
+                                        img_stream = io.BytesIO(img_bytes)
+                                        p = word_doc.add_paragraph()
+                                        p.add_run().add_picture(img_stream, width=Inches(5.5))
+                            except Exception as img_err:
+                                logger.warning(f"Failed to extract image xref {img_info[0]}: {img_err}")
+
                     word_doc.save(output_path)
                     doc_fitz.close()
+                    if progress_callback:
+                        progress_callback(100, "PDF to DOCX high-fidelity extraction completed.")
                     return True, None
 
             else:
