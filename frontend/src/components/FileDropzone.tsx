@@ -98,10 +98,10 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
-        className={`cursor-pointer rounded-card-lg p-10 sm:p-14 text-center transition-all duration-200 border-2 border-dashed ${
+        className={`cursor-pointer rounded-card-lg p-10 sm:p-14 text-center transition-all duration-200 border-2 border-dashed relative overflow-hidden ${
           isDragOver
             ? "border-ink-primary bg-surface-raised"
-            : "border-surface-border hover:border-ink-faint bg-surface-card"
+            : "border-surface-border hover:border-ink-muted bg-surface-card hover:bg-surface-raised/50"
         }`}
       >
         <input
@@ -122,17 +122,17 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({
           className="hidden"
         />
 
-        <div className="space-y-5">
-          <div ref={iconRef} className="w-14 h-14 mx-auto rounded-card bg-surface-raised border border-surface-border text-ink-muted flex items-center justify-center">
+        <div className="space-y-6 relative z-10">
+          <div ref={iconRef} className="w-14 h-14 mx-auto rounded-card bg-surface-raised border border-surface-border text-ink-primary flex items-center justify-center">
             <UploadSimple className="w-7 h-7" weight="bold" />
           </div>
 
-          <div>
-            <h3 className="font-serif text-2xl sm:text-3xl text-ink-primary mb-1">
+          <div className="space-y-1.5">
+            <h3 className="font-sans font-semibold text-2xl sm:text-3xl text-ink-primary tracking-tight">
               {customTitle || "Drop files here or click to browse"}
             </h3>
-            <p className="text-sm text-ink-muted max-w-md mx-auto leading-relaxed">
-              {customSubtitle || "Private, local-first file converter. Drag single files or entire folders."}
+            <p className="text-xs sm:text-sm text-ink-muted max-w-md mx-auto leading-relaxed">
+              {customSubtitle || "Private, local-first file converter. Drag single files or entire folders with zero telemetry."}
             </p>
           </div>
 
@@ -143,8 +143,9 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({
                 e.stopPropagation();
                 fileInputRef.current?.click();
               }}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-card bg-ink-primary text-white text-sm font-semibold hover:bg-[#333333] active:scale-[0.98] transition-all"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-card bg-ink-primary text-surface-canvas text-xs font-semibold hover:opacity-90 active:scale-[0.98] transition-all"
             >
+              <UploadSimple className="w-4 h-4" weight="bold" />
               <span>Select Files</span>
             </button>
 
@@ -154,23 +155,23 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({
                 e.stopPropagation();
                 folderInputRef.current?.click();
               }}
-              className="inline-flex items-center gap-2 px-4 py-3 rounded-card bg-surface-raised border border-surface-border text-ink-secondary text-sm font-medium hover:bg-surface-border/50 transition-all"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-card bg-surface-card border border-surface-border text-ink-secondary text-xs font-semibold hover:bg-surface-raised transition-all"
             >
               <FolderSimplePlus className="w-4 h-4 text-ink-muted" weight="bold" />
-              <span>Folder</span>
+              <span>Upload Folder</span>
             </button>
           </div>
 
-          <div className="pt-1 text-xs text-ink-muted font-mono flex items-center justify-center gap-1.5 flex-wrap">
-            <Files className="w-3.5 h-3.5 text-ink-faint" weight="bold" />
-            <span>PDF, DOCX, PPTX, XLSX, HTML, PNG, JPG, MP4, MP3, TXT, PY</span>
+          <div className="pt-2 text-[11px] text-ink-muted font-mono flex items-center justify-center gap-1.5 flex-wrap">
+            <Files className="w-3.5 h-3.5" weight="bold" />
+            <span>PDF, DOCX, PPTX, XLSX, HTML, PNG, JPG, MP4, MP3, TXT, MD, OCR</span>
           </div>
         </div>
       </div>
 
       {error && (
-        <div ref={errorRef} className="p-4 rounded-card bg-accent-red border border-accent-red-text/10 text-accent-red-text text-sm font-medium flex items-center gap-3">
-          <WarningCircle className="w-5 h-5 shrink-0" weight="bold" />
+        <div ref={errorRef} className="p-4 rounded-card bg-accent-red border border-accent-red-text/20 text-accent-red-text text-xs font-medium flex items-center gap-3 animate-fade-in">
+          <WarningCircle className="w-4 h-4 shrink-0" weight="bold" />
           <span>{error}</span>
         </div>
       )}

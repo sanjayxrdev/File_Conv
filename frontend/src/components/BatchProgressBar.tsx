@@ -79,7 +79,7 @@ export const BatchProgressBar: React.FC<BatchProgressBarProps> = ({
       <div className="w-full h-2 rounded-full bg-surface-raised overflow-hidden relative border border-surface-border">
         <div
           ref={barRef}
-          className="h-full bg-ink-primary rounded-full relative progress-shimmer"
+          className="h-full bg-ink-primary rounded-full"
           style={{ width: `${progress}%` }}
         />
       </div>

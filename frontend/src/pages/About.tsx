@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react';
-import { ShieldCheck, DesktopTower, Terminal, Lock, Code, Cpu } from '@phosphor-icons/react';
+import { ShieldCheck, DesktopTower, Terminal, Lock, Cpu, Scan } from '@phosphor-icons/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -70,7 +70,7 @@ export const About: React.FC = () => {
           <ul className="space-y-2 text-ink-muted">
             <li className="flex items-start gap-2">
               <span className="text-ink-faint mt-1">/</span>
-              <span><strong className="text-ink-secondary">Local Engine Execution:</strong> Real transcode pipelines (FFmpeg, PyMuPDF, Pillow, python-docx, openpyxl).</span>
+              <span><strong className="text-ink-secondary">Local Engine Execution:</strong> Real transcode pipelines (Docling, FFmpeg, PyMuPDF, Pillow, python-docx, openpyxl).</span>
             </li>
             <li className="flex items-start gap-2">
               <span className="text-ink-faint mt-1">/</span>
@@ -122,7 +122,11 @@ export const About: React.FC = () => {
             <Cpu className="w-4 h-4 text-ink-muted" weight="bold" />
             <span>Engine Technologies</span>
           </h3>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+            <div className="p-3 rounded-card bg-surface-raised border border-surface-border text-center">
+              <div className="font-semibold text-ink-primary text-sm">Docling</div>
+              <div className="text-[11px] text-ink-muted">OCR & Layout AI</div>
+            </div>
             <div className="p-3 rounded-card bg-surface-raised border border-surface-border text-center">
               <div className="font-semibold text-ink-primary text-sm">FFmpeg</div>
               <div className="text-[11px] text-ink-muted">Video & Audio</div>

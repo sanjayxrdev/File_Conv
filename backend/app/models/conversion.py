@@ -15,7 +15,7 @@ class Category(str, Enum):
     IMAGE = "image"
     DOCUMENT = "document"
     TEXT = "text"
-    CODE = "code"
+    OCR = "ocr"
 
 class ConversionRequest(BaseModel):
     target_format: str

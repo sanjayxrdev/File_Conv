@@ -12,7 +12,7 @@ from app.converters.document_converter import DocumentConverter
 from app.converters.pptx_converter import PPTXConverter
 from app.converters.html_converter import HTMLConverter
 from app.converters.spreadsheet_converter import SpreadsheetConverter
-from app.converters.code_converter import CodeConverter
+from app.converters.ocr_converter import DoclingOCRConverter
 from app.services.file_service import FileService
 
 logger = logging.getLogger("conversion_service")
@@ -27,7 +27,7 @@ class ConversionService:
         self.pptx_engine = PPTXConverter()
         self.html_engine = HTMLConverter()
         self.spreadsheet_engine = SpreadsheetConverter()
-        self.code_engine = CodeConverter()
+        self.ocr_engine = DoclingOCRConverter()
 
     def create_job(
         self,
@@ -115,8 +115,8 @@ class ConversionService:
                 success, err = await self.spreadsheet_engine.convert(
                     job.input_path, job.output_path, job.source_format, job.target_format, options, progress_callback
                 )
-            elif engine_name == "code":
-                success, err = await self.code_engine.convert(
+            elif engine_name in ["ocr", "docling"]:
+                success, err = await self.ocr_engine.convert(
                     job.input_path, job.output_path, job.source_format, job.target_format, options, progress_callback
                 )
             else:

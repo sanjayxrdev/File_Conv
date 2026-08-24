@@ -5,7 +5,7 @@ import gsap from 'gsap';
 
 interface BatchConversionCardProps {
   files: File[];
-  registry: FormatsRegistryResponse;
+  registry?: FormatsRegistryResponse | null;
   onConvertBatch: (targetExt: string) => void;
   onClear: () => void;
   onRemoveFile: (index: number) => void;
@@ -60,33 +60,27 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
     { ext: 'pdf', label: 'PDF Document' },
     { ext: 'md', label: 'Markdown File' },
     { ext: 'docx', label: 'Word Document' },
-    { ext: 'ipynb', label: 'Jupyter Notebook' },
-    { ext: 'py', label: 'Python Script' },
-    { ext: 'js', label: 'JavaScript' },
     { ext: 'txt', label: 'Plain Text' },
     { ext: 'png', label: 'PNG Image' },
     { ext: 'csv', label: 'CSV Table' },
     { ext: 'html', label: 'HTML Document' },
+    { ext: 'json', label: 'JSON Data / AST' },
   ];
 
-  const codeTargets = [
-    { ext: 'ipynb', label: 'Jupyter Notebook' },
-    { ext: 'py', label: 'Python Script' },
-    { ext: 'html', label: 'HTML Document' },
+  const ocrTargets = [
+    { ext: 'md', label: 'Structured Markdown (OCR)' },
+    { ext: 'txt', label: 'Plain Text (OCR)' },
+    { ext: 'json', label: 'Docling Document JSON AST' },
+    { ext: 'html', label: 'Semantic HTML' },
+    { ext: 'docx', label: 'Word Document' },
     { ext: 'pdf', label: 'PDF Document' },
-    { ext: 'txt', label: 'Plain Text' },
-    { ext: 'md', label: 'Markdown File' },
-    { ext: 'js', label: 'JavaScript' },
-    { ext: 'c', label: 'C Source' },
-    { ext: 'java', label: 'Java Source' },
-    { ext: 'css', label: 'CSS Stylesheet' },
   ];
 
   const commonTargets = restrictPdfToDocx && allPdfs
     ? [{ ext: 'docx', label: 'Word Document' }]
     : (restrictPdfToDocx && allDocx
         ? [{ ext: 'pdf', label: 'PDF Document' }]
-        : (categorySlug === 'code-converter' ? codeTargets : defaultTargets));
+        : (categorySlug === 'ocr-converter' ? ocrTargets : defaultTargets));
 
   return (
     <div
@@ -183,10 +177,10 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
       <button
         onClick={() => onConvertBatch(selectedTarget)}
         disabled={isSubmitting || files.length === 0}
-        className="w-full py-3.5 px-6 rounded-card bg-ink-primary text-white font-semibold text-sm tracking-wide transition-all flex items-center justify-center gap-2.5 hover:bg-[#333333] active:scale-[0.99] disabled:opacity-40"
+        className="w-full py-3.5 px-6 rounded-card bg-ink-primary text-surface-canvas font-semibold text-sm tracking-wide transition-all flex items-center justify-center gap-2.5 hover:opacity-90 active:scale-[0.99] disabled:opacity-40"
       >
         {isSubmitting ? (
-          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+          <div className="w-5 h-5 border-2 border-surface-canvas/30 border-t-surface-canvas rounded-full animate-spin" />
         ) : (
           <>
             <Lightning className="w-4 h-4" weight="fill" />

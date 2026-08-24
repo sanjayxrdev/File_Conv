@@ -7,9 +7,9 @@
 [![Vite](https://img.shields.io/badge/Vite-5+-646CFF.svg?logo=vite&logoColor=white)](https://vitejs.dev)
 [![Three.js](https://img.shields.io/badge/Three.js-r160+-000000.svg?logo=three.js&logoColor=white)](https://threejs.org)
 
-**FILE CONV** is a local-first multi-format file conversion, batch processing, and document merging application built with **FastAPI**, **React**, **TypeScript**, **Three.js**, **GSAP**, **Anime.js**, and **Tailwind CSS**.
+**FILE CONV** is a local-first multi-format file conversion, batch processing, OCR, and document merging application built with **FastAPI**, **React**, **TypeScript**, **Docling AI**, **Three.js**, **GSAP**, **Anime.js**, and **Tailwind CSS**.
 
-It provides single-file and multi-file batch conversions across **video**, **audio**, **image**, **document**, **presentation**, **spreadsheet**, **web**, and **text/code** formats, with single-click **ZIP Archive Downloading**, document merging (`PDF`, `PPTX`, `DOCX`), and Jupyter Notebook (`.ipynb`) generation.
+It provides single-file and multi-file batch conversions across **video**, **audio**, **image**, **document**, **presentation**, **spreadsheet**, **web**, and **OCR & Document Intelligence** formats, with single-click **ZIP Archive Downloading**, document merging (`PDF`, `PPTX`, `DOCX`), and AI layout parsing.
 
 ---
 
@@ -21,18 +21,14 @@ It provides single-file and multi-file batch conversions across **video**, **aud
 - Real-time progress bars tracking overall batch percentage and per-file progress.
 - Single-click **"Download All as ZIP"** archive containing all converted files with original filenames preserved.
 
-### 2. Text & Code Conversion Category
-- Convert `.txt` files into programming source code extensions:
-  - `.txt` → `.py` (Python)
-  - `.txt` → `.c` (C)
-  - `.txt` → `.ipynb` (Jupyter Notebook v4 Schema)
-  - `.txt` → `.js` (JavaScript)
-  - `.txt` → `.css` (CSS)
-  - `.txt` → `.html` (HTML)
-  - `.txt` → `.java` (Java)
-  - `.txt` → `.rs` (Rust)
-  - `.txt` → `.cs` (C#)
-- **Jupyter Notebook Generator**: Converts `.txt` into a genuine, fully valid v4 Jupyter Notebook JSON structure that opens natively in JupyterLab, VS Code, and Google Colab.
+### 2. OCR & Document Intelligence (Powered by Docling)
+- State-of-the-art document parsing and OCR powered by [IBM Docling](https://github.com/docling-project/docling).
+- Extracts text, tables, headers, and formulas from scanned PDFs, images (`PNG`, `JPG`, `WEBP`, `TIFF`, `BMP`), and office documents.
+- Exports to:
+  - **Structured Markdown** (`.md`) with clean table layouts
+  - **Docling JSON AST** (`.json`) with full bounding boxes and reading order
+  - **Plain Text** (`.txt`) and **Semantic HTML** (`.html`)
+  - **Editable Word Documents** (`.docx`)
 
 ### 3. Multi-File Document & Presentation Combiner
 - **Merge PDF**: Concatenates multiple PDF files into a single document.
@@ -54,14 +50,15 @@ It provides single-file and multi-file batch conversions across **video**, **aud
 
 | Category | Source Formats | Target Options | Engine |
 | :--- | :--- | :--- | :--- |
+| **OCR & AI** | `.pdf`, `.png`, `.jpg`, `.jpeg`, `.webp`, `.docx`, `.pptx`, `.xlsx` | `.md`, `.txt`, `.json` (Docling AST), `.html`, `.docx` | Docling AI OCR |
 | **Video** | `.mp4`, `.webm`, `.avi`, `.mkv` | `.mp4`, `.avi`, `.mkv`, `.mov`, `.webm`, `.mp3` (extract), `.wav` (extract), `.flac`, `.gif` | FFmpeg |
 | **Audio** | `.mp3`, `.wav`, `.flac`, `.ogg` | `.mp3`, `.wav`, `.flac`, `.ogg`, `.opus`, `.aac` | FFmpeg |
-| **Image** | `.png`, `.jpg`, `.jpeg`, `.webp` | `.png`, `.jpg`, `.webp`, `.bmp`, `.pdf` | Pillow |
+| **Image** | `.png`, `.jpg`, `.jpeg`, `.webp` | `.png`, `.jpg`, `.webp`, `.bmp`, `.pdf`, `.md` (OCR), `.txt` (OCR), `.json` (AST) | Pillow / Docling |
 | **Presentation** | `.pptx`, `.ppt` | `.pdf`, `.png`, `.jpg`, `.md` | PowerPoint COM / python-pptx / PyMuPDF |
-| **Document** | `.pdf`, `.docx`, `.doc` | `.pdf`, `.docx`, `.txt`, `.md`, `.png`, `.jpg` | PyMuPDF / pdf2docx / python-docx |
+| **Document** | `.pdf`, `.docx`, `.doc` | `.pdf`, `.docx`, `.txt`, `.md`, `.png`, `.jpg`, `.json` (AST) | PyMuPDF / pdf2docx / python-docx / Docling |
 | **Spreadsheet** | `.xlsx`, `.xls`, `.csv` | `.csv`, `.json`, `.pdf`, `.txt`, `.xlsx` | pandas / openpyxl / xlrd |
 | **Web** | `.html`, `.htm` | `.pdf`, `.md`, `.txt`, `.docx` | html2text / BeautifulSoup / PyMuPDF |
-| **Text & Code** | `.txt`, `.md`, `.json` | `.py`, `.c`, `.ipynb`, `.js`, `.css`, `.html`, `.java`, `.rs`, `.cs`, `.pdf`, `.md` | Custom Code Engine / Jupyter v4 Schema |
+| **Text** | `.txt`, `.md`, `.csv`, `.json` | `.pdf`, `.docx`, `.txt`, `.md`, `.html`, `.xlsx`, `.csv` | Custom Engine / PyMuPDF |
 
 ---
 
@@ -99,26 +96,18 @@ cd File_Conv
 
 ---
 
-### 2. Backend Setup & Startup
+### 2. Backend Setup & Startup (with uv)
 
 ```bash
 # Navigate to backend directory
 cd backend
 
-# Create virtual environment
-python -m venv .venv
-
-# Activate virtual environment
-# On Windows:
-.venv\Scripts\activate
-# On macOS/Linux:
-# source .venv/bin/activate
-
-# Install backend dependencies
-pip install -r requirements.txt
+# Create virtual environment and install dependencies ultra-fast with uv
+uv venv .venv
+uv pip install -r requirements.txt
 
 # Start FastAPI backend server
-python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+uv run uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
 Backend API will be running at: `http://127.0.0.1:8000`  
@@ -155,7 +144,7 @@ Frontend application will be running at: `http://localhost:5173`
 
 ### Multi-File Batch Conversion
 1. Drag and drop **multiple files** (1 to N) or click **Select Folder**.
-2. Select a universal target format (e.g. `PDF`, `Jupyter Notebook (.ipynb)`, `Python (.py)`).
+2. Select a universal target format (e.g. `PDF`, `Markdown (.md)`, `DOCX`, `JSON`).
 3. Click **Convert All Files Now**.
 4. Track per-file progress and click **Download All Converted Files (.ZIP)**.
 
@@ -169,7 +158,7 @@ Frontend application will be running at: `http://localhost:5173`
 
 ## 🧪 Automated Testing
 
-The repository includes a comprehensive 35-test Pytest suite covering single conversions, PPTX COM fallback, multi-file merging, batch processing, HTML parsing, spreadsheet extraction, code file preservation, and Jupyter notebook schema validation.
+The repository includes a comprehensive Pytest suite covering single conversions, PPTX COM fallback, multi-file merging, batch processing, HTML parsing, spreadsheet extraction, and Docling OCR & layout validation.
 
 ```bash
 # Navigate to backend directory with active virtual environment
@@ -182,8 +171,6 @@ python tests/generate_fixtures.py
 pytest tests -v
 ```
 
-
-
 ---
 
 ## 📁 Repository Structure
@@ -193,7 +180,7 @@ File_Conv/
 ├── backend/
 │   ├── app/
 │   │   ├── api/                # FastAPI router endpoints (convert, batch, merge, formats, health)
-│   │   ├── converters/         # Engine modules (ffmpeg, pdf, image, document, pptx, html, spreadsheet, code)
+│   │   ├── converters/         # Engine modules (docling ocr, ffmpeg, pdf, image, document, pptx, html, spreadsheet)
 │   │   ├── core/               # Settings & configuration
 │   │   ├── models/             # Pydantic schemas & job data structures
 │   │   ├── registry/           # Single source of truth conversion matrix

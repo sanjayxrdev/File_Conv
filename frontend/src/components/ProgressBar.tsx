@@ -42,9 +42,9 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   }, [progress]);
 
   return (
-    <div ref={cardRef} className="w-full max-w-2xl mx-auto rounded-card-lg border border-surface-border bg-surface-card p-8 space-y-5 text-center">
+    <div ref={cardRef} className="w-full max-w-2xl mx-auto rounded-card-lg border border-surface-border bg-surface-card p-8 space-y-6 text-center font-sans shadow-xs">
       <div className="flex items-center justify-center gap-3">
-        <div className="w-10 h-10 rounded-card bg-surface-raised border border-surface-border flex items-center justify-center text-ink-muted">
+        <div className="w-10 h-10 rounded-card bg-surface-raised border border-surface-border flex items-center justify-center text-ink-primary">
           <Spinner className="w-5 h-5 animate-spin" weight="bold" />
         </div>
         <div className="text-left">
@@ -57,16 +57,16 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 
       {/* Progress Track */}
       <div className="w-full space-y-2">
-        <div className="w-full h-2 rounded-full bg-surface-raised overflow-hidden relative border border-surface-border">
+        <div className="w-full h-2 rounded-pill bg-surface-raised overflow-hidden relative border border-surface-border">
           <div
             ref={barRef}
-            className="h-full bg-ink-primary rounded-full relative progress-shimmer"
+            className="h-full bg-ink-primary rounded-pill transition-all"
             style={{ width: `${progress}%` }}
           />
         </div>
 
         <div className="flex items-center justify-between text-xs text-ink-muted font-mono">
-          <span>{message || 'Processing...'}</span>
+          <span>{message || 'Processing with local engine...'}</span>
           <span className="font-semibold text-ink-primary">{progress}%</span>
         </div>
       </div>

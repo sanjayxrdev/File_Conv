@@ -2,25 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --surface-canvas: #FBFBFA;
+  --surface-card: #FFFFFF;
+  --surface-raised: #F7F6F3;
+  --surface-border: #EAEAEA;
+  --ink-primary: #111111;
+  --ink-secondary: #2F3437;
+  --ink-muted: #787774;
+  --ink-faint: #9B9A97;
+
+  --accent-red: #FDEBEC;
+  --accent-red-text: #EB5757;
+  --accent-blue: #E1F3FE;
+  --accent-blue-text: #2D9CDB;
+  --accent-green: #EDF3EC;
+  --accent-green-text: #27AE60;
+  --accent-yellow: #FBF3DB;
+  --accent-yellow-text: #D97706;
+  --accent-purple: #F3E8FF;
+  --accent-purple-text: #7E22CE;
+}
+
+.dark {
+  --surface-canvas: #000000;
+  --surface-card: #0F1015;
+  --surface-raised: #181920;
+  --surface-border: #242630;
+  --ink-primary: #F4F4F5;
+  --ink-secondary: #D4D4D8;
+  --ink-muted: #A1A1AA;
+  --ink-faint: #71717A;
+
+  --accent-red: #3B1214;
+  --accent-red-text: #F87171;
+  --accent-blue: #112338;
+  --accent-blue-text: #60A5FA;
+  --accent-green: #102A1E;
+  --accent-green-text: #34D399;
+  --accent-yellow: #38260F;
+  --accent-yellow-text: #FBBF24;
+  --accent-purple: #29183B;
+  --accent-purple-text: #C084FC;
+}
+
 @layer base {
   body {
-    background-color: #FBFBFA;
-    color: #111111;
-    font-family: 'DM Sans', -apple-system, sans-serif;
+    background-color: var(--surface-canvas);
+    color: var(--ink-primary);
+    font-family: 'Plus Jakarta Sans', 'DM Sans', -apple-system, sans-serif;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 150ms ease, color 150ms ease;
   }
 
   h1, h2 {
-    font-family: 'Instrument Serif', 'Lyon Text', 'serif';
     letter-spacing: -0.03em;
-    line-height: 1.1;
+    line-height: 1.15;
   }
 
   h3, h4, h5 {
-    font-family: 'DM Sans', sans-serif;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
   }
 
   code, pre, kbd {
@@ -28,12 +71,12 @@
   }
 
   ::selection {
-    background: #111111;
-    color: #FFFFFF;
+    background: var(--ink-primary);
+    color: var(--surface-canvas);
   }
 }
 
-/* Scrollbar */
+/* Custom Minimalist Scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -42,57 +85,52 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.12);
+  background: rgba(128, 128, 128, 0.25);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.22);
+  background: rgba(128, 128, 128, 0.45);
 }
 
-/* Card hover lift */
-.card-lift {
-  transition: box-shadow 200ms cubic-bezier(0.16, 1, 0.3, 1),
-              transform 200ms cubic-bezier(0.16, 1, 0.3, 1);
+/* Clean Solid Cards */
+.solid-card {
+  background-color: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-.card-lift:hover {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-  transform: translateY(-1px);
+.solid-card-interactive {
+  background-color: var(--surface-card);
+  border: 1px solid var(--surface-border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 180ms ease;
 }
 
-/* Kbd key style */
-kbd {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #EAEAEA;
-  border-radius: 4px;
-  background: #F7F6F3;
-  padding: 2px 6px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  color: #2F3437;
-  line-height: 1.4;
-  min-width: 22px;
-}
-
-/* Shimmer on progress bars */
-@keyframes shimmer-slide {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-.progress-shimmer::after {
-  content: '';
-  position: absolute;
-  top: 0; right: 0; bottom: 0; left: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
-  animation: shimmer-slide 2s infinite;
+.solid-card-interactive:hover {
+  border-color: var(--ink-muted);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* Drag over state */
 .drag-active {
-  border-color: #111111 !important;
-  background-color: #F7F6F3 !important;
+  border-color: var(--ink-primary) !important;
+  background-color: var(--surface-raised) !important;
+}
+
+/* Kbd styling */
+kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--surface-border);
+  border-radius: 4px;
+  background: var(--surface-raised);
+  padding: 2px 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-secondary);
+  line-height: 1.4;
+  min-width: 22px;
 }

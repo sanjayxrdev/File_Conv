@@ -93,9 +93,9 @@ class DocumentConverter(BaseConverter):
                     return True, None
 
             # ----------------------------------------------------
-            # 2. TXT / MD / Code Conversions
+            # 2. TXT / MD Conversions
             # ----------------------------------------------------
-            elif source_ext in ["txt", "md", "py", "js", "c", "cpp", "cs", "java", "rs", "css", "json", "ipynb"]:
+            elif source_ext in ["txt", "md"]:
                 with open(input_path, "r", encoding="utf-8", errors="replace") as f_in:
                     content = f_in.read()
 

@@ -56,25 +56,25 @@ export const ResultCard: React.FC<ResultCardProps> = ({
   };
 
   return (
-    <div ref={cardRef} className="w-full max-w-2xl mx-auto rounded-card-lg bg-surface-card border border-surface-border p-8 space-y-5 text-center">
+    <div ref={cardRef} className="w-full max-w-2xl mx-auto rounded-card-lg bg-surface-card border border-surface-border p-8 space-y-6 text-center font-sans shadow-xs">
 
       {/* Success Badge */}
       <div
         ref={badgeRef}
-        className="w-16 h-16 mx-auto rounded-card bg-accent-green text-accent-green-text border border-accent-green-text/10 flex items-center justify-center"
+        className="w-14 h-14 mx-auto rounded-card bg-accent-green text-accent-green-text border border-accent-green-text/20 flex items-center justify-center"
       >
-        <CheckCircle className="w-9 h-9" weight="fill" />
+        <CheckCircle className="w-8 h-8" weight="fill" />
       </div>
 
-      <div>
-        <h3 className="font-serif text-2xl text-ink-primary mb-1">Conversion complete</h3>
-        <p className="text-sm text-ink-muted">Your file is ready for download.</p>
+      <div className="space-y-1">
+        <h3 className="font-sans font-semibold text-2xl text-ink-primary">Conversion complete</h3>
+        <p className="text-xs sm:text-sm text-ink-muted">Your processed file is ready for download.</p>
       </div>
 
       {/* Result File Details */}
       <div className="p-4 rounded-card bg-surface-raised border border-surface-border flex items-center justify-between gap-4">
         <div className="flex items-center gap-3 text-left overflow-hidden">
-          <div className="w-10 h-10 rounded-card bg-ink-primary text-white flex items-center justify-center shrink-0">
+          <div className="w-10 h-10 rounded-card bg-surface-card border border-surface-border text-ink-primary flex items-center justify-center shrink-0">
             <FileText className="w-5 h-5" weight="bold" />
           </div>
           <div className="overflow-hidden">
@@ -89,7 +89,7 @@ export const ResultCard: React.FC<ResultCardProps> = ({
         <a
           href={downloadUrl}
           download={outputFilename}
-          className="px-5 py-2.5 rounded-card bg-ink-primary hover:bg-[#333333] text-white text-sm font-semibold flex items-center gap-2 active:scale-[0.98] transition-all shrink-0"
+          className="px-4 py-2 rounded-card bg-ink-primary hover:opacity-90 text-surface-canvas text-xs font-semibold flex items-center gap-2 active:scale-[0.98] transition-all shrink-0"
         >
           <Download className="w-4 h-4" weight="bold" />
           <span>Download</span>
@@ -99,9 +99,9 @@ export const ResultCard: React.FC<ResultCardProps> = ({
       {/* Convert Another */}
       <button
         onClick={onReset}
-        className="w-full py-3 rounded-card bg-surface-raised border border-surface-border hover:bg-surface-border/50 text-ink-secondary text-sm font-medium flex items-center justify-center gap-2 transition-colors"
+        className="w-full py-2.5 rounded-card bg-surface-raised border border-surface-border hover:bg-surface-border text-ink-secondary text-xs font-medium flex items-center justify-center gap-2 transition-all"
       >
-        <ArrowClockwise className="w-4 h-4" weight="bold" />
+        <ArrowClockwise className="w-4 h-4 text-ink-muted" weight="bold" />
         <span>Convert another file</span>
       </button>
     </div>

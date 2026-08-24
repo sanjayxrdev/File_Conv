@@ -12,17 +12,18 @@ interface FormatSelectorProps {
 }
 
 export const FormatSelector: React.FC<FormatSelectorProps> = ({
-  targets,
+  targets = [],
   selectedTarget,
   onSelectTarget,
   options,
   onOptionsChange,
 }) => {
-  const currentTargetObj = targets.find((t) => t.target_ext === selectedTarget) || targets[0];
+  const safeTargets = targets || [];
+  const currentTargetObj = safeTargets.length > 0 ? (safeTargets.find((t) => t.target_ext === selectedTarget) || safeTargets[0]) : null;
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!gridRef.current) return;
+    if (!gridRef.current || !gridRef.current.children || gridRef.current.children.length === 0) return;
     const ctx = gsap.context(() => {
       gsap.from(gridRef.current!.children, {
         y: 12,
@@ -33,7 +34,7 @@ export const FormatSelector: React.FC<FormatSelectorProps> = ({
       });
     }, gridRef);
     return () => ctx.revert();
-  }, []);
+  }, [safeTargets.length]);
 
   const handleOptionUpdate = (optName: string, value: any) => {
     onOptionsChange({ ...options, [optName]: value });
@@ -45,14 +46,14 @@ export const FormatSelector: React.FC<FormatSelectorProps> = ({
       <div>
         <div className="flex items-center justify-between mb-2.5">
           <label className="block text-[11px] font-semibold uppercase tracking-wider text-ink-muted">
-            Suggested Conversion Formats ({targets.length})
+            Suggested Conversion Formats ({safeTargets.length})
           </label>
           <span className="text-[10px] text-ink-muted bg-surface-raised px-2 py-0.5 rounded-full border border-surface-border font-medium">
             Select Target Format
           </span>
         </div>
         <div ref={gridRef} className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
-          {targets.map((t, idx) => {
+          {safeTargets.map((t, idx) => {
             const isSelected = t.target_ext === selectedTarget;
             const isRecommended = idx === 0;
             return (
