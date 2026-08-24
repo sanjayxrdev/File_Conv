@@ -139,7 +139,7 @@ export const ComparePdfPage: React.FC = () => {
             type="button"
             disabled={!fileA || !fileB || isComparing}
             onClick={handleStartComparison}
-            className="w-full py-3.5 rounded-card bg-ink-primary text-white text-xs font-semibold hover:bg-[#333333] active:scale-[0.99] transition-all disabled:opacity-50 flex items-center justify-center gap-2 shadow-xs"
+            className="w-full py-3.5 rounded-card bg-ink-primary text-surface-canvas text-xs font-semibold hover:opacity-90 active:scale-[0.99] transition-all disabled:opacity-50 flex items-center justify-center gap-2 shadow-xs"
           >
             <GitDiff className="w-4 h-4" weight="bold" />
             <span>{isComparing ? 'Comparing Documents...' : 'Compare PDF Documents'}</span>
@@ -254,7 +254,7 @@ export const ComparePdfPage: React.FC = () => {
                 type="button"
                 onClick={() => setViewMode('side-by-side')}
                 className={`px-3 py-1.5 rounded-card flex items-center gap-1.5 font-semibold transition-all ${viewMode === 'side-by-side'
-                  ? 'bg-ink-primary text-white'
+                  ? 'bg-ink-primary text-surface-canvas'
                   : 'bg-surface-raised text-ink-muted hover:text-ink-primary'
                   }`}
               >
@@ -266,7 +266,7 @@ export const ComparePdfPage: React.FC = () => {
                 type="button"
                 onClick={() => setViewMode('overlay')}
                 className={`px-3 py-1.5 rounded-card flex items-center gap-1.5 font-semibold transition-all ${viewMode === 'overlay'
-                  ? 'bg-ink-primary text-white'
+                  ? 'bg-ink-primary text-surface-canvas'
                   : 'bg-surface-raised text-ink-muted hover:text-ink-primary'
                   }`}
               >
@@ -278,7 +278,7 @@ export const ComparePdfPage: React.FC = () => {
                 type="button"
                 onClick={() => setViewMode('difference')}
                 className={`px-3 py-1.5 rounded-card flex items-center gap-1.5 font-semibold transition-all ${viewMode === 'difference'
-                  ? 'bg-ink-primary text-white'
+                  ? 'bg-ink-primary text-surface-canvas'
                   : 'bg-surface-raised text-ink-muted hover:text-ink-primary'
                   }`}
               >

@@ -18,6 +18,7 @@ import { ExtractPdfPage } from './pages/pdf/ExtractPdfPage';
 import { ProtectPdfPage } from './pages/pdf/ProtectPdfPage';
 import { TransparentSignaturePage } from './pages/pdf/TransparentSignaturePage';
 import { RenamePdfPage } from './pages/pdf/RenamePdfPage';
+import { ExportPdfImagesPage } from './pages/pdf/ExportPdfImagesPage';
 import { AuthProvider } from './context/AuthContext';
 import { HistoryProvider } from './context/HistoryContext';
 import { ThemeProvider } from './context/ThemeContext';
@@ -131,7 +132,6 @@ export const AppContent: React.FC = () => {
           />
           <Route path="/merge-converter" element={<MergePage />} />
           <Route path="/formats" element={<Formats registry={registry} />} />
-
           {/* Dedicated PDF Manipulation Utility Routes */}
           <Route path="/pdf/rearrange" element={<RearrangePdfPage />} />
           <Route path="/pdf/compare" element={<ComparePdfPage />} />
@@ -142,6 +142,7 @@ export const AppContent: React.FC = () => {
           <Route path="/pdf/protect" element={<ProtectPdfPage />} />
           <Route path="/pdf/transparent-signature" element={<TransparentSignaturePage />} />
           <Route path="/pdf/rename" element={<RenamePdfPage />} />
+          <Route path="/pdf/export-images" element={<ExportPdfImagesPage />} />
           <Route
             path="/:categorySlug"
             element={<ConverterPage registry={registry} />}

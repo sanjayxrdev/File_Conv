@@ -29,7 +29,34 @@ class PDFConverter(BaseConverter):
             if progress_callback:
                 progress_callback(10, "Opening PDF document...")
 
-            doc = fitz.open(input_path)
+            try:
+                doc = fitz.open(input_path)
+            except Exception as pdf_err:
+                # Handle text files saved with .pdf extension
+                try:
+                    with open(input_path, "r", encoding="utf-8", errors="ignore") as tf:
+                        raw_text = tf.read()
+                    if raw_text.strip():
+                        if target_ext == "docx":
+                            import docx
+                            wdoc = docx.Document()
+                            for para in raw_text.split("\n\n"):
+                                if para.strip():
+                                    wdoc.add_paragraph(para.strip())
+                            wdoc.save(output_path)
+                            if progress_callback:
+                                progress_callback(100, "Text-based PDF converted to DOCX successfully.")
+                            return True, None
+                        elif target_ext in ["txt", "md"]:
+                            with open(output_path, "w", encoding="utf-8") as out_f:
+                                out_f.write(raw_text)
+                            if progress_callback:
+                                progress_callback(100, f"Text-based PDF saved to {target_ext.upper()}.")
+                            return True, None
+                except Exception:
+                    pass
+                return False, f"Invalid PDF file structure: {str(pdf_err)}"
+
             total_pages = len(doc)
 
             if total_pages == 0:
@@ -104,14 +131,39 @@ class PDFConverter(BaseConverter):
                 zoom = dpi / 72.0
                 mat = fitz.Matrix(zoom, zoom)
 
-                page = doc.load_page(0)
-                pix = page.get_pixmap(matrix=mat)
-                pix.save(output_path)
-                doc.close()
+                if total_pages == 1:
+                    page = doc.load_page(0)
+                    pix = page.get_pixmap(matrix=mat)
+                    pix.save(output_path)
+                    doc.close()
+                    if progress_callback:
+                        progress_callback(100, "PDF page rendered as image.")
+                    return True, None
+                else:
+                    import zipfile
+                    import tempfile
 
-                if progress_callback:
-                    progress_callback(100, "PDF page rendered as image.")
-                return True, None
+                    with tempfile.TemporaryDirectory() as tmpdir:
+                        img_paths = []
+                        for idx, page in enumerate(doc):
+                            pix = page.get_pixmap(matrix=mat)
+                            img_filename = f"page_{idx + 1:02d}.{target_ext}"
+                            img_path = os.path.join(tmpdir, img_filename)
+                            pix.save(img_path)
+                            img_paths.append((img_path, img_filename))
+                            if progress_callback:
+                                pct = int(10 + (idx + 1) / total_pages * 80)
+                                progress_callback(pct, f"Rendering page {idx + 1}/{total_pages} as image...")
+
+                        # Package all page images into a ZIP archive
+                        with zipfile.ZipFile(output_path, "w", zipfile.ZIP_DEFLATED) as zip_file:
+                            for img_path, img_filename in img_paths:
+                                zip_file.write(img_path, arcname=img_filename)
+
+                    doc.close()
+                    if progress_callback:
+                        progress_callback(100, f"Rendered all {total_pages} pages to ZIP archive.")
+                    return True, None
 
             # ----------------------------------------------------
             # 4. PDF -> DOCX (Universal High-Fidelity Conversion)

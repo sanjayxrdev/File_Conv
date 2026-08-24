@@ -226,7 +226,7 @@ export const TransparentSignaturePage: React.FC = () => {
                       type="button"
                       disabled={isLoading}
                       onClick={handleProcessTransparent}
-                      className="w-full py-2.5 rounded-card bg-ink-primary text-white font-semibold hover:bg-[#333333] transition-colors flex items-center justify-center gap-2 shadow-xs"
+                      className="w-full py-2.5 rounded-card bg-ink-primary text-surface-canvas font-semibold hover:opacity-90 transition-colors flex items-center justify-center gap-2 shadow-xs"
                     >
                       <Sparkle className="w-4 h-4" weight="bold" />
                       <span>Make Background Transparent</span>
@@ -346,7 +346,7 @@ export const TransparentSignaturePage: React.FC = () => {
                     type="button"
                     disabled={isLoading}
                     onClick={handleStampOnPdf}
-                    className="w-full py-3 rounded-card bg-ink-primary text-white text-xs font-semibold hover:bg-[#333333] transition-all flex items-center justify-center gap-2 shadow-xs"
+                    className="w-full py-3 rounded-card bg-ink-primary text-surface-canvas text-xs font-semibold hover:opacity-90 transition-all flex items-center justify-center gap-2 shadow-xs"
                   >
                     <Stamp className="w-4 h-4" weight="bold" />
                     <span>{isLoading ? 'Stamping Signature...' : 'Stamp Signature onto PDF & Export'}</span>

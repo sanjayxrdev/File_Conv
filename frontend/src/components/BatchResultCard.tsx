@@ -98,7 +98,7 @@ export const BatchResultCard: React.FC<BatchResultCardProps> = ({
         <a
           href={zipDownloadUrl}
           download={`converted_batch_${batchId.substring(0, 8)}.zip`}
-          className="w-full py-3.5 px-6 rounded-card bg-ink-primary hover:bg-[#333333] text-white font-semibold text-sm flex items-center justify-center gap-2.5 active:scale-[0.99] transition-all"
+          className="w-full py-3.5 px-6 rounded-card bg-ink-primary hover:opacity-90 text-surface-canvas font-semibold text-sm flex items-center justify-center gap-2.5 active:scale-[0.99] transition-all"
         >
           <Archive className="w-4 h-4" weight="bold" />
           <span>Download all as ZIP</span>

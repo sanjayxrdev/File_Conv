@@ -88,7 +88,6 @@ export const ResultCard: React.FC<ResultCardProps> = ({
 
         <a
           href={downloadUrl}
-          download={outputFilename}
           className="px-4 py-2 rounded-card bg-ink-primary hover:opacity-90 text-surface-canvas text-xs font-semibold flex items-center gap-2 active:scale-[0.98] transition-all shrink-0"
         >
           <Download className="w-4 h-4" weight="bold" />

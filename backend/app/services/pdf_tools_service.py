@@ -714,4 +714,44 @@ class PdfToolsService:
             logger.error(f"Error removing blank pages from PDF: {e}")
             return False, str(e)
 
+    @staticmethod
+    def export_pages_as_images(file_path: str, target_format: str, dpi: int, output_path: str) -> Tuple[bool, Optional[str]]:
+        """Renders every single page of the PDF into an image (page_1, page_2...) and packages them into a ZIP archive."""
+        try:
+            doc = fitz.open(file_path)
+            total_pages = len(doc)
+
+            if total_pages == 0:
+                doc.close()
+                return False, "PDF document is empty (0 pages)."
+
+            target_ext = target_format.lower().lstrip(".").replace("jpeg", "jpg")
+            if target_ext not in ["jpg", "jpeg", "png", "webp", "bmp"]:
+                target_ext = "jpg"
+
+            zoom = dpi / 72.0
+            mat = fitz.Matrix(zoom, zoom)
+
+            import zipfile
+            import tempfile
+
+            with tempfile.TemporaryDirectory() as tmpdir:
+                img_paths = []
+                for idx, page in enumerate(doc):
+                    pix = page.get_pixmap(matrix=mat)
+                    img_filename = f"page_{idx + 1:02d}.{target_ext}"
+                    img_path = os.path.join(tmpdir, img_filename)
+                    pix.save(img_path)
+                    img_paths.append((img_path, img_filename))
+
+                with zipfile.ZipFile(output_path, "w", zipfile.ZIP_DEFLATED) as zip_file:
+                    for img_path, img_filename in img_paths:
+                        zip_file.write(img_path, arcname=img_filename)
+
+            doc.close()
+            return True, None
+        except Exception as e:
+            logger.error(f"Error exporting PDF pages to images: {e}")
+            return False, f"Failed to export pages as images: {str(e)}"
+
 

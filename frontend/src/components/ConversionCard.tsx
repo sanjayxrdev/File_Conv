@@ -167,7 +167,7 @@ export const ConversionCard: React.FC<ConversionCardProps> = ({
               .{sourceExt}
             </span>
             <ArrowRight className="w-3.5 h-3.5 text-ink-muted" weight="bold" />
-            <span className="px-2.5 py-0.5 rounded bg-ink-primary text-white font-bold uppercase text-[11px]">
+            <span className="px-2.5 py-0.5 rounded bg-ink-primary text-surface-canvas font-bold uppercase text-[11px]">
               .{selectedTarget}
             </span>
           </div>

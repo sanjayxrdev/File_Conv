@@ -246,7 +246,7 @@ export const OcrStudio: React.FC = () => {
                       e.stopPropagation();
                       fileInputRef.current?.click();
                     }}
-                    className="px-6 py-2.5 rounded-card bg-ink-primary text-white text-xs font-semibold hover:bg-[#333333] transition-all"
+                    className="px-6 py-2.5 rounded-card bg-ink-primary text-surface-canvas text-xs font-semibold hover:opacity-90 transition-all"
                   >
                     Browse Files
                   </button>
@@ -339,7 +339,7 @@ export const OcrStudio: React.FC = () => {
 
                   <button
                     onClick={handleReset}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-card bg-ink-primary text-white text-xs font-semibold hover:bg-[#333333] transition-all"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-card bg-ink-primary text-surface-canvas text-xs font-semibold hover:opacity-90 transition-all"
                   >
                     <ArrowCounterClockwise className="w-3.5 h-3.5" weight="bold" />
                     <span>Analyze Another File</span>

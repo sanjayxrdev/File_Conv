@@ -143,7 +143,7 @@ export const Formats: React.FC<FormatsProps> = ({ registry }) => {
               onClick={() => setSelectedCategory(cat)}
               className={`px-2.5 py-1 rounded-card text-[11px] font-medium uppercase transition-all ${
                 selectedCategory === cat
-                  ? 'bg-ink-primary text-white'
+                  ? 'bg-ink-primary text-surface-canvas'
                   : 'bg-surface-raised text-ink-muted hover:text-ink-primary border border-surface-border'
               }`}
             >

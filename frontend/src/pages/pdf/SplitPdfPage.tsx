@@ -368,7 +368,7 @@ export const SplitPdfPage: React.FC = () => {
                     }}
                     className={`p-3 rounded-card border flex items-center justify-center gap-2 transition-all ${
                       splitMode === 'range'
-                        ? 'bg-ink-primary text-white border-ink-primary font-semibold'
+                        ? 'bg-ink-primary text-surface-canvas border-ink-primary font-semibold'
                         : 'bg-surface-card border-surface-border text-ink-muted hover:text-ink-primary'
                     }`}
                   >
@@ -384,7 +384,7 @@ export const SplitPdfPage: React.FC = () => {
                     }}
                     className={`p-3 rounded-card border flex items-center justify-center gap-2 transition-all ${
                       splitMode === 'selected'
-                        ? 'bg-ink-primary text-white border-ink-primary font-semibold'
+                        ? 'bg-ink-primary text-surface-canvas border-ink-primary font-semibold'
                         : 'bg-surface-card border-surface-border text-ink-muted hover:text-ink-primary'
                     }`}
                   >
@@ -397,7 +397,7 @@ export const SplitPdfPage: React.FC = () => {
                     onClick={() => setSplitMode('every_n')}
                     className={`p-3 rounded-card border flex items-center justify-center gap-2 transition-all ${
                       splitMode === 'every_n'
-                        ? 'bg-ink-primary text-white border-ink-primary font-semibold'
+                        ? 'bg-ink-primary text-surface-canvas border-ink-primary font-semibold'
                         : 'bg-surface-card border-surface-border text-ink-muted hover:text-ink-primary'
                     }`}
                   >
@@ -410,7 +410,7 @@ export const SplitPdfPage: React.FC = () => {
                     onClick={() => setSplitMode('custom')}
                     className={`p-3 rounded-card border flex items-center justify-center gap-2 transition-all ${
                       splitMode === 'custom'
-                        ? 'bg-ink-primary text-white border-ink-primary font-semibold'
+                        ? 'bg-ink-primary text-surface-canvas border-ink-primary font-semibold'
                         : 'bg-surface-card border-surface-border text-ink-muted hover:text-ink-primary'
                     }`}
                   >
@@ -503,7 +503,7 @@ export const SplitPdfPage: React.FC = () => {
                 type="button"
                 disabled={isProcessing}
                 onClick={handleProcessSplit}
-                className="w-full py-3 rounded-card bg-ink-primary text-white text-xs font-semibold hover:bg-[#333333] active:scale-[0.99] transition-all disabled:opacity-50 flex items-center justify-center gap-2 shadow-xs"
+                className="w-full py-3 rounded-card bg-ink-primary text-surface-canvas text-xs font-semibold hover:opacity-90 active:scale-[0.99] transition-all disabled:opacity-50 flex items-center justify-center gap-2 shadow-xs"
               >
                 <Scissors className="w-4 h-4" weight="bold" />
                 <span>{isProcessing ? progressMsg || 'Splitting PDF...' : 'Split PDF Document'}</span>

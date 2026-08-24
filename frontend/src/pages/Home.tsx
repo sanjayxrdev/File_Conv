@@ -84,6 +84,16 @@ export const TOOLS_LIST: ToolConfig[] = [
     route: '/pdf/rearrange',
   },
   {
+    id: 'export-images-pdf',
+    title: 'Export PDF Pages as Images (.ZIP)',
+    category: 'PDF Tools',
+    description: 'Preview all pages visually in a grid and extract every page as JPG, PNG, or WebP inside a ZIP file.',
+    iconName: 'Image',
+    accentBg: 'bg-accent-blue',
+    accentText: 'text-accent-blue-text',
+    route: '/pdf/export-images',
+  },
+  {
     id: 'compare-pdf',
     title: 'Compare Two PDFs',
     category: 'PDF Tools',

@@ -284,7 +284,7 @@ export const ProtectPdfPage: React.FC = () => {
                 type="button"
                 disabled={isProcessing || !openPassword || openPassword !== confirmPassword}
                 onClick={handleProcessProtect}
-                className="w-full py-3 rounded-card bg-ink-primary text-white text-xs font-semibold hover:bg-[#333333] active:scale-[0.99] transition-all disabled:opacity-50 flex items-center justify-center gap-2 shadow-xs"
+                className="w-full py-3 rounded-card bg-ink-primary text-surface-canvas text-xs font-semibold hover:opacity-90 active:scale-[0.99] transition-all disabled:opacity-50 flex items-center justify-center gap-2 shadow-xs"
               >
                 <Lock className="w-4 h-4" weight="bold" />
                 <span>{isProcessing ? progressMsg || 'Encrypting PDF...' : 'Protect PDF Document'}</span>

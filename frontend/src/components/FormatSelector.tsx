@@ -63,27 +63,29 @@ export const FormatSelector: React.FC<FormatSelectorProps> = ({
                 type="button"
                 className={`p-3.5 rounded-card text-left border transition-all relative overflow-hidden ${
                   isSelected
-                    ? "border-ink-primary bg-ink-primary text-white shadow-sm scale-[1.01]"
+                    ? "border-ink-primary bg-ink-primary text-surface-canvas shadow-sm scale-[1.01]"
                     : "border-surface-border bg-surface-card hover:border-ink-faint text-ink-secondary hover:bg-surface-raised"
                 }`}
               >
                 <div className="flex items-center justify-between gap-1 mb-1">
-                  <span className="font-bold text-xs uppercase font-mono tracking-wide">{t.target_ext}</span>
+                  <span className={`font-bold text-xs uppercase font-mono tracking-wide ${isSelected ? "text-surface-canvas" : "text-ink-primary"}`}>
+                    {t.target_ext}
+                  </span>
                   {isRecommended && (
                     <span
-                      className={`text-[9px] px-1.5 py-0.2 rounded font-semibold uppercase tracking-wider ${
-                        isSelected ? "bg-white/20 text-white" : "bg-accent-red/20 text-accent-red-text"
+                      className={`text-[9px] px-1.5 py-0.5 rounded font-bold uppercase tracking-wider ${
+                        isSelected ? "bg-surface-canvas/20 text-surface-canvas" : "bg-accent-red/20 text-accent-red-text"
                       }`}
                     >
                       Top Pick
                     </span>
                   )}
                 </div>
-                <div className={`text-[11px] truncate font-medium ${isSelected ? "text-white/80" : "text-ink-muted"}`}>
+                <div className={`text-[11px] truncate font-medium ${isSelected ? "text-surface-canvas/85" : "text-ink-secondary"}`}>
                   {t.label}
                 </div>
                 {t.category && (
-                  <div className={`text-[9px] uppercase font-mono mt-1 tracking-wider ${isSelected ? "text-white/50" : "text-ink-faint"}`}>
+                  <div className={`text-[9px] uppercase font-mono mt-1 font-semibold tracking-wider ${isSelected ? "text-surface-canvas/65" : "text-ink-muted"}`}>
                     &bull; {t.category}
                   </div>
                 )}

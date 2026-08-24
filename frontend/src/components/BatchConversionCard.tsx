@@ -26,13 +26,55 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
   defaultTargetFormat,
   categorySlug,
 }) => {
-  const allPdfs = files.length > 0 && files.every(f => f.name.split('.').pop()?.toLowerCase() === 'pdf');
-  const allDocx = files.length > 0 && files.every(f => ['docx', 'doc'].includes(f.name.split('.').pop()?.toLowerCase() || ''));
-  const initialTarget = restrictPdfToDocx && allPdfs 
-    ? 'docx' 
-    : (restrictPdfToDocx && allDocx 
-        ? 'pdf' 
-        : (defaultTargetFormat || 'pdf'));
+  const firstExt = files.length > 0 ? (files[0].name.split('.').pop()?.toLowerCase() || '') : '';
+  const allSameExt = files.length > 0 && files.every(f => (f.name.split('.').pop()?.toLowerCase() || '') === firstExt);
+  const commonSourceExt = allSameExt ? firstExt : '';
+
+  const allPdfs = commonSourceExt === 'pdf';
+  const allDocx = ['docx', 'doc'].includes(commonSourceExt);
+
+  const totalBytes = files.reduce((acc, f) => acc + f.size, 0);
+
+  const formatSize = (bytes: number) => {
+    if (!bytes) return '0 KB';
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+  };
+
+  const defaultTargets = [
+    { ext: 'pdf', label: 'PDF Document' },
+    { ext: 'docx', label: 'Word Document' },
+    { ext: 'md', label: 'Markdown File' },
+    { ext: 'txt', label: 'Plain Text' },
+    { ext: 'png', label: 'PNG Image' },
+    { ext: 'csv', label: 'CSV Table' },
+    { ext: 'html', label: 'HTML Document' },
+    { ext: 'json', label: 'JSON Data / AST' },
+  ];
+
+  const ocrTargets = [
+    { ext: 'docx', label: 'Word Document' },
+    { ext: 'md', label: 'Structured Markdown (OCR)' },
+    { ext: 'txt', label: 'Plain Text (OCR)' },
+    { ext: 'json', label: 'Docling Document JSON AST' },
+    { ext: 'html', label: 'Semantic HTML' },
+    { ext: 'pdf', label: 'PDF Document' },
+  ];
+
+  const rawTargets = restrictPdfToDocx && allPdfs
+    ? [{ ext: 'docx', label: 'Word Document' }]
+    : (restrictPdfToDocx && allDocx
+        ? [{ ext: 'pdf', label: 'PDF Document' }]
+        : (categorySlug === 'ocr-converter' ? ocrTargets : defaultTargets));
+
+  // Filter out target format matching commonSourceExt so users aren't offered to convert e.g. .pdf to .pdf
+  const commonTargets = commonSourceExt
+    ? rawTargets.filter(t => t.ext !== commonSourceExt)
+    : rawTargets;
+
+  const initialTarget = (defaultTargetFormat && commonTargets.some(t => t.ext === defaultTargetFormat))
+    ? defaultTargetFormat
+    : (commonTargets.length > 0 ? commonTargets[0].ext : 'docx');
 
   const [selectedTarget, setSelectedTarget] = useState<string>(initialTarget);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -44,43 +86,12 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
       setSelectedTarget('docx');
     } else if (restrictPdfToDocx && allDocx) {
       setSelectedTarget('pdf');
-    } else if (defaultTargetFormat) {
+    } else if (defaultTargetFormat && commonTargets.some(t => t.ext === defaultTargetFormat)) {
       setSelectedTarget(defaultTargetFormat);
+    } else if (commonTargets.length > 0 && !commonTargets.some(t => t.ext === selectedTarget)) {
+      setSelectedTarget(commonTargets[0].ext);
     }
-  }, [restrictPdfToDocx, allPdfs, allDocx, defaultTargetFormat]);
-
-  const totalBytes = files.reduce((acc, f) => acc + f.size, 0);
-
-  const formatSize = (bytes: number) => {
-    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
-    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-  };
-
-  const defaultTargets = [
-    { ext: 'pdf', label: 'PDF Document' },
-    { ext: 'md', label: 'Markdown File' },
-    { ext: 'docx', label: 'Word Document' },
-    { ext: 'txt', label: 'Plain Text' },
-    { ext: 'png', label: 'PNG Image' },
-    { ext: 'csv', label: 'CSV Table' },
-    { ext: 'html', label: 'HTML Document' },
-    { ext: 'json', label: 'JSON Data / AST' },
-  ];
-
-  const ocrTargets = [
-    { ext: 'md', label: 'Structured Markdown (OCR)' },
-    { ext: 'txt', label: 'Plain Text (OCR)' },
-    { ext: 'json', label: 'Docling Document JSON AST' },
-    { ext: 'html', label: 'Semantic HTML' },
-    { ext: 'docx', label: 'Word Document' },
-    { ext: 'pdf', label: 'PDF Document' },
-  ];
-
-  const commonTargets = restrictPdfToDocx && allPdfs
-    ? [{ ext: 'docx', label: 'Word Document' }]
-    : (restrictPdfToDocx && allDocx
-        ? [{ ext: 'pdf', label: 'PDF Document' }]
-        : (categorySlug === 'ocr-converter' ? ocrTargets : defaultTargets));
+  }, [restrictPdfToDocx, allPdfs, allDocx, defaultTargetFormat, files.length]);
 
   return (
     <div
@@ -156,15 +167,15 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
                 onClick={() => setSelectedTarget(t.ext)}
                 className={`p-2.5 rounded-card text-left border transition-all ${
                   isSelected
-                    ? "border-ink-primary bg-ink-primary text-white"
+                    ? "border-ink-primary bg-ink-primary text-surface-canvas"
                     : "border-surface-border bg-surface-card hover:border-ink-faint text-ink-secondary"
                 }`}
               >
                 <div className="font-semibold text-xs font-mono flex items-center justify-between">
                   <span>.{t.ext}</span>
-                  {isSelected && <Check className="w-3 h-3" weight="bold" />}
+                  {isSelected && <Check className="w-3 h-3 text-surface-canvas" weight="bold" />}
                 </div>
-                <div className={`text-[10px] truncate mt-0.5 ${isSelected ? "text-white/60" : "text-ink-muted"}`}>
+                <div className={`text-[10px] truncate mt-0.5 ${isSelected ? "text-surface-canvas/75" : "text-ink-muted"}`}>
                   {t.label}
                 </div>
               </button>

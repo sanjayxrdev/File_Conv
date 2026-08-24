@@ -90,7 +90,7 @@ export const PdfDownloadResult: React.FC<PdfDownloadResultProps> = ({
         <a
           href={finalUrl}
           download={finalDownloadName}
-          className="w-full sm:w-auto px-6 py-3 rounded-card bg-ink-primary text-white text-xs font-semibold hover:bg-[#333333] active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-xs"
+          className="w-full sm:w-auto px-6 py-3 rounded-card bg-ink-primary text-surface-canvas text-xs font-semibold hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-2 shadow-xs"
         >
           <DownloadSimple className="w-4 h-4" weight="bold" />
           <span>{isZip ? 'Download ZIP' : 'Download PDF'}</span>

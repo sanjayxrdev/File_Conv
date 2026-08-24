@@ -92,7 +92,7 @@ export const PdfUploader: React.FC<PdfUploaderProps> = ({
               </h3>
               <p className="text-ink-muted text-xs sm:text-sm mt-1">{description}</p>
             </div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-card bg-ink-primary text-white text-xs font-semibold hover:bg-[#333333] transition-colors">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-card bg-ink-primary text-surface-canvas text-xs font-semibold hover:opacity-90 transition-colors">
               <UploadSimple className="w-4 h-4" weight="bold" />
               <span>Choose File</span>
             </div>

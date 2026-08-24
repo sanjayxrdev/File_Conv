@@ -95,7 +95,7 @@ export const MergeDropzone: React.FC<MergeDropzoneProps> = ({ onMergeSubmit, isS
             onClick={() => setMergeType(tab.type)}
             className={`py-2.5 px-4 rounded-card text-xs font-semibold transition-all flex items-center justify-center gap-2 ${
               mergeType === tab.type
-                ? 'bg-ink-primary text-white'
+                ? 'bg-ink-primary text-surface-canvas'
                 : 'text-ink-muted hover:text-ink-primary hover:bg-surface-raised'
             }`}
           >
@@ -190,10 +190,10 @@ export const MergeDropzone: React.FC<MergeDropzoneProps> = ({ onMergeSubmit, isS
           <button
             onClick={handleMergeSubmit}
             disabled={files.length < 2 || isSubmitting}
-            className="w-full py-3.5 px-6 rounded-card bg-ink-primary text-white font-semibold text-sm tracking-wide transition-all flex items-center justify-center gap-2.5 hover:bg-[#333333] active:scale-[0.99] disabled:opacity-40"
+            className="w-full py-3.5 px-6 rounded-card bg-ink-primary text-surface-canvas font-semibold text-sm tracking-wide transition-all flex items-center justify-center gap-2.5 hover:opacity-90 active:scale-[0.99] disabled:opacity-40"
           >
             {isSubmitting ? (
-              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+              <div className="w-5 h-5 border-2 border-surface-canvas/30 border-t-surface-canvas rounded-full animate-spin" />
             ) : (
               <>
                 <Stack className="w-4 h-4" weight="bold" />

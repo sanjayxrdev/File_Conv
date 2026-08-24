@@ -123,7 +123,7 @@ export const PdfPageThumbnailGrid: React.FC<PdfPageThumbnailGridProps> = ({
               {selectable && (
                 <div
                   className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${
-                    isSelected ? 'bg-ink-primary border-ink-primary text-white' : 'border-surface-border bg-surface-card'
+                    isSelected ? 'bg-ink-primary border-ink-primary text-surface-canvas' : 'border-surface-border bg-surface-card'
                   }`}
                 >
                   {isSelected && <Check className="w-3.5 h-3.5" weight="bold" />}
@@ -149,7 +149,7 @@ export const PdfPageThumbnailGrid: React.FC<PdfPageThumbnailGridProps> = ({
 
               {/* Rotation Badge */}
               {page.rotation && page.rotation !== 0 ? (
-                <div className="absolute top-2 right-2 bg-ink-primary/80 text-white text-[10px] font-mono px-1.5 py-0.5 rounded backdrop-blur-xs">
+                <div className="absolute top-2 right-2 bg-ink-primary text-surface-canvas text-[10px] font-mono px-1.5 py-0.5 rounded backdrop-blur-xs font-bold">
                   {page.rotation}°
                 </div>
               ) : null}

@@ -711,4 +711,60 @@ async def remove_blank_pages(
         "message": "Remove blank pages job submitted."
     }
 
+@router.post("/pdf/export-images")
+async def export_pdf_images(
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...),
+    target_format: str = Form("jpg"),
+    dpi: int = Form(150)
+):
+    """
+    Renders every page of the PDF into sequential images (page_1, page_2...)
+    and returns a downloadable ZIP file containing all page images.
+    """
+    job_id = str(uuid.uuid4())
+    original_name = ValidationService.sanitize_filename(file.filename or "document.pdf")
+    base_name = original_name.rsplit(".", 1)[0]
+
+    input_path, bytes_len = await FileService.save_uploaded_file(file, job_id, "pdf")
+
+    job = conversion_service.create_job(
+        job_id=job_id,
+        original_filename=f"{base_name}_all_pages_images.zip",
+        source_ext="pdf",
+        target_ext="zip",
+        input_path=input_path,
+        file_size_bytes=bytes_len
+    )
+
+    async def async_worker():
+        job.status = JobStatus.PROCESSING
+        job.progress = 20
+        job.message = "Rendering PDF pages into high-res images..."
+
+        success, err = PdfToolsService.export_pages_as_images(input_path, target_format, dpi, job.output_path)
+
+        try:
+            os.remove(input_path)
+        except Exception:
+            pass
+
+        if success and os.path.exists(job.output_path):
+            job.status = JobStatus.COMPLETED
+            job.progress = 100
+            job.message = "All PDF pages exported as images successfully!"
+            job.output_size_bytes = os.path.getsize(job.output_path)
+        else:
+            job.status = JobStatus.FAILED
+            job.progress = 0
+            job.error = err or "Could not export PDF pages as images."
+
+    background_tasks.add_task(async_worker)
+
+    return {
+        "job_id": job_id,
+        "status": job.status,
+        "message": "Export PDF pages job submitted."
+    }
+
 

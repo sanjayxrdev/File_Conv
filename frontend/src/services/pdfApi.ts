@@ -290,3 +290,26 @@ export async function apiRenamePdf(file: File, newFilename: string): Promise<{ j
 
   return res.json();
 }
+
+export async function apiExportPdfPagesAsImages(
+  file: File,
+  targetFormat: string = 'jpg',
+  dpi: number = 150
+): Promise<{ job_id: string; status: string }> {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('target_format', targetFormat);
+  formData.append('dpi', dpi.toString());
+
+  const res = await fetch(`${API_BASE}/pdf/export-images`, {
+    method: 'POST',
+    body: formData,
+  });
+
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail?.message || 'Failed to export PDF pages to images.');
+  }
+
+  return res.json();
+}

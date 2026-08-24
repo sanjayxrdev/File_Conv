@@ -230,7 +230,7 @@ export const AddPageNumbersPage: React.FC = () => {
                         onClick={() => setPosition(pos.id)}
                         className={`p-2.5 rounded-card border text-center font-medium transition-all ${
                           position === pos.id
-                            ? 'bg-ink-primary text-white border-ink-primary'
+                            ? 'bg-ink-primary text-surface-canvas border-ink-primary'
                             : 'bg-surface-raised border-surface-border text-ink-muted hover:text-ink-primary'
                         }`}
                       >
@@ -380,7 +380,7 @@ export const AddPageNumbersPage: React.FC = () => {
                   type="button"
                   disabled={isProcessing}
                   onClick={handleProcessAddNumbers}
-                  className="w-full py-3 rounded-card bg-ink-primary text-white text-xs font-semibold hover:bg-[#333333] active:scale-[0.99] transition-all disabled:opacity-50 flex items-center justify-center gap-2 shadow-xs"
+                  className="w-full py-3 rounded-card bg-ink-primary text-surface-canvas text-xs font-semibold hover:opacity-90 active:scale-[0.99] transition-all disabled:opacity-50 flex items-center justify-center gap-2 shadow-xs"
                 >
                   <Hash className="w-4 h-4" weight="bold" />
                   <span>{isProcessing ? progressMsg || 'Adding Page Numbers...' : 'Add Page Numbers to PDF'}</span>

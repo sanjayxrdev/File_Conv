@@ -34,7 +34,6 @@ class PPTXConverter(BaseConverter):
 
             # PPT / PPTX -> Image (PNG/JPG)
             elif target_ext in ["png", "jpg", "jpeg"]:
-                # Convert PPTX to PDF first, then render PDF Page 1 to PNG/JPG via PyMuPDF
                 temp_pdf = input_path + ".temp.pdf"
                 success, err = await self._convert_to_pdf(input_path, temp_pdf, progress_callback)
                 if not success or not os.path.exists(temp_pdf):
@@ -42,15 +41,37 @@ class PPTXConverter(BaseConverter):
 
                 try:
                     import fitz
+                    import zipfile
+                    import tempfile
+
                     doc = fitz.open(temp_pdf)
-                    if len(doc) > 0:
+                    total_slides = len(doc)
+
+                    if total_slides == 1:
                         page = doc[0]
                         pix = page.get_pixmap(dpi=150)
                         pix.save(output_path)
-                    doc.close()
-                    os.remove(temp_pdf)
+                        doc.close()
+                    else:
+                        with tempfile.TemporaryDirectory() as tmpdir:
+                            img_paths = []
+                            for idx, page in enumerate(doc):
+                                pix = page.get_pixmap(dpi=150)
+                                img_filename = f"slide_{idx + 1:02d}.{target_ext}"
+                                img_path = os.path.join(tmpdir, img_filename)
+                                pix.save(img_path)
+                                img_paths.append((img_path, img_filename))
+
+                            with zipfile.ZipFile(output_path, "w", zipfile.ZIP_DEFLATED) as zip_file:
+                                for img_path, img_filename in img_paths:
+                                    zip_file.write(img_path, arcname=img_filename)
+                        doc.close()
+
+                    if os.path.exists(temp_pdf):
+                        os.remove(temp_pdf)
+
                     if progress_callback:
-                        progress_callback(100, "Presentation slide rendered as image.")
+                        progress_callback(100, f"Rendered {total_slides} slides to image.")
                     return True, None
                 except Exception as e:
                     if os.path.exists(temp_pdf):

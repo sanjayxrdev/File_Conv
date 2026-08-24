@@ -147,7 +147,7 @@ export const MergePage: React.FC = () => {
           <p className="text-sm text-ink-secondary">{error}</p>
           <button
             onClick={handleClear}
-            className="px-5 py-2 rounded-card bg-ink-primary text-white text-sm font-semibold hover:bg-[#333333] transition-colors"
+            className="px-5 py-2 rounded-card bg-ink-primary text-surface-canvas text-sm font-semibold hover:opacity-90 transition-colors"
           >
             Try again
           </button>

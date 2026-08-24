@@ -122,10 +122,15 @@ async def start_batch_conversion(
 
     batch_service.create_batch(batch_id, job_ids)
 
-    # Async background task for executing batch conversions
+    # Async background task for executing batch conversions concurrently
     async def async_batch_worker():
-        for job in created_jobs:
-            await conversion_service.execute_conversion(job.job_id, parsed_options)
+        sem = asyncio.Semaphore(4)
+
+        async def convert_worker(job):
+            async with sem:
+                await conversion_service.execute_conversion(job.job_id, parsed_options)
+
+        await asyncio.gather(*(convert_worker(job) for job in created_jobs))
 
         # Build ZIP archive once all conversions complete
         batch_service.create_batch_zip(batch_id, created_jobs)
@@ -343,7 +348,14 @@ async def download_converted_file(job_id: str, custom_filename: Optional[str] = 
             detail={"code": "FILE_NOT_READY", "message": "Converted file is not ready for download."}
         )
 
-    if custom_filename:
+    import zipfile
+    base_name = job.original_filename.rsplit(".", 1)[0]
+    is_zip = zipfile.is_zipfile(job.output_path)
+
+    if is_zip:
+        output_filename = f"{base_name}_all_pages.zip"
+        media_type = "application/zip"
+    elif custom_filename:
         # Sanitize custom filename and ensure correct extension
         clean_name = custom_filename.replace("/", "_").replace("\\", "_").replace(":", "_").replace("*", "_").replace("?", "_").replace('"', "_").replace("<", "_").replace(">", "_").replace("|", "_").strip()
         target_ext = f".{job.target_format.lower()}"
@@ -351,20 +363,20 @@ async def download_converted_file(job_id: str, custom_filename: Optional[str] = 
         while clean_name.lower().endswith(f"{target_ext}{target_ext}"):
             clean_name = clean_name[:-len(target_ext)]
         if not clean_name.lower().endswith(target_ext):
-            # Strip any trailing extension and append target_ext
             if "." in clean_name and clean_name.rsplit(".", 1)[1].lower() == job.target_format.lower():
                 pass
             else:
                 clean_name = f"{clean_name.rsplit('.', 1)[0] if '.' in clean_name else clean_name}{target_ext}"
         output_filename = clean_name
+        media_type = "application/octet-stream"
     else:
-        base_name = job.original_filename.rsplit(".", 1)[0]
         output_filename = f"{base_name}.{job.target_format}"
+        media_type = "application/octet-stream"
 
     return FileResponse(
         path=job.output_path,
         filename=output_filename,
-        media_type="application/octet-stream"
+        media_type=media_type
     )
 
 @router.delete("/convert/{job_id}")
