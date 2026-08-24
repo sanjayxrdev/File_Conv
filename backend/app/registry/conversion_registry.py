@@ -341,22 +341,126 @@ CONVERSION_REGISTRY: Dict[str, Dict[str, Any]] = {
     # ------------------ TEXT / CODE FORMATS ------------------
     "txt": {
         "label": "Plain Text (TXT)",
-        "category": "text",
+        "category": "code",
         "mime_types": ["text/plain"],
         "targets": {
-            "md": {"label": "Markdown File (MD)", "engine": "document", "category": "text", "is_lossy": False, "options": []},
-            "pdf": {"label": "PDF Document", "engine": "document", "category": "document", "is_lossy": False, "options": []},
-            
-            # Code Target Conversions
-            "py": {"label": "Python Script (.py)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
-            "c": {"label": "C Source (.c)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
             "ipynb": {"label": "Jupyter Notebook (.ipynb)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "py": {"label": "Python Script (.py)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "html": {"label": "HTML Document (.html)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "pdf": {"label": "PDF Document", "engine": "document", "category": "document", "is_lossy": False, "options": []},
+            "md": {"label": "Markdown File (MD)", "engine": "document", "category": "text", "is_lossy": False, "options": []},
+            "c": {"label": "C Source (.c)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
             "js": {"label": "JavaScript (.js)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
             "css": {"label": "CSS Stylesheet (.css)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
-            "html": {"label": "HTML Document (.html)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
             "java": {"label": "Java Source (.java)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
             "rs": {"label": "Rust Source (.rs)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
             "cs": {"label": "C# Source (.cs)", "engine": "code", "category": "code", "is_lossy": False, "options": []}
+        }
+    },
+    "py": {
+        "label": "Python Script (PY)",
+        "category": "code",
+        "mime_types": ["text/x-python", "text/plain"],
+        "targets": {
+            "ipynb": {"label": "Jupyter Notebook (.ipynb)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "html": {"label": "HTML Document (.html)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "pdf": {"label": "PDF Document", "engine": "document", "category": "document", "is_lossy": False, "options": []},
+            "txt": {"label": "Plain Text (.txt)", "engine": "code", "category": "text", "is_lossy": False, "options": []},
+            "md": {"label": "Markdown File (MD)", "engine": "document", "category": "text", "is_lossy": False, "options": []},
+            "js": {"label": "JavaScript (.js)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "c": {"label": "C Source (.c)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "java": {"label": "Java Source (.java)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "rs": {"label": "Rust Source (.rs)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "cs": {"label": "C# Source (.cs)", "engine": "code", "category": "code", "is_lossy": False, "options": []}
+        }
+    },
+    "ipynb": {
+        "label": "Jupyter Notebook (IPYNB)",
+        "category": "code",
+        "mime_types": ["application/x-ipynb+json", "application/json"],
+        "targets": {
+            "py": {"label": "Python Script (.py)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "html": {"label": "HTML Document (.html)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "pdf": {"label": "PDF Document", "engine": "document", "category": "document", "is_lossy": False, "options": []},
+            "txt": {"label": "Plain Text (.txt)", "engine": "code", "category": "text", "is_lossy": False, "options": []},
+            "md": {"label": "Markdown File (MD)", "engine": "document", "category": "text", "is_lossy": False, "options": []},
+            "js": {"label": "JavaScript (.js)", "engine": "code", "category": "code", "is_lossy": False, "options": []}
+        }
+    },
+    "js": {
+        "label": "JavaScript Source (JS)",
+        "category": "code",
+        "mime_types": ["application/javascript", "text/javascript", "text/plain"],
+        "targets": {
+            "ipynb": {"label": "Jupyter Notebook (.ipynb)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "html": {"label": "HTML Document (.html)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "pdf": {"label": "PDF Document", "engine": "document", "category": "document", "is_lossy": False, "options": []},
+            "txt": {"label": "Plain Text (.txt)", "engine": "code", "category": "text", "is_lossy": False, "options": []},
+            "md": {"label": "Markdown File (MD)", "engine": "document", "category": "text", "is_lossy": False, "options": []},
+            "py": {"label": "Python Script (.py)", "engine": "code", "category": "code", "is_lossy": False, "options": []}
+        }
+    },
+    "c": {
+        "label": "C Source Code (C)",
+        "category": "code",
+        "mime_types": ["text/x-c", "text/plain"],
+        "targets": {
+            "ipynb": {"label": "Jupyter Notebook (.ipynb)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "html": {"label": "HTML Document (.html)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "pdf": {"label": "PDF Document", "engine": "document", "category": "document", "is_lossy": False, "options": []},
+            "txt": {"label": "Plain Text (.txt)", "engine": "code", "category": "text", "is_lossy": False, "options": []},
+            "md": {"label": "Markdown File (MD)", "engine": "document", "category": "text", "is_lossy": False, "options": []},
+            "py": {"label": "Python Script (.py)", "engine": "code", "category": "code", "is_lossy": False, "options": []}
+        }
+    },
+    "java": {
+        "label": "Java Source Code (JAVA)",
+        "category": "code",
+        "mime_types": ["text/x-java-source", "text/plain"],
+        "targets": {
+            "ipynb": {"label": "Jupyter Notebook (.ipynb)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "html": {"label": "HTML Document (.html)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "pdf": {"label": "PDF Document", "engine": "document", "category": "document", "is_lossy": False, "options": []},
+            "txt": {"label": "Plain Text (.txt)", "engine": "code", "category": "text", "is_lossy": False, "options": []},
+            "md": {"label": "Markdown File (MD)", "engine": "document", "category": "text", "is_lossy": False, "options": []},
+            "py": {"label": "Python Script (.py)", "engine": "code", "category": "code", "is_lossy": False, "options": []}
+        }
+    },
+    "rs": {
+        "label": "Rust Source Code (RS)",
+        "category": "code",
+        "mime_types": ["text/x-rust", "text/plain"],
+        "targets": {
+            "ipynb": {"label": "Jupyter Notebook (.ipynb)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "html": {"label": "HTML Document (.html)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "pdf": {"label": "PDF Document", "engine": "document", "category": "document", "is_lossy": False, "options": []},
+            "txt": {"label": "Plain Text (.txt)", "engine": "code", "category": "text", "is_lossy": False, "options": []},
+            "md": {"label": "Markdown File (MD)", "engine": "document", "category": "text", "is_lossy": False, "options": []},
+            "py": {"label": "Python Script (.py)", "engine": "code", "category": "code", "is_lossy": False, "options": []}
+        }
+    },
+    "cs": {
+        "label": "C# Source Code (CS)",
+        "category": "code",
+        "mime_types": ["text/x-csharp", "text/plain"],
+        "targets": {
+            "ipynb": {"label": "Jupyter Notebook (.ipynb)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "html": {"label": "HTML Document (.html)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "pdf": {"label": "PDF Document", "engine": "document", "category": "document", "is_lossy": False, "options": []},
+            "txt": {"label": "Plain Text (.txt)", "engine": "code", "category": "text", "is_lossy": False, "options": []},
+            "md": {"label": "Markdown File (MD)", "engine": "document", "category": "text", "is_lossy": False, "options": []},
+            "py": {"label": "Python Script (.py)", "engine": "code", "category": "code", "is_lossy": False, "options": []}
+        }
+    },
+    "css": {
+        "label": "CSS Stylesheet (CSS)",
+        "category": "code",
+        "mime_types": ["text/css", "text/plain"],
+        "targets": {
+            "html": {"label": "HTML Document (.html)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
+            "pdf": {"label": "PDF Document", "engine": "document", "category": "document", "is_lossy": False, "options": []},
+            "txt": {"label": "Plain Text (.txt)", "engine": "code", "category": "text", "is_lossy": False, "options": []},
+            "md": {"label": "Markdown File (MD)", "engine": "document", "category": "text", "is_lossy": False, "options": []}
         }
     },
     "md": {
@@ -364,6 +468,7 @@ CONVERSION_REGISTRY: Dict[str, Dict[str, Any]] = {
         "category": "text",
         "mime_types": ["text/markdown", "text/plain"],
         "targets": {
+            "ipynb": {"label": "Jupyter Notebook (.ipynb)", "engine": "code", "category": "code", "is_lossy": False, "options": []},
             "txt": {"label": "Plain Text (TXT)", "engine": "document", "category": "text", "is_lossy": False, "options": []},
             "pdf": {"label": "PDF Document", "engine": "document", "category": "document", "is_lossy": False, "options": []},
             "html": {"label": "HTML Document", "engine": "document", "category": "text", "is_lossy": False, "options": []}

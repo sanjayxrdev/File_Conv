@@ -49,6 +49,12 @@ export const ConversionCard: React.FC<ConversionCardProps> = ({
   const [selectedTarget, setSelectedTarget] = useState<string>(initialTarget);
   const [options, setOptions] = useState<Record<string, any>>({});
 
+  useEffect(() => {
+    if (initialTarget) {
+      setSelectedTarget(initialTarget);
+    }
+  }, [file.name, defaultTargetFormat, targets.length]);
+
   const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

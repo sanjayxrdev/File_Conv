@@ -104,12 +104,12 @@ export const CONVERTER_CATEGORIES: Record<string, ConverterCategoryConfig> = {
     slug: 'code-converter',
     title: 'Code & Notebook Converter',
     categoryName: 'Code & Text',
-    description: 'Convert Python, JS, C, Java, HTML, and Jupyter Notebooks to formatted HTML, PDF, or TXT.',
+    description: 'Convert Python, JS, C, Java, HTML, and Jupyter Notebooks to formatted Notebooks, HTML, PDF, or TXT.',
     icon: <Code className="w-7 h-7" weight="bold" />,
     accentBg: 'bg-accent-green',
     accentText: 'text-accent-green-text',
     acceptedFormatsText: 'PY, JS, C, JAVA, HTML, IPYNB, TXT',
-    defaultTargetFormat: 'html',
+    defaultTargetFormat: 'ipynb',
   },
   'spreadsheet-converter': {
     id: 'spreadsheet-converter',
@@ -360,6 +360,8 @@ export const ConverterPage: React.FC<ConverterPageProps> = ({ categorySlug: prop
             onClear={handleBatchClear}
             onRemoveFile={handleRemoveFile}
             isSubmitting={isBatchSubmitting}
+            defaultTargetFormat={categoryConfig.defaultTargetFormat}
+            categorySlug={slug}
           />
         )}
 

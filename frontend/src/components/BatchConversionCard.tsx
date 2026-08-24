@@ -11,6 +11,8 @@ interface BatchConversionCardProps {
   onRemoveFile: (index: number) => void;
   isSubmitting: boolean;
   restrictPdfToDocx?: boolean;
+  defaultTargetFormat?: string;
+  categorySlug?: string;
 }
 
 export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
@@ -21,10 +23,17 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
   onRemoveFile,
   isSubmitting,
   restrictPdfToDocx = false,
+  defaultTargetFormat,
+  categorySlug,
 }) => {
   const allPdfs = files.length > 0 && files.every(f => f.name.split('.').pop()?.toLowerCase() === 'pdf');
   const allDocx = files.length > 0 && files.every(f => ['docx', 'doc'].includes(f.name.split('.').pop()?.toLowerCase() || ''));
-  const initialTarget = restrictPdfToDocx && allPdfs ? 'docx' : (restrictPdfToDocx && allDocx ? 'pdf' : 'pdf');
+  const initialTarget = restrictPdfToDocx && allPdfs 
+    ? 'docx' 
+    : (restrictPdfToDocx && allDocx 
+        ? 'pdf' 
+        : (defaultTargetFormat || 'pdf'));
+
   const [selectedTarget, setSelectedTarget] = useState<string>(initialTarget);
   const cardRef = useRef<HTMLDivElement>(null);
   const fileListRef = useRef<HTMLDivElement>(null);
@@ -35,8 +44,10 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
       setSelectedTarget('docx');
     } else if (restrictPdfToDocx && allDocx) {
       setSelectedTarget('pdf');
+    } else if (defaultTargetFormat) {
+      setSelectedTarget(defaultTargetFormat);
     }
-  }, [restrictPdfToDocx, allPdfs, allDocx]);
+  }, [restrictPdfToDocx, allPdfs, allDocx, defaultTargetFormat]);
 
   const totalBytes = files.reduce((acc, f) => acc + f.size, 0);
 
@@ -58,11 +69,24 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
     { ext: 'html', label: 'HTML Document' },
   ];
 
+  const codeTargets = [
+    { ext: 'ipynb', label: 'Jupyter Notebook' },
+    { ext: 'py', label: 'Python Script' },
+    { ext: 'html', label: 'HTML Document' },
+    { ext: 'pdf', label: 'PDF Document' },
+    { ext: 'txt', label: 'Plain Text' },
+    { ext: 'md', label: 'Markdown File' },
+    { ext: 'js', label: 'JavaScript' },
+    { ext: 'c', label: 'C Source' },
+    { ext: 'java', label: 'Java Source' },
+    { ext: 'css', label: 'CSS Stylesheet' },
+  ];
+
   const commonTargets = restrictPdfToDocx && allPdfs
     ? [{ ext: 'docx', label: 'Word Document' }]
     : (restrictPdfToDocx && allDocx
         ? [{ ext: 'pdf', label: 'PDF Document' }]
-        : defaultTargets);
+        : (categorySlug === 'code-converter' ? codeTargets : defaultTargets));
 
   return (
     <div
