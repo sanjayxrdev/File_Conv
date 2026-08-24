@@ -11,6 +11,7 @@ interface ConversionCardProps {
   onClear: () => void;
   isSubmitting: boolean;
   defaultTargetFormat?: string;
+  restrictPdfToDocx?: boolean;
 }
 
 export const ConversionCard: React.FC<ConversionCardProps> = ({
@@ -20,11 +21,27 @@ export const ConversionCard: React.FC<ConversionCardProps> = ({
   onClear,
   isSubmitting,
   defaultTargetFormat,
+  restrictPdfToDocx = false,
 }) => {
   const sourceExt = file.name.split('.').pop()?.toLowerCase() || '';
   const sourceInfo = registry.formats[sourceExt];
 
-  const targets = sourceInfo ? sourceInfo.targets : [];
+  let rawTargets = sourceInfo ? sourceInfo.targets : [];
+  if (restrictPdfToDocx) {
+    if (sourceExt === 'pdf') {
+      const docxOnly = rawTargets.filter(t => t.target_ext === 'docx' || t.target_ext === 'doc');
+      if (docxOnly.length > 0) {
+        rawTargets = docxOnly;
+      }
+    } else if (sourceExt === 'docx' || sourceExt === 'doc') {
+      const pdfOnly = rawTargets.filter(t => t.target_ext === 'pdf');
+      if (pdfOnly.length > 0) {
+        rawTargets = pdfOnly;
+      }
+    }
+  }
+  const targets = rawTargets;
+
   const initialTarget = defaultTargetFormat && targets.some(t => t.target_ext === defaultTargetFormat)
     ? defaultTargetFormat
     : (targets.length > 0 ? targets[0].target_ext : '');

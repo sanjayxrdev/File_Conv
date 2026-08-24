@@ -29,6 +29,9 @@ frontend/.vite/
 .pytest_cache/
 .coverage
 htmlcov/
+scratch/
+backend/scratch/
+*.tmp.pdf
 
 # Environment / OS
 .env

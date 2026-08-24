@@ -10,6 +10,7 @@ interface BatchConversionCardProps {
   onClear: () => void;
   onRemoveFile: (index: number) => void;
   isSubmitting: boolean;
+  restrictPdfToDocx?: boolean;
 }
 
 export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
@@ -19,44 +20,23 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
   onClear,
   onRemoveFile,
   isSubmitting,
+  restrictPdfToDocx = false,
 }) => {
-  const [selectedTarget, setSelectedTarget] = useState<string>('pdf');
+  const allPdfs = files.length > 0 && files.every(f => f.name.split('.').pop()?.toLowerCase() === 'pdf');
+  const allDocx = files.length > 0 && files.every(f => ['docx', 'doc'].includes(f.name.split('.').pop()?.toLowerCase() || ''));
+  const initialTarget = restrictPdfToDocx && allPdfs ? 'docx' : (restrictPdfToDocx && allDocx ? 'pdf' : 'pdf');
+  const [selectedTarget, setSelectedTarget] = useState<string>(initialTarget);
   const cardRef = useRef<HTMLDivElement>(null);
   const fileListRef = useRef<HTMLDivElement>(null);
   const formatGridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!cardRef.current) return;
-    const ctx = gsap.context(() => {
-      gsap.from(cardRef.current, {
-        y: 16,
-        opacity: 0,
-        duration: 0.5,
-        ease: "power3.out",
-      });
-
-      if (fileListRef.current && fileListRef.current.children.length > 0) {
-        gsap.from(fileListRef.current.children, {
-          x: -12,
-          opacity: 0,
-          duration: 0.3,
-          stagger: 0.04,
-          ease: "power2.out",
-        });
-      }
-      if (formatGridRef.current) {
-        gsap.from(formatGridRef.current.children, {
-          y: 8,
-          opacity: 0,
-          duration: 0.3,
-          stagger: 0.03,
-          ease: "power2.out",
-          delay: 0.2,
-        });
-      }
-    }, cardRef);
-    return () => ctx.revert();
-  }, []);
+    if (restrictPdfToDocx && allPdfs) {
+      setSelectedTarget('docx');
+    } else if (restrictPdfToDocx && allDocx) {
+      setSelectedTarget('pdf');
+    }
+  }, [restrictPdfToDocx, allPdfs, allDocx]);
 
   const totalBytes = files.reduce((acc, f) => acc + f.size, 0);
 
@@ -65,7 +45,7 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
     return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
   };
 
-  const commonTargets = [
+  const defaultTargets = [
     { ext: 'pdf', label: 'PDF Document' },
     { ext: 'md', label: 'Markdown File' },
     { ext: 'docx', label: 'Word Document' },
@@ -77,6 +57,12 @@ export const BatchConversionCard: React.FC<BatchConversionCardProps> = ({
     { ext: 'csv', label: 'CSV Table' },
     { ext: 'html', label: 'HTML Document' },
   ];
+
+  const commonTargets = restrictPdfToDocx && allPdfs
+    ? [{ ext: 'docx', label: 'Word Document' }]
+    : (restrictPdfToDocx && allDocx
+        ? [{ ext: 'pdf', label: 'PDF Document' }]
+        : defaultTargets);
 
   return (
     <div

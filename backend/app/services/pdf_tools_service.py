@@ -1,5 +1,6 @@
 import os
 import io
+import uuid
 import fitz  # PyMuPDF
 import logging
 import base64
@@ -610,4 +611,107 @@ class PdfToolsService:
         except Exception as e:
             logger.error(f"Error renaming PDF: {e}")
             return False, str(e)
+
+    @staticmethod
+    def is_page_blank(page: fitz.Page, max_header_footer_chars: int = 35) -> bool:
+        """Determines whether a PDF page is completely blank (empty white page with no content)."""
+        try:
+            # 1. Check for images
+            images = page.get_images()
+            if len(images) > 0:
+                return False
+
+            # 2. Check for text anywhere on the page (including footers/headers)
+            full_text = page.get_text().strip()
+            if len(full_text) > 0:
+                return False
+
+            # 3. Check for vector drawings (lines, rectangles, shapes)
+            drawings = page.get_drawings()
+            if len(drawings) > 0:
+                real_drawings = False
+                for d in drawings:
+                    fill = d.get("fill")
+                    color = d.get("color")
+                    # Check if drawing is non-white
+                    if fill and fill not in [(1.0, 1.0, 1.0), (1, 1, 1)]:
+                        real_drawings = True
+                        break
+                    if color and color not in [(1.0, 1.0, 1.0), (1, 1, 1)]:
+                        real_drawings = True
+                        break
+                if real_drawings:
+                    return False
+
+            # 4. Pixmap visual check for any dark/non-white pixels
+            pix = page.get_pixmap(matrix=fitz.Matrix(0.5, 0.5))
+            samples = pix.samples
+            n = pix.n  # components per pixel (e.g., 3 for RGB, 4 for RGBA)
+            
+            non_white_count = 0
+            total_pixels = pix.width * pix.height
+            for i in range(0, len(samples), n):
+                r = samples[i]
+                g = samples[i+1]
+                b = samples[i+2]
+                if r < 240 or g < 240 or b < 240:
+                    non_white_count += 1
+
+            # Only blank if non-white pixel ratio is practically 0 (< 0.05%)
+            if (non_white_count / total_pixels) > 0.0005:
+                return False
+
+            return True
+        except Exception as e:
+            logger.warning(f"Error checking if page is blank: {e}")
+            return False
+
+    @staticmethod
+    def remove_blank_pages(file_path: str, output_path: str) -> Tuple[bool, Optional[str]]:
+        """Scans PDF document and removes all empty/blank white pages."""
+        try:
+            if not os.path.exists(file_path):
+                return False, f"File not found: {file_path}"
+
+            doc = fitz.open(file_path)
+            total_pages = len(doc)
+
+            if total_pages == 0:
+                doc.close()
+                return False, "PDF document is empty (0 pages)."
+
+            non_blank_indices = []
+            for idx in range(total_pages):
+                page = doc[idx]
+                if not PdfToolsService.is_page_blank(page):
+                    non_blank_indices.append(idx)
+
+            # Close input document before output file operations
+            doc.close()
+
+            # If no pages removed, return success immediately
+            if len(non_blank_indices) == total_pages:
+                return True, None
+
+            if len(non_blank_indices) == 0:
+                # Keep first page if all pages were detected as blank
+                non_blank_indices = [0]
+
+            src_doc = fitz.open(file_path)
+            out_doc = fitz.open()
+            for idx in non_blank_indices:
+                out_doc.insert_pdf(src_doc, from_page=idx, to_page=idx)
+            src_doc.close()
+
+            temp_output = output_path + f"_{uuid.uuid4().hex[:6]}.tmp.pdf"
+            out_doc.save(temp_output)
+            out_doc.close()
+
+            import shutil
+            shutil.move(temp_output, output_path)
+            return True, None
+        except Exception as e:
+            logger.error(f"Error removing blank pages from PDF: {e}")
+            return False, str(e)
+
 

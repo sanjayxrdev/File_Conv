@@ -321,9 +321,9 @@ CONVERSION_REGISTRY: Dict[str, Dict[str, Any]] = {
         "category": "document",
         "mime_types": ["application/vnd.openxmlformats-officedocument.wordprocessingml.document"],
         "targets": {
+            "pdf": {"label": "PDF Document", "engine": "document", "category": "document", "is_lossy": False, "options": []},
             "txt": {"label": "Text File (TXT)", "engine": "document", "category": "text", "is_lossy": True, "options": []},
-            "md": {"label": "Markdown File (MD)", "engine": "document", "category": "text", "is_lossy": True, "options": []},
-            "pdf": {"label": "PDF Document", "engine": "document", "category": "document", "is_lossy": False, "options": []}
+            "md": {"label": "Markdown File (MD)", "engine": "document", "category": "text", "is_lossy": True, "options": []}
         }
     },
     "doc": {
@@ -331,10 +331,10 @@ CONVERSION_REGISTRY: Dict[str, Dict[str, Any]] = {
         "category": "document",
         "mime_types": ["application/msword"],
         "targets": {
+            "pdf": {"label": "PDF Document", "engine": "document", "category": "document", "is_lossy": False, "options": []},
             "docx": {"label": "Word Document (DOCX)", "engine": "document", "category": "document", "is_lossy": False, "options": []},
             "txt": {"label": "Text File (TXT)", "engine": "document", "category": "text", "is_lossy": True, "options": []},
-            "md": {"label": "Markdown File (MD)", "engine": "document", "category": "text", "is_lossy": True, "options": []},
-            "pdf": {"label": "PDF Document", "engine": "document", "category": "document", "is_lossy": False, "options": []}
+            "md": {"label": "Markdown File (MD)", "engine": "document", "category": "text", "is_lossy": True, "options": []}
         }
     },
 

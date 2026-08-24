@@ -453,6 +453,7 @@ export const Home: React.FC<HomeProps> = ({ registry, activeCategoryFilter }) =>
             onConvert={startJob}
             onClear={handleSingleClear}
             isSubmitting={isSingleSubmitting}
+            restrictPdfToDocx={true}
           />
         )}
 
@@ -483,6 +484,7 @@ export const Home: React.FC<HomeProps> = ({ registry, activeCategoryFilter }) =>
             onClear={handleBatchClear}
             onRemoveFile={handleRemoveFile}
             isSubmitting={isBatchSubmitting}
+            restrictPdfToDocx={true}
           />
         )}
 

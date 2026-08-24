@@ -659,3 +659,56 @@ async def rename_pdf(
         "message": "PDF rename job submitted."
     }
 
+@router.post("/pdf/remove-blank-pages")
+async def remove_blank_pages(
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...)
+):
+    """
+    Scans PDF and removes any empty/blank white pages automatically.
+    """
+    job_id = str(uuid.uuid4())
+    original_name = ValidationService.sanitize_filename(file.filename or "document.pdf")
+
+    input_path, bytes_len = await FileService.save_uploaded_file(file, job_id, "pdf")
+
+    job = conversion_service.create_job(
+        job_id=job_id,
+        original_filename=f"clean_{original_name}",
+        source_ext="pdf",
+        target_ext="pdf",
+        input_path=input_path,
+        file_size_bytes=bytes_len
+    )
+
+    async def async_worker():
+        job.status = JobStatus.PROCESSING
+        job.progress = 30
+        job.message = "Scanning PDF for empty white pages..."
+
+        success, err = PdfToolsService.remove_blank_pages(input_path, job.output_path)
+
+        try:
+            os.remove(input_path)
+        except Exception:
+            pass
+
+        if success and os.path.exists(job.output_path):
+            job.status = JobStatus.COMPLETED
+            job.progress = 100
+            job.message = "Empty white pages removed successfully!"
+            job.output_size_bytes = os.path.getsize(job.output_path)
+        else:
+            job.status = JobStatus.FAILED
+            job.progress = 0
+            job.error = err or "Removing blank pages failed."
+
+    background_tasks.add_task(async_worker)
+
+    return {
+        "job_id": job_id,
+        "status": job.status,
+        "message": "Remove blank pages job submitted."
+    }
+
+
