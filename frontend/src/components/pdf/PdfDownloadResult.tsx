@@ -5,7 +5,9 @@ import { stripExtension, getDownloadFilename } from '../../utils/filenameUtils';
 interface PdfDownloadResultProps {
   title?: string;
   message?: string;
-  originalFilename: string;
+  description?: string;
+  originalFilename?: string;
+  downloadFilename?: string;
   downloadUrl: string;
   outputSizeBytes?: number;
   onReset: () => void;
@@ -14,15 +16,19 @@ interface PdfDownloadResultProps {
 
 export const PdfDownloadResult: React.FC<PdfDownloadResultProps> = ({
   title = 'Processing Complete!',
-  message = 'Your file is ready for instant download.',
-  originalFilename,
+  message,
+  description,
+  originalFilename = 'document.pdf',
+  downloadFilename,
   downloadUrl,
   outputSizeBytes,
   onReset,
   isZip = false,
 }) => {
+  const effectiveFilename = downloadFilename || originalFilename;
+  const effectiveMessage = description || message || 'Your file is ready for instant download.';
   const targetExt = isZip ? 'zip' : 'pdf';
-  const initialBase = stripExtension(originalFilename, targetExt) || 'document';
+  const initialBase = stripExtension(effectiveFilename, targetExt) || 'document';
   
   const [customBaseName, setCustomBaseName] = useState<string>(initialBase);
 
@@ -47,7 +53,7 @@ export const PdfDownloadResult: React.FC<PdfDownloadResultProps> = ({
 
       <div>
         <h3 className="font-serif text-2xl text-ink-primary font-normal">{title}</h3>
-        <p className="text-ink-muted text-xs sm:text-sm mt-1">{message}</p>
+        <p className="text-ink-muted text-xs sm:text-sm mt-1">{effectiveMessage}</p>
       </div>
 
       {/* Interactive Filename Editor Card */}

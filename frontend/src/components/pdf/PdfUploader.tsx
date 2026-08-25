@@ -10,6 +10,7 @@ interface PdfUploaderProps {
   pageCount?: number;
   acceptTypes?: string;
   error?: string | null;
+  isLoading?: boolean;
 }
 
 export const PdfUploader: React.FC<PdfUploaderProps> = ({
@@ -21,6 +22,7 @@ export const PdfUploader: React.FC<PdfUploaderProps> = ({
   pageCount,
   acceptTypes = '.pdf,application/pdf',
   error,
+  isLoading = false,
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isDragOver, setIsDragOver] = useState(false);

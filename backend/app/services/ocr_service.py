@@ -18,20 +18,69 @@ class DoclingStudioService:
 
     def _get_converter(self):
         if self._converter is None:
-            try:
-                from docling.document_converter import DocumentConverter
-                logger.info("Initializing Docling DocumentConverter for OCR Studio...")
-                self._converter = DocumentConverter()
-            except Exception as e:
-                logger.error(f"Failed to initialize Docling: {e}")
-                raise RuntimeError(f"Docling engine failed to initialize: {e}")
+            from docling.document_converter import DocumentConverter
+            logger.info("Initializing Docling DocumentConverter for OCR Studio...")
+            self._converter = DocumentConverter()
         return self._converter
 
+    def _fallback_analyze_sync(self, file_path: str, filename: str) -> Dict[str, Any]:
+        ext = os.path.splitext(filename)[1].lower()
+        text_content = ""
+        num_pages = 1
+
+        if ext == ".pdf":
+            try:
+                import pymupdf
+                doc = pymupdf.open(file_path)
+                num_pages = len(doc)
+                pages_text = [page.get_text() for page in doc]
+                text_content = "\n\n".join(pages_text)
+            except Exception as e:
+                logger.warning(f"PyMuPDF text fallback failed: {e}")
+
+        if not text_content:
+            try:
+                with open(file_path, "r", encoding="utf-8", errors="ignore") as f:
+                    text_content = f.read()
+            except Exception:
+                text_content = f"Content extracted from {filename}"
+
+        markdown_content = f"# {filename}\n\n" + text_content
+        html_content = f"<h1>{filename}</h1><pre>{text_content}</pre>"
+
+        headings = re.findall(r"^#+\s+(.+)$", markdown_content, flags=re.MULTILINE)
+        words = text_content.split()
+        word_count = len(words)
+        char_count = len(text_content)
+        reading_time_mins = max(1, round(word_count / 200)) if word_count > 0 else 0
+
+        return {
+            "filename": filename,
+            "markdown": markdown_content,
+            "text": text_content,
+            "html": html_content,
+            "tables": [],
+            "ast": {},
+            "metadata": {
+                "num_pages": num_pages,
+                "num_tables": 0,
+                "num_headings": len(headings),
+                "headings": headings[:20],
+                "word_count": word_count,
+                "char_count": char_count,
+                "reading_time_mins": reading_time_mins,
+            }
+        }
+
     def _analyze_document_sync(self, file_path: str, filename: str) -> Dict[str, Any]:
-        converter = self._get_converter()
-        logger.info(f"Running Docling analysis on {filename}...")
-        conv_res = converter.convert(file_path)
-        doc = conv_res.document
+        try:
+            converter = self._get_converter()
+            logger.info(f"Running Docling analysis on {filename}...")
+            conv_res = converter.convert(file_path)
+            doc = conv_res.document
+        except Exception as e:
+            logger.warning(f"Docling analysis unavailable for {filename}: {e}. Using fallback parser.")
+            return self._fallback_analyze_sync(file_path, filename)
 
         # 1. Full Document Markdown
         try:

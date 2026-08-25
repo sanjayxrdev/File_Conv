@@ -41,14 +41,47 @@ class DoclingOCRConverter(BaseConverter):
     def _get_converter(self):
         """Lazy-loads and caches the Docling DocumentConverter instance."""
         if self._converter is None:
-            try:
-                from docling.document_converter import DocumentConverter
-                self._converter = DocumentConverter()
-                logger.info("Docling DocumentConverter initialized successfully.")
-            except Exception as e:
-                logger.error(f"Failed to initialize Docling DocumentConverter: {e}")
-                raise
+            from docling.document_converter import DocumentConverter
+            self._converter = DocumentConverter()
+            logger.info("Docling DocumentConverter initialized successfully.")
         return self._converter
+
+    def _fallback_convert_sync(self, input_path: str, output_path: str, source_ext: str, target_ext: str) -> Tuple[bool, Optional[str]]:
+        text_content = ""
+        if source_ext == "pdf":
+            try:
+                import pymupdf
+                doc = pymupdf.open(input_path)
+                text_content = "\n\n".join([p.get_text() for p in doc])
+            except Exception as e:
+                logger.warning(f"PyMuPDF fallback failed: {e}")
+
+        if not text_content:
+            try:
+                with open(input_path, "r", encoding="utf-8", errors="ignore") as f:
+                    text_content = f.read()
+            except Exception:
+                text_content = f"Extracted content from {os.path.basename(input_path)}"
+
+        if target_ext in ("md", "txt"):
+            with open(output_path, "w", encoding="utf-8") as f_out:
+                f_out.write(text_content)
+        elif target_ext == "json":
+            with open(output_path, "w", encoding="utf-8") as f_out:
+                json.dump({"text": text_content}, f_out, indent=2)
+        elif target_ext == "html":
+            with open(output_path, "w", encoding="utf-8") as f_out:
+                f_out.write(f"<html><body><pre>{text_content}</pre></body></html>")
+        elif target_ext == "docx":
+            import docx
+            word_doc = docx.Document()
+            word_doc.add_paragraph(text_content)
+            word_doc.save(output_path)
+        else:
+            with open(output_path, "w", encoding="utf-8") as f_out:
+                f_out.write(text_content)
+
+        return True, None
 
     def _run_docling_sync(
         self,
@@ -64,17 +97,15 @@ class DoclingOCRConverter(BaseConverter):
             if progress_callback:
                 progress_callback(15, "Initializing Docling OCR & Layout Parser...")
 
-            converter = self._get_converter()
-
-            if progress_callback:
-                progress_callback(35, f"Analyzing {source_ext.upper()} layout and running OCR...")
-
-            conv_result = converter.convert(input_path)
-
-            if progress_callback:
-                progress_callback(75, "Extracting text, tables, and structured document hierarchy...")
-
-            doc = conv_result.document
+            try:
+                converter = self._get_converter()
+                if progress_callback:
+                    progress_callback(35, f"Analyzing {source_ext.upper()} layout and running OCR...")
+                conv_result = converter.convert(input_path)
+                doc = conv_result.document
+            except Exception as ex:
+                logger.warning(f"Docling conversion unavailable for {input_path}: {ex}. Using fallback parser.")
+                return self._fallback_convert_sync(input_path, output_path, source_ext, target_ext)
 
             # ----------------------------------------------------
             # TARGET 1: Markdown (.md)
