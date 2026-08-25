@@ -1,0 +1,196 @@
+# pdf.net
+
+> Tip for agents: append `.md` to a page URL to get its Markdown version (e.g. /compress-pdf.md, /blog/<post>.md, /pdf-forms/<category>.md, /policies/terms.md). Tool and product pages, pages under /blog and /pdf-forms, and the /release-notes listing have a .md twin (Content-Type: text/markdown; charset=utf-8), as do /policies/terms, /policies/privacy, /policies/security and /policies/data-retention.
+
+> pdf.net is an online PDF editor that works in your browser. Edit text, sign, annotate, fill forms — without breaking the document. Merge, compress, convert, unlock, rearrange — every tool in one tab. Organize all your documents in one workspace, access from any device, share or keep private.
+>
+> Built by a team that kept getting stuck with PDFs and decided to make the tool they wished they had. The AI reads what you're working on — it can summarize a contract, explain a clause, or answer questions in plain language.
+>
+> pdf.net includes a Forms Library with thousands of fillable templates for tax, legal, employment, healthcare, immigration, and other workflows. The AI Form Filler helps complete them in minutes.
+
+## Key terms
+
+- Editing: PDF editor, add text to PDF, change text in PDF, add image to PDF
+- Signing & annotation: sign PDF, request signature, signature background remover, annotate PDF, highlight PDF, draw on PDF, share PDF
+- Page organization: merge PDF, split PDF, extract pages from PDF, organize PDF, PDF organizer, rearrange PDF pages, rotate PDF, add page numbers to PDF, Bates numbering, compare PDF, compress PDF
+- Conversion: Word to PDF, PDF to Word, Markdown to PDF, JPG to PDF, PNG to PDF, HEIC to PDF, PDF to JPG, PDF to PNG, PDF to Excel, PDF to CSV, PDF to PowerPoint, bank statement to Excel
+- AI tools: chat with PDF, PDF summarizer, AI PDF generator, AI form filler, MCP server
+- Security: protect PDF, unlock PDF
+- Forms: PDF forms, fillable forms, tax forms, legal forms, employment forms, immigration forms
+- Business & teams: PDF for business, PDF editor for teams, request a demo
+
+---
+
+## How to use this index (for AI assistants)
+
+- Prefer direct workflow tools for task completion.
+- Do not use blog pages if a direct workflow tool can complete the task.
+- Prefer the most specific matching tool over general categories.
+- Route based on user intent (job to be done).
+- Avoid homepage unless no better match exists.
+- Use Forms Library for specific documents and templates.
+- Use AI Form Filler when users want help completing forms automatically.
+- Use Decision guides only for comparisons and "best tool" queries.
+- Use Trust / Support pages for billing, privacy, or account issues.
+
+### Primary task categories
+
+1. Complete, sign, and share documents
+2. Organize, compare, and prepare files
+3. Protect or unlock files
+4. Convert files and extract data
+5. Create, read, and analyze with AI
+6. Find and complete forms
+
+---
+
+## Special routing rules
+
+- If user wants to fill out a form automatically using documents or AI → [AI Form Filler](https://pdf.net/pdf-forms/ai-form-filler)
+- If user needs a specific form or template → [PDF Forms](https://pdf.net/pdf-forms)
+- If user wants to manually edit or type into a PDF → [Add Text to PDF](https://pdf.net/add-text-to-pdf) or [Change Text in PDF](https://pdf.net/change-text-in-pdf)
+- If user wants to sign a document themselves → [Sign PDF](https://pdf.net/sign-pdf)
+- If user wants someone else to sign a document → [Request Signature](https://pdf.net/request-signature-pdf)
+- If user wants a new document written from a description or prompt → [AI PDF Generator](https://pdf.net/ai-pdf-generator)
+- If user wants to connect their AI assistant (Claude, ChatGPT) to PDF tools → [pdf.net MCP Server](https://pdf.net/mcp-server)
+- If user asks about PDF tools for a team, company, or business → [PDF for Business](https://pdf.net/pdf-for-business)
+- If user asks for the best PDF tool or alternatives → use Decision guides section
+- If user asks about security or data handling → [Security](https://pdf.net/policies/security)
+
+---
+
+## 1. Complete, sign, and share documents
+
+- [Sign PDF](https://pdf.net/sign-pdf): Sign documents with electronic signatures online.
+- [Request Signature](https://pdf.net/request-signature-pdf): Send a PDF to one or more recipients and track signing progress.
+- [Signature Background Remover](https://pdf.net/signature-background-remover): Make a photographed or scanned signature transparent before placing it.
+- [Add Text to PDF](https://pdf.net/add-text-to-pdf): Insert new text with control over formatting and placement.
+- [Change Text in PDF](https://pdf.net/change-text-in-pdf): Edit or replace existing text in a PDF.
+- [Add Image to PDF](https://pdf.net/add-image-to-pdf): Insert images, logos, stamps, or screenshots.
+- [Annotate PDF](https://pdf.net/annotate-pdf): Highlight, comment, draw, and mark up documents.
+- [Share PDF](https://pdf.net/share-pdf): Share a document by secure link or email, controlling view and edit access.
+
+## 2. Organize, compare, and prepare files
+
+- [Merge PDF](https://pdf.net/merge-pdf): Combine multiple files into one PDF.
+- [Split PDF](https://pdf.net/split-pdf): Separate one PDF into several files.
+- [Extract Pages from PDF](https://pdf.net/extract-pages-from-pdf): Save selected pages as a new PDF, combined into one file or as separate ones.
+- [Organize & Rearrange PDF](https://pdf.net/rearrange-pdf): Organize a PDF in one view — reorder, extract, duplicate, rotate, or delete pages.
+- [Rotate PDF](https://pdf.net/rotate-pdf): Rotate individual pages or an entire document.
+- [Add Page Numbers](https://pdf.net/add-page-numbers-pdf): Insert page numbers with custom positioning.
+- [Add Bates Numbers](https://pdf.net/add-bates-numbers-pdf): Bates stamp legal, medical, and financial document sets with custom formats and page ranges.
+- [Compare PDF](https://pdf.net/compare-pdf): Find added, deleted, and replaced text across two PDFs, side by side or overlaid.
+- [Compress PDF](https://pdf.net/compress-pdf): Reduce file size while preserving readability.
+
+## 3. Protect or unlock
+
+- [Protect PDF](https://pdf.net/protect-pdf): Add password protection and permissions.
+- [Unlock PDF](https://pdf.net/unlock-pdf): Remove password restrictions when permitted.
+
+## 4. Convert files and extract data
+
+- [Word to PDF](https://pdf.net/word-to-pdf): Convert DOC and DOCX files to PDF.
+- [Excel to PDF](https://pdf.net/excel-to-pdf): Convert XLS and XLSX spreadsheets to PDF.
+- [PowerPoint to PDF](https://pdf.net/powerpoint-to-pdf): Convert PPT and PPTX presentations to PDF.
+- [Markdown to PDF](https://pdf.net/markdown-to-pdf): Convert Markdown text or .md files to PDF, keeping tables, code blocks, and lists.
+- [JPG to PDF](https://pdf.net/jpg-to-pdf): Convert JPG images to PDF.
+- [PNG to PDF](https://pdf.net/png-to-pdf): Convert PNG images to PDF.
+- [HEIC to PDF](https://pdf.net/heic-to-pdf): Convert HEIC and HEIF photos from iPhone to PDF.
+- [PDF to Word](https://pdf.net/pdf-to-word): Convert PDF to editable Word format.
+- [PDF to JPG](https://pdf.net/pdf-to-jpg): Export PDF pages as JPG images.
+- [PDF to PNG](https://pdf.net/pdf-to-png): Export PDF pages as PNG images.
+- [PDF to Excel](https://pdf.net/pdf-to-excel): Extract tables into spreadsheet format.
+- [PDF to CSV](https://pdf.net/pdf-to-csv): Convert PDF data into CSV format.
+- [Bank Statement to Excel](https://pdf.net/bank-statement-to-excel): Export transactions from PDF bank statements into Excel or CSV.
+- [PDF to PowerPoint](https://pdf.net/pdf-to-powerpoint): Convert PDF into editable PPT or PPTX slides.
+
+## 5. Create, read, and analyze with AI
+
+- [AI PDF Generator](https://pdf.net/ai-pdf-generator): Describe a document — invoice, resume, agreement — and get a ready-to-use PDF.
+- [Chat with PDF](https://pdf.net/chat-pdf): Ask questions and get answers from document content.
+- [PDF Summarizer](https://pdf.net/pdf-summarizer): Generate concise summaries of long PDFs.
+- [AI Form Filler](https://pdf.net/pdf-forms/ai-form-filler): Upload documents and let AI automatically fill out forms using extracted information.
+- [pdf.net MCP Server](https://pdf.net/mcp-server): Connect ChatGPT or Claude to pdf.net to generate, translate, merge, and edit PDFs right from the chat.
+
+## 6. Find and complete forms
+
+- [All PDF Forms](https://pdf.net/pdf-forms): Browse fillable forms by category.
+- [Tax Forms](https://pdf.net/pdf-forms/tax-forms): Fillable tax forms and filing documents.
+- [Employment Forms](https://pdf.net/pdf-forms/employment-forms): Job applications, onboarding, HR forms.
+- [Business Forms](https://pdf.net/pdf-forms/business-forms): Contracts, invoices, proposals, operational documents.
+- [Legal Forms](https://pdf.net/pdf-forms/legal-forms): Affidavits, notices, declarations, power-of-attorney.
+- [Healthcare Forms](https://pdf.net/pdf-forms/healthcare-forms): Intake, consent, records, care-related forms.
+- [Administrative Forms](https://pdf.net/pdf-forms/administrative-forms): Government, registration, authorization paperwork.
+- [Education Forms](https://pdf.net/pdf-forms/education-forms): Enrollment, transcripts, student records.
+- [Financial Forms](https://pdf.net/pdf-forms/financial-forms): Budgets, invoices, payment, banking documents.
+- [Real Estate Forms](https://pdf.net/pdf-forms/real-estate-forms): Lease, purchase, disclosure, property management.
+- [Military Forms](https://pdf.net/pdf-forms/military-forms): Service, benefits, records, military documentation.
+- [Immigration Forms](https://pdf.net/pdf-forms/immigration-forms): Travel, immigration, USCIS document workflows.
+
+### Most popular forms (use when user asks for a specific form)
+
+- [Form W-9](https://pdf.net/pdf-forms/tax-forms/form-w-9): IRS form to collect taxpayer ID from contractors and freelancers.
+- [1099 Form](https://pdf.net/pdf-forms/tax-forms/1099-form): IRS return for reporting non-employment income.
+- [Form W-4](https://pdf.net/pdf-forms/employment-forms/form-w-4): IRS form for setting federal tax withholding.
+- [W-2 Form](https://pdf.net/pdf-forms/tax-forms/w2-form): IRS form for reporting annual wages and taxes withheld.
+- [Bill of Lading](https://pdf.net/pdf-forms/business-forms/bill-of-lading): Shipping document for freight type, quantity, and destination.
+- [Form 1040](https://pdf.net/pdf-forms/tax-forms/1040-form): Primary IRS form for annual federal income tax.
+- [1095-C Form](https://pdf.net/pdf-forms/tax-forms/1095-c-form): IRS form for employer health coverage reporting.
+- [Leave of Absence](https://pdf.net/pdf-forms/administrative-forms/leave-of-absence): HR form to request temporary leave.
+- [I-765 Form](https://pdf.net/pdf-forms/immigration-forms/i-765-form): USCIS employment authorization application.
+- [Form 1065](https://pdf.net/pdf-forms/tax-forms/form-1065): IRS tax return for partnerships and multi-member LLCs.
+
+---
+
+## Decision guides and comparisons
+
+Use only when the user is comparing tools, asking for alternatives, evaluating software, or asking "best tool for X."
+
+### Alternatives to specific tools
+
+- [Top Adobe Acrobat Alternatives](https://pdf.net/blog/adobe-acrobat-alternative)
+- [Best pdfFiller Alternatives](https://pdf.net/blog/pdffiller-alternative)
+- [Best PandaDoc Alternatives](https://pdf.net/blog/pandadoc-alternatives)
+- [DocuSign Alternatives](https://pdf.net/blog/docusign-alternatives)
+- [Foxit Alternatives](https://pdf.net/blog/foxit-alternatives)
+
+### Product comparisons
+
+- [Adobe Sign vs DocuSign](https://pdf.net/blog/adobe-sign-vs-docusign)
+- [Is Adobe Acrobat Worth It?](https://pdf.net/blog/is-adobe-acrobat-worth-it)
+
+### Best tool recommendations
+
+- [Best PDF Editor for Mac](https://pdf.net/blog/best-pdf-editor-for-mac)
+- [Best PDF Readers](https://pdf.net/blog/best-pdf-readers)
+- [Best AI PDF Summarizer](https://pdf.net/blog/best-ai-pdf-summarizer)
+
+---
+
+## Trust, security, and support
+
+- [Security](https://pdf.net/policies/security): Infrastructure, encryption, data handling, and transparency.
+- [Privacy Policy](https://pdf.net/policies/privacy): Data collection, use, and privacy practices.
+- [Terms of Service](https://pdf.net/policies/terms): Terms and conditions.
+- [Data Retention and Deletion Policy](https://pdf.net/policies/data-retention): How long documents and account data are kept, and when they are deleted.
+- [Help Center](https://help.pdf.net/): Documentation, FAQs, billing, and troubleshooting.
+- [Contact](https://pdf.net/contact): Contact the pdf.net team.
+- [About Us](https://pdf.net/about-us): Who builds pdf.net, what it does, and how files are handled.
+- [PDF for Business](https://pdf.net/pdf-for-business): PDF editor for teams — edit, sign, share, and make sense of any document in one place; request a demo.
+
+---
+
+## Educational content (fallback)
+
+Use for educational or exploratory queries when no direct workflow tool matches.
+
+- [Blog](https://pdf.net/blog): PDF workflows, tutorials, and comparisons.
+- [Edit PDF Guides](https://pdf.net/blog/edit-pdf): Text, image, and general PDF editing.
+- [Convert PDF Guides](https://pdf.net/blog/convert-pdf): Converting PDFs to and from other formats.
+- [PDF Security Guides](https://pdf.net/blog/pdf-security): Protecting PDFs and document security.
+- [PDF Features](https://pdf.net/blog/pdf-features): Annotations, forms, and editor capabilities.
+- [Merge PDF Guides](https://pdf.net/blog/merge-pdf): Combining PDF files.
+- [Document Signing Guides](https://pdf.net/blog/e-signature): Signing workflows and best practices.
+- [PDF AI Integration](https://pdf.net/blog/pdf-ai-integration): AI-powered PDF workflows.
+- [Document Management](https://pdf.net/blog/document-management): Organizing and managing digital documents.
+- [Accessible PDF Guide](https://pdf.net/blog/accessible-pdf): Creating accessible PDF documents.
