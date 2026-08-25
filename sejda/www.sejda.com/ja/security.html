@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="utf-8">
+
+  <link as="style" href="../css/index.min.css@v=404.css" rel="preload">
+  <link crossorigin="anonymous" type="font/woff2" as="font" href="../fonts/braille/Atkinson-Hyperlegible-Regular-102a.woff2" rel="preload">
+  <link crossorigin="anonymous" type="font/woff2" as="font" href="../fonts/braille/Atkinson-Hyperlegible-Bold-102a.woff2" rel="preload">
+  <link as="script" href="../cache/639/js/libs-and-partials.min.js" rel="preload">
+
+  <link href="../images/icon_128.png" rel="shortcut icon">
+
+  <meta content="website" property="og:type">
+  <meta content="https://www.sejda.com/" property="og:url">
+  <meta content="Sejda.com - We help with your PDF tasks" property="og:site_name">
+
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="@SejdaPDF" name="twitter:site">
+  <meta content="@SejdaPDF" name="twitter:creator">
+
+  <meta content="1762774073964212" property="fb:app_id">
+  <meta content="8721525582-fbt24du8pl38r1ht2ihu9q9vl815o5t8.apps.googleusercontent.com" name="google-signin-client_id">
+
+  <link rel="canonical" href="security.html">
+
+  <link href="../css/index.min.css@v=404.css" type="text/css" rel="stylesheet">
+
+	
+<meta content="noindex" name="robots">
+
+	
+<title>Security - Sejda</title>
+
+	
+<link href="../css/legal.css@v=2.css" type="text/css" rel="stylesheet">
+
+	
+<style>
+                .more-tasks {
+                    display: none
+                }
+
+                header {
+                    display: none;
+                }
+
+                .logo {
+                    display: none;
+                }
+            </style>
+
+	
+</head>
+<body data-download-server="www.sejda.com" data-proxy-token="1c7cd6573b8b353c0ebb5a18ed344e74" data-pro-user="false" data-max-file-size="500" data-ipcountry="IN" data-www="www59.sejda.com">
+<section>
+  <div style="display:none" class="alert alert-meh alert-dismissible centered" id="termsNotice">
+    <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span></button>
+    We've updated our <a target="_blank" href="../terms.html">terms of service</a> and/or <a target="_blank" href="../privacy.html">privacy policy</a>. Please take a moment and review them.<br>
+    By continuing to use our services you agree to our updated terms &amp; privacy policy.
+  </div>
+</section>
+<div class="StripeBackground">
+  <div class="stripe s0"></div>
+  <div class="stripe s1"></div>
+  <div class="stripe s2"></div>
+  <div class="stripe s3"></div>
+  <div class="stripe s4"></div>
+</div>
+<div class="container-fluid">
+  <header>
+    <section>
+<div class="container">
+  <div class="pull-left">
+      <a title="Sejda.com logo" href="index.html" class="brand"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMjUycHgiIGhlaWdodD0iMjUycHgiIHZpZXdCb3g9Ii00NzkuNSAyODAuNSAyNTIgMjUyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC00NzkuNSAyODAuNSAyNTIgMjUyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxjaXJjbGUgZmlsbD0iIzAwQkI4OCIgY3g9Ii0zNTMuMjUyIiBjeT0iNDA2LjI1MiIgcj0iMTIwLjI0OCIvPg0KPGcgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAgICAiPg0KCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0tMzAwLjYzMywzNDIuOTczbC05Ljk3OSwyMy4zNjNjLTE3LjE1Ni05LjU0NC0zNC4wOTUtMTMuMTI1LTQ1Ljc5OS0xMi42OTUNCgkJYy0xNS4yMzgsMC41NTgtMjQuOTY2LDYuNjY0LTI0LjU4NSwxNy4wNDNjMS4yMzcsMzMuNzg5LDg0LjA1NCwxMi42MjEsODUuODY4LDY4LjI4MWMxLjAxMiwyNy42MDQtMjIuNjU4LDQ1LjQ5OS01Ni42NjgsNDYuNzQ0DQoJCWMtMjQuMjkyLDAuODkxLTQ3LjYyMy04LjIwNi02NC4wNTctMjIuMmwxMC40MzgtMjIuOTM4YzE2LjQzNCwxMy45OTQsMzYuNjAxLDIxLjIxNyw1My4xNjQsMjAuNjA5DQoJCWMxOC4xMDctMC42NjQsMjguNjgtNy45MDYsMjguMjQyLTE5LjgzYy0xLjI2NC0zNC40NTEtODQuMDM1LTEyLjE4MS04Ni4wNDktNjcuMTY4Yy0wLjk3MS0yNi41MDIsMjEuMTY5LTQzLjg5Niw1NC43MzYtNDUuMTI3DQoJCUMtMzM1LjIyNSwzMjguMzE4LTMxNS4zMzUsMzM0LjAwMi0zMDAuNjMzLDM0Mi45NzN6Ii8+DQo8L2c+DQo8L3N2Zz4NCg==" alt="Sejda.com logo" class="logo">
+          <span class="name">Sejda</span></a>
+      <a href="javascript://" class="header-link header-tool more-tasks">
+          すべてのツール<i class="fal fa-fw fa-angle-down" style="margin-left: 3px;"></i>
+      </a>
+      <a href="compress-pdf.html" class="header-link header-tool hide-xs">圧縮</a>
+      <a href="pdf-editor.html" class="header-link header-tool hide-xs">編集</a>
+      <a href="sign-pdf.html" class="header-link header-tool hide-xs hide-lang-de hide-lang-hu hide-lang-ru">入力と署名</a>
+      <a href="merge-pdf.html" class="header-link header-tool hide-sm">結合</a>
+      <a href="delete-pdf-pages.html" class="header-link header-tool hide-md">ページ削除</a>
+      <a href="crop-pdf.html" class="header-link header-tool hide-md hide-lang-de hide-lang-fr hide-lang-ro hide-lang-cs hide-lang-ru">切り抜き</a>
+
+  </div>
+  <div id="user-header" class="pull-right">
+      <div class="header-links">
+          <a href="upgrade.html" class="header-link pricing-link">料金</a>
+          <a href="desktop.html" class="header-link desktop-link hide-xs">Desktop</a>
+          <a href="account@justUpgraded=desktop.html" id="loginBtn" class="loggedout header-link">ログイン</a>
+          <div style="display:none" class="dropdown loggedin header-link">
+              <a data-toggle="dropdown" class="dropdown-toggle">
+                  <i class="fas fa-user-circle"></i>
+                  <span class="caret"></span>
+              </a>
+              <ul role="menu" class="dropdown-menu pull-right dropdown-menu-right">
+                  <li role="presentation"><a href="account.html" tabindex="-1" role="menuitem">アカウント</a></li>
+                  <li role="presentation"><a id="logoutBtn" href="javascript://" tabindex="-1" role="menuitem">Logout</a></li>
+              </ul>
+          </div>
+          <a title="Select language" href="javascript://" class="header-link select-lang-btn hide-xs">
+              <i style="vertical-align: text-top;" class="fal fa-globe"></i>
+          </a>
+      </div>
+  </div>
+</div>
+<div id="megaMenu" style="display: none" class="container-fluid mega-menu">
+    <div class="mega-menu-inner">
+    <button aria-label="Close" class="close" type="button"><span aria-hidden="true">×</span></button>
+    <div class="container tasks-container">
+        <div class="row">
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6 col-recent-tools">
+                <ul class="popular">
+                    <li class="header">
+                        履歴<i class="fal fa-history"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">結合</li>
+                    <li class="cat-merge">
+                        <a href="alternate-mix-pdf.html">
+                          <div class="caption">
+                              <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-random fa-stack-1x"></i>
+                              </span>交互に結合
+                          </div>
+                          <div class="description">それらの間で交互に、2のドキュメントからページをミックス</div>
+                        </a>
+                    </li>
+                    <li class="cat-merge">
+                        <a href="merge-pdf.html">
+                          <div class="caption">
+                              <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-sitemap fa-stack-1x"></i>
+                              </span>結合
+                          </div>
+                          <div class="description">1つのPDFファイルに複数のドキュメントを参加</div>
+                        </a>
+                    </li>
+                    <li class="cat-merge">
+                        <a href="organize-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-object-group fa-stack-1x"></i>
+                            </span>整理</div>
+                            <div class="description">PDF ページの並び替えと整理</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        分割
+                    </li>
+                    <li class="cat-split">
+                        <a href="extract-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-external-link fa-stack-1x"></i>
+                                  </span>ページ抽出</div>
+                            <div class="description">唯一の希望のページを含む新しいドキュメントを取得</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-clone fa-stack-1x"></i>
+                                  </span>ページごとに分割</div>
+                            <div class="description">特定のページ範囲を分割したり、別の文書にすべてのページを抽出</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-outline.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-bookmark fa-stack-1x"></i>
+                                  </span>ブックマークによって分割</div>
+                            <div class="description">目次のブックマークに基づいてドキュメントを分離するためにチャプターを抽出</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-down-the-middle.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-columns fa-stack-1x"></i>
+                                  </span>半分に分割</div>
+                            <div class="description">2ページレイアウトスキャンを分割し、A3はA5を倍増するためにA4またはA4を倍増します</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-size.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-chart-pie fa-stack-1x"></i>
+                                  </span>サイズで分割</div>
+                            <div class="description">特定のファイルサイズで複数の小さな文書を入手</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-text.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-font fa-stack-1x"></i>
+                                  </span>テキストで分割</div>
+                            <div class="description">特定のテキストがページからページへ変化したときに別の文書を抽出</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        編集と署名
+                    </li>
+                    <li class="cat-edit">
+                        <a href="pdf-editor.html">
+                            <div class="caption">
+                                <span class="task-icon fa-stack fa-lg fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-pencil fa-stack-1x"></i>
+                                </span>編集
+                            </div>
+                            <div class="description">無料で PDF を編集. PDF への入力と署名. テキスト、リンク、画像、図形を追加. 既存のPDFテキストを編集. PDFをAnnotate</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="sign-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-signature fa-stack-1x"></i>
+                                  </span>入力と署名</div>
+                            <div class="description">PDFに署名を追加. PDFフォームに入力</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="pdf-forms.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-wpforms fa-stack-1x"></i>
+                                  </span>フォームを作成</div>
+                            <div class="description">無料のPDFフォーム作成ツール. 既存のPDFを入力可能にする</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="delete-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-trash fa-stack-1x"></i>
+                                  </span>ページ削除</div>
+                            <div class="description">PDFドキュメントからページを削除します</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        圧縮
+                    </li>
+                    <li class="cat-compress">
+                        <a href="compress-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-compress fa-stack-1x"></i>
+                                  </span>圧縮</div>
+                            <div class="description">あなたのPDFのサイズを小さく</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        セキュリティ
+                    </li>
+                    <li class="cat-security">
+                        <a href="encrypt-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-lock fa-stack-1x"></i>
+                                  </span>保護</div>
+                            <div class="description">パス​​ワードと権限を持つファイルを保護</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="unlock-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-unlock fa-stack-1x"></i>
+                                  </span>ロック解除</div>
+                            <div class="description">PDFファイルの権限とパスワードを削除するプロテクト解除ファイル</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="watermark-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-alt fa-stack-1x"></i>
+                                  </span>Watermark</div>
+                            <div class="description">画像やテキストの透かしをPDFに追加</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="flatten-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-font fa-stack-1x"></i>
+                                <i class="fal fa-slash fa-stack-1x"></i>
+                              </span>Flatten</div>
+                            <div class="description">入力可能なPDFを読み取り専用にする. 印刷とスキャンを一度に</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        PDFから変換
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-excel.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-excel fa-stack-1x"></i>
+                                  </span>PDFからExcel</div>
+                            <div class="description">PDFをExcelやCSVにオンラインで無料変換. PDFから表データを抽出</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-jpg.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-image fa-stack-1x"></i>
+                                  </span>JPGへPDF</div>
+                            <div class="description">JPG画像に変換したページを取得します</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-ppt.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-powerpoint fa-stack-1x"></i>
+                                  </span>PDFからPowerPoint</div>
+                            <div class="description">PDFをPowerPointにオンラインで変換</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="extract-text-from-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-align-left fa-stack-1x"></i>
+                                  </span>PDFからテキスト</div>
+                            <div class="description">コピーしたPDFドキュメントからすべてのテキストと別のテキストフ​​ァイルに抽出</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-word.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-word fa-stack-1x"></i>
+                                  </span>WordへPDF</div>
+                            <div class="description">PDFからDOCにオンラインで変換</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        PDFに変換
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="html-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-code fa-stack-1x"></i>
+                                  </span>HTMLからPDF</div>
+                            <div class="description">ウェブページやHTMLファイルをPDFに変換</div>
+                        </a>
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="jpg-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-image fa-stack-1x"></i>
+                                  </span>PDFへJPG</div>
+                            <div class="description">画像をPDFに変換</div>
+                        </a>
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="word-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-word fa-stack-1x"></i>
+                                  </span>PDFへWord</div>
+                            <div class="description">Word .docxからPDFを作成</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        その他
+                    </li>
+                    <li class="cat-other">
+                        <a href="bates-numbering-pdf.html" title="">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-gavel fa-stack-1x"></i>
+                                  </span>ベイツ番号</div>
+                            <div class="description">ベイツは、一度に複数のファイルをスタンプ</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="pdf-bookmarks.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-bookmark fa-stack-1x"></i>
+                                  </span>ブックマークを作成</div>
+                            <div class="description">PDFブックマークを作成</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="crop-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-crop fa-stack-1x"></i>
+                                  </span>切り抜き</div>
+                            <div class="description">PDFの余白をトリミングし、PDFのページサイズを変更します</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="edit-pdf-metadata.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-info-square fa-stack-1x"></i>
+                                  </span>メタデータを編集</div>
+                            <div class="description">作成者、タイトル、キーワード、件名などのメタデータを変更</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="extract-images-from-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-popular fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-external-link fa-stack-1x"></i>
+                                  </span>画像を抽出</div>
+                            <div class="description">PDFから画像を抽出</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="flip-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-reflect-horizontal fa-stack-1x"></i>
+                                  </span>Flip<span class="label label-success">New</span></div>
+                            <div class="description">ページを水平または垂直にMirror</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="grayscale-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-paint-brush fa-stack-1x"></i>
+                                  </span>グレースケール</div>
+                            <div class="description">PDFのテキストと画像をグレースケールにする</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="header-footer-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-heading fa-stack-1x"></i>
+                                  </span>ヘッダーとフッター</div>
+                            <div class="description">PDFファイルにページ番号またはテキストラベルを適用します</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="n-up-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-th-large fa-stack-1x"></i>
+                                  </span>N-up</div>
+                            <div class="description">1枚の用紙に複数ページを印刷. A5 plan as 4-up on A3 or A4 2-up on A3</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="page-numbers-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-sort-numeric-up fa-stack-1x"></i>
+                                  </span>ページ番号</div>
+                            <div class="description">PDFにページ番号を追加</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                         
+                    </li>
+                    <li class="cat-other">
+                        <a href="rename-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-i-cursor fa-stack-1x"></i>
+                                  </span>Rename</div>
+                            <div class="description">PDF内のテキストに基づいてファイル名を変更</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="repair-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-wrench fa-stack-1x"></i>
+                                  </span>修復</div>
+                            <div class="description">破損したPDFからデータを復元</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="resize-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-arrows-alt fa-stack-1x"></i>
+                                  </span>リサイズ</div>
+                            <div class="description">余白の追加、ページサイズの変更</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="rotate-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-repeat fa-stack-1x"></i>
+                                  </span>回転</div>
+                            <div class="description">PDFのページを回転させます</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="delete-pdf-annotations.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-highlighter fa-stack-1x"></i>
+                                  </span>Annotationsを削除<span class="label label-success">New</span></div>
+                            <div class="description">ハイライトや打ち消し線、その他のAnnotationsを一括削除</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        スキャン
+                    </li>
+                    <li class="cat-scans">
+                        <a href="deskew-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-popular fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-alt fa-stack-1x rotated-5-deg"></i>
+                                  </span>Deskew</div>
+                            <div class="description">スキャンしたPDFページを自動的に整列・Deskewします</div>
+                        </a>
+                    </li>
+                    <li class="cat-scans">
+                        <a href="ocr-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-qrcode fa-stack-1x"></i>
+                                  </span>OCR</div>
+                            <div class="description">PDFスキャンを検索可能なテキストとPDFに変換. スキャンからテキストを抽出</div>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="header lower">
+                        Automate
+                    </li>
+                    <li>
+                        <a href="workflows.html" title="">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-robot fa-stack-1x"></i>
+                                  </span>Workflows<span class="label label-success">New</span></div>
+                            <div class="description">PDFドキュメントで一連の Task を実行. PDFを処理するツールチェーンを構成</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="centered">
+                <form autocomplete="off">
+                    <div style="display: none" class="input-group search-tools-wrap">
+                        <i class="fal fa-search"></i>
+                        <input onkeypress="if(event.keyCode === 13){ return false; }" id="searchTools" placeholder="Type to search" class="form-control input-sm" type="search" autocomplete="off">
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <a style="color: #AAA; text-decoration: underline; font-size: 14px;" class="get-support-btn" href="javascript://">Suggest a missing feature</a>
+                        <i class="fal fa-comment-lines" style="color: #AAA; vertical-align: middle;"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+  </header>
+</div>
+
+<section>
+  <div class="modal fade" id="contactFormModal" style="display: none">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+            <div style="margin: 20px 40px;" class="row centered contact-form-row">
+              <h3 style="margin-bottom: 10px;">SEJDA.COM サポートに連絡</h3>
+              <h5 style="margin-bottom: 30px;">メールはこちら <a href="mailto:hi@sejda.com">hi@sejda.com</a> または以下のフォームを使用</h5>
+              
+              <div style="display: none; margin-top: 50px;" class="alert alert-success" id="contactSuccess">メッセージをありがとうございました.</div>
+
+              <section id="support-frequent-topics">
+                <div class="form-group">
+                  <label for="contact-msg">ヘルプが必要な項目</label>
+                  <br>
+                  <div data-topic="cancel-subscription" class="support-topic">サブスクリプションをキャンセル</div>
+                  <div data-topic="find-license-key" class="support-topic">ライセンスキーを見つける</div>
+                  <div class="support-topic">その他</div>
+                </div>
+                
+                <div class="support-answers">
+                  <div class="support-answer selected" style="display: none" data-answer="find-license-key" id="support_licenseKey_accountPage">
+                    Sejda Desktop のライセンスキーはアカウントページにあります：
+                    <br>
+                    <a target="_blank" href="account@justUpgraded=desktop.html">https://www.sejda.com/account</a>
+                  </div>
+
+                  <div style="display: none" data-answer="find-license-key" class="support-answer" id="support_licenseKey_webOnly">
+                    Sejda Desktop へのアクセスを含まない Web-only プランを購入しました.
+                    <br>
+                    <a target="_blank" href="upgrade.html#pricing">https://www.sejda.com/upgrade</a>
+                    <br><br>
+                    Desktop アクセス付きのプランはこちら：
+                    <br>
+                    <a target="_blank" href="desktop.html#pricing">https://www.sejda.com/desktop</a>
+                    <br><br>
+                    Desktop プランを購入すると、Web-only の購入分は自動的に返金されるよ.
+                  </div>
+
+                  <div class="support-answer selected" style="display: none" data-answer="cancel-subscription" id="support_cancelSub_accountPage">
+                    アカウントページで、サブスクリプションの横にある「Stop auto-renewal」をクリックしてキャンセルできるよ：
+                    <br>
+                    <a target="_blank" href="account.html">https://www.sejda.com/account</a>
+                  </div>
+
+                  <div style="display: none" data-answer="cancel-subscription" class="support-answer" id="support_cancelSub_weekPass">
+                    Week Pass プランは1回限りの料金で、継続的なサブスクリプションではないよ. 自動更新はされず、7日後に無料プランにダウングレードされます.
+                  </div>
+                </div>
+              </section>
+              
+              <form style="display: none" id="contactForm">
+                <section id="contactFormProgressBar">
+                  <progress max="100" value="0" id="progress"></progress>
+                  <div class="step-item">1</div>
+                  <div class="step-item">2</div>
+                  <div class="step-item">3</div>
+                  <div class="step-item">4</div>
+                </section>
+                <section data-step="1" class="contact-form-step">
+                  <div class="form-group">
+                    <label for="contact-msg">メッセージ</label>
+                    <textarea id="contact-msg" class="form-control" name="message" style="min-height: 100px; padding: 15px" required="required" placeholder="&#x30e1;&#x30c3;&#x30bb;&#x30fc;&#x30b8;&#x3092;&#x5165;&#x529b;"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-email">あなたのメールアドレス</label>
+                    <input type="email" class="form-control" id="contact-email" name="email" placeholder="&#x4efb;&#x610f;. &#x8fd4;&#x4fe1;&#x304c;&#x5fc5;&#x8981;&#x306a;&#x5834;&#x5408;&#x306f;&#x3001;&#x30e1;&#x30fc;&#x30eb;&#x30a2;&#x30c9;&#x30ec;&#x30b9;&#x3092;&#x5165;&#x529b;&#x3057;&#x3066;&#x306d;" value="">
+                  </div>
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="completeStep1Btn" class="btn btn-default" type="button">
+                    次へ <i style="margin-left: 10px" class="fal fa-chevron-right"></i> 
+                  </button>
+                </section>
+
+                <section style="display: none" data-step="2" class="contact-form-step">
+                  <div class="loader-wrap"><img src="../images/loaders/oval-green.svg" class="loader medium"></div>
+                </section>  
+                
+                <section style="display: none" data-step="3" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">推奨される回答</label>
+                    <div id="automaticSupportAnswer"></div>
+                  </div>
+
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="completeStep3Btn" class="btn btn-link btn-xs" type="button">
+                    質問の答えになっていません
+                  </button>
+                </section>
+                
+                <section style="display: none" data-step="4" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">問題を報告しますか？</label>
+                  </div>
+                  <div style="width: 263px; text-align: left; margin: auto;" class="form-group">
+                    <div class="radio">
+                      <label>
+                        <input value="problem" name="supportMessageKind" type="radio">
+                        はい、問題を報告します
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input value="other" name="supportMessageKind" type="radio">
+                        いいえ、その他です
+                      </label>
+                    </div>
+                  </div>  
+                </section>
+
+                <section style="display: none" data-step="5" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">問題の詳細</label>
+                  </div>
+                  <div style="max-width: 430px; margin: auto; margin-top: -15px; text-align: left;" class="checkbox">
+                    <label><input style="margin: 5px; margin-right: 15px;" name="allowAccessLastTask" type="checkbox"> 最後の Task と使用したファイルへのアクセスを許可する.</label>
+                    <p style="font-size: 12px; padding-left: 33px; margin-top: 0;" class="help-block">このデータを使用して迅速に対応するよ. 機密.</p>
+                  </div>
+                  <div id="attachScreenshotFormGroup" class="form-group">
+                    <label class="light">Attach a screenshot*</label>
+                    <p style="font-size: 12px; padding-left: 33px; margin-top: -8px;" class="help-block">表示されている問題のスクリーンショットを共有してね.</p>
+                    <div>
+                      <label style="border: 1px solid #ccc;display: inline-block;padding: 6px 12px; cursor: pointer;" class="light" for="supportScreenshotFile">
+                        <i class="fal fa-plus"></i> スクリーンショット画像ファイルを選択
+                      </label>
+                      <input style="display: none" accept=".png,.jpg,.jpeg,.bmp" type="file" id="supportScreenshotFile">
+                      <div id="supportScreenshotFilePreview"></div>
+                    </div>
+                  </div>
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="sendMessageBtn" class="btn btn-default" type="submit">メッセージを送信</button>
+                </section>
+                
+                <input value="iluzie" name="suflet" type="hidden">
+                <input value="" name="source" type="hidden">
+                <input value="" name="source2" type="hidden">
+                <input value="" name="lastFile" type="hidden">
+                <input value="" name="lastTask" type="hidden">
+                <input value="" name="events" type="hidden">
+                <input value="" name="consoleLogs" type="hidden">
+                <input value="" name="screenshot" type="hidden">
+                <input value="" name="os" type="hidden">
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div style="display: none" class="modal app-modal" id="optOutChoicesPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Privacy Settings
+          </div>
+        </div>
+        <div class="modal-body">
+          This feature requires loading content from an external service, <span class="external_service_name"></span>, which could access personal data, such as your IP address, set cookies and track you.<br><br>
+          Please let us know if you are okay with that.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-no btn-light btn-xs" type="button">No, cancel</button>
+          <button class="btn btn-yes btn-xs" type="button">Yes, continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal app-error-modal" id="problemLoadingPageResourcePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            There's a problem loading this page
+          </div>
+        </div>
+        <div class="modal-body">
+          There was a problem loading a critical resource, which prevents the page from continuing.<br><br>
+          Please check your internet connection and reload the page to try again.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-yes btn-xs" type="button">Reload page</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div style="display: none" class="modal app-modal app-error-modal" id="genericErrorModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+            <div class="modal-title"></div>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="display: none" class="modal app-modal app-warning-modal" id="scanPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">スキャンされたドキュメントはサポートされていません</h4>
+        </div>
+        <div class="modal-body">
+          <div data-scope="edit">
+            <strong>スキャンされたドキュメントの編集はサポートされていません.</strong>
+            スキャンされたドキュメント内の既存テキストの変更はサポートされていません. ただし、新しいテキスト、画像、注釈の追加などの他の機能は引き続き使用できます.
+          </div>
+          <div style="display: none" data-scope="convert">
+            <strong>スキャンされたドキュメントの変換はサポートされていません.</strong>
+            スキャンされたPDFはテキストの画像であり、変換に必要な実際のテキストデータがありません.
+
+            <br><br>
+            ファイル: <span class="file-name"></span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="dont-show-anymore-opts">
+            <div class="checkbox">
+              <label><input style="margin-top: 5px" name="dontShowAnymore" type="checkbox"> 今後表示しない</label>
+            </div>
+          </div>
+          <a target="_blank" href="help.html#scans" class="btn btn-secondary btn-xs">詳細を見る</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="movePagePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            ページを新しい場所に移動
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="form-inline">
+            <label class="light" for="moveNewPageNumber">新しいページの場所:</label>
+            <input style="width: 55px;margin: 0 10px;vertical-align: baseline; text-align: center" class="form-control input-xs" name="moveNewPageNumber" id="moveNewPageNumber" type="text">
+            <span class="num_of_pages"></span>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <div class="modal-hint">
+            ヒント: ページを新しい場所にドラッグ＆ドロップすることもできます
+          </div>
+          <button class="btn btn-yes btn-xs" type="button">ページを移動</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="changeLanguagePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            言語を選択
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-6">
+              <ul>
+                <li><a href="../ar/security.html">العربية</a></li>
+                <li><a href="../id/security.html">Bahasa Indonesia</a></li>
+                <li><a href="../da/security.html">Dansk</a></li>
+                <li><a href="../de/security.html">Deutsch</a></li>
+                <li><a href="../cs/security.html">Čeština</a></li>
+                <li><a href="../security.html">English</a></li>
+                <li><a href="../es/security.html">Español</a></li>
+                <li><a href="../fr/security.html">Français</a></li>
+                <li><a href="../it/security.html">Italiano</a></li>
+                <li><a href="../el/security.html">Ελληνικά</a></li>
+                <li><a href="security.html">日本語</a></li>
+                <li><a href="../ko/security.html">한국어</a></li>
+                <li><a href="../zh/security.html">简体中文</a></li>
+                <li><a href="../tw/security.html">繁體中文</a></li>
+              </ul>
+            </div>
+            <div class="col-xs-6">
+              <ul>
+                <li><a href="../hi/security.html">हिन्दी</a></li>
+                <li><a href="../he/security.html">עברית</a></li>
+                <li><a href="../hu/security.html">Magyar</a></li>
+                <li><a href="../nl/security.html">Nederlands</a></li>
+                <li><a href="../no/security.html">Norsk</a></li>
+                <li><a href="../pl/security.html">Polski</a></li>
+                <li><a href="../pt/security.html">Português</a></li>
+                <li><a href="../ro/security.html">Română</a></li>
+                <li><a href="../ru/security.html">Русский</a></li>
+                <li><a href="../fi/security.html">Suomi</a></li>
+                <li><a href="../sv/security.html">Svenska</a></li>
+                <li><a href="../th/security.html">ภาษาไทย</a></li>
+                <li><a href="../vi/security.html">Tiếng Việt</a></li>
+                <li><a href="../tr/security.html">Türkçe</a></li>
+                <li><a href="../uk/security.html">Українська</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section style="display: none" class="i18n-strings">
+    <div data-key="We're sorry, something went wrong. Please contact support at hi@sejda.com">申し訳ありません、問題が発生しました. hi@sejda.com のサポートまでお問い合わせください</div>
+    <div data-key="Verification code is incorrect">認証コードが正しくありません</div>
+    <div data-key="Too many attempts. Please try again later">試行回数が多すぎるよ. 後でもう一度試してみてね.</div>
+    <div data-key="An error occurred. Please try again or contact support">エラーが発生しました. もう一度試すか、サポートにお問い合わせください.</div>
+    <div data-key="Processing, please wait...">処理中、お待ちください...</div>
+    <div data-key="Sign in">サインイン</div>
+    <div data-key="Click to edit">クリックして編集</div>
+    <div data-key="Sorry, unsupported image format:">申し訳ありません、サポートされていない画像形式です:</div>
+    <div data-key="We support the following image types:">以下の画像タイプをサポートしています:</div>
+    <div data-key="You already have an active monthly subscription">すでに有効な月額サブスクリプションをお持ちです</div>
+    <div data-key="Trying to add more seats? You can do this from your account page">シートを追加しますか？アカウントページから行えます</div>
+    <div data-key="Please verify your email address before continuing with your purchase">購入を続ける前にメールアドレスを確認してください</div>
+    <div data-key="We couldn't connect to GoogleDrive. Your browser (or add-ons) might be blocking the load of javascript files from GoogleDrive">GoogleDrive に接続できませんでした. ブラウザやアドオンが GoogleDrive からの Javascript 読み込みをブロックしている可能性があります</div>
+    <div data-key="Are you sure you want to remove the recent files list?">最近使ったファイルの一覧を削除してもよろしいですか？</div>
+  </section>
+</section>
+
+
+        
+        <section id="content">
+            <div class="container legal">
+                <div class="row">
+                    <h1>Security at Sejda</h1>
+
+                    <p style="margin-top: 40px">We wrote this document to help you understand what security measures we employ to keep your data safe and secure.</p>
+
+                    <h2>Software Security</h2>
+                    <p>We keep our software and dependencies up to date, eliminating potential security vulnerabilities. We employ a wide range of solutions for preventing attacks to the site and our servers.</p>
+
+                    <h2>Communications</h2>
+                    <p>All data exchanged with the website is transmitted over HTTPS.</p>
+
+                    <h2>Document Security</h2>
+                    <p>Documents are encrypted in transit and at rest.</p>
+
+                    <h2>Password Security</h2>
+                    <p>Login passwords are one-way encrypted in our database. Account credentials are always sent over HTTPS. Document passwords are encrypted at rest.</p>
+
+                    <h2>Employee Access</h2>
+                    <p>Our employees do not access your documents without your consent.</p>
+
+                    <h2>Credit Card Safety</h2>
+                    <p>We do not store any credit card information on our servers. Our payment processors store your sensitive information in a PCI-compliant manner.</p>
+
+                    <h2>Contact Us</h2>
+                    <p>Have a question, concern or would like to <a href="security-responsible-disclosure.html">disclose a vulnerability</a>? Please contact us by email at <script>document.write('hi@sejda.com')</script></p>
+                </div>
+            </div>
+        </section>
+    
+
+<div id="taskResultsModal" role="dialog" tabindex="-1" class="modal fade"></div>
+
+
+
+
+	
+</body>
+</html>  
+  

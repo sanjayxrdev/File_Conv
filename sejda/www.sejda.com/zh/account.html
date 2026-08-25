@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="utf-8">
+
+  <link as="style" href="../css/index.min.css@v=404.css" rel="preload">
+  <link crossorigin="anonymous" type="font/woff2" as="font" href="../fonts/braille/Atkinson-Hyperlegible-Regular-102a.woff2" rel="preload">
+  <link crossorigin="anonymous" type="font/woff2" as="font" href="../fonts/braille/Atkinson-Hyperlegible-Bold-102a.woff2" rel="preload">
+  <link as="script" href="../cache/639/js/libs-and-partials.min.js" rel="preload">
+
+  <link href="../images/icon_128.png" rel="shortcut icon">
+
+  <meta content="website" property="og:type">
+  <meta content="https://www.sejda.com/" property="og:url">
+  <meta content="Sejda.com - We help with your PDF tasks" property="og:site_name">
+
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="@SejdaPDF" name="twitter:site">
+  <meta content="@SejdaPDF" name="twitter:creator">
+
+  <meta content="1762774073964212" property="fb:app_id">
+  <meta content="8721525582-fbt24du8pl38r1ht2ihu9q9vl815o5t8.apps.googleusercontent.com" name="google-signin-client_id">
+
+  <link rel="canonical" href="account@justUpgraded=desktop.html">
+
+  <link href="../css/index.min.css@v=404.css" type="text/css" rel="stylesheet">
+
+	
+<link as="script" href="../js/pages/login.min.js@v=33" rel="preload">
+
+	
+<style>
+                header {
+                    display: none;
+                }
+
+                #google-signin-wrap, #login-new-account-wrap {
+                    max-width: 350px;
+                    margin: auto;
+                }
+
+                #google-signin2 .abcRioButton {
+                    margin: auto;
+                }
+
+                #closeFrame {
+                    font-size: 50px;
+                    padding: 10px 25px;
+                    text-decoration: none;
+                    opacity: 0.5;
+                    font-weight: 100;
+                    color: #000;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+
+                .btn-login .fal,
+                .btn-login-sso .fal {
+                    margin-right: 5px;
+                }
+
+                .btn-login,
+                .btn-login-sso {
+                    padding-left: 60px;
+                    padding-right: 60px;
+                    margin-bottom: 20px;
+                    margin-top: 20px;
+                    width: 100%;
+                    text-align: center;
+                    line-height: 2;
+                }
+                
+                .center-logo {
+                    width: 60px;
+                    margin-bottom: -30px;
+                    margin-top: 30px;
+                }
+
+                .forgot, .new-account, .switch-use-pwd {
+                    text-align: left;
+                    margin-top: 10px;
+                    margin-bottom: 30px;
+                }
+
+                .forgot a, .new-account a, .switch-use-pwd a {
+                    text-decoration: underline;
+                }
+
+                #login-form, #google-signin-preload {
+                    width: 350px;
+                }
+                
+                #login-new-account-wrap {
+                    margin-top: 60px;
+                }
+                
+                .divider-line-with-text {
+                    text-align: center;
+                    position: relative;
+                    padding: 0 16px;
+                    margin-bottom: 10px;
+                    color: #acacac;
+                }
+
+                .divider-line-with-text:after {
+                    content: "";
+                    border-bottom: 2px solid #acacac;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 50%;
+                    top: 50%;
+                }
+                
+                .divider-line-with-text > p {
+                    display: inline-block;
+                    background-color: #fff;
+                    z-index: 10;
+                    position: relative;
+                    padding: 0 16px;
+                    margin-bottom: 0;
+                    font-size: 16px;
+                }
+                
+                .fine-print {
+                    margin-top: 20px; 
+                    color: #AAA;
+                    text-align: left;
+                    font-size: 15px;
+                }
+                
+                .alert-wrap {
+                    min-height: 65px;
+                }
+                
+                #login-form {
+                    margin-top: 40px;
+                }
+                
+                #google-signin-preload {
+                    margin: auto;
+                }
+                
+                .btn-login-google-preload {
+                    padding-left: 10px;
+                    margin-bottom: 20px;
+                    margin-top: 20px;
+                    width: 100%;
+                    text-align: center;
+                    height: 41px;
+                    cursor: pointer;
+                    border: 1px #333 solid;
+                    padding-top: 9px;
+                }
+
+                .btn-login-google-preload .icon {
+                    float: left;
+                    margin-top: -2px;
+                }
+                
+                .g-recaptcha {
+                    margin-top: 15px;
+                    transform: scale(1.15);
+                    transform-origin: 0;
+                }
+
+                #cf-turnstile {
+                    margin-top: 25px;
+                    transform: scale(1.15);
+                    transform-origin: top left;
+                    margin-left: -60px;
+                }
+                
+                .form-group.verification-code-group {
+                    text-align: left;
+                }
+
+                #alternativeSigninOpts {
+                    width: 350px;
+                    margin: auto;
+                }
+
+                #msft-signin-wrap {
+                    margin-top: 20px;
+                }
+                
+                #msft-signin2 {
+                    height: 41px;
+                    border: 1px #8C8C8C solid;
+                    padding-top: 9px;
+                    color: #5E5E5E;
+                    cursor: pointer;
+                }
+
+                #msft-signin2 .icon {
+                    float: left;
+                    margin-left: 12px;
+                    margin-top: -2px;
+                }
+            </style>
+
+	
+<title>登录 - Sejda</title>
+
+	
+<meta name="description" content="&#x767b;&#x5f55;&#x60a8;&#x7684; SEJDA.COM &#x8d26;&#x6237;">
+
+	
+<link rel="alternate" hreflang="en" href="../account@changeEmail=true.html">
+
+	
+<link rel="alternate" hreflang="ro" href="../ro/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="nl" href="../nl/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="no" href="../no/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="es" href="../es/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="pt" href="../pt/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="de" href="../de/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="it" href="../it/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="sv" href="../sv/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="pl" href="../pl/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="fi" href="../fi/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="fr" href="../fr/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="ja" href="../ja/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="id" href="../id/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="hu" href="../hu/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="th" href="../th/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="vi" href="../vi/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="tr" href="../tr/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="ko" href="../ko/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="cs" href="../cs/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="zh-Hans" href="account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="zh-Hant" href="../tw/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="ar" href="../ar/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="da" href="../da/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="el" href="../el/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="hi" href="../hi/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="he" href="../he/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="ru" href="../ru/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="uk" href="../uk/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="x-default" href="../en/account@justUpgraded=desktop.html">
+
+	
+</head>
+<body data-download-server="www.sejda.com" data-proxy-token="1c7cd6573b8b353c0ebb5a18ed344e74" data-pro-user="false" data-max-file-size="500" data-ipcountry="IN" data-www="www59.sejda.com">
+<section>
+  <div style="display:none" class="alert alert-meh alert-dismissible centered" id="termsNotice">
+    <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span></button>
+    We've updated our <a target="_blank" href="../terms.html">terms of service</a> and/or <a target="_blank" href="../privacy.html">privacy policy</a>. Please take a moment and review them.<br>
+    By continuing to use our services you agree to our updated terms &amp; privacy policy.
+  </div>
+</section>
+<div class="StripeBackground">
+  <div class="stripe s0"></div>
+  <div class="stripe s1"></div>
+  <div class="stripe s2"></div>
+  <div class="stripe s3"></div>
+  <div class="stripe s4"></div>
+</div>
+<div class="container-fluid">
+  <header>
+    <section>
+<div class="container">
+  <div class="pull-left">
+      <a title="Sejda.com logo" href="index.html" class="brand"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMjUycHgiIGhlaWdodD0iMjUycHgiIHZpZXdCb3g9Ii00NzkuNSAyODAuNSAyNTIgMjUyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC00NzkuNSAyODAuNSAyNTIgMjUyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxjaXJjbGUgZmlsbD0iIzAwQkI4OCIgY3g9Ii0zNTMuMjUyIiBjeT0iNDA2LjI1MiIgcj0iMTIwLjI0OCIvPg0KPGcgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAgICAiPg0KCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0tMzAwLjYzMywzNDIuOTczbC05Ljk3OSwyMy4zNjNjLTE3LjE1Ni05LjU0NC0zNC4wOTUtMTMuMTI1LTQ1Ljc5OS0xMi42OTUNCgkJYy0xNS4yMzgsMC41NTgtMjQuOTY2LDYuNjY0LTI0LjU4NSwxNy4wNDNjMS4yMzcsMzMuNzg5LDg0LjA1NCwxMi42MjEsODUuODY4LDY4LjI4MWMxLjAxMiwyNy42MDQtMjIuNjU4LDQ1LjQ5OS01Ni42NjgsNDYuNzQ0DQoJCWMtMjQuMjkyLDAuODkxLTQ3LjYyMy04LjIwNi02NC4wNTctMjIuMmwxMC40MzgtMjIuOTM4YzE2LjQzNCwxMy45OTQsMzYuNjAxLDIxLjIxNyw1My4xNjQsMjAuNjA5DQoJCWMxOC4xMDctMC42NjQsMjguNjgtNy45MDYsMjguMjQyLTE5LjgzYy0xLjI2NC0zNC40NTEtODQuMDM1LTEyLjE4MS04Ni4wNDktNjcuMTY4Yy0wLjk3MS0yNi41MDIsMjEuMTY5LTQzLjg5Niw1NC43MzYtNDUuMTI3DQoJCUMtMzM1LjIyNSwzMjguMzE4LTMxNS4zMzUsMzM0LjAwMi0zMDAuNjMzLDM0Mi45NzN6Ii8+DQo8L2c+DQo8L3N2Zz4NCg==" alt="Sejda.com logo" class="logo">
+          <span class="name">Sejda</span></a>
+      <a href="javascript://" class="header-link header-tool more-tasks">
+          所有工具<i class="fal fa-fw fa-angle-down" style="margin-left: 3px;"></i>
+      </a>
+      <a href="compress-pdf.html" class="header-link header-tool hide-xs">压缩</a>
+      <a href="pdf-editor.html" class="header-link header-tool hide-xs">编辑</a>
+      <a href="sign-pdf.html" class="header-link header-tool hide-xs hide-lang-de hide-lang-hu hide-lang-ru">填写并签名</a>
+      <a href="merge-pdf.html" class="header-link header-tool hide-sm">合并</a>
+      <a href="delete-pdf-pages.html" class="header-link header-tool hide-md">删除页面</a>
+      <a href="crop-pdf.html" class="header-link header-tool hide-md hide-lang-de hide-lang-fr hide-lang-ro hide-lang-cs hide-lang-ru">裁剪</a>
+
+  </div>
+  <div id="user-header" class="pull-right">
+      <div class="header-links">
+          <a href="upgrade.html" class="header-link pricing-link">价格</a>
+          <a href="desktop.html" class="header-link desktop-link hide-xs">Desktop</a>
+          <a href="account@justUpgraded=desktop.html" id="loginBtn" class="loggedout header-link">登录</a>
+          <div style="display:none" class="dropdown loggedin header-link">
+              <a data-toggle="dropdown" class="dropdown-toggle">
+                  <i class="fas fa-user-circle"></i>
+                  <span class="caret"></span>
+              </a>
+              <ul role="menu" class="dropdown-menu pull-right dropdown-menu-right">
+                  <li role="presentation"><a href="account.html" tabindex="-1" role="menuitem">账户</a></li>
+                  <li role="presentation"><a id="logoutBtn" href="javascript://" tabindex="-1" role="menuitem">Logout</a></li>
+              </ul>
+          </div>
+          <a title="Select language" href="javascript://" class="header-link select-lang-btn hide-xs">
+              <i style="vertical-align: text-top;" class="fal fa-globe"></i>
+          </a>
+      </div>
+  </div>
+</div>
+<div id="megaMenu" style="display: none" class="container-fluid mega-menu">
+    <div class="mega-menu-inner">
+    <button aria-label="Close" class="close" type="button"><span aria-hidden="true">×</span></button>
+    <div class="container tasks-container">
+        <div class="row">
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6 col-recent-tools">
+                <ul class="popular">
+                    <li class="header">
+                        最近<i class="fal fa-history"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">合并</li>
+                    <li class="cat-merge">
+                        <a href="alternate-mix-pdf.html">
+                          <div class="caption">
+                              <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-random fa-stack-1x"></i>
+                              </span>交替和混合
+                          </div>
+                          <div class="description">从 2 个或更多文档中混合页面，并在它们之间交替</div>
+                        </a>
+                    </li>
+                    <li class="cat-merge">
+                        <a href="merge-pdf.html">
+                          <div class="caption">
+                              <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-sitemap fa-stack-1x"></i>
+                              </span>合并
+                          </div>
+                          <div class="description">将多个 PDF 和图像合并为一个</div>
+                        </a>
+                    </li>
+                    <li class="cat-merge">
+                        <a href="organize-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-object-group fa-stack-1x"></i>
+                            </span>组织</div>
+                            <div class="description">排列和重排 PDF 页面</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        拆分
+                    </li>
+                    <li class="cat-split">
+                        <a href="extract-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-external-link fa-stack-1x"></i>
+                                  </span>提取页面</div>
+                            <div class="description">获取仅包含所需页面的新文档</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-clone fa-stack-1x"></i>
+                                  </span>按页拆分</div>
+                            <div class="description">拆分特定页码范围或将每一页提取到单独的文档中</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-outline.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-bookmark fa-stack-1x"></i>
+                                  </span>按书签拆分</div>
+                            <div class="description">根据目录中的书签将章节提取到单独的文档中</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-down-the-middle.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-columns fa-stack-1x"></i>
+                                  </span>对半拆分</div>
+                            <div class="description">拆分双页布局扫描件，A3 转为双 A4 或 A4 转为双 A5</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-size.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-chart-pie fa-stack-1x"></i>
+                                  </span>按大小拆分</div>
+                            <div class="description">获取具有特定文件大小的多个较小文档</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-text.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-font fa-stack-1x"></i>
+                                  </span>按文本拆分</div>
+                            <div class="description">当特定文本逐页变化时提取单独的文档</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        编辑并签名
+                    </li>
+                    <li class="cat-edit">
+                        <a href="pdf-editor.html">
+                            <div class="caption">
+                                <span class="task-icon fa-stack fa-lg fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-pencil fa-stack-1x"></i>
+                                </span>编辑
+                            </div>
+                            <div class="description">免费编辑 PDF 文件. 填写并签名 PDF. 添加文本、链接、图像和形状. 编辑现有的 PDF 文本. 注释 PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="sign-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-signature fa-stack-1x"></i>
+                                  </span>填写并签名</div>
+                            <div class="description">向 PDF 添加签名. 填写 PDF 表格</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="pdf-forms.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-wpforms fa-stack-1x"></i>
+                                  </span>创建表格</div>
+                            <div class="description">免费 PDF 表格创建器. 使现有的 PDF 文档可填写</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="delete-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-trash fa-stack-1x"></i>
+                                  </span>删除页面</div>
+                            <div class="description">从 PDF 文档中删除页面</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        压缩
+                    </li>
+                    <li class="cat-compress">
+                        <a href="compress-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-compress fa-stack-1x"></i>
+                                  </span>压缩</div>
+                            <div class="description">减小 PDF 的大小</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        安全
+                    </li>
+                    <li class="cat-security">
+                        <a href="encrypt-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-lock fa-stack-1x"></i>
+                                  </span>保护</div>
+                            <div class="description">使用密码和权限保护文件</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="unlock-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-unlock fa-stack-1x"></i>
+                                  </span>解锁</div>
+                            <div class="description">从 PDF 文件中移除限制和密码</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="watermark-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-alt fa-stack-1x"></i>
+                                  </span>Watermark</div>
+                            <div class="description">向 PDF 文档添加图像或文本水印</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="flatten-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-font fa-stack-1x"></i>
+                                <i class="fal fa-slash fa-stack-1x"></i>
+                              </span>扁平化</div>
+                            <div class="description">使可填写的 PDF 变为只读. 打印和扫描一步完成</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        从 PDF 转换
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-excel.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-excel fa-stack-1x"></i>
+                                  </span>PDF 转 Excel</div>
+                            <div class="description">在线免费将 PDF 转换为 Excel 或 CSV. 从 PDF 中提取表格数据</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-jpg.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-image fa-stack-1x"></i>
+                                  </span>PDF 转 JPG</div>
+                            <div class="description">将 PDF 页面转换为 JPG、PNG 或 TIFF 图像</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-ppt.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-powerpoint fa-stack-1x"></i>
+                                  </span>PDF 转 PowerPoint</div>
+                            <div class="description">在线将 PDF 转换为 PowerPoint</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="extract-text-from-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-align-left fa-stack-1x"></i>
+                                  </span>PDF 转文本</div>
+                            <div class="description">复制 PDF 文档中的所有文本并将其提取到单独的文本文件中</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-word.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-word fa-stack-1x"></i>
+                                  </span>PDF 转 Word</div>
+                            <div class="description">在线从 PDF 转换为 DOC</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        转换为 PDF
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="html-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-code fa-stack-1x"></i>
+                                  </span>HTML 转 PDF</div>
+                            <div class="description">将网页或 HTML 文件转换为 PDF 文档</div>
+                        </a>
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="jpg-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-image fa-stack-1x"></i>
+                                  </span>JPG 转 PDF</div>
+                            <div class="description">将图像转换为 PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="word-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-word fa-stack-1x"></i>
+                                  </span>Word 转 PDF</div>
+                            <div class="description">从 Microsoft Word .docx 创建 PDF 文档</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        其他
+                    </li>
+                    <li class="cat-other">
+                        <a href="bates-numbering-pdf.html" title="">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-gavel fa-stack-1x"></i>
+                                  </span>Bates 编号</div>
+                            <div class="description">一次对多个文件进行 Bates 盖章</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="pdf-bookmarks.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-bookmark fa-stack-1x"></i>
+                                  </span>创建书签</div>
+                            <div class="description">创建 PDF 书签</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="crop-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-crop fa-stack-1x"></i>
+                                  </span>裁剪</div>
+                            <div class="description">修剪 PDF 页边距，更改 PDF 页面大小</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="edit-pdf-metadata.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-info-square fa-stack-1x"></i>
+                                  </span>编辑元数据</div>
+                            <div class="description">更改 PDF 作者、标题、关键词、主题和其他元数据字段</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="extract-images-from-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-popular fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-external-link fa-stack-1x"></i>
+                                  </span>提取图像</div>
+                            <div class="description">从 PDF 中提取图像</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="flip-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-reflect-horizontal fa-stack-1x"></i>
+                                  </span>Flip<span class="label label-success">New</span></div>
+                            <div class="description">水平或垂直镜像页面</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="grayscale-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-paint-brush fa-stack-1x"></i>
+                                  </span>灰度</div>
+                            <div class="description">将 PDF 文本和图像设为灰度</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="header-footer-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-heading fa-stack-1x"></i>
+                                  </span>页眉和页脚</div>
+                            <div class="description">向 PDF 文件应用页码或文本标签</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="n-up-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-th-large fa-stack-1x"></i>
+                                  </span>N-up</div>
+                            <div class="description">每张纸打印多个页面. A5 plan as 4-up on A3 or A4 2-up on A3</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="page-numbers-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-sort-numeric-up fa-stack-1x"></i>
+                                  </span>页码</div>
+                            <div class="description">添加 PDF 页码</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                         
+                    </li>
+                    <li class="cat-other">
+                        <a href="rename-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-i-cursor fa-stack-1x"></i>
+                                  </span>重命名</div>
+                            <div class="description">根据 PDF 页面中的文本更改文档文件名</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="repair-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-wrench fa-stack-1x"></i>
+                                  </span>修复</div>
+                            <div class="description">从损坏或损坏的 PDF 文档中恢复数据</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="resize-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-arrows-alt fa-stack-1x"></i>
+                                  </span>调整大小</div>
+                            <div class="description">添加页边距和填充，更改 PDF 页面大小</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="rotate-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-repeat fa-stack-1x"></i>
+                                  </span>旋转</div>
+                            <div class="description">永久旋转并保存 PDF 页面</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="delete-pdf-annotations.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-highlighter fa-stack-1x"></i>
+                                  </span>移除注释<span class="label label-success">New</span></div>
+                            <div class="description">从 PDF 文档中批量移除高亮、删除线或任何其他注释</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        扫描件
+                    </li>
+                    <li class="cat-scans">
+                        <a href="deskew-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-popular fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-alt fa-stack-1x rotated-5-deg"></i>
+                                  </span>纠偏</div>
+                            <div class="description">自动纠正和校直扫描的 PDF 页面</div>
+                        </a>
+                    </li>
+                    <li class="cat-scans">
+                        <a href="ocr-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-qrcode fa-stack-1x"></i>
+                                  </span>OCR</div>
+                            <div class="description">将 PDF 扫描件转换为可搜索的文本和 PDF. 从扫描件中提取文本</div>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="header lower">
+                        自动化
+                    </li>
+                    <li>
+                        <a href="workflows.html" title="">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-robot fa-stack-1x"></i>
+                                  </span>工作流<span class="label label-success">New</span></div>
+                            <div class="description">在 PDF 文档上执行一系列任务. 配置工具链以处理 PDF</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="centered">
+                <form autocomplete="off">
+                    <div style="display: none" class="input-group search-tools-wrap">
+                        <i class="fal fa-search"></i>
+                        <input onkeypress="if(event.keyCode === 13){ return false; }" id="searchTools" placeholder="Type to search" class="form-control input-sm" type="search" autocomplete="off">
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <a style="color: #AAA; text-decoration: underline; font-size: 14px;" class="get-support-btn" href="javascript://">Suggest a missing feature</a>
+                        <i class="fal fa-comment-lines" style="color: #AAA; vertical-align: middle;"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+  </header>
+</div>
+
+<section>
+  <div class="modal fade" id="contactFormModal" style="display: none">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+            <div style="margin: 20px 40px;" class="row centered contact-form-row">
+              <h3 style="margin-bottom: 10px;">联系 SEJDA.COM 支持</h3>
+              <h5 style="margin-bottom: 30px;">给我们发送电子邮件： <a href="mailto:hi@sejda.com">hi@sejda.com</a> 或使用下面的表格</h5>
+              
+              <div style="display: none; margin-top: 50px;" class="alert alert-success" id="contactSuccess">感谢您的留言.</div>
+
+              <section id="support-frequent-topics">
+                <div class="form-group">
+                  <label for="contact-msg">我需要帮助：</label>
+                  <br>
+                  <div data-topic="cancel-subscription" class="support-topic">取消订阅</div>
+                  <div data-topic="find-license-key" class="support-topic">找回激活码</div>
+                  <div class="support-topic">其他</div>
+                </div>
+                
+                <div class="support-answers">
+                  <div class="support-answer selected" style="display: none" data-answer="find-license-key" id="support_licenseKey_accountPage">
+                    你可以在账户页面找到 Sejda Desktop 激活码：
+                    <br>
+                    <a target="_blank" href="account@justUpgraded=desktop.html">https://www.sejda.com/account</a>
+                  </div>
+
+                  <div style="display: none" data-answer="find-license-key" class="support-answer" id="support_licenseKey_webOnly">
+                    你购买的是 Web-only 套餐，不包含 Sejda Desktop 使用权.
+                    <br>
+                    <a target="_blank" href="upgrade.html#pricing">https://www.sejda.com/upgrade</a>
+                    <br><br>
+                    以下是包含 Desktop 权限的套餐：
+                    <br>
+                    <a target="_blank" href="desktop.html#pricing">https://www.sejda.com/desktop</a>
+                    <br><br>
+                    购买 Desktop 套餐后，你的 Web-only 订单将自动退款.
+                  </div>
+
+                  <div class="support-answer selected" style="display: none" data-answer="cancel-subscription" id="support_cancelSub_accountPage">
+                    你可以点击账户页面订阅旁边的“Stop auto-renewal”来取消订阅：
+                    <br>
+                    <a target="_blank" href="account.html">https://www.sejda.com/account</a>
+                  </div>
+
+                  <div style="display: none" data-answer="cancel-subscription" class="support-answer" id="support_cancelSub_weekPass">
+                    周票套餐为一次性收费，不是自动续费订阅. 它不会自动续费，7 天后将降级为免费版.
+                  </div>
+                </div>
+              </section>
+              
+              <form style="display: none" id="contactForm">
+                <section id="contactFormProgressBar">
+                  <progress max="100" value="0" id="progress"></progress>
+                  <div class="step-item">1</div>
+                  <div class="step-item">2</div>
+                  <div class="step-item">3</div>
+                  <div class="step-item">4</div>
+                </section>
+                <section data-step="1" class="contact-form-step">
+                  <div class="form-group">
+                    <label for="contact-msg">消息</label>
+                    <textarea id="contact-msg" class="form-control" name="message" style="min-height: 100px; padding: 15px" required="required" placeholder="&#x8f93;&#x5165;&#x4f60;&#x7684;&#x7559;&#x8a00;"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-email">您的电子邮件地址</label>
+                    <input type="email" class="form-control" id="contact-email" name="email" placeholder="&#x53ef;&#x9009;. &#x5982;&#x679c;&#x9700;&#x8981;&#x56de;&#x590d;&#xff0c;&#x8bf7;&#x7559;&#x4e0b;&#x4f60;&#x7684;&#x90ae;&#x7bb1;" value="">
+                  </div>
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="completeStep1Btn" class="btn btn-default" type="button">
+                    下一步 <i style="margin-left: 10px" class="fal fa-chevron-right"></i> 
+                  </button>
+                </section>
+
+                <section style="display: none" data-step="2" class="contact-form-step">
+                  <div class="loader-wrap"><img src="../images/loaders/oval-green.svg" class="loader medium"></div>
+                </section>  
+                
+                <section style="display: none" data-step="3" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">建议的回答</label>
+                    <div id="automaticSupportAnswer"></div>
+                  </div>
+
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="completeStep3Btn" class="btn btn-link btn-xs" type="button">
+                    这没有回答我的问题
+                  </button>
+                </section>
+                
+                <section style="display: none" data-step="4" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">报告问题？</label>
+                  </div>
+                  <div style="width: 263px; text-align: left; margin: auto;" class="form-group">
+                    <div class="radio">
+                      <label>
+                        <input value="problem" name="supportMessageKind" type="radio">
+                        是的，我正在报告一个问题
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input value="other" name="supportMessageKind" type="radio">
+                        不，是其他事情
+                      </label>
+                    </div>
+                  </div>  
+                </section>
+
+                <section style="display: none" data-step="5" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">问题详情</label>
+                  </div>
+                  <div style="max-width: 430px; margin: auto; margin-top: -15px; text-align: left;" class="checkbox">
+                    <label><input style="margin: 5px; margin-right: 15px;" name="allowAccessLastTask" type="checkbox"> 授权访问您上一次的任务和所使用的文件.</label>
+                    <p style="font-size: 12px; padding-left: 33px; margin-top: 0;" class="help-block">我们将使用这些数据来更快地为您提供帮助. 保密.</p>
+                  </div>
+                  <div id="attachScreenshotFormGroup" class="form-group">
+                    <label class="light">Attach a screenshot*</label>
+                    <p style="font-size: 12px; padding-left: 33px; margin-top: -8px;" class="help-block">请分享您看到的问题截图.</p>
+                    <div>
+                      <label style="border: 1px solid #ccc;display: inline-block;padding: 6px 12px; cursor: pointer;" class="light" for="supportScreenshotFile">
+                        <i class="fal fa-plus"></i> 选择截图图像文件
+                      </label>
+                      <input style="display: none" accept=".png,.jpg,.jpeg,.bmp" type="file" id="supportScreenshotFile">
+                      <div id="supportScreenshotFilePreview"></div>
+                    </div>
+                  </div>
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="sendMessageBtn" class="btn btn-default" type="submit">发送消息</button>
+                </section>
+                
+                <input value="iluzie" name="suflet" type="hidden">
+                <input value="" name="source" type="hidden">
+                <input value="" name="source2" type="hidden">
+                <input value="" name="lastFile" type="hidden">
+                <input value="" name="lastTask" type="hidden">
+                <input value="" name="events" type="hidden">
+                <input value="" name="consoleLogs" type="hidden">
+                <input value="" name="screenshot" type="hidden">
+                <input value="" name="os" type="hidden">
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div style="display: none" class="modal app-modal" id="optOutChoicesPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Privacy Settings
+          </div>
+        </div>
+        <div class="modal-body">
+          This feature requires loading content from an external service, <span class="external_service_name"></span>, which could access personal data, such as your IP address, set cookies and track you.<br><br>
+          Please let us know if you are okay with that.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-no btn-light btn-xs" type="button">No, cancel</button>
+          <button class="btn btn-yes btn-xs" type="button">Yes, continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal app-error-modal" id="problemLoadingPageResourcePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            There's a problem loading this page
+          </div>
+        </div>
+        <div class="modal-body">
+          There was a problem loading a critical resource, which prevents the page from continuing.<br><br>
+          Please check your internet connection and reload the page to try again.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-yes btn-xs" type="button">Reload page</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div style="display: none" class="modal app-modal app-error-modal" id="genericErrorModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+            <div class="modal-title"></div>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="display: none" class="modal app-modal app-warning-modal" id="scanPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">不支持扫描文档</h4>
+        </div>
+        <div class="modal-body">
+          <div data-scope="edit">
+            <strong>不支持编辑扫描文档.</strong>
+            不支持修改扫描文档中的现有文本. 不过，你仍可以使用添加文本、图片和批注等其他功能.
+          </div>
+          <div style="display: none" data-scope="convert">
+            <strong>不支持转换扫描文档.</strong>
+            扫描版 PDF 是文本图片，缺少转换所需的文本数据.
+
+            <br><br>
+            文件: <span class="file-name"></span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="dont-show-anymore-opts">
+            <div class="checkbox">
+              <label><input style="margin-top: 5px" name="dontShowAnymore" type="checkbox"> 不再显示</label>
+            </div>
+          </div>
+          <a target="_blank" href="help.html#scans" class="btn btn-secondary btn-xs">了解更多</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="movePagePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            移动页面到新位置
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="form-inline">
+            <label class="light" for="moveNewPageNumber">页面新位置：</label>
+            <input style="width: 55px;margin: 0 10px;vertical-align: baseline; text-align: center" class="form-control input-xs" name="moveNewPageNumber" id="moveNewPageNumber" type="text">
+            <span class="num_of_pages"></span>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <div class="modal-hint">
+            提示：也可以直接拖动页面到新位置
+          </div>
+          <button class="btn btn-yes btn-xs" type="button">移动页面</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="changeLanguagePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            选择语言
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-6">
+              <ul>
+                <li><a href="../ar/account@justUpgraded=desktop.html">العربية</a></li>
+                <li><a href="../id/account@justUpgraded=desktop.html">Bahasa Indonesia</a></li>
+                <li><a href="../da/account@justUpgraded=desktop.html">Dansk</a></li>
+                <li><a href="../de/account@justUpgraded=desktop.html">Deutsch</a></li>
+                <li><a href="../cs/account@justUpgraded=desktop.html">Čeština</a></li>
+                <li><a href="../account@changeEmail=true.html">English</a></li>
+                <li><a href="../es/account@justUpgraded=desktop.html">Español</a></li>
+                <li><a href="../fr/account@justUpgraded=desktop.html">Français</a></li>
+                <li><a href="../it/account@justUpgraded=desktop.html">Italiano</a></li>
+                <li><a href="../el/account@justUpgraded=desktop.html">Ελληνικά</a></li>
+                <li><a href="../ja/account@justUpgraded=desktop.html">日本語</a></li>
+                <li><a href="../ko/account@justUpgraded=desktop.html">한국어</a></li>
+                <li><a href="account@justUpgraded=desktop.html">简体中文</a></li>
+                <li><a href="../tw/account@justUpgraded=desktop.html">繁體中文</a></li>
+              </ul>
+            </div>
+            <div class="col-xs-6">
+              <ul>
+                <li><a href="../hi/account@justUpgraded=desktop.html">हिन्दी</a></li>
+                <li><a href="../he/account@justUpgraded=desktop.html">עברית</a></li>
+                <li><a href="../hu/account@justUpgraded=desktop.html">Magyar</a></li>
+                <li><a href="../nl/account@justUpgraded=desktop.html">Nederlands</a></li>
+                <li><a href="../no/account@justUpgraded=desktop.html">Norsk</a></li>
+                <li><a href="../pl/account@justUpgraded=desktop.html">Polski</a></li>
+                <li><a href="../pt/account@justUpgraded=desktop.html">Português</a></li>
+                <li><a href="../ro/account@justUpgraded=desktop.html">Română</a></li>
+                <li><a href="../ru/account@justUpgraded=desktop.html">Русский</a></li>
+                <li><a href="../fi/account@justUpgraded=desktop.html">Suomi</a></li>
+                <li><a href="../sv/account@justUpgraded=desktop.html">Svenska</a></li>
+                <li><a href="../th/account@justUpgraded=desktop.html">ภาษาไทย</a></li>
+                <li><a href="../vi/account@justUpgraded=desktop.html">Tiếng Việt</a></li>
+                <li><a href="../tr/account@justUpgraded=desktop.html">Türkçe</a></li>
+                <li><a href="../uk/account@justUpgraded=desktop.html">Українська</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section style="display: none" class="i18n-strings">
+    <div data-key="We're sorry, something went wrong. Please contact support at hi@sejda.com">很抱歉，出错了. 请联系支持：hi@sejda.com</div>
+    <div data-key="Verification code is incorrect">验证码错误</div>
+    <div data-key="Too many attempts. Please try again later">尝试次数过多. 请稍后再试.</div>
+    <div data-key="An error occurred. Please try again or contact support">发生错误. 请重试或联系支持.</div>
+    <div data-key="Processing, please wait...">正在处理，请稍候...</div>
+    <div data-key="Sign in">登录</div>
+    <div data-key="Click to edit">点击编辑</div>
+    <div data-key="Sorry, unsupported image format:">抱歉，不支持的图片格式：</div>
+    <div data-key="We support the following image types:">我们支持以下图片类型：</div>
+    <div data-key="You already have an active monthly subscription">你已有一个有效的月度订阅</div>
+    <div data-key="Trying to add more seats? You can do this from your account page">想增加席位？你可以在账户页面操作</div>
+    <div data-key="Please verify your email address before continuing with your purchase">请先验证你的邮箱地址再继续购买</div>
+    <div data-key="We couldn't connect to GoogleDrive. Your browser (or add-ons) might be blocking the load of javascript files from GoogleDrive">我们无法连接到 GoogleDrive. 你的浏览器（或插件）可能正在阻止从 GoogleDrive 加载 javascript 文件</div>
+    <div data-key="Are you sure you want to remove the recent files list?">你确定要清除最近文件列表吗？</div>
+  </section>
+</section>
+
+
+        
+        <section id="content">
+            <div class="container centered">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="row login">
+                            <div><img src="../images/icon.svg" class="center-logo"></div>
+                            <h1>登录您的账户</h1>
+
+                            <form autocomplete="off" id="login-form" class="form">
+                                <div class="alert-wrap"><div style="display: none" class="alert alert-danger"></div></div>
+                                <input required="required" name="email" type="text" class="form-control input-lg" placeholder="Email" value="">
+
+                                <input style="margin-top: 20px;" required="required" name="password" type="password" class="form-control input-lg pwd-login-elem" placeholder="Password" value="">
+
+                                <div style="display: none" class="form-group verification-code-group">
+                                    <br>
+                                    <label style="color: #999;">电子邮件验证码</label>
+                                    <input type="text" class="form-control" name="emailVerificationCode" placeholder="123456">
+
+                                    <p class="help-block">
+                                        请确认确实是您.<br>
+                                        <span class="check_inbox_link">检查您的收件箱</span>.
+                                        我们已向您的电子邮件地址发送了验证码.
+                                        <br><br>
+                                        没有邮件？检查您的“垃圾邮件”文件夹或使用之前收到的验证码.
+                                    </p>
+                                </div>
+                                
+                                <input value="450A1P4G20FTGDPXAAFB" name="csrf" id="csrf" type="hidden">
+
+                                <div class="cf-turnstile" id="cf-turnstile"></div>
+
+                                <button class="btn btn-medium form-submit btn-login pwd-login-elem" type="submit"><i class="fal fa-lock"></i> 登录</button>
+                                
+                                <button class="btn btn-medium btn-login-sso sso-login-elem" type="button" style="display:none">Continue with SSO <i style="margin-left: 5px; margin-right: 0;" class="fal fa-chevron-right"></i> </button>
+
+                                <div class="switch-use-pwd sso-login-elem"><a href="javascript://">使用密码登录</a></div>
+                                <div class="forgot pwd-login-elem"><a target="_blank" href="reset-password.html">重置密码</a></div>
+                            </form>
+
+                            <section id="alternativeSigninOpts">
+                                <div style="margin-bottom: 40px" class="divider-line-with-text">
+                                    <p>或者</p>
+                                </div>
+                                <section id="google-signin-preload">
+                                    <div class="btn-login-google-preload">
+                                        <img src="../images/icons/google.svg" class="icon"> Sign in with Google 
+                                    </div>
+                                </section>
+                                <section style="display: none" id="google-signin-wrap">
+                                    <div style="display: none; margin-top: 10px;" class="alert alert-danger"></div>
+                                    <div id="google-signin2"></div>
+                                </section>
+                                <section id="msft-signin-wrap">
+                                    <div style="display: none; margin-top: 10px;" class="alert alert-danger"></div>
+                                    <div id="msft-signin2"><img src="../images/icons/microsoft.svg" class="icon"> Sign in with Microsoft</div>
+                                </section>
+                                <div class="fine-print">
+                                    By signing in you agree to the <a target="_blank" href="../terms.html">terms</a> and <a target="_blank" href="../privacy.html">privacy policy</a>
+                                </div>
+                            </section>
+                            <section id="login-new-account-wrap">
+                                <div style="font-size: 22px; font-weight: bold; text-align: left;">
+                                    New here?
+                                </div>
+                                <div class="fine-print">
+                                    有限的免费使用无需注册.<br>
+                                    注册付费无限制账户.<br>
+                                </div>
+                                <div class="new-account"><a target="_blank" href="../upgrade.html">创建一个账户</a></div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a style="display: none" href="javascript://" id="closeFrame">×</a>
+
+            <script data-src="/js/pages/login.min.js?v=33" class="pageScripts"></script>
+            <section>
+    <script src="../cache/639/js/libs-and-partials.min.js" async="async" id="libsAndPartialsScript"></script>
+</section>
+
+            <script>
+                window.onloadTurnstileCallback = function () {
+                    turnstile.render('#cf-turnstile', {
+                        theme: 'light',
+                        action: 'login',
+                        sitekey: '0x4AAAAAAAJsCN5ioa6BPARj',
+                        callback: function(token) {
+                            //console.log('Turnstile challenge success'+ token);
+
+                            // token expires in 300 seconds
+                            setTimeout(function() {
+                                turnstile.reset()
+                            }, 290000)
+                        },
+                    });
+                };
+            </script>
+
+            <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onloadTurnstileCallback"></script>
+        </section>
+    
+
+<div id="taskResultsModal" role="dialog" tabindex="-1" class="modal fade"></div>
+
+
+
+
+	
+</body>
+</html>  
+  

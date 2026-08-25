@@ -1,0 +1,2205 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="utf-8">
+
+  <link as="style" href="../css/index.min.css@v=404.css" rel="preload">
+  <link crossorigin="anonymous" type="font/woff2" as="font" href="../fonts/braille/Atkinson-Hyperlegible-Regular-102a.woff2" rel="preload">
+  <link crossorigin="anonymous" type="font/woff2" as="font" href="../fonts/braille/Atkinson-Hyperlegible-Bold-102a.woff2" rel="preload">
+  <link as="script" href="../cache/639/js/libs-and-partials.min.js" rel="preload">
+
+  <link href="../images/icon_128.png" rel="shortcut icon">
+
+  <meta content="website" property="og:type">
+  <meta content="https://www.sejda.com/" property="og:url">
+  <meta content="Sejda.com - We help with your PDF tasks" property="og:site_name">
+
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="@SejdaPDF" name="twitter:site">
+  <meta content="@SejdaPDF" name="twitter:creator">
+
+  <meta content="1762774073964212" property="fb:app_id">
+  <meta content="8721525582-fbt24du8pl38r1ht2ihu9q9vl815o5t8.apps.googleusercontent.com" name="google-signin-client_id">
+
+  <link rel="canonical" href="html-pdf-api.html">
+
+  <link href="../css/index.min.css@v=404.css" type="text/css" rel="stylesheet">
+
+	
+<link as="script" href="../js/pages/upgrade.min.js@v=135" rel="preload">
+
+	
+<link as="script" href="../js/pages/html-pdf-api.min.js@v=5" rel="preload">
+
+	
+<title>HTML to PDF API</title>
+
+	
+<meta content="Unlimited docs. Free plan, no credit card required. REST API to convert web pages to PDF using your favourite framework or language" name="description">
+
+	
+<link rel="alternate" hreflang="en" href="../html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="ro" href="../ro/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="nl" href="../nl/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="no" href="../no/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="es" href="../es/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="pt" href="../pt/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="de" href="../de/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="it" href="../it/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="sv" href="../sv/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="pl" href="html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="fi" href="../fi/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="fr" href="../fr/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="ja" href="../ja/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="id" href="../id/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="hu" href="../hu/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="th" href="../th/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="vi" href="../vi/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="tr" href="../tr/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="ko" href="../ko/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="cs" href="../cs/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="zh-Hans" href="../zh/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="zh-Hant" href="../tw/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="ar" href="../ar/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="da" href="../da/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="el" href="../el/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="hi" href="../hi/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="he" href="../he/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="ru" href="../ru/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="uk" href="../uk/html-pdf-api.html">
+
+	
+<link rel="alternate" hreflang="x-default" href="../en/html-pdf-api.html">
+
+	
+<style>
+                .contact-btn {
+                    margin-left: 20px;
+                }
+
+                .platform-explain {
+                    font-size: 14px;
+                    font-weight: normal;
+                    margin-top: -4px;
+                }
+
+                .api-get-started-btn {
+                    text-align: center;
+                    padding: 10px 15px;
+                    box-shadow: 0 4px 0 #3f6f21;
+                    border-radius: 7px;
+                    min-width: 250px;
+                    margin-bottom: 30px;
+                    margin-top: 30px;
+                }
+
+                .curve-up-separator path {
+                    fill: #EEE;
+                    stroke: transparent;
+                }
+
+
+                .it-features {
+                  -webkit-padding-start: 0;
+                  padding: 10px 0;
+                  text-align: left;
+                }
+
+                .it-features li:not(.pricingLink):before {
+                  content: "\f00c";
+                  font-family: "Font Awesome 5 Pro";
+                  display: inline-block;
+                  width: 1.6em;
+                  font-size: 14px;
+                  font-weight:300;
+                  font-style: normal;
+                }
+
+                .it-features li.pricingLink {
+                  margin-top: 10px;
+                }
+
+                .it-features li {
+                  color: #525f7f;
+                  font-size: 18px;
+                  padding: 3px;
+                }
+
+                .it-features li.pricingLink {
+                  margin-top: 20px;
+                }
+
+                .try-conversion-wrap {
+                  max-width: 400px;
+                  margin: auto;
+                  margin-bottom: 50px;
+                  margin-top: 10px;
+                }
+
+                #urlTryConversionInput {
+                  max-width: 300px;
+                  display: inline-block;
+                  margin-right: 5px;
+                }
+
+                .horizontal-pricing-plans {
+                  max-width: 800px;
+                  margin: auto;
+                }
+
+                .plan-horizontal {
+                  vertical-align: middle;
+                  padding: 5px;
+                  color: #000;
+                  border: 1px solid #e9ecef;
+                  box-shadow: 1px 1px 6px #e9ecef;
+                  border-radius: 5px;
+                  margin-top: 5px;
+                  cursor: pointer;
+                  font-size: 24px;
+                  min-width: 800px;
+                }
+
+                .plan-horizontal:hover {
+                  border-color: #2cc76a;
+                  background-color: rgba(0,187,136,.07);
+                  opacity: 1 !important;
+                }
+
+                .plan-docs, .plan-amount, .plan-ccy, .plan-rate, .plan-btn {
+                  display: inline-block;
+                  vertical-align: middle;
+                }
+
+                .plan-amount, .plan-rate {
+                  width: 200px;
+                }
+
+                .plan-ccy, .plan-docs {
+                  width: 100px;
+                }
+
+                .plan-horizontal i {
+                  color: #AAA;
+                  font-size: 16px;
+                  font-style: normal;
+                }
+
+                .plan-btn {
+                  width: 100px;
+                }
+
+                .plan-header {
+                  padding: 10px;
+                  text-transform: uppercase;
+                  min-width: 800px;
+                }
+
+                .plan-header {
+                  color: #9aa5aa;
+                  font-size: 14px;
+                  line-height: 14px;
+                }
+
+                .all-plans-features {
+                  text-align: left;
+                  max-width: 520px;
+                  margin: auto;
+                  margin-top: 30px;
+                }
+
+                .all-plans-features .feature-desc a,
+                .all-plans-features .feature-desc a:link {
+                  color: #2cc76a;
+                  text-decoration: underline;
+                }
+
+                .all-plans-features .feature-desc a:hover {
+                  color: #259066;
+                  text-decoration: none;
+                }
+
+                .all-plans-features li {
+                  color: #525f7f;
+                  font-size: 18px;
+                  padding: 3px;
+                }
+
+                .all-plans-features li:before {
+                  content: "\f00c";
+                  font-family: "Font Awesome 5 Pro";
+                  display: inline-block;
+                  width: 1.6em;
+                  margin-left: -1.2em;
+                  font-size: 14px;
+                  font-weight:300;
+                  font-style: normal;
+                }
+
+                .all-plans-features li a {
+                  color: #2cc76a;
+                  text-decoration: underline;
+                }
+
+                .nav-code-samples {
+                    width: 540px;
+                    margin: auto;
+                }
+
+                .osx-window {
+                    color: #000;
+                    font-family: HelveticaNeue, 'Helvetica Neue', 'Lucida Grande', Arial, sans-serif;
+                    background: #fff;
+                    margin: auto;
+                    margin-top: 30px;
+                    border: 1px solid #acacac;
+                    border-radius: 6px;
+                    box-shadow: 0px 0px 20px #acacac;
+                    width: 670px;
+                }
+
+                .osx-window .titlebar span {
+                    line-height: 9px;
+                    vertical-align: 50%;
+                }
+
+                .osx-window .titlebar {
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0.0, #ebebeb, color-stop(1.0, #d5d5d5)));
+                    background: -webkit-linear-gradient(top, #ebebeb, #d5d5d5);
+                    background: -moz-linear-gradient(top, #ebebeb, #d5d5d5);
+                    background: -ms-linear-gradient(top, #ebebeb, #d5d5d5);
+                    background: -o-linear-gradient(top, #ebebeb, #d5d5d5);
+                    background: linear-gradient(top, #ebebeb, #d5d5d5);
+                    color: #4d494d;
+                    font-size: 11pt;
+                    line-height: 20px;
+                    text-align: center;
+                    width: 100%;
+                    height: 27px;
+                    padding-top: 2px;
+                    border-top: 1px solid #f3f1f3;
+                    border-bottom: 1px solid #b1aeb1;
+                    border-top-left-radius: 6px;
+                    border-top-right-radius: 6px;
+                    user-select: none;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    -o-user-select: none;
+                    cursor: default;
+                }
+
+                .osx-window .buttons {
+                    padding-left: 8px;
+                    padding-top: 3px;
+                    float: left;
+                    line-height: 0px;
+                }
+
+                .osx-window .osx-close {
+                    background: #ff5c5c;
+                    font-size: 9pt;
+                    width: 11px;
+                    height: 11px;
+                    border: 1px solid #e33e41;
+                    border-radius: 50%;
+                    display: inline-block;
+                }
+
+                .osx-window .osx-close:active {
+                    background: #c14645;
+                    border: 1px solid #b03537;
+                }
+
+                .osx-window .osx-close:active .osx-closebutton {
+                    color: #4e0002;
+                }
+
+                .osx-window .osx-closebutton {
+                    color: #820005;
+                    visibility: hidden;
+                    cursor: default;
+                }
+
+                .osx-window .osx-minimize {
+                    background: #ffbd4c;
+                    font-size: 9pt;
+                    line-height: 11px;
+                    margin-left: 4px;
+                    width: 11px;
+                    height: 11px;
+                    border: 1px solid #e09e3e;
+                    border-radius: 50%;
+                    display: inline-block;
+                }
+
+                .osx-window .osx-minimize:active {
+                    background: #c08e38;
+                    border: 1px solid #af7c33;
+                }
+
+                .osx-window .osx-minimize:active .osx-minimizebutton {
+                    color: #5a2607;
+                }
+
+                .osx-window .osx-minimizebutton {
+                    color: #9a5518;
+                    visibility: hidden;
+                    cursor: default;
+                }
+
+                .osx-window .osx-zoom {
+                    background: #00ca56;
+                    font-size: 9pt;
+                    line-height: 11px;
+                    margin-left: 6px;
+                    width: 11px;
+                    height: 11px;
+                    border: 1px solid #14ae46;
+                    border-radius: 50%;
+                    display: inline-block;
+                }
+
+                .osx-window .osx-zoom:active {
+                    background: #029740;
+                    border: 1px solid #128435;
+                }
+
+                .osx-window .osx-zoom:active .osx-zoombutton {
+                    color: #003107;
+                }
+
+                .osx-window .osx-zoombutton {
+                    color: #006519;
+                    visibility: hidden;
+                    cursor: default;
+                }
+
+                .osx-window .content {
+                    padding: 10px;
+                    text-align: left;
+                }
+
+                .osx-window .content pre {
+                    font-family: Menlo,Monaco,Consolas,Courier New,monospace;
+                    color: #000;
+                    font-size: 14px;
+                    word-break: break-word;
+                    word-wrap: break-word;
+                    background-color: #fff;
+                    border: none;
+                }
+
+                .header-tool {
+                  display: none;
+                }
+
+                .header-link.desktop-link {
+                  display: none;
+                }
+
+                .under-cta-checkmarks {
+                    margin-bottom: 20px;
+                    color: #0b8;
+                }
+                .under-cta-checkmarks span {
+                    margin-right: 15px;
+                    display: inline-block;
+                }
+
+                #createFreeApiAccountSection {
+                    text-align: center;
+                }
+                
+                #createFreeApiAccountSection .verification-code-group {
+                    margin-top: 20px;
+                }
+                </style>
+
+	
+</head>
+<body data-download-server="www.sejda.com" data-proxy-token="1c7cd6573b8b353c0ebb5a18ed344e74" data-pro-user="false" data-max-file-size="500" data-ipcountry="IN" data-www="www59.sejda.com">
+<section>
+  <div style="display:none" class="alert alert-meh alert-dismissible centered" id="termsNotice">
+    <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span></button>
+    We've updated our <a target="_blank" href="../terms.html">terms of service</a> and/or <a target="_blank" href="../privacy.html">privacy policy</a>. Please take a moment and review them.<br>
+    By continuing to use our services you agree to our updated terms &amp; privacy policy.
+  </div>
+</section>
+<div class="StripeBackground">
+  <div class="stripe s0"></div>
+  <div class="stripe s1"></div>
+  <div class="stripe s2"></div>
+  <div class="stripe s3"></div>
+  <div class="stripe s4"></div>
+</div>
+<div class="container-fluid">
+  <header>
+    <section>
+<div class="container">
+  <div class="pull-left">
+      <a title="Sejda.com logo" href="index.html" class="brand"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMjUycHgiIGhlaWdodD0iMjUycHgiIHZpZXdCb3g9Ii00NzkuNSAyODAuNSAyNTIgMjUyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC00NzkuNSAyODAuNSAyNTIgMjUyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxjaXJjbGUgZmlsbD0iIzAwQkI4OCIgY3g9Ii0zNTMuMjUyIiBjeT0iNDA2LjI1MiIgcj0iMTIwLjI0OCIvPg0KPGcgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAgICAiPg0KCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0tMzAwLjYzMywzNDIuOTczbC05Ljk3OSwyMy4zNjNjLTE3LjE1Ni05LjU0NC0zNC4wOTUtMTMuMTI1LTQ1Ljc5OS0xMi42OTUNCgkJYy0xNS4yMzgsMC41NTgtMjQuOTY2LDYuNjY0LTI0LjU4NSwxNy4wNDNjMS4yMzcsMzMuNzg5LDg0LjA1NCwxMi42MjEsODUuODY4LDY4LjI4MWMxLjAxMiwyNy42MDQtMjIuNjU4LDQ1LjQ5OS01Ni42NjgsNDYuNzQ0DQoJCWMtMjQuMjkyLDAuODkxLTQ3LjYyMy04LjIwNi02NC4wNTctMjIuMmwxMC40MzgtMjIuOTM4YzE2LjQzNCwxMy45OTQsMzYuNjAxLDIxLjIxNyw1My4xNjQsMjAuNjA5DQoJCWMxOC4xMDctMC42NjQsMjguNjgtNy45MDYsMjguMjQyLTE5LjgzYy0xLjI2NC0zNC40NTEtODQuMDM1LTEyLjE4MS04Ni4wNDktNjcuMTY4Yy0wLjk3MS0yNi41MDIsMjEuMTY5LTQzLjg5Niw1NC43MzYtNDUuMTI3DQoJCUMtMzM1LjIyNSwzMjguMzE4LTMxNS4zMzUsMzM0LjAwMi0zMDAuNjMzLDM0Mi45NzN6Ii8+DQo8L2c+DQo8L3N2Zz4NCg==" alt="Sejda.com logo" class="logo">
+          <span class="name">Sejda</span></a>
+      <a href="javascript://" class="header-link header-tool more-tasks">
+          Narzędzia<i class="fal fa-fw fa-angle-down" style="margin-left: 3px;"></i>
+      </a>
+      <a href="compress-pdf.html" class="header-link header-tool hide-xs">Kompresja</a>
+      <a href="pdf-editor.html" class="header-link header-tool hide-xs">Edycja</a>
+      <a href="sign-pdf.html" class="header-link header-tool hide-xs hide-lang-de hide-lang-hu hide-lang-ru">Wypełnienie I Podpis</a>
+      <a href="merge-pdf.html" class="header-link header-tool hide-sm">Scal</a>
+      <a href="delete-pdf-pages.html" class="header-link header-tool hide-md">Usuń Strony</a>
+      <a href="crop-pdf.html" class="header-link header-tool hide-md hide-lang-de hide-lang-fr hide-lang-ro hide-lang-cs hide-lang-ru">Tnij</a>
+
+  </div>
+  <div id="user-header" class="pull-right">
+      <div class="header-links">
+          <a href="upgrade.html" class="header-link pricing-link">Cennik</a>
+          <a href="desktop.html" class="header-link desktop-link hide-xs">Desktop</a>
+          <a href="account@justUpgraded=desktop.html" id="loginBtn" class="loggedout header-link">Zaloguj</a>
+          <div style="display:none" class="dropdown loggedin header-link">
+              <a data-toggle="dropdown" class="dropdown-toggle">
+                  <i class="fas fa-user-circle"></i>
+                  <span class="caret"></span>
+              </a>
+              <ul role="menu" class="dropdown-menu pull-right dropdown-menu-right">
+                  <li role="presentation"><a href="account.html" tabindex="-1" role="menuitem">Konto</a></li>
+                  <li role="presentation"><a id="logoutBtn" href="javascript://" tabindex="-1" role="menuitem">Logout</a></li>
+              </ul>
+          </div>
+          <a title="Select language" href="javascript://" class="header-link select-lang-btn hide-xs">
+              <i style="vertical-align: text-top;" class="fal fa-globe"></i>
+          </a>
+      </div>
+  </div>
+</div>
+<div id="megaMenu" style="display: none" class="container-fluid mega-menu">
+    <div class="mega-menu-inner">
+    <button aria-label="Close" class="close" type="button"><span aria-hidden="true">×</span></button>
+    <div class="container tasks-container">
+        <div class="row">
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6 col-recent-tools">
+                <ul class="popular">
+                    <li class="header">
+                        Ostatnie<i class="fal fa-history"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">Scal</li>
+                    <li class="cat-merge">
+                        <a href="alternate-mix-pdf.html">
+                          <div class="caption">
+                              <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-random fa-stack-1x"></i>
+                              </span>Alternuj i Miksuj
+                          </div>
+                          <div class="description">Mieszane strony z 2 dokumentów, zmienne między nimi</div>
+                        </a>
+                    </li>
+                    <li class="cat-merge">
+                        <a href="merge-pdf.html">
+                          <div class="caption">
+                              <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-sitemap fa-stack-1x"></i>
+                              </span>Scal
+                          </div>
+                          <div class="description">Połącz wiele dokumentów w jeden plik PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-merge">
+                        <a href="organize-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-object-group fa-stack-1x"></i>
+                            </span>Organizuj</div>
+                            <div class="description">Uporządkuj i zmień kolejność stron PDF</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Rozdziel
+                    </li>
+                    <li class="cat-split">
+                        <a href="extract-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-external-link fa-stack-1x"></i>
+                                  </span>Wyodrębniaj strony</div>
+                            <div class="description">Uzyskaj nowy dokument zawierający tylko żądane strony</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-clone fa-stack-1x"></i>
+                                  </span>Rodziel według stron</div>
+                            <div class="description">Podziel konkretne zakresy stron lub wyodrębnij każdą stronę w osobnym dokumencie</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-outline.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-bookmark fa-stack-1x"></i>
+                                  </span>Podziel według zakładek</div>
+                            <div class="description">Wyodrębnij rozdziały, aby oddzielić dokumenty znajdujące się na zakładkach w spisie treści</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-down-the-middle.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-columns fa-stack-1x"></i>
+                                  </span>Rozdziel na pół</div>
+                            <div class="description">Podziel skan układu stron na dwa, A3 na podwójne A4 lub A4 na podwójne A5</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-size.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-chart-pie fa-stack-1x"></i>
+                                  </span>Rozdziel według rozmiaru</div>
+                            <div class="description">Uzyskaj wiele mniejszych dokumentów z określinymi rozmiarami plików</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-text.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-font fa-stack-1x"></i>
+                                  </span>Rozdziel według tekstu</div>
+                            <div class="description">Wyodrębnij oddzielne dokumenty, gdy określony tekst zmienia się od strony do strony</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        Edytuj i Podpisuj
+                    </li>
+                    <li class="cat-edit">
+                        <a href="pdf-editor.html">
+                            <div class="caption">
+                                <span class="task-icon fa-stack fa-lg fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-pencil fa-stack-1x"></i>
+                                </span>Edycja
+                            </div>
+                            <div class="description">Edytuj pliki PDF za darmo. Wypełniaj i Podpisuj PDFy.  Dodawaj tekst, linki, obrazki i kształty.  Dodaj istniejący tekst PDF.  Komentuj PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="sign-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-signature fa-stack-1x"></i>
+                                  </span>Wypełnienie I Podpis</div>
+                            <div class="description">Dodaj podpis do PDF. Wypełniaj formularze PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="pdf-forms.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-wpforms fa-stack-1x"></i>
+                                  </span>Twórz Formularze</div>
+                            <div class="description">Darmowy kreator formularzy PDF. Uczyń istniejące dokumenty PDF wypełnialnymi</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="delete-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-trash fa-stack-1x"></i>
+                                  </span>Usuń Strony</div>
+                            <div class="description">Usuwanie stron z dokumentu PDF</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Kompresja
+                    </li>
+                    <li class="cat-compress">
+                        <a href="compress-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-compress fa-stack-1x"></i>
+                                  </span>Kompresja</div>
+                            <div class="description">Zmniejszenie rozmiaru pliku PDF</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Bezpieczeństwo
+                    </li>
+                    <li class="cat-security">
+                        <a href="encrypt-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-lock fa-stack-1x"></i>
+                                  </span>Chroń</div>
+                            <div class="description">Chroni plik za pomocą hasła i uprawnień</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="unlock-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-unlock fa-stack-1x"></i>
+                                  </span>Odblokuj</div>
+                            <div class="description">Uprawnienia i hasło na usuwanie niechronionego pliku z plików PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="watermark-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-alt fa-stack-1x"></i>
+                                  </span>Watermark</div>
+                            <div class="description">Dodawaj obrazy lub znaki wodne do dokumentów PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="flatten-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-font fa-stack-1x"></i>
+                                <i class="fal fa-slash fa-stack-1x"></i>
+                              </span>Spłaszcz</div>
+                            <div class="description">Sprawia, że wypełnialne PDF-y są tylko do odczytu. Drukuj i skanuj w jednym kroku</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        Konwertuj z PDF
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-excel.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-excel fa-stack-1x"></i>
+                                  </span>PDF do Excela</div>
+                            <div class="description">Konwertuj PDFy do plików Excel lub CSV online, za darmo. Wyodrębniaj dane tabeli z PDFów</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-jpg.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-image fa-stack-1x"></i>
+                                  </span>PDF na JPG</div>
+                            <div class="description">Uzyskaj przekształcanie stron na obrazy JPG, PNG lub TIFF</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-ppt.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-powerpoint fa-stack-1x"></i>
+                                  </span>PDF do PowerPoint</div>
+                            <div class="description">Konwertuj PDF do PowerPoint online</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="extract-text-from-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-align-left fa-stack-1x"></i>
+                                  </span>PDF do Tekstu</div>
+                            <div class="description">Kopiuj cały tekst z dokumentu PDF i wyodrębnij go do osobnego pliku tekstowego</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-word.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-word fa-stack-1x"></i>
+                                  </span>PDF do Word</div>
+                            <div class="description">Konwertuj z PDF do DOC online</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Konwertuj do PDF
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="html-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-code fa-stack-1x"></i>
+                                  </span>HTML do PDFa</div>
+                            <div class="description">Konwertuj stony internetowe lub pliki HTML do dokumentów PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="jpg-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-image fa-stack-1x"></i>
+                                  </span>JPG do PDF</div>
+                            <div class="description">Konweruj Obrazy do PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="word-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-word fa-stack-1x"></i>
+                                  </span>Word do PDFa</div>
+                            <div class="description">Stwórz dokument PDF z pliku .docx Microsoft Word</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        Inne
+                    </li>
+                    <li class="cat-other">
+                        <a href="bates-numbering-pdf.html" title="">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-gavel fa-stack-1x"></i>
+                                  </span>Numeracja Batesa</div>
+                            <div class="description">Stemple Batesa na wielu plikach na raz</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="pdf-bookmarks.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-bookmark fa-stack-1x"></i>
+                                  </span>Utwórz Zakładki</div>
+                            <div class="description">Utwórz Zakładki PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="crop-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-crop fa-stack-1x"></i>
+                                  </span>Tnij</div>
+                            <div class="description">Przycinanie marginesów PDF, zmiana rozmiaru strony PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="edit-pdf-metadata.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-info-square fa-stack-1x"></i>
+                                  </span>Edytuj Metadane</div>
+                            <div class="description">Zmień Autora PDF, Tytuł, Słowa Kluczowe, Temat i inne pola metadanych</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="extract-images-from-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-popular fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-external-link fa-stack-1x"></i>
+                                  </span>Wyodrębnij Obrazy</div>
+                            <div class="description">Wyodrębnij obrazy z PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="flip-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-reflect-horizontal fa-stack-1x"></i>
+                                  </span>Odbij<span class="label label-success">New</span></div>
+                            <div class="description">Odbij strony w poziomie lub pionie</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="grayscale-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-paint-brush fa-stack-1x"></i>
+                                  </span>Czarno-białe</div>
+                            <div class="description">Konwertuj tekst i obrazy PDF do szarości</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="header-footer-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-heading fa-stack-1x"></i>
+                                  </span>Nagłówek i Stopka</div>
+                            <div class="description">Dodawaj numery stron lub adnotacje do plików PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="n-up-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-th-large fa-stack-1x"></i>
+                                  </span>N-up</div>
+                            <div class="description">Drukuj wiele stron na arkusz na dokument. A5 plan as 4-up on A3 or A4 2-up on A3</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="page-numbers-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-sort-numeric-up fa-stack-1x"></i>
+                                  </span>Numery Stron</div>
+                            <div class="description">Dodaj numery stron PDF</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                         
+                    </li>
+                    <li class="cat-other">
+                        <a href="rename-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-i-cursor fa-stack-1x"></i>
+                                  </span>Zmień nazwę</div>
+                            <div class="description">Zmień nazwę pliku dokumentu na podstawie tekstu ze stron PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="repair-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-wrench fa-stack-1x"></i>
+                                  </span>Napraw</div>
+                            <div class="description">Odzyskaj dane z uszkodzonego dokumentu PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="resize-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-arrows-alt fa-stack-1x"></i>
+                                  </span>Zmień rozmiar</div>
+                            <div class="description">Dodawaj marginesy stron i dopełnienie. Zmieniaj rozmiary strony PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="rotate-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-repeat fa-stack-1x"></i>
+                                  </span>Obróć</div>
+                            <div class="description">Obracanie stron PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="delete-pdf-annotations.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-highlighter fa-stack-1x"></i>
+                                  </span>Usuń adnotacje<span class="label label-success">New</span></div>
+                            <div class="description">Usuń wsadowo podświetlenia, przekreślenia lub inne adnotacje z dokumentu PDF</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Skanuj
+                    </li>
+                    <li class="cat-scans">
+                        <a href="deskew-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-popular fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-alt fa-stack-1x rotated-5-deg"></i>
+                                  </span>Deskew</div>
+                            <div class="description">Automatycznie prostuj i usuwaj zniekształcenia ze skanowanych stron PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-scans">
+                        <a href="ocr-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-qrcode fa-stack-1x"></i>
+                                  </span>OCR</div>
+                            <div class="description">Konwertuj skany PDF do tekstui PDFów dających się wyszukiwać. Szybko wyodrębniaj tekst ze skanów</div>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="header lower">
+                        Automatyzuj
+                    </li>
+                    <li>
+                        <a href="workflows.html" title="">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-robot fa-stack-1x"></i>
+                                  </span>Workflow<span class="label label-success">New</span></div>
+                            <div class="description">Wykonaj serię Task na dokumentach PDF. Skonfiguruj łańcuchy narzędzi do przetwarzania PDF-ów</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="centered">
+                <form autocomplete="off">
+                    <div style="display: none" class="input-group search-tools-wrap">
+                        <i class="fal fa-search"></i>
+                        <input onkeypress="if(event.keyCode === 13){ return false; }" id="searchTools" placeholder="Type to search" class="form-control input-sm" type="search" autocomplete="off">
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <a style="color: #AAA; text-decoration: underline; font-size: 14px;" class="get-support-btn" href="javascript://">Suggest a missing feature</a>
+                        <i class="fal fa-comment-lines" style="color: #AAA; vertical-align: middle;"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+  </header>
+</div>
+
+<section>
+  <div class="modal fade" id="contactFormModal" style="display: none">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+            <div style="margin: 20px 40px;" class="row centered contact-form-row">
+              <h3 style="margin-bottom: 10px;">Skontaktuj się ze wsparciem SEJDA.COM</h3>
+              <h5 style="margin-bottom: 30px;">Napisz do nas na adres <a href="mailto:hi@sejda.com">hi@sejda.com</a> lub skorzystaj z poniższego formularza</h5>
+              
+              <div style="display: none; margin-top: 50px;" class="alert alert-success" id="contactSuccess">Dziękujemy za wiadomość.</div>
+
+              <section id="support-frequent-topics">
+                <div class="form-group">
+                  <label for="contact-msg">Potrzebuję pomocy z</label>
+                  <br>
+                  <div data-topic="cancel-subscription" class="support-topic">Anuluj subskrypcję</div>
+                  <div data-topic="find-license-key" class="support-topic">Znajdź klucz licencyjny</div>
+                  <div class="support-topic">Coś innego</div>
+                </div>
+                
+                <div class="support-answers">
+                  <div class="support-answer selected" style="display: none" data-answer="find-license-key" id="support_licenseKey_accountPage">
+                    Swój klucz licencyjny Sejda Desktop znajdziesz na stronie swojego konta:
+                    <br>
+                    <a target="_blank" href="account@justUpgraded=desktop.html">https://www.sejda.com/account</a>
+                  </div>
+
+                  <div style="display: none" data-answer="find-license-key" class="support-answer" id="support_licenseKey_webOnly">
+                    Zakupiłeś plan tylko dla Web, który nie obejmuje dostępu do Sejda Desktop.
+                    <br>
+                    <a target="_blank" href="upgrade.html#pricing">https://www.sejda.com/upgrade</a>
+                    <br><br>
+                    Oto plany z dostępem do Desktop:
+                    <br>
+                    <a target="_blank" href="desktop.html#pricing">https://www.sejda.com/desktop</a>
+                    <br><br>
+                    Po zakupie planu Desktop, Twój zakup planu tylko dla Web zostanie automatycznie zwrócony.
+                  </div>
+
+                  <div class="support-answer selected" style="display: none" data-answer="cancel-subscription" id="support_cancelSub_accountPage">
+                    Możesz anulować subskrypcję ze strony swojego konta, klikając &quot;Zatrzymaj automatyczne odnawianie&quot; obok swojej subskrypcji:
+                    <br>
+                    <a target="_blank" href="account.html">https://www.sejda.com/account</a>
+                  </div>
+
+                  <div style="display: none" data-answer="cancel-subscription" class="support-answer" id="support_cancelSub_weekPass">
+                    Plan Tygodniowy to jednorazowa opłata, a nie subskrypcja cykliczna. Nie odnawia się automatycznie i po 7 dniach przechodzi na wersję darmową.
+                  </div>
+                </div>
+              </section>
+              
+              <form style="display: none" id="contactForm">
+                <section id="contactFormProgressBar">
+                  <progress max="100" value="0" id="progress"></progress>
+                  <div class="step-item">1</div>
+                  <div class="step-item">2</div>
+                  <div class="step-item">3</div>
+                  <div class="step-item">4</div>
+                </section>
+                <section data-step="1" class="contact-form-step">
+                  <div class="form-group">
+                    <label for="contact-msg">Wiadomość</label>
+                    <textarea id="contact-msg" class="form-control" name="message" style="min-height: 100px; padding: 15px" required="required" placeholder="Wpisz swoj&#x0105; wiadomo&#x015b;&#x0107;"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-email">Twój adres e-mail</label>
+                    <input type="email" class="form-control" id="contact-email" name="email" placeholder="Opcjonalne. Je&#x015b;li chcesz, aby&#x015b;my Ci odpowiedzieli, podaj sw&#x00f3;j e-mail" value="">
+                  </div>
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="completeStep1Btn" class="btn btn-default" type="button">
+                    Następny <i style="margin-left: 10px" class="fal fa-chevron-right"></i> 
+                  </button>
+                </section>
+
+                <section style="display: none" data-step="2" class="contact-form-step">
+                  <div class="loader-wrap"><img src="../images/loaders/oval-green.svg" class="loader medium"></div>
+                </section>  
+                
+                <section style="display: none" data-step="3" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">Sugerowana odpowiedź</label>
+                    <div id="automaticSupportAnswer"></div>
+                  </div>
+
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="completeStep3Btn" class="btn btn-link btn-xs" type="button">
+                    To nie odpowiada na moje pytanie
+                  </button>
+                </section>
+                
+                <section style="display: none" data-step="4" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">Zgłaszasz problem?</label>
+                  </div>
+                  <div style="width: 263px; text-align: left; margin: auto;" class="form-group">
+                    <div class="radio">
+                      <label>
+                        <input value="problem" name="supportMessageKind" type="radio">
+                        Tak, zgłaszam problem
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input value="other" name="supportMessageKind" type="radio">
+                        Nie, coś innego
+                      </label>
+                    </div>
+                  </div>  
+                </section>
+
+                <section style="display: none" data-step="5" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">Szczegóły problemu</label>
+                  </div>
+                  <div style="max-width: 430px; margin: auto; margin-top: -15px; text-align: left;" class="checkbox">
+                    <label><input style="margin: 5px; margin-right: 15px;" name="allowAccessLastTask" type="checkbox"> Udziel dostępu do Twojego ostatniego Task i użytych plików.</label>
+                    <p style="font-size: 12px; padding-left: 33px; margin-top: 0;" class="help-block">Użyjemy tych danych, aby szybciej Ci pomóc. Poufne.</p>
+                  </div>
+                  <div id="attachScreenshotFormGroup" class="form-group">
+                    <label class="light">Attach a screenshot*</label>
+                    <p style="font-size: 12px; padding-left: 33px; margin-top: -8px;" class="help-block">Proszę udostępnić zrzut ekranu problemu, tak jak go widzisz.</p>
+                    <div>
+                      <label style="border: 1px solid #ccc;display: inline-block;padding: 6px 12px; cursor: pointer;" class="light" for="supportScreenshotFile">
+                        <i class="fal fa-plus"></i> Wybierz plik obrazu zrzutu ekranu
+                      </label>
+                      <input style="display: none" accept=".png,.jpg,.jpeg,.bmp" type="file" id="supportScreenshotFile">
+                      <div id="supportScreenshotFilePreview"></div>
+                    </div>
+                  </div>
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="sendMessageBtn" class="btn btn-default" type="submit">Wyślij wiadomość</button>
+                </section>
+                
+                <input value="iluzie" name="suflet" type="hidden">
+                <input value="" name="source" type="hidden">
+                <input value="" name="source2" type="hidden">
+                <input value="" name="lastFile" type="hidden">
+                <input value="" name="lastTask" type="hidden">
+                <input value="" name="events" type="hidden">
+                <input value="" name="consoleLogs" type="hidden">
+                <input value="" name="screenshot" type="hidden">
+                <input value="" name="os" type="hidden">
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div style="display: none" class="modal app-modal" id="optOutChoicesPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Privacy Settings
+          </div>
+        </div>
+        <div class="modal-body">
+          This feature requires loading content from an external service, <span class="external_service_name"></span>, which could access personal data, such as your IP address, set cookies and track you.<br><br>
+          Please let us know if you are okay with that.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-no btn-light btn-xs" type="button">No, cancel</button>
+          <button class="btn btn-yes btn-xs" type="button">Yes, continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal app-error-modal" id="problemLoadingPageResourcePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            There's a problem loading this page
+          </div>
+        </div>
+        <div class="modal-body">
+          There was a problem loading a critical resource, which prevents the page from continuing.<br><br>
+          Please check your internet connection and reload the page to try again.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-yes btn-xs" type="button">Reload page</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div style="display: none" class="modal app-modal app-error-modal" id="genericErrorModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+            <div class="modal-title"></div>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="display: none" class="modal app-modal app-warning-modal" id="scanPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Skanowane dokumenty nie są obsługiwane</h4>
+        </div>
+        <div class="modal-body">
+          <div data-scope="edit">
+            <strong>Edycja skanowanych dokumentów nie jest obsługiwana.</strong>
+            Zmiana istniejącego tekstu w skanowanych dokumentach nie jest obsługiwana. Jednak nadal możesz korzystać z innych funkcji, takich jak dodawanie nowego tekstu, obrazów i adnotacji.
+          </div>
+          <div style="display: none" data-scope="convert">
+            <strong>Konwersja skanowanych dokumentów nie jest obsługiwana.</strong>
+            Skanowane PDF-y to obrazy tekstu i nie zawierają rzeczywistych danych tekstowych potrzebnych do konwersji.
+
+            <br><br>
+            Plik: <span class="file-name"></span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="dont-show-anymore-opts">
+            <div class="checkbox">
+              <label><input style="margin-top: 5px" name="dontShowAnymore" type="checkbox"> Nie pokazuj więcej</label>
+            </div>
+          </div>
+          <a target="_blank" href="help.html#scans" class="btn btn-secondary btn-xs">Dowiedz się więcej</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="movePagePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Przenieś stronę w nowe miejsce
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="form-inline">
+            <label class="light" for="moveNewPageNumber">Nowa lokalizacja strony:</label>
+            <input style="width: 55px;margin: 0 10px;vertical-align: baseline; text-align: center" class="form-control input-xs" name="moveNewPageNumber" id="moveNewPageNumber" type="text">
+            <span class="num_of_pages"></span>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <div class="modal-hint">
+            Wskazówka: Możesz również przeciągnąć i upuścić stronę w nowe miejsce
+          </div>
+          <button class="btn btn-yes btn-xs" type="button">Przenieś stronę</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="changeLanguagePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Wybierz język
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-6">
+              <ul>
+                <li><a href="../ar/html-pdf-api.html">العربية</a></li>
+                <li><a href="../id/html-pdf-api.html">Bahasa Indonesia</a></li>
+                <li><a href="../da/html-pdf-api.html">Dansk</a></li>
+                <li><a href="../de/html-pdf-api.html">Deutsch</a></li>
+                <li><a href="../cs/html-pdf-api.html">Čeština</a></li>
+                <li><a href="../html-pdf-api.html">English</a></li>
+                <li><a href="../es/html-pdf-api.html">Español</a></li>
+                <li><a href="../fr/html-pdf-api.html">Français</a></li>
+                <li><a href="../it/html-pdf-api.html">Italiano</a></li>
+                <li><a href="../el/html-pdf-api.html">Ελληνικά</a></li>
+                <li><a href="../ja/html-pdf-api.html">日本語</a></li>
+                <li><a href="../ko/html-pdf-api.html">한국어</a></li>
+                <li><a href="../zh/html-pdf-api.html">简体中文</a></li>
+                <li><a href="../tw/html-pdf-api.html">繁體中文</a></li>
+              </ul>
+            </div>
+            <div class="col-xs-6">
+              <ul>
+                <li><a href="../hi/html-pdf-api.html">हिन्दी</a></li>
+                <li><a href="../he/html-pdf-api.html">עברית</a></li>
+                <li><a href="../hu/html-pdf-api.html">Magyar</a></li>
+                <li><a href="../nl/html-pdf-api.html">Nederlands</a></li>
+                <li><a href="../no/html-pdf-api.html">Norsk</a></li>
+                <li><a href="html-pdf-api.html">Polski</a></li>
+                <li><a href="../pt/html-pdf-api.html">Português</a></li>
+                <li><a href="../ro/html-pdf-api.html">Română</a></li>
+                <li><a href="../ru/html-pdf-api.html">Русский</a></li>
+                <li><a href="../fi/html-pdf-api.html">Suomi</a></li>
+                <li><a href="../sv/html-pdf-api.html">Svenska</a></li>
+                <li><a href="../th/html-pdf-api.html">ภาษาไทย</a></li>
+                <li><a href="../vi/html-pdf-api.html">Tiếng Việt</a></li>
+                <li><a href="../tr/html-pdf-api.html">Türkçe</a></li>
+                <li><a href="../uk/html-pdf-api.html">Українська</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section style="display: none" class="i18n-strings">
+    <div data-key="We're sorry, something went wrong. Please contact support at hi@sejda.com">Przepraszamy, coś poszło nie tak. Skontaktuj się ze wsparciem pod adresem hi@sejda.com</div>
+    <div data-key="Verification code is incorrect">Kod weryfikacyjny jest nieprawidłowy</div>
+    <div data-key="Too many attempts. Please try again later">Zbyt wiele prób. Spróbuj ponownie później.</div>
+    <div data-key="An error occurred. Please try again or contact support">Wystąpił błąd. Spróbuj ponownie lub skontaktuj się ze wsparciem.</div>
+    <div data-key="Processing, please wait...">Przetwarzanie, proszę czekać...</div>
+    <div data-key="Sign in">Zaloguj się</div>
+    <div data-key="Click to edit">Kliknij, aby edytować</div>
+    <div data-key="Sorry, unsupported image format:">Przepraszamy, nieobsługiwany format obrazu:</div>
+    <div data-key="We support the following image types:">Obsługujemy następujące typy obrazów:</div>
+    <div data-key="You already have an active monthly subscription">Masz już aktywną miesięczną subskrypcję</div>
+    <div data-key="Trying to add more seats? You can do this from your account page">Próbujesz dodać więcej miejsc? Możesz to zrobić na stronie swojego konta</div>
+    <div data-key="Please verify your email address before continuing with your purchase">Zweryfikuj swój adres e-mail przed kontynuowaniem zakupu</div>
+    <div data-key="We couldn't connect to GoogleDrive. Your browser (or add-ons) might be blocking the load of javascript files from GoogleDrive">Nie udało się połączyć z GoogleDrive. Twoja przeglądarka (lub dodatki) może blokować ładowanie plików javascript z GoogleDrive</div>
+    <div data-key="Are you sure you want to remove the recent files list?">Czy na pewno chcesz usunąć listę ostatnio używanych plików?</div>
+  </section>
+</section>
+
+
+        
+        <section id="content">
+            <div style="margin-top: 30px;" class="container-fluid centered">
+                <h1>HTML to PDF API</h1>
+                <h2 style="width: 600px; margin: auto">High quality PDFs from web pages — Using your favourite framework or language</h2>
+            </div>
+
+            <div class="container-fluid centered">
+                <svg style="margin-bottom: -8px; margin-top: -20px;" preserveAspectRatio="none" viewBox="0 0 100 100" height="100" width="100%" version="1.1" class="curve-up-separator">
+                    <path d="M0 100 C 20 0 50 0 100 100 Z"></path>
+                </svg>
+            </div>
+            <div style="background: linear-gradient(to bottom, #EEE 0%,rgba(255,255,255,0) 100%); padding-top: 40px;" class="container-fluid centered">
+                <div style="margin-top: -50px; margin-bottom: 50px;" class="container">
+                    <h3>Wypróbuj teraz</h3>
+
+                    <div class="try-conversion-wrap">
+                        <input placeholder="https://airtable.com" value="https://airtable.com" type="text" class="form-control input-medium" id="urlTryConversionInput"><a href="html-pdf-api.html" target="_blank" class="btn btn-medium" id="tryNowBtn"><i class="fal fa-arrow-right"></i></a>
+                    </div>
+
+                    <h3>Zacznij — Przykłady kodu</h3>
+
+                    <div style="margin-bottom: 100px" class="get-started-code">
+                        <ul class="nav nav-pills nav-code-samples">
+                            <li class="nav-item">
+                                <a href="html-pdf-api.html#bash" class="nav-link active">Bash</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="html-pdf-api.html#javascript" class="nav-link">Node.js</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="html-pdf-api.html#python" class="nav-link">Python</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="html-pdf-api.html#js" class="nav-link">Javascript</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="html-pdf-api.html#java" class="nav-link">Java</a>
+                            </li>
+                            <li class="nav-item">
+                              <a href="html-pdf-api.html#php" class="nav-link">PHP</a>
+                            </li>
+                            <li class="nav-item">
+                              <a href="html-pdf-api.html#csharp" class="nav-link">C#</a>
+                            </li>
+                        </ul>
+
+                        <div class="osx-window">
+                            <div class="titlebar">
+                                <div class="buttons">
+                                    <div class="osx-close"><a href="html-pdf-api.html#" class="osx-closebutton"><span><strong>x</strong></span></a></div>
+                                    <div class="osx-minimize"><a href="html-pdf-api.html#" class="osx-minimizebutton"><span><strong>–</strong></span></a></div>
+                                    <div class="osx-zoom"><a href="html-pdf-api.html#" class="osx-zoombutton"><span><strong>+</strong></span></a>
+                                    </div>
+                                </div>
+                                dev@localhost: ~ (bash)
+                            </div>
+                            <div class="content">
+<pre style="font-size: 12px;" data-lang="bash">$&gt; curl -i https://api.sejda.com/v2/html-pdf\
+  --fail --silent --show-error \
+  --header &quot;Content-Type: application/json&quot; \
+  --header &quot;Authorization: Token: api_Y0URAP1K3YH3R3&quot; \
+  --data '{&quot;url&quot;: &quot;https://airtable.com&quot;, &quot;viewportWidth&quot;:1200 }' &gt; out.pdf</pre>
+<pre style="display: none; font-size: 12px;" data-lang="javascript">// npm install request
+const request = require('request');
+const fs = require('fs');
+
+var opts = {
+  uri: 'https://api.sejda.com/v2/html-pdf',
+  headers: {
+    'Authorization' : 'Token: ' + apiKey,
+  },
+  json: {
+    'url': 'https://airtable.com',
+    'viewportWidth': 1200
+  }
+};
+
+request.post(opts)
+  .on('error', function(err){
+    return console.error(err);
+  })
+  .on('response', function(response) {
+    if (response.statusCode === 200) {
+      response.pipe(fs.createWriteStream('/tmp/out.pdf'))
+        .on('finish', function () {
+          console.log('PDF saved to disk');
+        });
+    } else {
+      return console.error('Got code: ' + response.statusCode);
+    }
+  });
+</pre>
+<pre style="display:none" data-lang="python">import requests
+
+url = 'https://api.sejda.com/v2/html-pdf'
+r = requests.post(url, json = {
+    'url': 'https://airtable.com',
+    'viewportWidth': 1200
+  }, headers = {
+    'Authorization': 'Token: {}'.format(apiKey)
+  })
+open('/tmp/out.pdf', 'wb').write(r.content)
+</pre>
+<pre style="display: none" data-lang="js">&lt;script src=&quot;//www.sejda.com/js/sejda-js-api.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  document.getElementById('downloadPdfBtn')
+    .addEventListener('click', function(e){
+      SejdaJsApi.htmlToPdf({
+        filename: 'out.pdf',
+        /* leave blank for one long page */
+        pageSize: 'a4',
+        publishableKey: 'api_public_y0urap1k3yh3r3',
+        htmlCode: document.querySelector('html').innerHTML,
+        /* url: window.location.href */
+        always: function(){
+          // PDF download should have started
+        }
+      });
+    })
+&lt;/script&gt;
+/* Don't forget to configure your API Allowed domains, on your account page. */
+</pre>
+<pre style="display: none; font-size: 12px" data-lang="java">&lt;!-- Maven dependency --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.httpcomponents&lt;/groupId&gt;
+  &lt;artifactId&gt;httpclient&lt;/artifactId&gt;
+	&lt;version&gt;4.5.8&lt;/version&gt;
+&lt;/dependency&gt;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+
+CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+HttpPost request = new HttpPost(&quot;https://api.sejda.com/v2/html-pdf&quot;);
+request.setHeader(HttpHeaders.AUTHORIZATION, &quot;Token: &quot; + apiKey);
+request.setEntity(new StringEntity(
+    &quot;{\&quot;url\&quot;: \&quot;https://airtable.com\&quot;, \&quot;viewportWidth\&quot;:1200 }&quot;,
+    ContentType.APPLICATION_JSON));
+
+HttpResponse response = httpClient.execute(request);
+if (response.getStatusLine().getStatusCode() == 200) {
+
+    try (InputStream in = response.getEntity().getContent();
+         OutputStream out = new FileOutputStream(new File(&quot;/tmp/out.pdf&quot;))) {
+        byte[] buffer = new byte[8 * 1024];
+        int bytesRead;
+        while ((bytesRead = in.read(buffer)) != -1) {
+            out.write(buffer, 0, bytesRead);
+        }
+    }
+}
+</pre>
+<pre style="display: none; font-size: 12px" data-lang="php">$url = &quot;https://api.sejda.com/v2/html-pdf&quot;;
+$content = json_encode(array('url' =&gt; 'https://airtable.com'));
+
+$curl = curl_init($url);
+curl_setopt($curl, CURLOPT_HEADER, false);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+  &quot;Content-type: application/json&quot;,
+  &quot;Authorization: Token: &quot; . $apiKey));
+
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
+
+$response = curl_exec($curl);
+
+$status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+if ($status == 200) {
+  $fp = fopen(&quot;out.pdf&quot;, &quot;w&quot;);
+  fwrite($fp, $response);
+  fclose($fp);
+  print(&quot;PDF saved to disk&quot;);
+} else {
+  print(&quot;Error: failed with status $status, response $response, curl_error &quot; . curl_error($curl) . &quot;, curl_errno &quot; . curl_errno($curl));
+}
+</pre>
+<pre style="display: none; font-size: 12px" data-lang="csharp">using System.Net.Http;
+using Newtonsoft.Json.Linq;
+
+var baseUrl = &quot;https://api.sejda.com/v2/html-pdf&quot;;
+
+using (var client = new HttpClient())
+{
+  client.DefaultRequestHeaders.TryAddWithoutValidation(
+      &quot;Authorization&quot;, &quot;Token: &quot; + apiKey
+  );
+
+  var json = new JObject();
+  json.Add(&quot;url&quot;, &quot;https://airtable.com&quot;);
+  json.Add(&quot;viewportWidth&quot;, 1200);
+  //json.Add(&quot;htmlCode&quot;, File.ReadAllText(@&quot;c:\doc.html&quot;, Encoding.UTF8));
+
+  var content = new StringContent(json.ToString(), Encoding.UTF8, &quot;application/json&quot;);
+
+  using (var res = await client.PostAsync(baseUrl, content))
+  {
+    var statusCode = (int)res.StatusCode;
+
+    if (statusCode == 200)
+    {
+      var httpStream = await res.Content.ReadAsStreamAsync();
+      var outputFilePath = Path.GetTempFileName();
+      using (var fileStream = File.Create(outputFilePath))
+      using (var reader = new StreamReader(httpStream))
+      {
+        httpStream.CopyTo(fileStream);
+        fileStream.Flush();
+      }
+      // outputFilePath contains the PDF output
+    }
+    else
+    {
+      // retry, then handle error
+      throw new Exception(&quot;Unexpected response code: &quot; + statusCode);
+    }
+  }
+}
+</pre>
+                            </div>
+                        </div>
+
+                      <div style="margin-top: 30px">
+                        <a target="_blank" href="../developers.html#html-pdf-api">HTML to PDF API Docs <i class="fal fa-arrow-right"></i></a>
+                      </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div style="max-width: 1024px; margin: auto;" class="row">
+                            <div style="padding-right: 40px" class="col-md-4">
+                                <h3>Renders just like a browser</h3>
+                                <ol class="it-features">
+                                    <li>Highly accurate, just like a browser</li>
+                                    <li>CSS3, web fonts, javascript, SVG, flexbox, webGL, canvas — all supported</li>
+                                </ol>
+                            </div>
+                            <div style="padding-left: 40px" class="col-md-4">
+                                <h3>Simple to use<br> </h3>
+                                <ol class="it-features">
+                                    <li>REST API — works with your favourite language or framework</li>
+                                    <li>Client side javascript integration (CORS)</li>
+                                    <li>Hosted by us, on our infrastructure</li>
+                                </ol>
+                            </div>
+
+                            <div style="padding-left: 40px" class="col-md-4">
+                                <h3>Batteries included<br> </h3>
+                                <ol class="it-features">
+                                    <li>One long page &amp; standard page size rendering</li>
+                                    <li>Responsive viewports</li>
+                                    <li>Lazy loading</li>
+                                    <li>Rendering delay</li>
+                                    <li>Print media</li>
+                                    <li>Cookie notices</li>
+
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container centered">
+                <section id="upgrade-section">
+                    <div style="margin-bottom: 30px" id="plans-row" class="row">
+                        <div class="col-md-12">
+                            <h1 id="pricing">Pricing</h1>
+                            <h2 style="margin-bottom: 40px; color: #9aa5aa;">Let us help with the PDF documents.<br>Your team can focus on your product's unique features.</h2>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 20px; margin-bottom: 40px;" id="plan-selector-row">
+                        <div class="horizontal-pricing-plans">
+                            <div class="plan-header">
+                                <div class="plan-docs">Documents</div>
+                                <div class="plan-rate">Requests/hour</div>
+                                <div class="plan-ccy">Concurrency</div>
+                                <div class="plan-amount">Monthly<br>price</div>
+                                <div class="plan-btn"></div>
+                            </div>
+
+
+
+
+
+
+
+                            <div style="display: none" data-plan="API_HTML_PDF_MONTHLY_RL200_C3_12_USD" class="plan-horizontal plan">
+                              <div class="plan-docs">∞</div>
+                              <div class="plan-rate">200</div>
+                              <div class="plan-ccy">3</div>
+                              <div class="plan-amount">$12</div>
+                              <div class="plan-btn"><a href="javascript://" class="btn btn-medium btn-link btn-flat-secondary">Select</a></div>
+                            </div>
+                            <div data-plan="API_HTML_PDF_MONTHLY_RL300_C4_24_USD" class="plan-horizontal plan">
+                                <div class="plan-docs">∞</div>
+                                <div class="plan-rate">300</div>
+                                <div class="plan-ccy">4</div>
+                                <div class="plan-amount">$24</div>
+                                <div class="plan-btn"><a href="javascript://" class="btn btn-medium btn-link btn-flat-secondary">Select</a></div>
+                            </div>
+                            <div data-plan="API_HTML_PDF_MONTHLY_RL600_C5_48_USD" class="plan-horizontal plan">
+                                <div class="plan-docs">∞</div>
+                                <div class="plan-rate">600</div>
+                                <div class="plan-ccy">5</div>
+                                <div class="plan-amount">$48</div>
+                                <div class="plan-btn"><a href="javascript://" class="btn btn-medium btn-link btn-flat-secondary">Select</a></div>
+                            </div>
+                            <div data-plan="API_HTML_PDF_MONTHLY_RL1200_C6_96_USD" class="plan-horizontal plan">
+                                <div class="plan-docs">∞</div>
+                                <div class="plan-rate">1200</div>
+                                <div class="plan-ccy">6</div>
+                                <div class="plan-amount">$96</div>
+                                <div class="plan-btn"><a href="javascript://" class="btn btn-medium btn-link btn-flat-secondary">Select</a></div>
+                            </div>
+                          <div data-plan="API_HTML_PDF_MONTHLY_RL2400_C12_192_USD" class="plan-horizontal plan">
+                            <div class="plan-docs">∞</div>
+                            <div class="plan-rate">2400</div>
+                            <div class="plan-ccy">12</div>
+                            <div class="plan-amount">$192</div>
+                            <div class="plan-btn"><a href="javascript://" class="btn btn-medium btn-link btn-flat-secondary">Select</a></div>
+                          </div>
+                          <div data-plan="API_HTML_PDF_MONTHLY_RL4800_C24_384_USD" class="plan-horizontal plan">
+                            <div class="plan-docs">∞</div>
+                            <div class="plan-rate">4800</div>
+                            <div class="plan-ccy">24</div>
+                            <div class="plan-amount">$384</div>
+                            <div class="plan-btn"><a href="javascript://" class="btn btn-medium btn-link btn-flat-secondary">Select</a></div>
+                          </div>
+                          <div style="opacity: 0.8" data-plan="API_HTML_PDF_MONTHLY_RL9600_C48_768_USD" class="plan-horizontal plan">
+                            <div class="plan-docs">∞</div>
+                            <div class="plan-rate">9600</div>
+                            <div class="plan-ccy">48</div>
+                            <div class="plan-amount">$768</div>
+                            <div class="plan-btn"><a href="javascript://" class="btn btn-medium btn-link btn-flat-secondary">Select</a></div>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 30px; margin-bottom: 60px; text-align: center; color: #9aa5aa;">
+                        Need a different plan?
+                        Please <a href="javascript://" class="get-support-btn">contact us</a>
+                    </div>
+
+                    <h3>Require a Self-Hosted solution?</h3>
+                    <h4 style="margin-bottom: 40px; color: #9aa5aa;">Self-managed option available. On premise HTML to PDF API</h4>
+
+                    <div style="margin-top: 30px; margin-bottom: 60px; text-align: center; color: #555;">
+                      <div style="width: 400px; margin: auto; margin-bottom: 30px;" id="self-hosted-features">
+                        <ol class="it-features">
+                          <li>Custom privacy and compliance requirements</li>
+                          <li>Convert documents on your servers</li>
+                          <li>No request per hour limits</li>
+                          <li>Docker based deployment</li>
+                          <li>Pricing starts at $384/mo.</li>
+                        </ol>  
+                      </div>
+                      <a href="javascript://" class="btn btn-xs btn-light get-support-btn">Learn more</a>
+                    </div>
+                </section>
+
+                <section>
+  <div style="display: none" data-backdrop="false" class="modal app-modal fullscreen-modal" id="checkoutModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <div class="modal-title"> </div>
+        </div>
+        <div class="modal-body">
+          <div id="account-row" class="row">
+            <script>
+              function Sejda_FastSpring_onError(err){
+                Sejda.FastSpring.onError(err);
+              }
+              function Sejda_FastSpring_PopupClosed(data){
+                Sejda.FastSpring.popupClosed(data);
+              }
+              function Sejda_FastSpring_PopupWebhookReceived(data){
+                Sejda.FastSpring.popupWebhookReceived(data);
+              }
+              function Sejda_FastSpring_PopupEventReceived(data){
+                Sejda.FastSpring.popupEventReceived(data);
+              }
+            </script>
+            <script data-storefront="sejda.onfastspring.com/popup-sejda" id="fsc-api" src="https://sbl.onfastspring.com/sbl/1.0.5/fastspring-builder.min.js" type="text/javascript" data-error-callback="Sejda_FastSpring_onError" data-popup-webhook-received="Sejda_FastSpring_PopupWebhookReceived" data-popup-event-received="Sejda_FastSpring_PopupEventReceived" data-popup-closed="Sejda_FastSpring_PopupClosed" data-access-key="-PB-ZR_RRFYJEVMUKTGRLW"></script>
+            
+            <section id="upgradeAccountSection">
+              <h3>Dane Konta</h3>
+              <h2>Wprowadź dane nowego konta</h2>
+              <h4 style="font-size: 17px;">Masz już konto? <a class="login-link" href="javascript://">Log in</a></h4>
+              
+              <form class="form" id="create-account-form" autocomplete="false">
+              <input value="3JGFS2C1SU05XEDXTSXE" name="csrf" id="csrf" type="hidden">  
+              
+              <div class="form-controls">
+                <div style="display: none" data-error="general" class="alert alert-danger"></div>
+                
+                <div style="display: none" class="mailcheck_suggest">Did you mean <a href="javascript://">other@email.com</a> ?</div>
+                <input placeholder="Email address - Watch out for typos" class="form-control" name="email" type="email">
+                <br>
+                <div style="display: none" data-error="passwordInvalid" class="alert alert-danger">Wpisz hasło</div>
+                <input placeholder="Password" class="form-control passtrengthMetered" name="password" type="password" id="password">
+                <div class="passtrengthMeter"></div>
+
+                <div style="display: none" class="form-group verification-code-group">
+                  <br>
+                  <div style="display: none" id="emailVerificationCodeInvalid" class="alert alert-danger">Kod weryfikacyjny jest nieprawidłowy</div>
+                  <label style="color: #999;">Kod weryfikacyjny e-mail</label>
+                  <input type="text" class="form-control" name="emailVerificationCode" placeholder="123456">
+
+                  <p class="help-block">
+                    Potwierdź, że to naprawdę Ty.<br>
+                    <span class="check_inbox_link">Sprawdź skrzynkę odbiorczą</span>.
+                    Wysłaliśmy kod weryfikacyjny na Twój adres e-mail.
+                    <br><br>
+                    Nie masz maila? Sprawdź folder &quot;Spam&quot; lub użyj wcześniej otrzymanego kodu weryfikacyjnego.
+                  </p>
+                </div>
+              </div>
+              <div class="more-details head-space-xl agree-terms">
+                <div style="text-align: left" class="checkbox">
+                  <label><input value="yes" name="agreeTerms" type="checkbox"> Zgadzam się na <a target="_blank" href="../terms.html">Warunki użytkowania</a> i <a target="_blank" href="../privacy.html">Polityka prywatności</a></label></div>
+              </div>
+              <div style="margin-bottom: 20px; text-align: center">
+                <a href="javascript://" class="btn form-submit" id="signUpOrSignInBtn">
+                  Kontynuuj <i style="margin-left: 10px;" class="fal fa-chevron-right"></i>
+                </a>
+              </div>
+              <div id="alternativeSignUpOptions">
+                <div class="divider-line-with-text">
+                  <p>OR</p>
+                </div>
+                <section id="google-signup-preload">
+                  <button class="btn btn-medium btn-secondary btn-signup-google-preload" type="button">
+                    <i style="margin-right: 5px;margin-left: -10px;" class="fab fa-google"></i> Continue with Google
+                  </button>
+                </section>
+                <div class="form-controls">
+                  <div style="display: none; margin-top: 10px;" id="generalErrorAlternativeSignUpOptions" class="alert alert-danger"></div>
+                </div>
+                <section style="display: none" id="google-signup-wrap">
+                  <div id="google-signup2"></div>
+                </section>
+              </div>    
+                
+              <div style="margin-bottom: 60px" class="purchaseSummary">
+                <h3>Szczegóły planu</h3>
+                <div class="itemTitleTotal"><span class="itemDescription"></span><span class="itemTotal"></span>
+                  <div class="itemTotalTaxNotice">Podatek obliczony w następnym kroku</div>
+                  <div class="itemUsers">Użytkownicy: <span class="itemQty"></span> - <a class="itemQtyChangeLink" href="javascript://">Zmień</a></div>
+                </div>
+                <div style="display: none" class="itemPlanFeatures">
+                  <p style="color: #0282e5"><i class="fal fa-check"></i> Dostęp do Sejda Web</p>
+                  <p style="color: rgba(43,43,43,.6)"><span style="width: 14px; display: inline-block;">×</span> Brak dostępu do Sejda Desktop - <a href="desktop.html#pricing" target="_blank" class="desktop-plans-link">Alternatywy</a></p>
+                </div>
+                <div class="itemNextRenewal"></div>
+              </div>
+              </form>
+            </section>
+
+            <section style="display: none" id="upgradeBillingDetailsSection">
+            <form autocomplete="false" id="upgrade-form" class="form">
+              <input value="1" name="seats" type="hidden">
+              <input value="0" name="discount" type="hidden">
+
+              <input value="" name="stripePublicKey" type="hidden">
+              <input value="" name="paypalEnv" type="hidden">
+              
+              <input value="" name="emailVerificationCode" type="hidden">
+
+              <h3>Dane Konta</h3>
+
+              <div class="form-controls">
+                <label style="color: #999" for="email">E-mail</label>
+                <input class="form-control" readonly="readonly" name="email" type="email" id="email">
+              </div>
+              
+              <div>
+                <div style="display: none" class="alert alert-warning" id="teamMemberPurchaseWarning">
+                  Kupujesz dla swojego zespołu? Wygląda na to, że jesteś zalogowany jako członek zespołu. Zaloguj się jako właściciel zespołu.
+                </div>
+              </div>
+                
+              <div style="margin-top: 50px" class="billing-address-options">
+                <h3>Dane do faktury</h3>
+
+                <div class="form-controls">
+                  <div style="margin-top: 10px" class="form-controls">
+                    <label style="color: #999" for="billingAddressCountry">Kraj</label>
+                    <select class="form-control" id="billingAddressCountry" name="billingAddressCountry">
+                      <option value="FR">France</option>
+                      <option value="CA">Canada</option>
+                      <option value="BR">Brazil</option>
+                      <option value="IN">India</option>
+                      <option value="ES">Spain</option>
+                      <option value="US">United States</option>
+                      <option value="GB">United Kingdom</option>
+                      <option disabled="disabled" value="">-------------</option>
+                      <option value="AF">Afghanistan</option><option value="AX">Aland Islands</option><option value="AL">Albania</option><option value="DZ">Algeria</option><option value="AS">American Samoa</option><option value="AD">Andorra</option><option value="AO">Angola</option><option value="AI">Anguilla</option><option value="AQ">Antarctica</option><option value="AG">Antigua and Barbuda</option><option value="AR">Argentina</option><option value="AM">Armenia</option><option value="AW">Aruba</option><option value="AU">Australia</option><option value="AT">Austria</option><option value="AZ">Azerbaijan</option><option value="BS">Bahamas</option><option value="BH">Bahrain</option><option value="BD">Bangladesh</option><option value="BB">Barbados</option><option value="BY">Belarus</option><option value="BE">Belgium</option><option value="BZ">Belize</option><option value="BJ">Benin</option><option value="BM">Bermuda</option><option value="BT">Bhutan</option><option value="BO">Bolivia</option><option value="BQ">Bonaire</option><option value="BA">Bosnia and Herzegovina</option><option value="BW">Botswana</option><option value="BV">Bouvet Island</option><option value="BR">Brazil</option><option value="IO">British Indian Ocean Territory</option><option value="VG">British Virgin Islands</option><option value="BN">Brunei</option><option value="BG">Bulgaria</option><option value="BF">Burkina Faso</option><option value="BI">Burundi</option><option value="KH">Cambodia</option><option value="CM">Cameroon</option><option value="CA">Canada</option><option value="IC">Canary Islands</option><option value="CV">Cape Verde</option><option value="KY">Cayman Islands</option><option value="CF">Central African Republic</option><option value="TD">Chad</option><option value="CL">Chile</option><option value="CN">China</option><option value="CX">Christmas Island</option><option value="CC">Cocos (Keeling) Islands</option><option value="CO">Colombia</option><option value="KM">Comoros</option><option value="CD">Congo, Democratic Republic of</option><option value="CG">Congo, Republic of</option><option value="CK">Cook Islands</option><option value="CR">Costa Rica</option><option value="HR">Croatia</option><option value="CU">Cuba</option><option value="CW">Curaçao</option><option value="CY">Cyprus</option><option value="CZ">Czech Republic</option><option value="DK">Denmark</option><option value="DJ">Djibouti</option><option value="DM">Dominica</option><option value="DO">Dominican Republic</option><option value="EC">Ecuador</option><option value="EG">Egypt</option><option value="SV">El Salvador</option><option value="GQ">Equatorial Guinea</option><option value="ER">Eritrea</option><option value="EE">Estonia</option><option value="ET">Ethiopia</option><option value="FK">Falkland Islands</option><option value="FO">Faroe Islands</option><option value="FJ">Fiji</option><option value="FI">Finland</option><option value="FR">France</option><option value="GF">French Guiana</option><option value="PF">French Polynesia</option><option value="TF">French Southern and Antarctic Lands</option><option value="GA">Gabon</option><option value="GM">Gambia</option><option value="GE">Georgia</option><option value="DE">Germany</option><option value="GH">Ghana</option><option value="GI">Gibraltar</option><option value="GR">Greece</option><option value="GL">Greenland</option><option value="GD">Grenada</option><option value="GP">Guadeloupe</option><option value="GU">Guam</option><option value="GT">Guatemala</option><option value="GG">Guernsey</option><option value="GN">Guinea</option><option value="GW">Guinea-Bissau</option><option value="GY">Guyana</option><option value="HT">Haiti</option><option value="HM">Heard Island and McDonald Islands</option><option value="HN">Honduras</option><option value="HK">Hong Kong</option><option value="HU">Hungary</option><option value="IS">Iceland</option><option value="IN">India</option><option value="ID">Indonesia</option><option value="IR">Iran</option><option value="IQ">Iraq</option><option value="IE">Ireland</option><option value="IM">Isle of Man</option><option value="IL">Israel</option><option value="IT">Italy</option><option value="CI">Ivory Coast</option><option value="JM">Jamaica</option><option value="JP">Japan</option><option value="JE">Jersey</option><option value="JO">Jordan</option><option value="KZ">Kazakhstan</option><option value="KE">Kenya</option><option value="KI">Kiribati</option><option value="KP">Korea, Democratic People's Republic of</option><option value="KR">Korea, Republic of</option><option value="XK">Kosovo</option><option value="KW">Kuwait</option><option value="KG">Kyrgyzstan</option><option value="LA">Laos</option><option value="LV">Latvia</option><option value="LB">Lebanon</option><option value="LS">Lesotho</option><option value="LR">Liberia</option><option value="LY">Libya</option><option value="LI">Liechtenstein</option><option value="LT">Lithuania</option><option value="LU">Luxembourg</option><option value="MO">Macau</option><option value="MK">Macedonia</option><option value="MG">Madagascar</option><option value="MW">Malawi</option><option value="MY">Malaysia</option><option value="MV">Maldives</option><option value="ML">Mali</option><option value="MT">Malta</option><option value="MH">Marshall Islands</option><option value="MQ">Martinique</option><option value="MR">Mauritania</option><option value="MU">Mauritius</option><option value="YT">Mayotte</option><option value="MX">Mexico</option><option value="FM">Micronesia</option><option value="MD">Moldova</option><option value="MC">Monaco</option><option value="MN">Mongolia</option><option value="ME">Montenegro</option><option value="MS">Montserrat</option><option value="MA">Morocco</option><option value="MZ">Mozambique</option><option value="MM">Myanmar</option><option value="NA">Namibia</option><option value="NR">Nauru</option><option value="NP">Nepal</option><option value="NL">Netherlands</option><option value="NC">New Caledonia</option><option value="NZ">New Zealand</option><option value="NI">Nicaragua</option><option value="NE">Niger</option><option value="NG">Nigeria</option><option value="NU">Niue</option><option value="NF">Norfolk Island</option><option value="MP">Northern Mariana Islands</option><option value="NO">Norway</option><option value="OM">Oman</option><option value="PK">Pakistan</option><option value="PW">Palau</option><option value="PS">Palestine</option><option value="PA">Panama</option><option value="PG">Papua New Guinea</option><option value="PY">Paraguay</option><option value="PE">Peru</option><option value="PH">Philippines</option><option value="PN">Pitcairn Islands</option><option value="PL">Poland</option><option value="PT">Portugal</option><option value="PR">Puerto Rico</option><option value="QA">Qatar</option><option value="RE">Réunion</option><option value="RO">Romania</option><option value="RU">Russia</option><option value="RW">Rwanda</option><option value="BL">Saint Barthélemy</option><option value="SH">Saint Helena, Ascension, and Tristan da Cunha</option><option value="KN">Saint Kitts and Nevis</option><option value="LC">Saint Lucia</option><option value="MF">Saint Martin</option><option value="PM">Saint Pierre and Miquelon</option><option value="VC">Saint Vincent and the Grenadines</option><option value="WS">Samoa</option><option value="SM">San Marino</option><option value="ST">São Tomé and Príncipe</option><option value="SA">Saudi Arabia</option><option value="SN">Senegal</option><option value="RS">Serbia</option><option value="SC">Seychelles</option><option value="SL">Sierra Leone</option><option value="SG">Singapore</option><option value="SX">Sint Maarten</option><option value="SK">Slovakia</option><option value="SI">Slovenia</option><option value="SB">Solomon Islands</option><option value="SO">Somalia</option><option value="ZA">South Africa</option><option value="GS">South Georgia</option><option value="SS">South Sudan</option><option value="ES">Spain</option><option value="LK">Sri Lanka</option><option value="SD">Sudan</option><option value="SR">Suriname</option><option value="SJ">Svalbard and Jan Mayen</option><option value="SZ">Swaziland</option><option value="SE">Sweden</option><option value="CH">Switzerland</option><option value="SY">Syria</option><option value="TW">Taiwan</option><option value="TJ">Tajikistan</option><option value="TZ">Tanzania</option><option value="TH">Thailand</option><option value="TL">Timor-Leste</option><option value="TG">Togo</option><option value="TK">Tokelau</option><option value="TO">Tonga</option><option value="TT">Trinidad and Tobago</option><option value="TN">Tunisia</option><option value="TR">Turkey</option><option value="TM">Turkmenistan</option><option value="TC">Turks and Caicos Islands</option><option value="TV">Tuvalu</option><option value="UG">Uganda</option><option value="UA">Ukraine</option><option value="AE">United Arab Emirates</option><option value="GB">United Kingdom</option><option value="US">United States</option><option value="UM">United States Minor Outlying Islands</option><option value="VI">United States Virgin Islands</option><option value="UY">Uruguay</option><option value="UZ">Uzbekistan</option><option value="VU">Vanuatu</option><option value="VA">Vatican City</option><option value="VE">Venezuela</option><option value="VN">Vietnam</option><option value="WF">Wallis and Futuna</option><option value="EH">Western Sahara</option><option value="YE">Yemen</option><option value="ZM">Zambia</option><option value="ZW">Zimbabwe</option>
+                    </select>
+                    <br>
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <label style="color: #999">Imię</label>
+                        <input placeholder="eg: Alex" class="form-control" name="firstName" type="text">
+                      </div>
+                      <div class="col-xs-6">
+                        <label style="color: #999">Nazwisko</label>
+                        <input placeholder="eg: Appleseed" class="form-control" name="lastName" type="text">
+                      </div>
+                    </div>
+                    <br>
+                    <label style="color: #999" for="companyName">Nazwa firmy <span class="optional-label">(opcjonalne)</span></label>
+                    <input placeholder="eg: Company LLC (optional)" class="form-control" name="companyName" type="text" id="companyName">
+                    <br>
+                    <section style="display: none" id="vatSection">
+                      <div style="display: none" id="vatNumberInvalid" class="alert alert-danger">VAT number seems invalid</div>
+                      <label style="color: #999" for="vatNumber">Numer VAT <span class="optional-label">(opcjonalne)</span></label>
+                      <input placeholder="eg: NL111111111B01 or PL12345678" class="form-control" name="vatNumber" type="text" id="vatNumber">
+                    </section>
+                    <br>
+                  </div>
+                </div>
+              </div>  
+              
+              <div class="purchaseSummary">
+                <h3>Szczegóły planu</h3>
+                <div class="itemTitleTotal">
+                  <span class="itemDescription"></span><span class="itemTotal"></span>
+                  <div class="itemTotalTaxNotice">Podatek obliczony w następnym kroku</div>
+                  <div class="itemUsers">Użytkownicy: <span class="itemQty"></span> - <a class="itemQtyChangeLink" href="javascript://">Zmień</a></div>
+                </div>
+                <div style="display: none" class="itemPlanFeatures">
+                  <p style="color: #0282e5"><i class="fal fa-check"></i> Dostęp do Sejda Web</p>
+                  <p style="color: #333"><span style="width: 14px; display: inline-block;">×</span> Brak dostępu do Sejda Desktop - <a href="desktop.html#pricing" class="desktop-plans-link">Alternatywy</a></p>
+                </div>
+                <div style="display: none" id="noDesktopAccessWarning">
+                  Wybrałeś plan tylko dla Web, który nie obejmuje dostępu do Sejda Desktop. Klucz licencyjny nie zostanie dostarczony.<br><br>
+                  <a href="desktop.html#pricing">Zobacz plany, które obejmują dostęp do Desktop</a>
+                </div>
+                <div class="itemNextRenewal"></div>
+              </div>
+
+              <div class="more-details head-space-xl agree-terms">
+                <div style="text-align: left" class="checkbox">
+                  <label><input value="yes" name="agreeTerms" type="checkbox"> Zgadzam się na <a target="_blank" href="../terms.html">Warunki użytkowania</a> i <a target="_blank" href="../privacy.html">Polityka prywatności</a></label></div>
+              </div>
+              
+              <div style="display: none; margin-top: 30px" data-error="general" class="alert alert-danger"></div>
+              <div class="fastspring-btns" style="margin-bottom: 20px">
+                <a href="javascript://" class="btn form-submit" id="fastspring-pay-btn">
+                  Przejdź do płatności <i class="fal fa-chevron-right" style="margin-left: 10px;"></i>
+                </a>
+              </div>
+
+              <div style="color: #999; text-align: left; margin-bottom: 60px; font-size: 15px;" class="more-details-fs">
+                To zamówienie zostanie złożone za pośrednictwem FastSpring, naszego autoryzowanego sprzedawcy internetowego i rejestrowanego handlowca.
+              </div>
+            </form>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section style="display: none" class="i18n-strings">
+    <div data-key="Please fill out your first name">Proszę wypełnić swoje imię</div>
+    <div data-key="Please fill out your last name">Proszę wypełnić swoje nazwisko</div>
+    <div data-key="Please accept the Terms of Use and Privacy Policy">Proszę zaakceptować Warunki Użytkowania i Politykę Prywatności</div>
+    <div data-key="Turn auto-renewal off">Wyłącz automatyczne odnawianie</div>
+    <div data-key="Subscription auto-renews monthly">Subskrypcja odnawia się automatycznie co miesiąc</div>
+    <div data-key="Subscription auto-renews yearly">Subskrypcja odnawia się automatycznie co rok</div>
+    <div data-key="Cancel anytime">Anuluj w dowolnym momencie</div>
+    <div data-key="Next renewal will be">Następne odnowienie nastąpi</div>
+    <div data-key="One-time payment">Płatność jednorazowa</div>
+    <div data-key="One-time payment (auto-renewal disabled)">Płatność jednorazowa (automatyczne odnawianie wyłączone)</div>
+    <div data-key="Email seems invalid">E mail wydaje się niewłaściwy</div>
+    <div data-key="Please choose a password that is at least 8 characters">Wybierz hasło składające się z co najmniej 8 znaków</div>
+    <div data-key=""></div>
+  </section>  
+</section>    
+
+                <section class="container centered">
+                    <div id="faq-row" class="row">
+                        <h1>FAQ</h1>
+                        <h2>Do you have any questions ?</h2>
+
+                        <div class="faqs">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h4>What happens when I reach the plan limits?</h4>
+                                    <p>If you reach your plan's requests per hour or concurrency limits we'll reject the request with a special HTTP response code (429).<br>We will not upgrade you automatically to the next plan.</p>
+
+                                    <h4>What do you mean by Concurrency?</h4>
+                                    <p>The maximum number of simultaneous requests that can be made in parallel, at the same time.</p>
+
+                                    <h4>What do you mean by Requests per Hour?</h4>
+                                    <p>The maximum number of requests that can be made in an hour.</p>
+
+                                    <h4>What do you mean by ∞ documents?</h4>
+                                    <p>We don't meter or limit the total number of documents converted.</p>
+
+                                    <h4>How large can be the generated PDF documents?</h4>
+                                    <p>Generated PDFs should be smaller than 50Mb.</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>How can I cancel my subscription?</h4>
+                                    <p>To cancel a recurring subscription just click 'Stop auto-renewal' from <a href="account.html">your account page</a>. You can also email hi@sejda.com.</p>
+
+                                    <h4>Will my subscription be automatically renewed?</h4>
+                                    <p>All plans are recurring subscriptions and will continue until you cancel.</p>
+                                    <p>Subscriptions auto-renew at the end of each term and you will be charged for the subsequent term.</p>
+
+                                    <h4>No surprise charges</h4>
+                                    <p>We won't automatically upgrade you to a higher plan when you reach your current plan's limits.</p>
+
+                                    <h4>Do you have an SLA and status page?</h4>
+                                    <p>Yes, here are our <a target="_blank" href="../sla.html">Service Level Agreement</a> and <a target="_blank" href="https://status.sejda.com">Status page</a>.</p>
+
+                                    <h4>Is there a Self-hosted version?</h4>
+                                    <p>Yes, a Self-hosted version is available. Pricing starts at $384/mo.</p>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 30px; margin-bottom: 100px; text-align: center">
+                                More questions?
+                                <a href="javascript://" target="_blank" class="btn contact-btn btn-light btn-md get-support-btn">Contact us</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <section>
+<div style="display: none" class="modal app-modal" id="accountConfirmPrompt">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Prawie gotowe! Potwierdź swój adres e-mail.</div>
+      </div>
+      <div class="modal-body">
+        Sprawdź skrzynkę odbiorczą. Wysłaliśmy e-mail z linkiem potwierdzającym na Twój adres:
+        <div id="currentEmailAddressSection">
+          <strong class="emailAddress" style="font-size: larger"></strong> <a style="margin-left: 10px;" href="../account@changeEmail=true.html">Wrong email?</a>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <section style="display: none" id="confirmContinueSection">
+          <span style="vertical-align: middle; margin-right: 10px; color: #999;">Account already confirmed?</span> <a class="btn btn-xs btn-light" href="javascript://">Continue <i class="fal fa-chevron-right"></i></a>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="display: none" class="modal app-modal" id="vpnPrompt">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Wyłącz połączenie VPN</div>
+      </div>
+      <div class="modal-body">
+        Wykryliśmy, że używasz połączenia VPN.<br>
+        Wyłącz połączenie VPN, aby kontynuować zakup.
+        
+        <div style="width: 100%; text-align: center">
+          <img style="height: 250px" src="../images/pages/upgrade/turn-vpn-off.png">  
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <a target="_blank" class="btn btn-xs btn-light support-page-btn" href="contact.html">Kontakt z supportem</a>
+        <a data-dismiss="modal" class="btn btn-xs" href="javascript://">Wyłączyłem VPN <i style="margin-left: 10px" class="fal fa-chevron-right"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+<div style="display: none" class="modal app-modal" id="emailVerificationPrompt">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="modal-title">Zweryfikuj adres e-mail</div>
+      </div>
+      <div class="modal-body">
+        <p style="margin-bottom: 20px;" class="help-block">
+          Potwierdź, że to naprawdę Ty. <span class="check_inbox_link">Sprawdź skrzynkę odbiorczą</span>
+          <br>
+          Wysłaliśmy kod weryfikacyjny na Twój adres e-mail.
+        </p>
+        
+        <div style="display: none" id="emailVerificationCodeInvalid" class="alert alert-danger"></div>
+        <label>Kod weryfikacyjny e-mail</label>
+        <input type="text" class="form-control" name="emailVerificationCode" placeholder="123456">
+
+        <p style="margin-top: 20px; margin-bottom: -20px;" class="help-block">
+          Nie masz maila? Sprawdź folder &quot;Spam&quot; lub użyj wcześniej otrzymanego kodu weryfikacyjnego.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-xs btn-continue" href="javascript://">Kontynuuj <i style="margin-left: 10px" class="fal fa-chevron-right"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+            <div style="display: none" class="modal app-modal fullscreen-modal" id="createFreeApiAccountModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <div class="modal-title"> </div>
+                  </div>
+                  <div class="modal-body">
+                    <div id="free-api-account-row" class="row">
+                      <section id="createFreeApiAccountSection">
+                        <h3>Dane Konta</h3>
+                        <h2>Wprowadź szczegóły swojego nowego lub istniejącego konta</h2>
+  
+                        <form class="form" id="create-free-api-account-form" autocomplete="false" method="post">
+                          <input value="O1WB5ZQQEO1EQKD2M2JV" name="csrf" id="csrf" type="hidden">
+                          <div style="display: none" data-error="general" class="alert alert-danger"></div>
+                          <div class="form-controls">
+                            <label style="color: #999">Email</label>
+                            <div style="display: none" class="mailcheck_suggest">Did you mean <a href="javascript://">other@email.com</a> ?</div>
+                            <input placeholder="Email address - Watch out for typos" class="form-control" name="email" type="email">
+                            <div style="color: #333; margin-top: 10px" class="fine-print" id="workEmailFinePrint">
+                              <span style="background-color: #fffbce">To prevent abuse, please use your work email address</span>
+                              <span class="input-help">
+                                <i class="fal fa-question-circle" data-toggle="tooltip" data-placement="top" data-html="true" title="Nie u&#x017c;ywaj adresu e-mail od darmowych dostawc&#x00f3;w, takich jak Gmail, Yahoo, Proton itp."></i>
+                              </span>
+                            </div>
+                            <br>
+                            <label style="color: #999;" for="password" id="passwordLabel">Password</label>
+                            <div style="display: none" data-error="passwordInvalid" class="alert alert-danger">Wpisz hasło</div>
+                            <input placeholder="Password" minlength="8" class="form-control passtrengthMetered" name="password" type="password" id="password">
+                            <div class="passtrengthMeter"></div>
+
+                            <div style="display: none" class="form-group verification-code-group">
+                              <div style="display: none" id="emailVerificationCodeInvalid" class="alert alert-danger">Verification code is incorrect</div>
+                              <label>Email verification code</label>
+                              <input type="text" class="form-control" name="emailVerificationCode" placeholder="123456">
+
+                              <p class="help-block">
+                                Please verify your email so we know it’s really you.<br>
+                                Check your inbox. We've sent a verification code to your email address.
+                              </p>
+                            </div>
+                          </div>
+                          <div class="more-details head-space-xl agree-terms">
+                            <div style="text-align: left" class="checkbox">
+                              <label><input value="yes" name="agreeTerms" type="checkbox"> I agree to the <a target="_blank" href="../terms.html">Terms of Use</a> and <a target="_blank" href="../privacy.html">Privacy Policy</a></label></div>
+                          </div>
+                          <div style="margin-bottom: 60px; text-align: center">
+                            <button href="javascript://" class="btn form-submit" type="submit">
+                               Utwórz konto
+                            </button>
+                          </div>
+                        </form>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>  
+
+            <script>
+                var plans = {
+                  'API_HTML_PDF_MONTHLY_RL200_C3_12_USD': { amount: 1200, ccy: 'USD', name: 'HTML to PDF API (200 req/hour, 3 concurrent)', symbol: '$'},
+                  'API_HTML_PDF_MONTHLY_RL300_C4_24_USD': { amount: 2400, ccy: 'USD', name: 'HTML to PDF API (300 req/hour, 4 concurrent)', symbol: '$'},
+                  'API_HTML_PDF_MONTHLY_RL600_C5_48_USD': { amount: 4800, ccy: 'USD', name: 'HTML to PDF API (600 req/hour, 5 concurrent)', symbol: '$'},
+                  'API_HTML_PDF_MONTHLY_RL1200_C6_96_USD': { amount: 9600, ccy: 'USD', name: 'HTML to PDF API (1200 req/hour, 6 concurrent)', symbol: '$'},
+                  'API_HTML_PDF_MONTHLY_RL2400_C12_192_USD': { amount: 19200, ccy: 'USD', name: 'HTML to PDF API (2400 req/hour, 12 concurrent)', symbol: '$'},
+                  'API_HTML_PDF_MONTHLY_RL4800_C24_384_USD': { amount: 38400, ccy: 'USD', name: 'HTML to PDF API (4800 req/hour, 24 concurrent)', symbol: '$'},
+                  'API_HTML_PDF_MONTHLY_RL9600_C48_768_USD': { amount: 76800, ccy: 'USD', name: 'HTML to PDF API (9600 req/hour, 48 concurrent)', symbol: '$'},
+                }
+            </script>
+            <script data-src="/js/pages/upgrade.min.js?v=135" class="pageScripts"></script>
+            <script data-src="/js/pages/html-pdf-api.min.js?v=5" class="pageScripts"></script>
+            <section>
+    <script src="../cache/639/js/libs-and-partials.min.js" async="async" id="libsAndPartialsScript"></script>
+</section>
+
+        </section>
+    
+
+<div id="taskResultsModal" role="dialog" tabindex="-1" class="modal fade"></div>
+
+
+
+
+	
+</body>
+</html>  
+  

@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <meta charset="utf-8">
+
+    <link as="style" href="../css/index.min.css@v=404.css" rel="preload">
+    <link crossorigin="anonymous" type="font/woff2" as="font" href="../fonts/braille/Atkinson-Hyperlegible-Regular-102a.woff2" rel="preload">
+    <link crossorigin="anonymous" type="font/woff2" as="font" href="../fonts/braille/Atkinson-Hyperlegible-Bold-102a.woff2" rel="preload">
+    <link as="script" href="../cache/639/js/libs-and-partials.min.js" rel="preload">
+
+    <link href="../images/icon_128.png" rel="shortcut icon">
+
+    <meta content="website" property="og:type">
+    <meta content="https://www.sejda.com/" property="og:url">
+    <meta content="Sejda.com - We help with your PDF tasks" property="og:site_name">
+
+    <meta content="summary_large_image" name="twitter:card">
+    <meta content="@SejdaPDF" name="twitter:site">
+    <meta content="@SejdaPDF" name="twitter:creator">
+
+    <meta content="1762774073964212" property="fb:app_id">
+
+    <link rel="alternate" hreflang="en" href="../extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="de" href="../de/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="fr" href="../fr/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="ro" href="../ro/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="nl" href="../nl/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="no" href="../no/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="pt" href="../pt/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="it" href="../it/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="es" href="../es/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="pl" href="../pl/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="sv" href="../sv/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="fi" href="../fi/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="ja" href="../ja/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="id" href="../id/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="hu" href="../hu/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="th" href="../th/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="vi" href="../vi/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="tr" href="../tr/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="ko" href="../ko/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="cs" href="../cs/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="zh-Hans" href="../zh/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="zh-Hant" href="../tw/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="ar" href="../ar/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="da" href="../da/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="el" href="extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="hi" href="../hi/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="he" href="../he/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="ru" href="../ru/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="uk" href="../uk/extract-text-from-pdf.html">
+    <link rel="alternate" hreflang="x-default" href="../en/extract-text-from-pdf.html">
+
+    <link rel="canonical" href="extract-text-from-pdf.html">
+    <link href="../css/index.min.css@v=404.css" type="text/css" rel="stylesheet">
+  
+	
+<title>PDF σε Text</title>
+
+	
+<meta name="description" content="&#x0395;&#x03be;&#x03b1;&#x03b3;&#x03c9;&#x03b3;&#x03ae; &#x03ba;&#x03b5;&#x03b9;&#x03bc;&#x03ad;&#x03bd;&#x03bf;&#x03c5; &#x03b1;&#x03c0;&#x03cc; PDF. &#x0391;&#x03bd;&#x03c4;&#x03b9;&#x03b3;&#x03c1;&#x03ac;&#x03c6;&#x03b5;&#x03b9; &#x03cc;&#x03bb;&#x03bf; &#x03c4;&#x03bf; text &#x03b1;&#x03c0;&#x03cc; &#x03c4;&#x03bf; PDF &#x03ba;&#x03b1;&#x03b9; &#x03c4;&#x03bf; &#x03b5;&#x03be;&#x03ac;&#x03b3;&#x03b5;&#x03b9; &#x03c3;&#x03b5; &#x03be;&#x03b5;&#x03c7;&#x03c9;&#x03c1;&#x03b9;&#x03c3;&#x03c4;&#x03cc; &#x03b1;&#x03c1;&#x03c7;&#x03b5;&#x03af;&#x03bf; text. Online, &#x03b4;&#x03b5;&#x03bd; &#x03b1;&#x03c0;&#x03b1;&#x03b9;&#x03c4;&#x03b5;&#x03af;&#x03c4;&#x03b1;&#x03b9; &#x03b5;&#x03b3;&#x03ba;&#x03b1;&#x03c4;&#x03ac;&#x03c3;&#x03c4;&#x03b1;&#x03c3;&#x03b7; &#x03ae; &#x03b5;&#x03b3;&#x03b3;&#x03c1;&#x03b1;&#x03c6;&#x03ae;. &#x0395;&#x03af;&#x03bd;&#x03b1;&#x03b9; &#x03b4;&#x03c9;&#x03c1;&#x03b5;&#x03ac;&#x03bd;, &#x03b3;&#x03c1;&#x03ae;&#x03b3;&#x03bf;&#x03c1;&#x03bf; &#x03ba;&#x03b1;&#x03b9; &#x03b5;&#x03cd;&#x03ba;&#x03bf;&#x03bb;&#x03bf; &#x03c3;&#x03c4;&#x03b7; &#x03c7;&#x03c1;&#x03ae;&#x03c3;&#x03b7;.">
+
+	
+<meta property="og:title" content="Sejda.com - &#x0395;&#x03be;&#x03b1;&#x03b3;&#x03c9;&#x03b3;&#x03ae; &#x03ba;&#x03b5;&#x03b9;&#x03bc;&#x03ad;&#x03bd;&#x03bf;&#x03c5; &#x03b1;&#x03c0;&#x03cc; PDF">
+
+	
+<meta property="og:description" content="&#x0391;&#x03bd;&#x03c4;&#x03b9;&#x03b3;&#x03c1;&#x03ac;&#x03c6;&#x03b5;&#x03b9; &#x03cc;&#x03bb;&#x03bf; &#x03c4;&#x03bf; text &#x03b1;&#x03c0;&#x03cc; &#x03c4;&#x03bf; PDF &#x03ba;&#x03b1;&#x03b9; &#x03c4;&#x03bf; &#x03b5;&#x03be;&#x03ac;&#x03b3;&#x03b5;&#x03b9; &#x03c3;&#x03b5; &#x03be;&#x03b5;&#x03c7;&#x03c9;&#x03c1;&#x03b9;&#x03c3;&#x03c4;&#x03cc; &#x03b1;&#x03c1;&#x03c7;&#x03b5;&#x03af;&#x03bf; text. Online, &#x03b4;&#x03b5;&#x03bd; &#x03b1;&#x03c0;&#x03b1;&#x03b9;&#x03c4;&#x03b5;&#x03af;&#x03c4;&#x03b1;&#x03b9; &#x03b5;&#x03b3;&#x03ba;&#x03b1;&#x03c4;&#x03ac;&#x03c3;&#x03c4;&#x03b1;&#x03c3;&#x03b7; &#x03ae; &#x03b5;&#x03b3;&#x03b3;&#x03c1;&#x03b1;&#x03c6;&#x03ae;. &#x0395;&#x03af;&#x03bd;&#x03b1;&#x03b9; &#x03b4;&#x03c9;&#x03c1;&#x03b5;&#x03ac;&#x03bd;, &#x03b3;&#x03c1;&#x03ae;&#x03b3;&#x03bf;&#x03c1;&#x03bf; &#x03ba;&#x03b1;&#x03b9; &#x03b5;&#x03cd;&#x03ba;&#x03bf;&#x03bb;&#x03bf; &#x03c3;&#x03c4;&#x03b7; &#x03c7;&#x03c1;&#x03ae;&#x03c3;&#x03b7;.">
+
+	
+<meta name="twitter:title" content="Sejda.com - &#x0395;&#x03be;&#x03b1;&#x03b3;&#x03c9;&#x03b3;&#x03ae; &#x03ba;&#x03b5;&#x03b9;&#x03bc;&#x03ad;&#x03bd;&#x03bf;&#x03c5; &#x03b1;&#x03c0;&#x03cc; PDF">
+
+	
+<meta name="twitter:description" content="&#x0391;&#x03bd;&#x03c4;&#x03b9;&#x03b3;&#x03c1;&#x03ac;&#x03c6;&#x03b5;&#x03b9; &#x03cc;&#x03bb;&#x03bf; &#x03c4;&#x03bf; text &#x03b1;&#x03c0;&#x03cc; &#x03c4;&#x03bf; PDF &#x03ba;&#x03b1;&#x03b9; &#x03c4;&#x03bf; &#x03b5;&#x03be;&#x03ac;&#x03b3;&#x03b5;&#x03b9; &#x03c3;&#x03b5; &#x03be;&#x03b5;&#x03c7;&#x03c9;&#x03c1;&#x03b9;&#x03c3;&#x03c4;&#x03cc; &#x03b1;&#x03c1;&#x03c7;&#x03b5;&#x03af;&#x03bf; text. Online, &#x03b4;&#x03b5;&#x03bd; &#x03b1;&#x03c0;&#x03b1;&#x03b9;&#x03c4;&#x03b5;&#x03af;&#x03c4;&#x03b1;&#x03b9; &#x03b5;&#x03b3;&#x03ba;&#x03b1;&#x03c4;&#x03ac;&#x03c3;&#x03c4;&#x03b1;&#x03c3;&#x03b7; &#x03ae; &#x03b5;&#x03b3;&#x03b3;&#x03c1;&#x03b1;&#x03c6;&#x03ae;. &#x0395;&#x03af;&#x03bd;&#x03b1;&#x03b9; &#x03b4;&#x03c9;&#x03c1;&#x03b5;&#x03ac;&#x03bd;, &#x03b3;&#x03c1;&#x03ae;&#x03b3;&#x03bf;&#x03c1;&#x03bf; &#x03ba;&#x03b1;&#x03b9; &#x03b5;&#x03cd;&#x03ba;&#x03bf;&#x03bb;&#x03bf; &#x03c3;&#x03c4;&#x03b7; &#x03c7;&#x03c1;&#x03ae;&#x03c3;&#x03b7;.">
+
+	
+</head>
+<body data-download-server="www.sejda.com" data-proxy-token="1c7cd6573b8b353c0ebb5a18ed344e74" data-pro-user="false" data-max-file-size="500" data-ipcountry="IN" data-www="www59.sejda.com">
+    <section id="body-wrap">
+    <section>
+  <div style="display:none" class="alert alert-meh alert-dismissible centered" id="termsNotice">
+    <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span></button>
+    We've updated our <a target="_blank" href="../terms.html">terms of service</a> and/or <a target="_blank" href="../privacy.html">privacy policy</a>. Please take a moment and review them.<br>
+    By continuing to use our services you agree to our updated terms &amp; privacy policy.
+  </div>
+</section>
+    <div class="StripeBackground">
+      <div class="stripe s0"></div>
+      <div class="stripe s1"></div>
+      <div class="stripe s2"></div>
+      <div class="stripe s3"></div>
+      <div class="stripe s4"></div>
+    </div>
+
+    
+
+    <section>  
+      
+    </section>
+
+    <div class="container-fluid">
+      <header>
+        <section>
+<div class="container">
+  <div class="pull-left">
+      <a title="Sejda.com logo" href="index.html" class="brand"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMjUycHgiIGhlaWdodD0iMjUycHgiIHZpZXdCb3g9Ii00NzkuNSAyODAuNSAyNTIgMjUyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC00NzkuNSAyODAuNSAyNTIgMjUyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxjaXJjbGUgZmlsbD0iIzAwQkI4OCIgY3g9Ii0zNTMuMjUyIiBjeT0iNDA2LjI1MiIgcj0iMTIwLjI0OCIvPg0KPGcgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAgICAiPg0KCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0tMzAwLjYzMywzNDIuOTczbC05Ljk3OSwyMy4zNjNjLTE3LjE1Ni05LjU0NC0zNC4wOTUtMTMuMTI1LTQ1Ljc5OS0xMi42OTUNCgkJYy0xNS4yMzgsMC41NTgtMjQuOTY2LDYuNjY0LTI0LjU4NSwxNy4wNDNjMS4yMzcsMzMuNzg5LDg0LjA1NCwxMi42MjEsODUuODY4LDY4LjI4MWMxLjAxMiwyNy42MDQtMjIuNjU4LDQ1LjQ5OS01Ni42NjgsNDYuNzQ0DQoJCWMtMjQuMjkyLDAuODkxLTQ3LjYyMy04LjIwNi02NC4wNTctMjIuMmwxMC40MzgtMjIuOTM4YzE2LjQzNCwxMy45OTQsMzYuNjAxLDIxLjIxNyw1My4xNjQsMjAuNjA5DQoJCWMxOC4xMDctMC42NjQsMjguNjgtNy45MDYsMjguMjQyLTE5LjgzYy0xLjI2NC0zNC40NTEtODQuMDM1LTEyLjE4MS04Ni4wNDktNjcuMTY4Yy0wLjk3MS0yNi41MDIsMjEuMTY5LTQzLjg5Niw1NC43MzYtNDUuMTI3DQoJCUMtMzM1LjIyNSwzMjguMzE4LTMxNS4zMzUsMzM0LjAwMi0zMDAuNjMzLDM0Mi45NzN6Ii8+DQo8L2c+DQo8L3N2Zz4NCg==" alt="Sejda.com logo" class="logo">
+          <span class="name">Sejda</span></a>
+      <a href="javascript://" class="header-link header-tool more-tasks">
+          Όλα τα Εργαλεία<i class="fal fa-fw fa-angle-down" style="margin-left: 3px;"></i>
+      </a>
+      <a href="compress-pdf.html" class="header-link header-tool hide-xs">Compress</a>
+      <a href="pdf-editor.html" class="header-link header-tool hide-xs">Edit</a>
+      <a href="sign-pdf.html" class="header-link header-tool hide-xs hide-lang-de hide-lang-hu hide-lang-ru">Fill &amp; Sign</a>
+      <a href="merge-pdf.html" class="header-link header-tool hide-sm">Merge</a>
+      <a href="delete-pdf-pages.html" class="header-link header-tool hide-md">Διαγραφή Σελίδων</a>
+      <a href="crop-pdf.html" class="header-link header-tool hide-md hide-lang-de hide-lang-fr hide-lang-ro hide-lang-cs hide-lang-ru">Crop</a>
+
+  </div>
+  <div id="user-header" class="pull-right">
+      <div class="header-links">
+          <a href="upgrade.html" class="header-link pricing-link">Τιμολόγηση</a>
+          <a href="desktop.html" class="header-link desktop-link hide-xs">Desktop</a>
+          <a href="account@justUpgraded=desktop.html" id="loginBtn" class="loggedout header-link">Σύνδεση</a>
+          <div style="display:none" class="dropdown loggedin header-link">
+              <a data-toggle="dropdown" class="dropdown-toggle">
+                  <i class="fas fa-user-circle"></i>
+                  <span class="caret"></span>
+              </a>
+              <ul role="menu" class="dropdown-menu pull-right dropdown-menu-right">
+                  <li role="presentation"><a href="account.html" tabindex="-1" role="menuitem">Λογαριασμός</a></li>
+                  <li role="presentation"><a id="logoutBtn" href="javascript://" tabindex="-1" role="menuitem">Logout</a></li>
+              </ul>
+          </div>
+          <a title="Select language" href="javascript://" class="header-link select-lang-btn hide-xs">
+              <i style="vertical-align: text-top;" class="fal fa-globe"></i>
+          </a>
+      </div>
+  </div>
+</div>
+<div id="megaMenu" style="display: none" class="container-fluid mega-menu">
+    <div class="mega-menu-inner">
+    <button aria-label="Close" class="close" type="button"><span aria-hidden="true">×</span></button>
+    <div class="container tasks-container">
+        <div class="row">
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6 col-recent-tools">
+                <ul class="popular">
+                    <li class="header">
+                        Πρόσφατα<i class="fal fa-history"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">Merge</li>
+                    <li class="cat-merge">
+                        <a href="alternate-mix-pdf.html">
+                          <div class="caption">
+                              <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-random fa-stack-1x"></i>
+                              </span>Εναλλαγή &amp; Μίξη
+                          </div>
+                          <div class="description">Αναμιγνύει σελίδες από 2 ή περισσότερα έγγραφα, εναλλάσσοντάς τες</div>
+                        </a>
+                    </li>
+                    <li class="cat-merge">
+                        <a href="merge-pdf.html">
+                          <div class="caption">
+                              <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-sitemap fa-stack-1x"></i>
+                              </span>Merge
+                          </div>
+                          <div class="description">Συνδυασμός PDF και εικόνων σε ένα</div>
+                        </a>
+                    </li>
+                    <li class="cat-merge">
+                        <a href="organize-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-object-group fa-stack-1x"></i>
+                            </span>Οργάνωση</div>
+                            <div class="description">Τακτοποίηση και αναδιάταξη σελίδων PDF</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Split
+                    </li>
+                    <li class="cat-split">
+                        <a href="extract-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-external-link fa-stack-1x"></i>
+                                  </span>Εξαγωγή σελίδων</div>
+                            <div class="description">Δημιουργία εγγράφου μόνο με τις επιλεγμένες σελίδες</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-clone fa-stack-1x"></i>
+                                  </span>Split ανά σελίδες</div>
+                            <div class="description">Split εύρους σελίδων ή εξαγωγή κάθε σελίδας σε ξεχωριστό έγγραφο</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-outline.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-bookmark fa-stack-1x"></i>
+                                  </span>Split βάσει σελιδοδεικτών</div>
+                            <div class="description">Εξαγωγή κεφαλαίων βάσει των σελιδοδεικτών του πίνακα περιεχομένων</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-down-the-middle.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-columns fa-stack-1x"></i>
+                                  </span>Split στη μέση</div>
+                            <div class="description">Split σκαναρισμένων σελίδων, A3 σε διπλό A4 ή A4 σε διπλό A5</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-size.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-chart-pie fa-stack-1x"></i>
+                                  </span>Split βάσει μεγέθους</div>
+                            <div class="description">Δημιουργία μικρότερων εγγράφων με συγκεκριμένο μέγεθος αρχείου</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-text.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-font fa-stack-1x"></i>
+                                  </span>Split βάσει κειμένου</div>
+                            <div class="description">Εξαγωγή εγγράφων όταν αλλάζει συγκεκριμένο κείμενο από σελίδα σε σελίδα</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        Edit &amp; Υπογραφή
+                    </li>
+                    <li class="cat-edit">
+                        <a href="pdf-editor.html">
+                            <div class="caption">
+                                <span class="task-icon fa-stack fa-lg fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-pencil fa-stack-1x"></i>
+                                </span>Edit
+                            </div>
+                            <div class="description">Δωρεάν Edit αρχείων PDF. Συμπλήρωση &amp; υπογραφή PDF. Προσθήκη κειμένου, συνδέσμων, εικόνων και σχημάτων. Edit υπάρχοντος κειμένου PDF. Σχολιασμός PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="sign-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-signature fa-stack-1x"></i>
+                                  </span>Fill &amp; Sign</div>
+                            <div class="description">Προσθήκη υπογραφής στο PDF. Συμπλήρωση φορμών PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="pdf-forms.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-wpforms fa-stack-1x"></i>
+                                  </span>Δημιουργία φορμών</div>
+                            <div class="description">Δωρεάν εργαλείο δημιουργίας φορμών PDF. Μετατροπή εγγράφων PDF σε συμπληρώσιμα</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="delete-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-trash fa-stack-1x"></i>
+                                  </span>Διαγραφή Σελίδων</div>
+                            <div class="description">Αφαίρεση σελίδων από έγγραφο PDF</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Compress
+                    </li>
+                    <li class="cat-compress">
+                        <a href="compress-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-compress fa-stack-1x"></i>
+                                  </span>Compress</div>
+                            <div class="description">Μείωση μεγέθους του PDF</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Ασφάλεια
+                    </li>
+                    <li class="cat-security">
+                        <a href="encrypt-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-lock fa-stack-1x"></i>
+                                  </span>Προστασία</div>
+                            <div class="description">Προστασία αρχείου με κωδικό και δικαιώματα</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="unlock-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-unlock fa-stack-1x"></i>
+                                  </span>Ξεκλείδωμα</div>
+                            <div class="description">Αφαίρεση περιορισμών και κωδικού από αρχεία PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="watermark-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-alt fa-stack-1x"></i>
+                                  </span>Watermark</div>
+                            <div class="description">Προσθήκη υδατογραφήματος εικόνας ή κειμένου σε PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="flatten-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-font fa-stack-1x"></i>
+                                <i class="fal fa-slash fa-stack-1x"></i>
+                              </span>Flatten</div>
+                            <div class="description">Μετατροπή συμπληρώσιμων PDF σε &quot;μόνο για ανάγνωση&quot;. Εκτύπωση &amp; σκανάρισμα σε ένα βήμα</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        Μετατροπή από PDF
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-excel.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-excel fa-stack-1x"></i>
+                                  </span>PDF σε Excel</div>
+                            <div class="description">Δωρεάν online μετατροπή PDF σε Excel ή CSV. Εξαγωγή δεδομένων πίνακα από PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-jpg.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-image fa-stack-1x"></i>
+                                  </span>PDF σε JPG</div>
+                            <div class="description">Μετατροπή σελίδων PDF σε εικόνες JPG, PNG ή TIFF</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-ppt.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-powerpoint fa-stack-1x"></i>
+                                  </span>PDF σε PowerPoint</div>
+                            <div class="description">Online μετατροπή PDF σε PowerPoint</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="extract-text-from-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-align-left fa-stack-1x"></i>
+                                  </span>PDF σε Text</div>
+                            <div class="description">Αντιγράφει όλο το text από το PDF και το εξάγει σε ξεχωριστό αρχείο text</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-word.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-word fa-stack-1x"></i>
+                                  </span>PDF σε Word</div>
+                            <div class="description">Μετατροπή από PDF σε DOC online</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Μετατροπή σε PDF
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="html-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-code fa-stack-1x"></i>
+                                  </span>HTML σε PDF</div>
+                            <div class="description">Μετατροπή ιστοσελίδων ή αρχείων HTML σε PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="jpg-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-image fa-stack-1x"></i>
+                                  </span>JPG σε PDF</div>
+                            <div class="description">Μετατροπή εικόνων σε PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="word-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-word fa-stack-1x"></i>
+                                  </span>Word σε PDF</div>
+                            <div class="description">Δημιουργεί PDF από Microsoft Word .docx</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        Άλλα
+                    </li>
+                    <li class="cat-other">
+                        <a href="bates-numbering-pdf.html" title="">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-gavel fa-stack-1x"></i>
+                                  </span>Bates Numbering</div>
+                            <div class="description">Bates stamp σε πολλά αρχεία ταυτόχρονα</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="pdf-bookmarks.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-bookmark fa-stack-1x"></i>
+                                  </span>Δημιουργία Bookmarks</div>
+                            <div class="description">Δημιουργία PDF Bookmarks</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="crop-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-crop fa-stack-1x"></i>
+                                  </span>Crop</div>
+                            <div class="description">Περικοπή περιθωρίων PDF, αλλαγή μεγέθους σελίδας</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="edit-pdf-metadata.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-info-square fa-stack-1x"></i>
+                                  </span>Επεξεργασία Metadata</div>
+                            <div class="description">Αλλαγή PDF Author, Title, Keywords, Subject και άλλων metadata</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="extract-images-from-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-popular fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-external-link fa-stack-1x"></i>
+                                  </span>Εξαγωγή εικόνων</div>
+                            <div class="description">Εξαγωγή εικόνων από PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="flip-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-reflect-horizontal fa-stack-1x"></i>
+                                  </span>Flip<span class="label label-success">New</span></div>
+                            <div class="description">Mirror σελίδων οριζόντια ή κατακόρυφα</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="grayscale-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-paint-brush fa-stack-1x"></i>
+                                  </span>Grayscale</div>
+                            <div class="description">Μετατροπή text και εικόνων PDF σε grayscale</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="header-footer-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-heading fa-stack-1x"></i>
+                                  </span>Header &amp; Footer</div>
+                            <div class="description">Προσθήκη αριθμών σελίδας ή text labels σε PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="n-up-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-th-large fa-stack-1x"></i>
+                                  </span>N-up</div>
+                            <div class="description">Εκτύπωση πολλών σελίδων ανά φύλλο χαρτιού. A5 plan as 4-up on A3 or A4 2-up on A3</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="page-numbers-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-sort-numeric-up fa-stack-1x"></i>
+                                  </span>Αριθμοί Σελίδας</div>
+                            <div class="description">Προσθήκη αριθμών σελίδας PDF</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                         
+                    </li>
+                    <li class="cat-other">
+                        <a href="rename-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-i-cursor fa-stack-1x"></i>
+                                  </span>Rename</div>
+                            <div class="description">Αλλαγή ονόματος αρχείου βάσει text από τις σελίδες PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="repair-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-wrench fa-stack-1x"></i>
+                                  </span>Repair</div>
+                            <div class="description">Ανάκτηση δεδομένων από κατεστραμμένο PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="resize-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-arrows-alt fa-stack-1x"></i>
+                                  </span>Resize</div>
+                            <div class="description">Προσθήκη περιθωρίων και padding, αλλαγή μεγέθους σελίδας PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="rotate-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-repeat fa-stack-1x"></i>
+                                  </span>Rotate</div>
+                            <div class="description">Περιστροφή και μόνιμη αποθήκευση σελίδων PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="delete-pdf-annotations.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-highlighter fa-stack-1x"></i>
+                                  </span>Αφαίρεση annotations<span class="label label-success">New</span></div>
+                            <div class="description">Μαζική αφαίρεση highlights, strikeouts ή άλλων annotations από PDF</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Scans
+                    </li>
+                    <li class="cat-scans">
+                        <a href="deskew-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-popular fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-alt fa-stack-1x rotated-5-deg"></i>
+                                  </span>Deskew</div>
+                            <div class="description">Αυτόματη ευθυγράμμιση και deskew σκαναρισμένων σελίδων PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-scans">
+                        <a href="ocr-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-qrcode fa-stack-1x"></i>
+                                  </span>OCR</div>
+                            <div class="description">Μετατροπή scans σε PDF με δυνατότητα αναζήτησης text. Εξαγωγή text από scans</div>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="header lower">
+                        Automate
+                    </li>
+                    <li>
+                        <a href="workflows.html" title="">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-robot fa-stack-1x"></i>
+                                  </span>Workflows<span class="label label-success">New</span></div>
+                            <div class="description">Εκτέλεση σειράς tasks σε έγγραφα PDF. Ρύθμιση αλυσίδας εργαλείων για επεξεργασία PDF</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="centered">
+                <form autocomplete="off">
+                    <div style="display: none" class="input-group search-tools-wrap">
+                        <i class="fal fa-search"></i>
+                        <input onkeypress="if(event.keyCode === 13){ return false; }" id="searchTools" placeholder="Type to search" class="form-control input-sm" type="search" autocomplete="off">
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <a style="color: #AAA; text-decoration: underline; font-size: 14px;" class="get-support-btn" href="javascript://">Suggest a missing feature</a>
+                        <i class="fal fa-comment-lines" style="color: #AAA; vertical-align: middle;"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+      </header>
+    </div>
+
+    
+    
+
+    <section data-multiple-files="pro" data-task="extractText" id="task-content">
+      <div class="container centered">
+        <div class="row">
+          <h1>PDF σε Text</h1>
+          <h2>Εξαγωγή κειμένου από PDF. Αντιγράφει όλο το text από το PDF και το εξάγει σε ξεχωριστό αρχείο text</h2>
+        </div>
+      </div>
+
+      <section>
+  <div class="container centered step1" style="margin-top: 30px; display: none;" id="suggestAltLanguage">
+  <div class="announcement">
+    <a href="javascript://">
+      <i style="margin-right: 5px;" class="fal fa-language"></i>
+      <span class="loc_available_your_lang">Sejda is available in your language</span>.
+      <span class="loc_change_lang">Change language</span>?
+    </a>
+
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">×</span></button>
+  </div>
+</div>
+  
+  <div id="upload-progress"><div style="width: 0%" class="bar"></div></div>
+
+  <section>
+    
+</section>
+  <div class="container-fluid container-upgrade-section">
+  <section style="display: none;" id="limited-no-upgrade-section">
+    <h2>
+      <span class="upgrade-reason" id="generic-free-rate-limit-reason" style="display: none;">
+        Πολλές προσπάθειες. Δοκίμασε ξανά αργότερα.
+      </span>
+      <span class="upgrade-reason" id="generic-free-size-limit-reason" style="display: none;">
+        Συγγνώμη, το αρχείο σου είναι πολύ μεγάλο.
+      </span>
+    </h2> 
+  </section>
+  <section style="display: none;" id="upgrade-section">
+    <h2>
+      <span class="upgrade-reason" id="files-per-hour-reason" style="display: none;">
+        Έφτασες το δωρεάν όριο των 30 αρχείων ανά ώρα.
+        <br>
+        Κάνε αναβάθμιση για να συνεχίσεις αυτό το Task.
+      </span>
+      <span class="upgrade-reason" id="tasks-per-hour-reason" style="display: none;">
+        Έφτασες το δωρεάν όριο των 3 Tasks ανά ώρα.
+        <br>
+        Κάνε αναβάθμιση για να συνεχίσεις αυτό το Task ή περίμενε για <span id="wait-countdown-clock">00:59:00</span>.
+      </span>
+      <span class="upgrade-reason" id="free-file-size-reason" style="display: none;">
+        Έφτασες το δωρεάν όριο των <span class="free-file-size-limit">50</span> MB ανά αρχείο.
+        <br>
+        Κάνε αναβάθμιση για να συνεχίσεις αυτό το Task.
+      </span>
+      <span class="upgrade-reason" id="free-image-file-size-reason" style="display: none;">
+        Έφτασες το δωρεάν όριο των 5MB ανά αρχείο εικόνας.
+        <br>
+        Κάνε αναβάθμιση για να συνεχίσεις αυτό το Task.
+      </span>
+      <span class="upgrade-reason" id="free-multiple-files-reason" style="display: none;">
+        Οι δωρεάν χρήστες περιορίζονται σε ένα αρχείο ανά Task.
+        <br>
+        Κάνε αναβάθμιση για να επεξεργαστείς πολλά αρχεία ταυτόχρονα.
+      </span>
+      <span class="upgrade-reason" id="free-pages-per-task-reason" style="display: none;">
+        Έφτασες το δωρεάν όριο των 50 σελίδων.
+        <br>
+        Κάνε αναβάθμιση για να συνεχίσεις αυτό το Task.
+      </span>
+      <span class="upgrade-reason" id="page-count-per-pdf-to-jpg-reason" style="display: none;">
+        Οι δωρεάν χρήστες περιορίζονται σε 20 σελίδες ανά μετατροπή.
+        <br>
+        Κάνε αναβάθμιση για να συνεχίσεις αυτό το Task.
+      </span>
+      <span class="upgrade-reason" id="urls-per-task-reason" style="display: none;">
+        Οι δωρεάν χρήστες περιορίζονται σε 20 συνδέσμους ανά Task.
+        <br>
+        Κάνε αναβάθμιση για να επεξεργαστείς έως 100 συνδέσμους ταυτόχρονα.
+      </span>
+      <span class="upgrade-reason" id="page-count-per-ocr-reason" style="display: none;">
+        Οι δωρεάν χρήστες περιορίζονται σε 10 σελίδες ανά OCR Task.
+        <br>
+        Κάνε αναβάθμιση για να συνεχίσεις την επεξεργασία αυτού του εγγράφου.
+      </span>
+      <span class="upgrade-reason" id="page-count-per-pdf-to-word-reason" style="display: none;">
+        Οι δωρεάν χρήστες περιορίζονται σε 50 σελίδες ανά μετατροπή.
+        <br>
+        Κάνε αναβάθμιση για να συνεχίσεις την επεξεργασία αυτού του εγγράφου.
+      </span>
+      <span class="upgrade-reason" id="file-count-per-rename-reason" style="display: none;">
+        Οι δωρεάν χρήστες περιορίζονται σε 5 αρχεία ανά Rename Task.
+        <br>
+        Κάνε αναβάθμιση για να συνεχίσεις αυτό το Task.
+      </span>
+      <span class="upgrade-reason" id="workflows-count-reason" style="display: none;">
+        Οι δωρεάν χρήστες περιορίζονται σε 1 Workflow.
+        <br>
+        Κάνε αναβάθμιση για περισσότερα Workflows.
+      </span>
+    </h2>
+    
+    <div class="upgrade-section-footer">
+      <a rel="opener" target="_blank" href="upgrade.html" class="btn btn-default btn-medium upgrade-btn">Upgrade <i class="fal fa-external-link"></i></a>
+      <a href="javascript://" class="btn btn-secondary btn-medium already-customer-btn login-btn">Σύνδεση</a>
+      <a href="javascript://" class="already-customer-link login-btn">Έχεις ήδη λογαριασμό; Σύνδεση</a>
+    </div>
+  </section>
+</div>
+
+  <section id="fileUploadContainer">
+  <div style="height: 80px" class="container-fluid centered step1">
+    <svg style="margin-bottom: -5px; margin-top: -20px;" preserveAspectRatio="none" viewBox="0 0 100 100" height="100" width="100%" version="1.1" class="x-curve-up-separator">
+      <path d="M0 100 C 18 0 50 -30 100 100 Z" fill="#FBFBFB"></path>
+      <path fill="#f5f5f5" d="M0 100 C 20 0 50 0 100 100 Z"></path>
+    </svg>
+  </div>
+  <div style="margin-top: -1px;" class="container-fluid centered step1">
+    <div style="background-color: #F5f5f5;" class="row no-margins">
+      <div class="drop-files-zone">
+
+        <div class="btn-group upload-btn-group main">
+          <span class="btn btn-lg fileinput-button">
+            <i class="fal fa-fw fa-file-pdf"></i>
+            <span style="display: none" class="singular">Upload αρχείου PDF</span>
+            <span class="plural">Upload αρχείων PDF</span>
+            <form data-parallel-chunked-uploads="true" data-filetypes="pdf" action="https://www.sejda.com/api/files/upload?_s=59&uplid=LGJOU08251527" data-chunked-uploads="true" enctype="multipart/form-data" method="post" id="fileUploadForm">
+              <input value="LGJOU08251527" name="uplid" type="hidden" id="uplid">
+              <input data-url="https://www.sejda.com/api/files/upload?_s=59&uplid=LGJOU08251527" accept=".pdf" title="Upload" multiple="multiple" data-scope="task-file" name="file" type="file" data-allows-drop="true" class="fileupload">
+            </form>
+          </span>
+          <button aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" class="btn btn-lg dropdown-toggle" type="button">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="drpbox-chooser" href="javascript://"><i class="fab fa-dropbox icon"></i> Dropbox</a></li>
+            <li><a class="gdrive-chooser" href="javascript://"><img data-src="/images/icons/gdrive.png" loading="lazy" class="icon"> Google Drive</a></li>
+            <li><a class="onedrive-chooser" href="javascript://"><img data-src="/images/icons/onedrive.png" loading="lazy" class="icon"> OneDrive</a></li>
+            <li><a class="weburl-chooser" href="javascript://"><i class="fal fa-link icon"></i> Διεύθυνση Web (URL)</a></li>
+          </ul>
+        </div>
+        <div style="display: none" id="startWithBlankDocument">
+          <a href="javascript://" class="open-blank-doc-btn">ή ξεκίνα με ένα κενό έγγραφο</a>
+        </div>
+        <section>
+          <p style="margin-top: 40px; color: #888">
+            <span id="filesPrivacySection">
+            Τα αρχεία παραμένουν ιδιωτικά. Διαγράφονται αυτόματα μετά από 2 ώρες.<br>
+            </span>
+            <span id="freeLimitsSection">
+              Δωρεάν υπηρεσία για έγγραφα έως <span id="freePagesLimitSection"><span id="freePagesLimit">200</span> σελίδες ή</span> <span id="freeFileSizeLimit">50</span> MB και 3 Tasks ανά ώρα.<br>
+            </span>
+            <span id="proLimitsSection"></span>
+            <span id="freeWhileBetaSection"></span>
+            </p><div id="termsPrivacySection">
+          <a target="_blank" href="../terms.html">Όροι Χρήσης</a> και <a target="_blank" href="../privacy.html">Πολιτική Απορρήτου</a>
+            </div>
+          <p></p>
+        </section>
+      </div>
+      <svg style="height: auto; margin-bottom: -10px;" class="col-12 text-white absolute bottom-0" viewBox="0 0 1200 46">
+        <path d="M0-7h1200v48H0V-7zm0 30.113V-7h1200v37.495c-37.762 7.58-155.36 7.58-352.791 0C721.412 31.665 480.68.297 248.535.355 197.087.368 114.242 7.955 0 23.113z" fill-rule="evenodd" fill="#FBFBFB"></path>
+        <path d="M0-7h1200v53H0V-7zm0 30.113V-7h1200v43.495c-37.762 7.58-155.36 7.58-352.791 0C721.412 31.665 480.68.297 248.535.355 197.087.368 114.242 7.955 0 23.113z" fill-rule="evenodd" fill="#FFF"></path>
+      </svg>
+    </div>
+  </div>
+  <div style="display: none" id="recentFilesListContainer" class="container-fluid centered step1">
+    <div id="recentFilesListOuter">
+      <h4><i class="fal fa-history"></i> Πρόσφατα αρχεία</h4>
+      <span class="collapse-toggle" title="&#x039a;&#x03b1;&#x03c4;&#x03ac;&#x03c1;&#x03b3;&#x03b7;&#x03c3;&#x03b7; &#x03c4;&#x03b7;&#x03c2; &#x03bb;&#x03af;&#x03c3;&#x03c4;&#x03b1;&#x03c2; &#x03c0;&#x03c1;&#x03cc;&#x03c3;&#x03c6;&#x03b1;&#x03c4;&#x03c9;&#x03bd; &#x03b1;&#x03c1;&#x03c7;&#x03b5;&#x03af;&#x03c9;&#x03bd;"><i class="fal fa-chevron-down"></i></span>
+      <ol id="recentFilesList">
+        <div style="display: none" id="recentFilesConnectSection">
+          <a id="connectGDriveBtn" href="javascript://">
+            <img data-src="/images/icons/sejda.png" loading="lazy" class="help-block-icon"><img style="margin-right: 10px" data-src="/images/icons/gdrive.png" loading="lazy" class="help-block-icon">Συνδέστε το Google Drive για να δείτε τα πρόσφατα αρχεία
+          </a></div>
+      </ol>
+    </div>
+    <div id="recentFilesFooter">
+      <section style="display: none" id="recentFilesFooterGoogleDrive">
+        <img data-src="/images/icons/sejda.png" loading="lazy" class="help-block-icon"><img data-src="/images/icons/gdrive.png" loading="lazy" class="help-block-icon">
+        Google Drive &gt; <a rel="noopener" target="_blank" href="javascript://" id="openGDriveAppFolderLink">Sejda PDF</a>
+      </section>
+    </div>
+  </div>
+  </section>
+
+  <div style="margin-top: 30px;" class="container centered step1 desktop-promo">
+    <a target="_blank" href="../desktop.html" class="announcement">
+      <span class="new-pill">Offline</span> Προτιμάς να δουλεύεις offline; Δοκίμασε το Sejda Desktop <i class="fal fa-fw fa-chevron-right"></i>
+    </a>
+  </div>
+
+  
+  <div style="display: none" class="modal file-pwd-prompt" id="filePwdPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Κωδικός πρόσβασης για <span class="file-name">file.pdf</span></h4>
+        </div>
+        <div class="modal-body">
+          <label style="display: none; color: #a94442;" class="danger">Λανθασμένος κωδικός</label>
+          <input class="file-pwd form-control input-lg" name="filePwd" type="text">
+          <i class="fal fa-fw fa-eye input-field-icon toggle-password"></i>
+
+          <div class="checkbox">
+            <label><input style="margin-top: 5px" name="usePwdForAllFiles" type="checkbox"> Χρήση αυτού του κωδικού για όλα τα αρχεία</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary btn-xs" type="button">Συνέχεια</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" id="limited-permissions-notice">
+    <div class="limited-permissions-notice-inner">
+      <i class="fal fa-info-circle"></i> Αυτό το έγγραφο έχει περιορισμένα δικαιώματα. Δώσε τον κωδικό κατόχου για να επιτρέψεις την τροποποίηση του περιεχομένου.
+      <a target="_blank" href="help.html#owner-password">Μάθε περισσότερα.</a>
+      <button class="btn blue-btn btn-xs enter-owner-pwd-btn">Εισαγωγή κωδικού</button>
+    </div>  
+  </div>
+
+  <div style="display: none" class="modal file-pwd-prompt" id="fileOwnerPwdPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Κωδικός κατόχου για <span class="file-name">file.pdf</span></h4>
+        </div>
+        <div class="modal-body">
+          <section style="margin-bottom: 30px;" class="file-permissions-list">
+            <label class="light">Αυτό το έγγραφο έχει περιορισμένα δικαιώματα:</label>
+            <div class="row ">
+              <div class="col-xs-6">
+                <div style="display: none" class="denied" data-perm="copy"><i class="fal fa-ban"></i> Αντιγραφή περιεχομένου</div>
+                <div style="display: none" class="denied" data-perm="modify"><i class="fal fa-ban"></i> Επεξεργασία περιεχομένου</div>
+                <div style="display: none" class="denied" data-perm="assemble"><i class="fal fa-ban"></i> Οργάνωση σελίδων</div>
+              </div>
+              <div class="col-xs-6">
+                <div style="display: none" class="denied" data-perm="fill"><i class="fal fa-ban"></i> Συμπλήρωση φορμών</div>
+                <div style="display: none" class="denied" data-perm="print"><i class="fal fa-ban"></i> Εκτύπωση</div>
+                <div style="display: none" class="denied" data-perm="sign"><i class="fal fa-ban"></i> Υπογραφή</div>
+              </div>
+            </div>
+          </section>  
+          <div>
+            <div style="display: none;" class="alert alert-danger"><i class="fal fa-exclamation-triangle"></i> Λανθασμένος κωδικός</div>
+            
+            <label class="light">Δώσε τον κωδικό ιδιοκτήτη για να ενεργοποιήσεις όλες τις άδειες:</label>
+            <input placeholder="Enter document owner password" class="file-pwd form-control input-lg" name="filePwd" type="text">
+            <i class="fal fa-eye fa-fw input-field-icon toggle-password"></i>
+          </div>
+          <div style="margin-top: 10px">
+            <a target="_blank" href="help.html#owner-password">Μάθε περισσότερα<i style="margin-left: 5px; vertical-align: middle" class="fal fa-question-circle"></i></a>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary btn-xs" type="button">Συνέχεια</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div style="display: none" class="modal web-address-url-prompt" id="webAddressUrlPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Paste τη διεύθυνση ιστού του αρχείου:</h4>
+        </div>
+        <div class="modal-body">
+          <label style="display: none; color: #a94442;" class="danger">Μη έγκυρη διεύθυνση ιστού</label>
+          <input placeholder="http://example.com/file.pdf" class="form-control input-lg" type="text">
+        </div>
+        <div class="modal-footer">
+          <button data-dismiss="modal" class="btn btn-light btn-xs" type="button">Ακύρωση</button>
+          <button class="btn btn-primary btn-xs" type="button">Συνέχεια</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal app-error-modal" id="retryUploadModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Το Upload αρχείου απέτυχε
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>Δεν ήταν δυνατό το Upload του αρχείου σου: <span class="filename"></span>. <br><strong>Δεν θα μπορείς να αποθηκεύσεις τις αλλαγές μέχρι να πετύχει το Upload.</strong></p>
+        </div>
+        <div class="modal-footer">
+          <div class="debug-details"></div>
+          <button class="btn btn-yes btn-xs" type="button">Ok, δοκίμασε ξανά το Upload</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="uploadAgainModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title">
+            Η συνεδρία έληξε
+          </div>
+        </div>
+        <div class="modal-body">
+          Η συνεδρία σου έληξε και τα αρχεία διαγράφηκαν από τους servers μας.<br>
+          Παρακαλώ κάνε ξανά Upload τα αρχεία σου για να συνεχίσεις.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-yes btn-xs" type="button">Re-upload αρχείων</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+      <section style="display: none; margin-bottom: 20px" class="doc-loading">
+  <div class="progress-radial progress-0">
+    <div class="overlay">0%</div>
+  </div>
+  <div>Φόρτωση, παρακαλώ περίμενε...</div>
+</section>
+      <section>
+  <div id="pdf-files-summary-wrap" style="display: none" class="row centered">
+    <span class="message"></span>
+  </div>
+
+  
+  <div style="display: none" class="modal app-modal" id="reorderFilesPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div style="float: right" class="adhoc-tools-menu">
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fal fa-sort-alpha-down"></i>
+                Sort by
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu sort-filenames-opts">
+                <li><a title="By filenames, alphabetically" data-sort-order="name-asc" class="sort-btn"><i class="fal fa-sort-alpha-down"></i> File names, A-Z</a></li>
+                <li><a title="By filenames, alphabetically, descending order" data-sort-order="name-desc" class="sort-btn"><i class="fal fa-sort-alpha-up"></i> File names, Z-A</a></li>
+                <li><a title="By last modified date, oldest first" data-sort-order="lastmod-asc" class="sort-btn"><i class="fal fa-sort-numeric-down"></i> Last modified, oldest first</a></li>
+                <li><a title="By last modified date, newest first" data-sort-order="lastmod-desc" class="sort-btn"><i class="fal fa-sort-numeric-up"></i> Last modified, newest first</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="modal-title">
+            Selected files (drag to reorder)
+          </div>
+        </div>
+        <div class="modal-body">
+          <ul id="reorderFilesList"></ul>
+        </div>
+        <div class="modal-footer">
+          <button data-dismiss="modal" class="btn btn-xs btn-secondary" type="button">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+      <div style="display:none; margin-top: 40px" class="centered step2">
+        <form autocomplete="off" class="form-inline task-form">
+          <input value="extractText" name="type" type="hidden">
+
+          <div class="container">
+            <div class="row head-space">
+              <button class="btn btn-default btn-medium" type="submit">Εξαγωγή κειμένου</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  
+
+    <div id="taskResultsModal" role="dialog" tabindex="-1" class="modal fade"></div>
+
+    <div style="margin-top: 60px;" class="container centered step1">
+      <div class="row">
+        <a href="../contact.html" rel="opener" target="_blank" class="btn contact-btn btn-light btn-xs get-support-btn">Επικοινωνία με Support</a>
+      </div>
+    </div>
+
+    <div id="toast-msg-box"></div>
+
+    <div class="container-fluid centered step1">
+      <footer>
+  <div>
+    <div class="row links">
+      <div class="col-sm-5">
+        <ul>
+          <li class="first">Resources</li>
+          <li><a href="upgrade.html">Pricing &amp; Upgrade</a></li>
+          <li><a href="desktop.html">Sejda for Desktop</a></li>
+          <li><a href="https://gsuite.google.com/marketplace/app/sejda_pdf_editor/8721525582">Sejda for G Suite</a></li>
+          <li><a href="teachers.html">Sejda for Education</a></li>
+          <li><a href="../press.html">About</a></li>
+          <li><a href="../blog.html">Blog</a></li>
+
+          <li style="margin-top: 30px" class="first">API</li>
+          <li><a href="html-pdf-api.html">HTML to PDF API</a></li>
+          <li><a href="../developers.html">Developer Docs</a></li>
+
+          <li style="margin-top: 30px" class="first">Legal</li>
+          <li><a href="../terms.html">Terms of Use</a></li>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../cookies.html">Cookies</a></li>
+          <li><a href="../cookies.html#privacy-settings">Privacy Settings</a></li>
+          <li><a href="../security.html">Security</a></li>
+          <li><a href="../sla.html">SLA</a></li>
+        </ul>
+
+        <div style="font-size: 16px; margin-top: 40px;">
+          <div class="location">Made in <em>Amsterdam</em></div>
+          <div class="made-in">
+            © Sejda BV 2013-present.<br><br>
+            Thank you for your time.
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <ul id="footer-all-tasks">
+          <li class="first">Tools</li>
+          <li>
+            <a href="extract-pdf-pages.html">Εξαγωγή σελίδων PDF</a>
+          </li>
+          <li>
+            <a href="split-pdf-by-outline.html">Διαχωρισμός PDF κατά σελιδοδείκτες</a>
+          </li>
+          <li>
+            <a href="split-pdf-down-the-middle.html">Διαχωρισμός PDF στη μέση</a>
+          </li>
+          <li>
+            <a href="split-pdf.html" class="popular">Διαχωρισμός PDF ανά σελίδες</a>
+          </li>
+          <li>
+            <a href="split-pdf-by-size.html">Διαχωρισμός PDF κατά μέγεθος</a>
+          </li>
+          <li>
+            <a href="split-pdf-by-text.html">Διαχωρισμός PDF κατά κείμενο</a>
+          </li>
+          <li>
+            <a href="alternate-mix-pdf.html">Εναλλαγή &amp; Μίξη PDF</a>
+          </li>
+          <li>
+            <a href="visually-combine-reorder-pdf.html">Οπτική Συνένωση &amp; Αναδιάταξη PDF</a>
+          </li>
+          <li>
+            <a href="merge-pdf.html" class="popular">Merge PDF</a>
+          </li>
+          <li>
+            <a href="bates-numbering-pdf.html">Αρίθμηση Bates σε PDF</a>
+          </li>
+          <li>
+            <a href="compress-pdf.html">Συμπίεση PDF</a>
+          </li>
+          <li>
+            <a href="repair-pdf.html">Επισκευή PDF</a>
+          </li>
+          <li>
+            <a href="crop-pdf.html">Περικοπή PDF</a>
+          </li>
+          <li>
+            <a href="delete-pdf-pages.html">Διαγραφή σελίδων PDF</a>
+          </li>
+          <li>
+            <a href="deskew-pdf.html">Διόρθωση κλίσης PDF</a>
+          </li>
+          <li>
+            <a href="pdf-editor.html">PDF Editor</a>
+          </li>
+          <li>
+            <a href="sign-pdf.html">Συμπλήρωση &amp; Υπογραφή PDF</a>
+          </li>
+          <li>
+            <a href="extract-text-from-pdf.html">PDF σε Text</a>
+          </li>
+          <li>
+            <a href="header-footer-pdf.html">Κεφαλίδα &amp; Υποσέλιδο PDF</a>
+          </li>
+          <li>
+            <a href="header-footer-pdf.html">Αρίθμηση σελίδων PDF</a>
+          </li>
+          <li>
+            <a href="pdf-to-jpg.html">PDF σε JPG</a>
+          </li>
+          <li>
+            <a href="jpg-to-pdf.html">JPG σε PDF</a>
+          </li>
+          <li>
+            <a href="watermark-pdf.html">Watermark PDF</a>
+          </li>
+          <li>
+            <a href="pdf-to-word.html" class="popular">PDF σε Word</a>
+          </li>
+          <li>
+            <a href="word-to-pdf.html" class="popular">Word σε PDF</a>
+          </li>
+          <li>
+            <a href="pdf-to-excel.html" class="popular">PDF σε Excel</a>
+          </li>
+          <li>
+            <a href="encrypt-pdf.html">Προστασία PDF</a>
+          </li>
+          <li>
+            <a href="rotate-pdf-pages.html">Περιστροφή PDF</a>
+          </li>
+          <li>
+            <a href="unlock-pdf.html">Ξεκλείδωμα PDF</a>
+          </li>
+          <li>
+            <a href="n-up-pdf.html">N-up PDF</a>
+          </li>
+          <li>
+            <a href="resize-pdf.html">Αλλαγή μεγέθους PDF</a>
+          </li>
+          <li>
+            <a href="html-to-pdf.html">HTML σε PDF</a>
+          </li>
+          <li>
+            <a href="ocr-pdf.html">OCR PDF</a>
+          </li>
+          <li>
+            <a href="grayscale-pdf.html">Grayscale PDF</a>
+          </li>
+          <li>
+            <a href="extract-images-from-pdf.html">Εξαγωγή εικόνων από PDF</a>
+          </li>
+          <li>
+            <a href="flatten-pdf.html">Flatten PDF</a>
+          </li>
+          <li>
+            <a href="edit-pdf-metadata.html">Επεξεργασία Metadata PDF</a>
+          </li>
+          <li>
+            <a href="pdf-to-ppt.html" class="popular">PDF σε PowerPoint</a>
+          </li>
+          <li>
+            <a href="pdf-bookmarks.html">Δημιουργία PDF Bookmarks</a>
+          </li>
+          <li>
+            <a href="page-numbers-pdf.html">Προσθήκη αρίθμησης σελίδων PDF</a>
+          </li>
+          <li>
+            <a href="delete-pdf-annotations.html">Διαγραφή σχολίων PDF</a>
+          </li>
+          <li>
+            <a href="flip-pdf.html">Flip PDF</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-2">
+        <ul>
+          <li class="first">Languages</li>
+          <li><a href="../ar/extract-text-from-pdf.html">العربية</a></li>
+          <li><a href="../id/extract-text-from-pdf.html">Bahasa Indonesia</a></li>
+          <li><a href="../de/extract-text-from-pdf.html">Deutsch</a></li>
+          <li><a href="../da/extract-text-from-pdf.html">Dansk</a></li>
+          <li><a href="../cs/extract-text-from-pdf.html">Český</a></li>
+          <li><a href="../extract-text-from-pdf.html">English</a></li>
+          <li><a href="../es/extract-text-from-pdf.html">Español</a></li>
+          <li><a href="extract-text-from-pdf.html">Ελληνικά</a></li>
+          <li><a href="../fr/extract-text-from-pdf.html">Français</a></li>
+          <li><a href="../it/extract-text-from-pdf.html">Italiano</a></li>
+          <li><a href="../ja/extract-text-from-pdf.html">日本語</a></li>
+          <li><a href="../ko/extract-text-from-pdf.html">한국어</a></li>
+          <li><a href="../zh/extract-text-from-pdf.html">简体中文</a></li>
+          <li><a href="../tw/extract-text-from-pdf.html">繁體中文</a></li>
+          <li><a href="../hi/extract-text-from-pdf.html">हिन्दी</a></li>
+          <li><a href="../he/extract-text-from-pdf.html">עברית</a></li>
+          <li><a href="../hu/extract-text-from-pdf.html">Magyar</a></li>
+          <li><a href="../nl/extract-text-from-pdf.html">Nederlands</a></li>
+          <li><a href="../no/extract-text-from-pdf.html">Norsk</a></li>
+          <li><a href="../pl/extract-text-from-pdf.html">Polski</a></li>
+          <li><a href="../pt/extract-text-from-pdf.html">Português</a></li>
+          <li><a href="../ro/extract-text-from-pdf.html">Română</a></li>
+          <li><a href="../ru/extract-text-from-pdf.html">Русский</a></li>
+          <li><a href="../fi/extract-text-from-pdf.html">Suomi</a></li>
+          <li><a href="../sv/extract-text-from-pdf.html">Svenska</a></li>
+          <li><a href="../th/extract-text-from-pdf.html">ภาษาไทย</a></li>
+          <li><a href="../vi/extract-text-from-pdf.html">Tiếng Việt</a></li>
+          <li><a href="../tr/extract-text-from-pdf.html">Türkçe</a></li>
+          <li><a href="../uk/extract-text-from-pdf.html">Українська</a></li>
+        </ul>
+
+        <ul class="contact-footer-list">
+          <li class="first">Contact</li>
+          <li><a href="mailto:hi@sejda.com?subject=Hello">hi@sejda.com</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="landscape"></div>
+</footer>
+    </div>
+
+    <div style="display: none" class="footer-contact-us-wrap step2">
+      <a title="Contact support" target="_blank" href="contact.html" rel="opener" class="get-support-btn always-new-tab"><i class="fas fa-question-circle"></i></a>
+    </div>
+
+    <section>
+  <div class="modal fade" id="contactFormModal" style="display: none">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+            <div style="margin: 20px 40px;" class="row centered contact-form-row">
+              <h3 style="margin-bottom: 10px;">Επικοινώνησε με την υποστήριξη του SEJDA.COM</h3>
+              <h5 style="margin-bottom: 30px;">Στείλε μας email στο <a href="mailto:hi@sejda.com">hi@sejda.com</a> ή χρησιμοποίησε την παρακάτω φόρμα</h5>
+              
+              <div style="display: none; margin-top: 50px;" class="alert alert-success" id="contactSuccess">Ευχαριστούμε για το μήνυμά σου.</div>
+
+              <section id="support-frequent-topics">
+                <div class="form-group">
+                  <label for="contact-msg">Χρειάζομαι βοήθεια με</label>
+                  <br>
+                  <div data-topic="cancel-subscription" class="support-topic">Ακύρωση συνδρομής</div>
+                  <div data-topic="find-license-key" class="support-topic">Εύρεση κλειδιού άδειας</div>
+                  <div class="support-topic">Κάτι άλλο</div>
+                </div>
+                
+                <div class="support-answers">
+                  <div class="support-answer selected" style="display: none" data-answer="find-license-key" id="support_licenseKey_accountPage">
+                    Μπορείς να βρεις το κλειδί άδειας Sejda Desktop στη σελίδα του λογαριασμού σου:
+                    <br>
+                    <a target="_blank" href="account@justUpgraded=desktop.html">https://www.sejda.com/account</a>
+                  </div>
+
+                  <div style="display: none" data-answer="find-license-key" class="support-answer" id="support_licenseKey_webOnly">
+                    Αγόρασες ένα Web-only πρόγραμμα που δεν περιλαμβάνει πρόσβαση στο Sejda Desktop.
+                    <br>
+                    <a target="_blank" href="upgrade.html#pricing">https://www.sejda.com/upgrade</a>
+                    <br><br>
+                    Εδώ είναι τα προγράμματα με πρόσβαση Desktop:
+                    <br>
+                    <a target="_blank" href="desktop.html#pricing">https://www.sejda.com/desktop</a>
+                    <br><br>
+                    Μόλις αγοράσεις ένα Desktop πρόγραμμα, η Web-only αγορά σου θα επιστραφεί αυτόματα.
+                  </div>
+
+                  <div class="support-answer selected" style="display: none" data-answer="cancel-subscription" id="support_cancelSub_accountPage">
+                    Μπορείς να ακυρώσεις τη συνδρομή σου από τη σελίδα του λογαριασμού σου κάνοντας κλικ στο &quot;Stop auto-renewal&quot; δίπλα στη συνδρομή σου:
+                    <br>
+                    <a target="_blank" href="account.html">https://www.sejda.com/account</a>
+                  </div>
+
+                  <div style="display: none" data-answer="cancel-subscription" class="support-answer" id="support_cancelSub_weekPass">
+                    Το πρόγραμμα Week Pass είναι εφάπαξ χρέωση, όχι επαναλαμβανόμενη συνδρομή. Δεν ανανεώνεται αυτόματα και μετατρέπεται σε δωρεάν μετά από 7 ημέρες.
+                  </div>
+                </div>
+              </section>
+              
+              <form style="display: none" id="contactForm">
+                <section id="contactFormProgressBar">
+                  <progress max="100" value="0" id="progress"></progress>
+                  <div class="step-item">1</div>
+                  <div class="step-item">2</div>
+                  <div class="step-item">3</div>
+                  <div class="step-item">4</div>
+                </section>
+                <section data-step="1" class="contact-form-step">
+                  <div class="form-group">
+                    <label for="contact-msg">Μήνυμα</label>
+                    <textarea id="contact-msg" class="form-control" name="message" style="min-height: 100px; padding: 15px" required="required" placeholder="&#x03a0;&#x03bb;&#x03b7;&#x03ba;&#x03c4;&#x03c1;&#x03bf;&#x03bb;&#x03cc;&#x03b3;&#x03b7;&#x03c3;&#x03b5; &#x03c4;&#x03bf; &#x03bc;&#x03ae;&#x03bd;&#x03c5;&#x03bc;&#x03ac; &#x03c3;&#x03bf;&#x03c5;"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-email">Η διεύθυνση email σου</label>
+                    <input type="email" class="form-control" id="contact-email" name="email" placeholder="&#x03a0;&#x03c1;&#x03bf;&#x03b1;&#x03b9;&#x03c1;&#x03b5;&#x03c4;&#x03b9;&#x03ba;&#x03cc;. &#x0391;&#x03bd; &#x03b8;&#x03ad;&#x03bb;&#x03b5;&#x03b9;&#x03c2; &#x03bd;&#x03b1; &#x03b1;&#x03c0;&#x03b1;&#x03bd;&#x03c4;&#x03ae;&#x03c3;&#x03bf;&#x03c5;&#x03bc;&#x03b5;, &#x03c0;&#x03b5;&#x03c2; &#x03bc;&#x03b1;&#x03c2; &#x03c4;&#x03bf; email &#x03c3;&#x03bf;&#x03c5;" value="">
+                  </div>
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="completeStep1Btn" class="btn btn-default" type="button">
+                    Επόμενο <i style="margin-left: 10px" class="fal fa-chevron-right"></i> 
+                  </button>
+                </section>
+
+                <section style="display: none" data-step="2" class="contact-form-step">
+                  <div class="loader-wrap"><img src="../images/loaders/oval-green.svg" class="loader medium"></div>
+                </section>  
+                
+                <section style="display: none" data-step="3" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">Προτεινόμενη απάντηση</label>
+                    <div id="automaticSupportAnswer"></div>
+                  </div>
+
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="completeStep3Btn" class="btn btn-link btn-xs" type="button">
+                    Αυτό δεν απαντά στην ερώτησή μου
+                  </button>
+                </section>
+                
+                <section style="display: none" data-step="4" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">Αναφορά προβλήματος;</label>
+                  </div>
+                  <div style="width: 263px; text-align: left; margin: auto;" class="form-group">
+                    <div class="radio">
+                      <label>
+                        <input value="problem" name="supportMessageKind" type="radio">
+                        Ναι, αναφέρω ένα πρόβλημα
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input value="other" name="supportMessageKind" type="radio">
+                        Όχι, κάτι άλλο
+                      </label>
+                    </div>
+                  </div>  
+                </section>
+
+                <section style="display: none" data-step="5" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">Λεπτομέρειες προβλήματος</label>
+                  </div>
+                  <div style="max-width: 430px; margin: auto; margin-top: -15px; text-align: left;" class="checkbox">
+                    <label><input style="margin: 5px; margin-right: 15px;" name="allowAccessLastTask" type="checkbox"> Δώστε πρόσβαση στο τελευταίο Task σας και στα αρχεία που χρησιμοποιήθηκαν.</label>
+                    <p style="font-size: 12px; padding-left: 33px; margin-top: 0;" class="help-block">Θα χρησιμοποιήσουμε αυτά τα δεδομένα για να σας βοηθήσουμε πιο γρήγορα. Εμπιστευτικό.</p>
+                  </div>
+                  <div id="attachScreenshotFormGroup" class="form-group">
+                    <label class="light">Attach a screenshot*</label>
+                    <p style="font-size: 12px; padding-left: 33px; margin-top: -8px;" class="help-block">Παρακαλούμε μοιραστείτε ένα screenshot του προβλήματος, όπως το βλέπετε.</p>
+                    <div>
+                      <label style="border: 1px solid #ccc;display: inline-block;padding: 6px 12px; cursor: pointer;" class="light" for="supportScreenshotFile">
+                        <i class="fal fa-plus"></i> Επιλογή αρχείου εικόνας screenshot
+                      </label>
+                      <input style="display: none" accept=".png,.jpg,.jpeg,.bmp" type="file" id="supportScreenshotFile">
+                      <div id="supportScreenshotFilePreview"></div>
+                    </div>
+                  </div>
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="sendMessageBtn" class="btn btn-default" type="submit">Αποστολή μηνύματος</button>
+                </section>
+                
+                <input value="iluzie" name="suflet" type="hidden">
+                <input value="" name="source" type="hidden">
+                <input value="" name="source2" type="hidden">
+                <input value="" name="lastFile" type="hidden">
+                <input value="" name="lastTask" type="hidden">
+                <input value="" name="events" type="hidden">
+                <input value="" name="consoleLogs" type="hidden">
+                <input value="" name="screenshot" type="hidden">
+                <input value="" name="os" type="hidden">
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    <section>
+  <div style="display: none" class="modal app-modal" id="optOutChoicesPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Privacy Settings
+          </div>
+        </div>
+        <div class="modal-body">
+          This feature requires loading content from an external service, <span class="external_service_name"></span>, which could access personal data, such as your IP address, set cookies and track you.<br><br>
+          Please let us know if you are okay with that.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-no btn-light btn-xs" type="button">No, cancel</button>
+          <button class="btn btn-yes btn-xs" type="button">Yes, continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal app-error-modal" id="problemLoadingPageResourcePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            There's a problem loading this page
+          </div>
+        </div>
+        <div class="modal-body">
+          There was a problem loading a critical resource, which prevents the page from continuing.<br><br>
+          Please check your internet connection and reload the page to try again.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-yes btn-xs" type="button">Reload page</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div style="display: none" class="modal app-modal app-error-modal" id="genericErrorModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+            <div class="modal-title"></div>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="display: none" class="modal app-modal app-warning-modal" id="scanPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Τα σκαναρισμένα έγγραφα δεν υποστηρίζονται</h4>
+        </div>
+        <div class="modal-body">
+          <div data-scope="edit">
+            <strong>Η επεξεργασία σκαναρισμένων εγγράφων δεν υποστηρίζεται.</strong>
+            Η αλλαγή υπάρχοντος κειμένου σε σκαναρισμένα έγγραφα δεν υποστηρίζεται. Ωστόσο, μπορείτε ακόμα να προσθέσετε νέο κείμενο, εικόνες και σχόλια.
+          </div>
+          <div style="display: none" data-scope="convert">
+            <strong>Η μετατροπή σκαναρισμένων εγγράφων δεν υποστηρίζεται.</strong>
+            Τα σκαναρισμένα PDF είναι εικόνες κειμένου και δεν έχουν τα δεδομένα κειμένου για μετατροπή.
+
+            <br><br>
+            Αρχείο: <span class="file-name"></span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="dont-show-anymore-opts">
+            <div class="checkbox">
+              <label><input style="margin-top: 5px" name="dontShowAnymore" type="checkbox"> Να μην εμφανιστεί ξανά</label>
+            </div>
+          </div>
+          <a target="_blank" href="help.html#scans" class="btn btn-secondary btn-xs">Μάθε περισσότερα</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="movePagePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Μετακίνηση σελίδας σε νέα τοποθεσία
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="form-inline">
+            <label class="light" for="moveNewPageNumber">Νέα τοποθεσία σελίδας:</label>
+            <input style="width: 55px;margin: 0 10px;vertical-align: baseline; text-align: center" class="form-control input-xs" name="moveNewPageNumber" id="moveNewPageNumber" type="text">
+            <span class="num_of_pages"></span>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <div class="modal-hint">
+            Tip: Μπορείτε επίσης να κάνετε drag and drop τη σελίδα στη νέα τοποθεσία
+          </div>
+          <button class="btn btn-yes btn-xs" type="button">Μετακίνηση σελίδας</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="changeLanguagePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Επιλογή γλώσσας
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-6">
+              <ul>
+                <li><a href="../ar/extract-text-from-pdf.html">العربية</a></li>
+                <li><a href="../id/extract-text-from-pdf.html">Bahasa Indonesia</a></li>
+                <li><a href="../da/extract-text-from-pdf.html">Dansk</a></li>
+                <li><a href="../de/extract-text-from-pdf.html">Deutsch</a></li>
+                <li><a href="../cs/extract-text-from-pdf.html">Čeština</a></li>
+                <li><a href="../extract-text-from-pdf.html">English</a></li>
+                <li><a href="../es/extract-text-from-pdf.html">Español</a></li>
+                <li><a href="../fr/extract-text-from-pdf.html">Français</a></li>
+                <li><a href="../it/extract-text-from-pdf.html">Italiano</a></li>
+                <li><a href="extract-text-from-pdf.html">Ελληνικά</a></li>
+                <li><a href="../ja/extract-text-from-pdf.html">日本語</a></li>
+                <li><a href="../ko/extract-text-from-pdf.html">한국어</a></li>
+                <li><a href="../zh/extract-text-from-pdf.html">简体中文</a></li>
+                <li><a href="../tw/extract-text-from-pdf.html">繁體中文</a></li>
+              </ul>
+            </div>
+            <div class="col-xs-6">
+              <ul>
+                <li><a href="../hi/extract-text-from-pdf.html">हिन्दी</a></li>
+                <li><a href="../he/extract-text-from-pdf.html">עברית</a></li>
+                <li><a href="../hu/extract-text-from-pdf.html">Magyar</a></li>
+                <li><a href="../nl/extract-text-from-pdf.html">Nederlands</a></li>
+                <li><a href="../no/extract-text-from-pdf.html">Norsk</a></li>
+                <li><a href="../pl/extract-text-from-pdf.html">Polski</a></li>
+                <li><a href="../pt/extract-text-from-pdf.html">Português</a></li>
+                <li><a href="../ro/extract-text-from-pdf.html">Română</a></li>
+                <li><a href="../ru/extract-text-from-pdf.html">Русский</a></li>
+                <li><a href="../fi/extract-text-from-pdf.html">Suomi</a></li>
+                <li><a href="../sv/extract-text-from-pdf.html">Svenska</a></li>
+                <li><a href="../th/extract-text-from-pdf.html">ภาษาไทย</a></li>
+                <li><a href="../vi/extract-text-from-pdf.html">Tiếng Việt</a></li>
+                <li><a href="../tr/extract-text-from-pdf.html">Türkçe</a></li>
+                <li><a href="../uk/extract-text-from-pdf.html">Українська</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section style="display: none" class="i18n-strings">
+    <div data-key="We're sorry, something went wrong. Please contact support at hi@sejda.com">Λυπούμαστε, κάτι πήγε στραβά. Παρακαλούμε επικοινωνήστε με το support στο hi@sejda.com</div>
+    <div data-key="Verification code is incorrect">Ο κωδικός επαλήθευσης είναι λάθος</div>
+    <div data-key="Too many attempts. Please try again later">Πολλές προσπάθειες. Δοκίμασε ξανά αργότερα.</div>
+    <div data-key="An error occurred. Please try again or contact support">Προέκυψε ένα σφάλμα. Παρακαλούμε δοκιμάστε ξανά ή επικοινωνήστε με το support.</div>
+    <div data-key="Processing, please wait...">Επεξεργασία, παρακαλούμε περιμένετε...</div>
+    <div data-key="Sign in">Σύνδεση</div>
+    <div data-key="Click to edit">Κλικ για επεξεργασία</div>
+    <div data-key="Sorry, unsupported image format:">Συγγνώμη, μη υποστηριζόμενη μορφή εικόνας:</div>
+    <div data-key="We support the following image types:">Υποστηρίζουμε τους παρακάτω τύπους εικόνων:</div>
+    <div data-key="You already have an active monthly subscription">Έχετε ήδη μια ενεργή μηνιαία συνδρομή</div>
+    <div data-key="Trying to add more seats? You can do this from your account page">Θέλετε να προσθέσετε περισσότερες θέσεις; Μπορείτε να το κάνετε από τη σελίδα του λογαριασμού σας</div>
+    <div data-key="Please verify your email address before continuing with your purchase">Παρακαλούμε επαληθεύστε το email σας πριν συνεχίσετε με την αγορά σας</div>
+    <div data-key="We couldn't connect to GoogleDrive. Your browser (or add-ons) might be blocking the load of javascript files from GoogleDrive">Δεν μπορέσαμε να συνδεθούμε στο GoogleDrive. Ο browser σου (ή τα πρόσθετα) ίσως μπλοκάρει τη φόρτωση αρχείων javascript από το GoogleDrive</div>
+    <div data-key="Are you sure you want to remove the recent files list?">Είσαι σίγουρος ότι θέλεις να αφαιρέσεις τη λίστα πρόσφατων αρχείων;</div>
+  </section>
+</section>
+
+    
+    <section>
+    <script src="../cache/639/js/libs-and-partials.min.js" async="async" id="libsAndPartialsScript"></script>
+</section>
+  
+    </section>
+  
+
+
+	
+</body>
+</html>  
+  

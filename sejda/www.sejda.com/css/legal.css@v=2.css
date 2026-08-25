@@ -1,0 +1,118 @@
+.legal {
+    color: #555;
+}
+
+.legal p {
+    line-height: 32px;
+    font-size: 16px;
+    margin-bottom: 24px;
+}
+
+.legal ol, .legal ul {
+    -webkit-padding-start: 20px;
+    font-size: 16px;
+    margin-bottom: 24px;
+}
+
+.legal ol li, .legal ul li {
+    list-style: disc;
+    line-height: 32px;
+}
+
+.legal.container {
+    max-width: 680px;
+    margin: auto;
+    margin-bottom: 40px;
+}
+
+.legal h2, .legal h3, .legal h4 {
+    color: #444;
+    font-weight: bold;
+    line-height: 48px;
+}
+
+.legal h2 {
+    font-size: 22px;
+}
+
+.legal h3 {
+    font-size: 20px;
+}
+
+.legal h4 {
+    font-size: 18px;
+}
+
+.legal table {
+    font-size: 16px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 26px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #0c9;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #0c9;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 26px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+#optOutOptions p {
+    line-height: 30px;
+    margin-bottom: 0;
+}
+
+.switch-label {
+    font-weight: normal;
+}

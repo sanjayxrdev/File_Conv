@@ -1,0 +1,1812 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <meta charset="utf-8">
+
+    <link as="style" href="../css/index.min.css@v=404.css" rel="preload">
+    <link crossorigin="anonymous" type="font/woff2" as="font" href="../fonts/braille/Atkinson-Hyperlegible-Regular-102a.woff2" rel="preload">
+    <link crossorigin="anonymous" type="font/woff2" as="font" href="../fonts/braille/Atkinson-Hyperlegible-Bold-102a.woff2" rel="preload">
+    <link as="script" href="../cache/639/js/libs-and-partials.min.js" rel="preload">
+
+    <link href="../images/icon_128.png" rel="shortcut icon">
+
+    <meta content="website" property="og:type">
+    <meta content="https://www.sejda.com/" property="og:url">
+    <meta content="Sejda.com - We help with your PDF tasks" property="og:site_name">
+
+    <meta content="summary_large_image" name="twitter:card">
+    <meta content="@SejdaPDF" name="twitter:site">
+    <meta content="@SejdaPDF" name="twitter:creator">
+
+    <meta content="1762774073964212" property="fb:app_id">
+
+    <link rel="alternate" hreflang="en" href="../rename-pdf.html">
+    <link rel="alternate" hreflang="de" href="../de/rename-pdf.html">
+    <link rel="alternate" hreflang="fr" href="../fr/rename-pdf.html">
+    <link rel="alternate" hreflang="ro" href="../ro/rename-pdf.html">
+    <link rel="alternate" hreflang="nl" href="../nl/rename-pdf.html">
+    <link rel="alternate" hreflang="no" href="rename-pdf.html">
+    <link rel="alternate" hreflang="pt" href="../pt/rename-pdf.html">
+    <link rel="alternate" hreflang="it" href="../it/rename-pdf.html">
+    <link rel="alternate" hreflang="es" href="../es/rename-pdf.html">
+    <link rel="alternate" hreflang="pl" href="../pl/rename-pdf.html">
+    <link rel="alternate" hreflang="sv" href="../sv/rename-pdf.html">
+    <link rel="alternate" hreflang="fi" href="../fi/rename-pdf.html">
+    <link rel="alternate" hreflang="ja" href="../ja/rename-pdf.html">
+    <link rel="alternate" hreflang="id" href="../id/rename-pdf.html">
+    <link rel="alternate" hreflang="hu" href="../hu/rename-pdf.html">
+    <link rel="alternate" hreflang="th" href="../th/rename-pdf.html">
+    <link rel="alternate" hreflang="vi" href="../vi/rename-pdf.html">
+    <link rel="alternate" hreflang="tr" href="../tr/rename-pdf.html">
+    <link rel="alternate" hreflang="ko" href="../ko/rename-pdf.html">
+    <link rel="alternate" hreflang="cs" href="../cs/rename-pdf.html">
+    <link rel="alternate" hreflang="zh-Hans" href="../zh/rename-pdf.html">
+    <link rel="alternate" hreflang="zh-Hant" href="../tw/rename-pdf.html">
+    <link rel="alternate" hreflang="ar" href="../ar/rename-pdf.html">
+    <link rel="alternate" hreflang="da" href="../da/rename-pdf.html">
+    <link rel="alternate" hreflang="el" href="../el/rename-pdf.html">
+    <link rel="alternate" hreflang="hi" href="../hi/rename-pdf.html">
+    <link rel="alternate" hreflang="he" href="../he/rename-pdf.html">
+    <link rel="alternate" hreflang="ru" href="../ru/rename-pdf.html">
+    <link rel="alternate" hreflang="uk" href="../uk/rename-pdf.html">
+    <link rel="alternate" hreflang="x-default" href="../en/rename-pdf.html">
+
+    <link rel="canonical" href="rename-pdf.html">
+    <link href="../css/index.min.css@v=404.css" type="text/css" rel="stylesheet">
+  
+	
+<link as="script" href="../js/pages/rename-pdf.min.js@v=7" rel="preload">
+
+	
+<title>Gi PDF nytt navn etter tekstinnhold</title>
+
+	
+<meta name="description" content="Gi PDF nytt navn etter tekstinnhold. Endre filnavn basert p&#x00e5; tekst fra PDF-sidene. Nettbasert, ingen installasjon og ingen registrering n&#x00f8;dvendig. Det er gratis, raskt og lett &#x00e5; bruke.">
+
+	
+<style>
+        /* jquery.Jcrop.min.css v0.9.12 (build:20130126) */
+        .jcrop-holder{direction:ltr;text-align:left;}
+        .jcrop-vline,.jcrop-hline{background:#FFF url(../images/Jcrop.gif);font-size:0;position:absolute;}
+        .jcrop-vline{height:100%;width:1px!important;}
+        .jcrop-vline.right{right:0;}
+        .jcrop-hline{height:1px!important;width:100%;}
+        .jcrop-hline.bottom{bottom:0;}
+        .jcrop-tracker{-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-user-select:none;height:100%;width:100%;}
+        .jcrop-handle{background-color:#333;border:1px #EEE solid;font-size:1px;height:7px;width:7px;}
+        .jcrop-handle.ord-n{left:50%;margin-left:-4px;margin-top:-4px;top:0;}
+        .jcrop-handle.ord-s{bottom:0;left:50%;margin-bottom:-4px;margin-left:-4px;}
+        .jcrop-handle.ord-e{margin-right:-4px;margin-top:-4px;right:0;top:50%;}
+        .jcrop-handle.ord-w{left:0;margin-left:-4px;margin-top:-4px;top:50%;}
+        .jcrop-handle.ord-nw{left:0;margin-left:-4px;margin-top:-4px;top:0;}
+        .jcrop-handle.ord-ne{margin-right:-4px;margin-top:-4px;right:0;top:0;}
+        .jcrop-handle.ord-se{bottom:0;margin-bottom:-4px;margin-right:-4px;right:0;}
+        .jcrop-handle.ord-sw{bottom:0;left:0;margin-bottom:-4px;margin-left:-4px;}
+        .jcrop-dragbar.ord-n,.jcrop-dragbar.ord-s{height:7px;width:100%;}
+        .jcrop-dragbar.ord-e,.jcrop-dragbar.ord-w{height:100%;width:7px;}
+        .jcrop-dragbar.ord-n{margin-top:-4px;}
+        .jcrop-dragbar.ord-s{bottom:0;margin-bottom:-4px;}
+        .jcrop-dragbar.ord-e{margin-right:-4px;right:0;}
+        .jcrop-dragbar.ord-w{margin-left:-4px;}
+        .jcrop-light .jcrop-vline,.jcrop-light .jcrop-hline{background:#FFF;filter:alpha(opacity=70)!important;opacity:.70!important;}
+        .jcrop-light .jcrop-handle{-moz-border-radius:3px;-webkit-border-radius:3px;background-color:#000;border-color:#FFF;border-radius:3px;}
+        .jcrop-dark .jcrop-vline,.jcrop-dark .jcrop-hline{background:#000;filter:alpha(opacity=70)!important;opacity:.7!important;}
+        .jcrop-dark .jcrop-handle{-moz-border-radius:3px;-webkit-border-radius:3px;background-color:#FFF;border-color:#000;border-radius:3px;}
+        .solid-line .jcrop-vline,.solid-line .jcrop-hline{background:#FFF;}
+        .jcrop-holder img,img.jcrop-preview{max-width:none;}
+
+        .jcrop-holder {
+          margin: auto;
+        }
+
+        .show-me-how {
+          vertical-align: baseline;
+          padding: 5px 7px;
+        }
+        
+        .areasLayer {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+        
+        .text-area {
+            border: 1px #0282e5 dashed;
+            background-color: rgba(2,130,229,0.1);
+            position: absolute;
+        }
+        
+        .text-area:before {
+            content: attr(data-name);
+            text-transform: uppercase;
+            font-size: 12px;
+            background-color: #0282e5;
+            color: #FFF;
+            position: absolute;
+            left: -1px;
+            top: -20px;
+            height: 20px;
+            line-height: 20px;
+            font-weight: bold;
+            padding: 0 5px;
+            cursor: pointer;
+        }
+        
+        .page-wrap {
+            position: relative;
+            margin: auto;
+            margin-bottom: 150px;
+        }
+        
+        #page-text-selector-wrap {
+            background-color: #e8e8e8;
+            margin-top: 30px;
+        }
+
+        .selection-hint {
+            display: inline-block;
+            color: #666;
+        }
+
+        .selection-hint .fal {
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+        
+        .prev-next-pages-nav {
+            padding: 0 !important;
+            position: absolute;
+            right: 0;
+            margin: 0;
+            left: unset;
+            top: 0;
+        }
+        
+        #page-text-selector-header,
+        #page-text-selector-footer {
+            height: 30px;
+            margin: auto;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .tools-menu {
+            padding: 0 !important;
+        }
+
+        #page-text-selector-footer .prev-next-pages-nav {
+            position: relative;
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        .clear-selection-areas-btn,
+        .clear-selection-areas-btn:visited,
+        .clear-selection-areas-btn:link,
+        .clear-selection-areas-btn:active {
+            color: #0282e5;
+        }
+      </style>
+
+	
+</head>
+<body data-download-server="www.sejda.com" data-proxy-token="1c7cd6573b8b353c0ebb5a18ed344e74" data-pro-user="false" data-max-file-size="500" data-ipcountry="IN" data-www="www59.sejda.com">
+    <section id="body-wrap">
+    <section>
+  <div style="display:none" class="alert alert-meh alert-dismissible centered" id="termsNotice">
+    <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span></button>
+    We've updated our <a target="_blank" href="../terms.html">terms of service</a> and/or <a target="_blank" href="../privacy.html">privacy policy</a>. Please take a moment and review them.<br>
+    By continuing to use our services you agree to our updated terms &amp; privacy policy.
+  </div>
+</section>
+    <div class="StripeBackground">
+      <div class="stripe s0"></div>
+      <div class="stripe s1"></div>
+      <div class="stripe s2"></div>
+      <div class="stripe s3"></div>
+      <div class="stripe s4"></div>
+    </div>
+
+    
+
+    <section>  
+      
+    </section>
+
+    <div class="container-fluid">
+      <header>
+        <section>
+<div class="container">
+  <div class="pull-left">
+      <a title="Sejda.com logo" href="index.html" class="brand"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMjUycHgiIGhlaWdodD0iMjUycHgiIHZpZXdCb3g9Ii00NzkuNSAyODAuNSAyNTIgMjUyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC00NzkuNSAyODAuNSAyNTIgMjUyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxjaXJjbGUgZmlsbD0iIzAwQkI4OCIgY3g9Ii0zNTMuMjUyIiBjeT0iNDA2LjI1MiIgcj0iMTIwLjI0OCIvPg0KPGcgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAgICAiPg0KCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0tMzAwLjYzMywzNDIuOTczbC05Ljk3OSwyMy4zNjNjLTE3LjE1Ni05LjU0NC0zNC4wOTUtMTMuMTI1LTQ1Ljc5OS0xMi42OTUNCgkJYy0xNS4yMzgsMC41NTgtMjQuOTY2LDYuNjY0LTI0LjU4NSwxNy4wNDNjMS4yMzcsMzMuNzg5LDg0LjA1NCwxMi42MjEsODUuODY4LDY4LjI4MWMxLjAxMiwyNy42MDQtMjIuNjU4LDQ1LjQ5OS01Ni42NjgsNDYuNzQ0DQoJCWMtMjQuMjkyLDAuODkxLTQ3LjYyMy04LjIwNi02NC4wNTctMjIuMmwxMC40MzgtMjIuOTM4YzE2LjQzNCwxMy45OTQsMzYuNjAxLDIxLjIxNyw1My4xNjQsMjAuNjA5DQoJCWMxOC4xMDctMC42NjQsMjguNjgtNy45MDYsMjguMjQyLTE5LjgzYy0xLjI2NC0zNC40NTEtODQuMDM1LTEyLjE4MS04Ni4wNDktNjcuMTY4Yy0wLjk3MS0yNi41MDIsMjEuMTY5LTQzLjg5Niw1NC43MzYtNDUuMTI3DQoJCUMtMzM1LjIyNSwzMjguMzE4LTMxNS4zMzUsMzM0LjAwMi0zMDAuNjMzLDM0Mi45NzN6Ii8+DQo8L2c+DQo8L3N2Zz4NCg==" alt="Sejda.com logo" class="logo">
+          <span class="name">Sejda</span></a>
+      <a href="javascript://" class="header-link header-tool more-tasks">
+          Alle Verktøy<i class="fal fa-fw fa-angle-down" style="margin-left: 3px;"></i>
+      </a>
+      <a href="compress-pdf.html" class="header-link header-tool hide-xs">Komprimer</a>
+      <a href="pdf-editor.html" class="header-link header-tool hide-xs">Rediger</a>
+      <a href="sign-pdf.html" class="header-link header-tool hide-xs hide-lang-de hide-lang-hu hide-lang-ru">Fyll ut og signer</a>
+      <a href="merge-pdf.html" class="header-link header-tool hide-sm">Legg sammen</a>
+      <a href="delete-pdf-pages.html" class="header-link header-tool hide-md">Slett Sider</a>
+      <a href="crop-pdf.html" class="header-link header-tool hide-md hide-lang-de hide-lang-fr hide-lang-ro hide-lang-cs hide-lang-ru">Klipp</a>
+
+  </div>
+  <div id="user-header" class="pull-right">
+      <div class="header-links">
+          <a href="upgrade.html" class="header-link pricing-link">Prising</a>
+          <a href="desktop.html" class="header-link desktop-link hide-xs">Desktop</a>
+          <a href="account@justUpgraded=desktop.html" id="loginBtn" class="loggedout header-link">Logg inn</a>
+          <div style="display:none" class="dropdown loggedin header-link">
+              <a data-toggle="dropdown" class="dropdown-toggle">
+                  <i class="fas fa-user-circle"></i>
+                  <span class="caret"></span>
+              </a>
+              <ul role="menu" class="dropdown-menu pull-right dropdown-menu-right">
+                  <li role="presentation"><a href="account.html" tabindex="-1" role="menuitem">Konto</a></li>
+                  <li role="presentation"><a id="logoutBtn" href="javascript://" tabindex="-1" role="menuitem">Logout</a></li>
+              </ul>
+          </div>
+          <a title="Select language" href="javascript://" class="header-link select-lang-btn hide-xs">
+              <i style="vertical-align: text-top;" class="fal fa-globe"></i>
+          </a>
+      </div>
+  </div>
+</div>
+<div id="megaMenu" style="display: none" class="container-fluid mega-menu">
+    <div class="mega-menu-inner">
+    <button aria-label="Close" class="close" type="button"><span aria-hidden="true">×</span></button>
+    <div class="container tasks-container">
+        <div class="row">
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6 col-recent-tools">
+                <ul class="popular">
+                    <li class="header">
+                        Nylige<i class="fal fa-history"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">Legg sammen</li>
+                    <li class="cat-merge">
+                        <a href="alternate-mix-pdf.html">
+                          <div class="caption">
+                              <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-random fa-stack-1x"></i>
+                              </span>Forandre og Blande
+                          </div>
+                          <div class="description">Blander sider fra to eller flere documenter og blander dem</div>
+                        </a>
+                    </li>
+                    <li class="cat-merge">
+                        <a href="merge-pdf.html">
+                          <div class="caption">
+                              <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-sitemap fa-stack-1x"></i>
+                              </span>Legg sammen
+                          </div>
+                          <div class="description">Slå sammen flere documenter i én PDF-fil</div>
+                        </a>
+                    </li>
+                    <li class="cat-merge">
+                        <a href="organize-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-object-group fa-stack-1x"></i>
+                            </span>Organiser</div>
+                            <div class="description">Arranger og omorganiser PDF-sider</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Del opp
+                    </li>
+                    <li class="cat-split">
+                        <a href="extract-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-external-link fa-stack-1x"></i>
+                                  </span>Hent Sider</div>
+                            <div class="description">Få et nytt dokument med bare de ønskede sidene</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-clone fa-stack-1x"></i>
+                                  </span>Del opp i sider</div>
+                            <div class="description">Del spesifikke sider eller flytt hver side til et annet dokument</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-outline.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-bookmark fa-stack-1x"></i>
+                                  </span>Del etter bokmerker</div>
+                            <div class="description">Gjør kapitler til separate documenter basert på bokmerkene i innholdsfortegnelsen</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-down-the-middle.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-columns fa-stack-1x"></i>
+                                  </span>Del i to</div>
+                            <div class="description">Del tosiderslayout, A3 til doble A4 eller A4 til doble A5</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-size.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-chart-pie fa-stack-1x"></i>
+                                  </span>Del ved størrelse</div>
+                            <div class="description">Få flere mindre documenter med bestemte filstørrelser</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-text.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-font fa-stack-1x"></i>
+                                  </span>Del ved tekst</div>
+                            <div class="description">Hent separate documenter når spesifikk tekst endres fra side til side</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        Rediger og Signer
+                    </li>
+                    <li class="cat-edit">
+                        <a href="pdf-editor.html">
+                            <div class="caption">
+                                <span class="task-icon fa-stack fa-lg fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-pencil fa-stack-1x"></i>
+                                </span>Rediger
+                            </div>
+                            <div class="description">Rediger PDF filer gratis. Fyll ut og signer PDF. Legg til tekst, lenker, bilder og figurer. Endre eksisterende PDF-tekst. Annotér PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="sign-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-signature fa-stack-1x"></i>
+                                  </span>Fyll ut og signer</div>
+                            <div class="description">Legg til signatur i PDF. Fyll ut PDF skjemaer</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="pdf-forms.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-wpforms fa-stack-1x"></i>
+                                  </span>Lag skjemaer</div>
+                            <div class="description">Gratis PDF-skjemabygger. Gjør eksisterende PDF-er utfyllbare</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="delete-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-trash fa-stack-1x"></i>
+                                  </span>Slett Sider</div>
+                            <div class="description">Fjern sider fra et PDF-dokument</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Komprimer
+                    </li>
+                    <li class="cat-compress">
+                        <a href="compress-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-compress fa-stack-1x"></i>
+                                  </span>Komprimer</div>
+                            <div class="description">Redusér størrelsen på din PDF</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Sikkerhet
+                    </li>
+                    <li class="cat-security">
+                        <a href="encrypt-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-lock fa-stack-1x"></i>
+                                  </span>Beskytt</div>
+                            <div class="description">Beskytt fil med passord og tillatelser</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="unlock-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-unlock fa-stack-1x"></i>
+                                  </span>Lås opp</div>
+                            <div class="description">Gjør filen ubeskyttet ved å fjerne tillatelser og passord fra PDF-filer</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="watermark-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-alt fa-stack-1x"></i>
+                                  </span>Watermark</div>
+                            <div class="description">Legg til bilde- eller tekstwatermark til PDF-dokumenter</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="flatten-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-font fa-stack-1x"></i>
+                                <i class="fal fa-slash fa-stack-1x"></i>
+                              </span>Lås</div>
+                            <div class="description">Gjør utfyllbare PDF-er skrivebeskyttet. Skriv ut og skann i ett trinn</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        Konverter fra PDF
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-excel.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-excel fa-stack-1x"></i>
+                                  </span>PDF til Excel</div>
+                            <div class="description">Konverter PDF til Excel eller CSV. Hent ut innholdsinformasjon fra PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-jpg.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-image fa-stack-1x"></i>
+                                  </span>PDF til JPG</div>
+                            <div class="description">Få sider konvertert til JPG, PNG og TIFF-bilder</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-ppt.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-powerpoint fa-stack-1x"></i>
+                                  </span>PDF til PowerPoint</div>
+                            <div class="description">Konverter PDF til PowerPoint online</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="extract-text-from-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-align-left fa-stack-1x"></i>
+                                  </span>PDF til Text</div>
+                            <div class="description">Kopierer all tekst fra PDF-dokumentet og henter det til en separat tekstfil</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-word.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-word fa-stack-1x"></i>
+                                  </span>PDF til Word</div>
+                            <div class="description">Konverter fra PDF til DOC online</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Konverter til PDF
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="html-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-code fa-stack-1x"></i>
+                                  </span>HTML til PDF</div>
+                            <div class="description">Konverter nettsider eller HTML filer til PDF dokumenter</div>
+                        </a>
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="jpg-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-image fa-stack-1x"></i>
+                                  </span>JPG til PDF</div>
+                            <div class="description">Konverter Bilder til PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="word-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-word fa-stack-1x"></i>
+                                  </span>Word til PDF</div>
+                            <div class="description">Lager et PDF dokument fra Microsoft Word .docx</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        Annet
+                    </li>
+                    <li class="cat-other">
+                        <a href="bates-numbering-pdf.html" title="">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-gavel fa-stack-1x"></i>
+                                  </span>Bates Nummerering</div>
+                            <div class="description">Bates-stemple flere filer samtidig</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="pdf-bookmarks.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-bookmark fa-stack-1x"></i>
+                                  </span>Opprett bokmerker</div>
+                            <div class="description">Opprett PDF-bokmerker</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="crop-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-crop fa-stack-1x"></i>
+                                  </span>Klipp</div>
+                            <div class="description">Endre PDF-marginer, endre sidestørrelse i PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="edit-pdf-metadata.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-info-square fa-stack-1x"></i>
+                                  </span>Rediger metadata</div>
+                            <div class="description">Endre PDF-forfatter, tittel, nøkkelord, emne og andre metadatafelt</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="extract-images-from-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-popular fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-external-link fa-stack-1x"></i>
+                                  </span>Hent ut bilder</div>
+                            <div class="description">Hent ut bilder fra PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="flip-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-reflect-horizontal fa-stack-1x"></i>
+                                  </span>Flip<span class="label label-success">New</span></div>
+                            <div class="description">Speilvend sider horisontalt eller vertikalt</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="grayscale-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-paint-brush fa-stack-1x"></i>
+                                  </span>Gråskala</div>
+                            <div class="description">Konvertér PDF-tekst og –bilder til Grayscale</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="header-footer-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-heading fa-stack-1x"></i>
+                                  </span>Topptekst og Bunntekst</div>
+                            <div class="description">Legg til sidetall eller tekstmerker i PDF-filer</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="n-up-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-th-large fa-stack-1x"></i>
+                                  </span>N-up</div>
+                            <div class="description">Trykk flere sider per papirark. A5 blir 4-ganget på A3 og A4 blir 2-ganget på A3</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="page-numbers-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-sort-numeric-up fa-stack-1x"></i>
+                                  </span>Side Nummer</div>
+                            <div class="description">Legg til sidetall i PDF</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                         
+                    </li>
+                    <li class="cat-other">
+                        <a href="rename-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-i-cursor fa-stack-1x"></i>
+                                  </span>Endre navn</div>
+                            <div class="description">Endre filnavn basert på tekst fra PDF-sidene</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="repair-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-wrench fa-stack-1x"></i>
+                                  </span>Reparer</div>
+                            <div class="description">Hent data fra skadede eller ødelagte PDF-dokumenter</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="resize-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-arrows-alt fa-stack-1x"></i>
+                                  </span>Juster størrelse</div>
+                            <div class="description">Legg til sidemarginer, endre sidestørrelse i PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="rotate-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-repeat fa-stack-1x"></i>
+                                  </span>Roter</div>
+                            <div class="description">Rotér PDF-sider</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="delete-pdf-annotations.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-highlighter fa-stack-1x"></i>
+                                  </span>Fjern annoteringer<span class="label label-success">New</span></div>
+                            <div class="description">Massefjerning av uthevinger, gjennomstrekinger eller andre annoteringer fra et PDF-dokument</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Skanninger
+                    </li>
+                    <li class="cat-scans">
+                        <a href="deskew-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-popular fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-alt fa-stack-1x rotated-5-deg"></i>
+                                  </span>Deskew</div>
+                            <div class="description">Rett opp og deskew skannede PDF-sider automatisk</div>
+                        </a>
+                    </li>
+                    <li class="cat-scans">
+                        <a href="ocr-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-qrcode fa-stack-1x"></i>
+                                  </span>OCR</div>
+                            <div class="description">Konverter PDF skanninger til søkbar tekst og PDFer. Hent ut tekst fra skanninger raskt</div>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="header lower">
+                        Automatiser
+                    </li>
+                    <li>
+                        <a href="workflows.html" title="">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-robot fa-stack-1x"></i>
+                                  </span>Workflows<span class="label label-success">New</span></div>
+                            <div class="description">Utfør en serie med tasks på PDF-dokumenter. Konfigurer verktøykjeder for å behandle PDF-er</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="centered">
+                <form autocomplete="off">
+                    <div style="display: none" class="input-group search-tools-wrap">
+                        <i class="fal fa-search"></i>
+                        <input onkeypress="if(event.keyCode === 13){ return false; }" id="searchTools" placeholder="Type to search" class="form-control input-sm" type="search" autocomplete="off">
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <a style="color: #AAA; text-decoration: underline; font-size: 14px;" class="get-support-btn" href="javascript://">Suggest a missing feature</a>
+                        <i class="fal fa-comment-lines" style="color: #AAA; vertical-align: middle;"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+      </header>
+    </div>
+
+    
+    
+
+    <section data-multiple-files="true" data-task="renameByText" id="task-content">
+      <div class="container centered">
+        <div class="row">
+          <h1>Gi PDF nytt navn etter tekstinnhold</h1>
+          <h2>Endre filnavn basert på tekst fra PDF-sidene</h2>
+        </div>
+      </div>
+
+      <section>
+  <div class="container centered step1" style="margin-top: 30px; display: none;" id="suggestAltLanguage">
+  <div class="announcement">
+    <a href="javascript://">
+      <i style="margin-right: 5px;" class="fal fa-language"></i>
+      <span class="loc_available_your_lang">Sejda is available in your language</span>.
+      <span class="loc_change_lang">Change language</span>?
+    </a>
+
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">×</span></button>
+  </div>
+</div>
+  
+  <div id="upload-progress"><div style="width: 0%" class="bar"></div></div>
+
+  <section>
+    
+</section>
+  <div class="container-fluid container-upgrade-section">
+  <section style="display: none;" id="limited-no-upgrade-section">
+    <h2>
+      <span class="upgrade-reason" id="generic-free-rate-limit-reason" style="display: none;">
+        For mange forsøk. Vennligst prøv igjen senere.
+      </span>
+      <span class="upgrade-reason" id="generic-free-size-limit-reason" style="display: none;">
+        Beklager, filen din er for stor.
+      </span>
+    </h2> 
+  </section>
+  <section style="display: none;" id="upgrade-section">
+    <h2>
+      <span class="upgrade-reason" id="files-per-hour-reason" style="display: none;">
+        Du har nådd din gratisgrense på 40 filer per time.
+        <br>
+        Vennligst oppgradér for å fortsette å prosessere denne oppgaven.
+      </span>
+      <span class="upgrade-reason" id="tasks-per-hour-reason" style="display: none;">
+        Du har nådd din gratisgrense på tre oppgaver per time.
+        <br>
+        Vennligst oppgrader for å fortsette arbeidet med denne oppgaven, eller pause for <span id="wait-countdown-clock">00:59:00</span>.
+      </span>
+      <span class="upgrade-reason" id="free-file-size-reason" style="display: none;">
+        Du har nådd din gratis grense på <span class="free-file-size-limit">50</span> MB per fil.
+        <br>
+        Vennligst oppgradér for å fortsette å prosessere denne oppgaven.
+      </span>
+      <span class="upgrade-reason" id="free-image-file-size-reason" style="display: none;">
+        Du har nådd din gratis grense på 5MB per bildefil.
+        <br>
+        Vennligst oppgradér for å fortsette å prosessere denne oppgaven.
+      </span>
+      <span class="upgrade-reason" id="free-multiple-files-reason" style="display: none;">
+        Gratisbrukere er begrenset til en enkelt fil per oppgave.
+        <br>
+        vennligst oppgrader for å fortsette å jobbe med flere filer samtidig.
+      </span>
+      <span class="upgrade-reason" id="free-pages-per-task-reason" style="display: none;">
+        Du har nådd din gratis grense på 50 sider.
+        <br>
+        Vennligst oppgradér for å fortsette å prosessere denne oppgaven.
+      </span>
+      <span class="upgrade-reason" id="page-count-per-pdf-to-jpg-reason" style="display: none;">
+        Gratisbrukere er begrenset til 20 sider per samtale.
+        <br>
+        Vennligst oppgradér for å fortsette å prosessere denne oppgaven.
+      </span>
+      <span class="upgrade-reason" id="urls-per-task-reason" style="display: none;">
+        Gratisbrukere er begrenset til 20 linker per oppgave.
+        <br>
+        vennligst oppgrader for å fortsette å jobbe med opp til 100 linker på en gang.
+      </span>
+      <span class="upgrade-reason" id="page-count-per-ocr-reason" style="display: none;">
+        Gratisbrukere er begrenset til 10 sider per OCR task.
+        <br>
+        Vennligst oppgrader for å fortsette behandlingen.
+      </span>
+      <span class="upgrade-reason" id="page-count-per-pdf-to-word-reason" style="display: none;">
+        Gratisbrukere er begrenset til 50 sider per konvertering.
+        <br>
+        Vennligst oppgrader for å fortsette behandlingen.
+      </span>
+      <span class="upgrade-reason" id="file-count-per-rename-reason" style="display: none;">
+        Gratisbrukere er begrenset til 5 filer per Rename task.
+        <br>
+        Vennligst oppgradér for å fortsette å prosessere denne oppgaven.
+      </span>
+      <span class="upgrade-reason" id="workflows-count-reason" style="display: none;">
+        Gratisbrukere er begrenset til 1 workflow.
+        <br>
+        Vennligst oppgrader for å bruke flere workflows.
+      </span>
+    </h2>
+    
+    <div class="upgrade-section-footer">
+      <a rel="opener" target="_blank" href="upgrade.html" class="btn btn-default btn-medium upgrade-btn">Upgrade <i class="fal fa-external-link"></i></a>
+      <a href="javascript://" class="btn btn-secondary btn-medium already-customer-btn login-btn">Logg inn</a>
+      <a href="javascript://" class="already-customer-link login-btn">Har du allerede en konto? Logg inn</a>
+    </div>
+  </section>
+</div>
+
+  <section id="fileUploadContainer">
+  <div style="height: 80px" class="container-fluid centered step1">
+    <svg style="margin-bottom: -5px; margin-top: -20px;" preserveAspectRatio="none" viewBox="0 0 100 100" height="100" width="100%" version="1.1" class="x-curve-up-separator">
+      <path d="M0 100 C 18 0 50 -30 100 100 Z" fill="#FBFBFB"></path>
+      <path fill="#f5f5f5" d="M0 100 C 20 0 50 0 100 100 Z"></path>
+    </svg>
+  </div>
+  <div style="margin-top: -1px;" class="container-fluid centered step1">
+    <div style="background-color: #F5f5f5;" class="row no-margins">
+      <div class="drop-files-zone">
+
+        <div class="btn-group upload-btn-group main">
+          <span class="btn btn-lg fileinput-button">
+            <i class="fal fa-fw fa-file-pdf"></i>
+            <span style="display: none" class="singular">Last opp PDF-fil</span>
+            <span class="plural">Last opp PDF-filer</span>
+            <form data-parallel-chunked-uploads="true" data-filetypes="pdf" action="https://www.sejda.com/api/files/upload?_s=59&uplid=EFRFY08251521" data-chunked-uploads="true" enctype="multipart/form-data" method="post" id="fileUploadForm">
+              <input value="EFRFY08251521" name="uplid" type="hidden" id="uplid">
+              <input data-url="https://www.sejda.com/api/files/upload?_s=59&uplid=EFRFY08251521" accept=".pdf" title="Upload" multiple="multiple" data-scope="task-file" name="file" type="file" data-allows-drop="true" class="fileupload">
+            </form>
+          </span>
+          <button aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" class="btn btn-lg dropdown-toggle" type="button">
+            <span class="caret"></span>
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="drpbox-chooser" href="javascript://"><i class="fab fa-dropbox icon"></i> Dropbox</a></li>
+            <li><a class="gdrive-chooser" href="javascript://"><img data-src="/images/icons/gdrive.png" loading="lazy" class="icon"> Google Drive</a></li>
+            <li><a class="onedrive-chooser" href="javascript://"><img data-src="/images/icons/onedrive.png" loading="lazy" class="icon"> OneDrive</a></li>
+            <li><a class="weburl-chooser" href="javascript://"><i class="fal fa-link icon"></i> Nettadresse (URL)</a></li>
+          </ul>
+        </div>
+        <div style="display: none" id="startWithBlankDocument">
+          <a href="javascript://" class="open-blank-doc-btn">eller start med et blankt dokument</a>
+        </div>
+        <section>
+          <p style="margin-top: 40px; color: #888">
+            <span id="filesPrivacySection">
+            Filene forblir private. Automatisk slettet etter to timer.<br>
+            </span>
+            <span id="freeLimitsSection">
+              Gratis tjeneste for documenter opptil <span id="freePagesLimitSection"><span id="freePagesLimit">200</span> sider eller</span> <span id="freeFileSizeLimit">50</span> MB og 3 tasks i timen.<br>
+            </span>
+            <span id="proLimitsSection"></span>
+            <span id="freeWhileBetaSection"></span>
+            </p><div id="termsPrivacySection">
+          <a target="_blank" href="../terms.html">Bruksvilkår</a> og <a target="_blank" href="../privacy.html">Personvernerklæring</a>
+            </div>
+          <p></p>
+        </section>
+      </div>
+      <svg style="height: auto; margin-bottom: -10px;" class="col-12 text-white absolute bottom-0" viewBox="0 0 1200 46">
+        <path d="M0-7h1200v48H0V-7zm0 30.113V-7h1200v37.495c-37.762 7.58-155.36 7.58-352.791 0C721.412 31.665 480.68.297 248.535.355 197.087.368 114.242 7.955 0 23.113z" fill-rule="evenodd" fill="#FBFBFB"></path>
+        <path d="M0-7h1200v53H0V-7zm0 30.113V-7h1200v43.495c-37.762 7.58-155.36 7.58-352.791 0C721.412 31.665 480.68.297 248.535.355 197.087.368 114.242 7.955 0 23.113z" fill-rule="evenodd" fill="#FFF"></path>
+      </svg>
+    </div>
+  </div>
+  <div style="display: none" id="recentFilesListContainer" class="container-fluid centered step1">
+    <div id="recentFilesListOuter">
+      <h4><i class="fal fa-history"></i> Nylige filer</h4>
+      <span class="collapse-toggle" title="Fjern listen over nylige filer"><i class="fal fa-chevron-down"></i></span>
+      <ol id="recentFilesList">
+        <div style="display: none" id="recentFilesConnectSection">
+          <a id="connectGDriveBtn" href="javascript://">
+            <img data-src="/images/icons/sejda.png" loading="lazy" class="help-block-icon"><img style="margin-right: 10px" data-src="/images/icons/gdrive.png" loading="lazy" class="help-block-icon">Koble til Google Drive for å vise nylige filer
+          </a></div>
+      </ol>
+    </div>
+    <div id="recentFilesFooter">
+      <section style="display: none" id="recentFilesFooterGoogleDrive">
+        <img data-src="/images/icons/sejda.png" loading="lazy" class="help-block-icon"><img data-src="/images/icons/gdrive.png" loading="lazy" class="help-block-icon">
+        Google Drive &gt; <a rel="noopener" target="_blank" href="javascript://" id="openGDriveAppFolderLink">Sejda PDF</a>
+      </section>
+    </div>
+  </div>
+  </section>
+
+  <div style="margin-top: 30px;" class="container centered step1 desktop-promo">
+    <a target="_blank" href="../desktop.html" class="announcement">
+      <span class="new-pill">Offline</span> Vil du heller arbeide offline? Prøv Sejda Desktop <i class="fal fa-fw fa-chevron-right"></i>
+    </a>
+  </div>
+
+  
+  <div style="display: none" class="modal file-pwd-prompt" id="filePwdPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Passord for <span class="file-name">file.pdf</span></h4>
+        </div>
+        <div class="modal-body">
+          <label style="display: none; color: #a94442;" class="danger">Feil passord</label>
+          <input class="file-pwd form-control input-lg" name="filePwd" type="text">
+          <i class="fal fa-fw fa-eye input-field-icon toggle-password"></i>
+
+          <div class="checkbox">
+            <label><input style="margin-top: 5px" name="usePwdForAllFiles" type="checkbox"> Bruk dette passordet for alle filer</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary btn-xs" type="button">Fortsett</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" id="limited-permissions-notice">
+    <div class="limited-permissions-notice-inner">
+      <i class="fal fa-info-circle"></i> Dette dokumentet har begrensede tillatelser. Oppgi eierpassordet for å kunne endre innholdet.
+      <a target="_blank" href="help.html#owner-password">Les mer.</a>
+      <button class="btn blue-btn btn-xs enter-owner-pwd-btn">Skriv inn passord</button>
+    </div>  
+  </div>
+
+  <div style="display: none" class="modal file-pwd-prompt" id="fileOwnerPwdPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Eierpassord for <span class="file-name">file.pdf</span></h4>
+        </div>
+        <div class="modal-body">
+          <section style="margin-bottom: 30px;" class="file-permissions-list">
+            <label class="light">Dette dokumentet har begrensede tillatelser:</label>
+            <div class="row ">
+              <div class="col-xs-6">
+                <div style="display: none" class="denied" data-perm="copy"><i class="fal fa-ban"></i> Kopiering av innhold</div>
+                <div style="display: none" class="denied" data-perm="modify"><i class="fal fa-ban"></i> Redigering av innhold</div>
+                <div style="display: none" class="denied" data-perm="assemble"><i class="fal fa-ban"></i> Organisering av sider</div>
+              </div>
+              <div class="col-xs-6">
+                <div style="display: none" class="denied" data-perm="fill"><i class="fal fa-ban"></i> Fyll ut skjemaer</div>
+                <div style="display: none" class="denied" data-perm="print"><i class="fal fa-ban"></i> Printer</div>
+                <div style="display: none" class="denied" data-perm="sign"><i class="fal fa-ban"></i> Signering</div>
+              </div>
+            </div>
+          </section>  
+          <div>
+            <div style="display: none;" class="alert alert-danger"><i class="fal fa-exclamation-triangle"></i> Feil passord</div>
+            
+            <label class="light">Oppgi eierpassordet for å aktivere alle tillatelser:</label>
+            <input placeholder="Enter document owner password" class="file-pwd form-control input-lg" name="filePwd" type="text">
+            <i class="fal fa-eye fa-fw input-field-icon toggle-password"></i>
+          </div>
+          <div style="margin-top: 10px">
+            <a target="_blank" href="help.html#owner-password">Les mer<i style="margin-left: 5px; vertical-align: middle" class="fal fa-question-circle"></i></a>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary btn-xs" type="button">Fortsett</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div style="display: none" class="modal web-address-url-prompt" id="webAddressUrlPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Paste nettadressen til filen:</h4>
+        </div>
+        <div class="modal-body">
+          <label style="display: none; color: #a94442;" class="danger">Ugyldig nettadresse</label>
+          <input placeholder="http://example.com/file.pdf" class="form-control input-lg" type="text">
+        </div>
+        <div class="modal-footer">
+          <button data-dismiss="modal" class="btn btn-light btn-xs" type="button">Avbryt</button>
+          <button class="btn btn-primary btn-xs" type="button">Fortsett</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal app-error-modal" id="retryUploadModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Fil-upload mislyktes
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>Kunne ikke utføre upload av filen din: <span class="filename"></span>. <br><strong>Du kan ikke lagre endringer før upload er fullført.</strong></p>
+        </div>
+        <div class="modal-footer">
+          <div class="debug-details"></div>
+          <button class="btn btn-yes btn-xs" type="button">Ok, prøv upload på nytt</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="uploadAgainModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="modal-title">
+            Økten har utløpt
+          </div>
+        </div>
+        <div class="modal-body">
+          Økten din utløp og filer ble slettet fra serverne våre.<br>
+          Vennligst gjør en re-upload for å fortsette.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-yes btn-xs" type="button">Gjør en re-upload</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+      <section style="display: none; margin-bottom: 20px" class="doc-loading">
+  <div class="progress-radial progress-0">
+    <div class="overlay">0%</div>
+  </div>
+  <div>Laster, vennligst vent...</div>
+</section>
+      <section>
+  <div id="pdf-files-summary-wrap" style="display: none" class="row centered">
+    <span class="message"></span>
+  </div>
+
+  
+  <div style="display: none" class="modal app-modal" id="reorderFilesPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div style="float: right" class="adhoc-tools-menu">
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fal fa-sort-alpha-down"></i>
+                Sort by
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu sort-filenames-opts">
+                <li><a title="By filenames, alphabetically" data-sort-order="name-asc" class="sort-btn"><i class="fal fa-sort-alpha-down"></i> File names, A-Z</a></li>
+                <li><a title="By filenames, alphabetically, descending order" data-sort-order="name-desc" class="sort-btn"><i class="fal fa-sort-alpha-up"></i> File names, Z-A</a></li>
+                <li><a title="By last modified date, oldest first" data-sort-order="lastmod-asc" class="sort-btn"><i class="fal fa-sort-numeric-down"></i> Last modified, oldest first</a></li>
+                <li><a title="By last modified date, newest first" data-sort-order="lastmod-desc" class="sort-btn"><i class="fal fa-sort-numeric-up"></i> Last modified, newest first</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="modal-title">
+            Selected files (drag to reorder)
+          </div>
+        </div>
+        <div class="modal-body">
+          <ul id="reorderFilesList"></ul>
+        </div>
+        <div class="modal-footer">
+          <button data-dismiss="modal" class="btn btn-xs btn-secondary" type="button">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+      <section class="scroll-here-step2">
+        <div id="page-text-selector-wrap" style="display: none" class="centered">
+          <div>
+            <div id="page-text-selector">
+              <div id="page-text-selector-header">
+                <div class="selection-hint">
+                  <i class="fal fa-mouse-pointer"></i>Marker et område på siden med musen. 
+                  <a class="clear-selection-areas-btn" href="javascript://"><i class="fal fa-trash-alt"></i>Sett utvalg på nytt</a>
+                </div>
+
+                <div class="prev-next-pages-nav tools-menu">
+                  <div class="btn-group">
+                    <button title="Previous page" class="btn btn-default page-tools-btn prev-page-btn" type="button">
+                      <i class="fal fa-arrow-left"></i>
+                    </button>
+                    <button title="Next page" class="btn btn-default page-tools-btn next-page-btn" type="button">
+                      <i class="fal fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="page-wrap">
+                <canvas></canvas>
+                <img class="jcrop" src="rename-pdf.html">
+                <div class="areasLayer"></div>
+              </div>
+
+              <div id="page-text-selector-footer">
+                <div class="prev-next-pages-nav tools-menu">
+                  <div class="btn-group">
+                    <button title="Previous page" class="btn btn-default page-tools-btn prev-page-btn" type="button">
+                      <i class="fal fa-arrow-left"></i>
+                    </button>
+                    <button title="Next page" class="btn btn-default page-tools-btn next-page-btn" type="button">
+                      <i class="fal fa-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         </div>
+      </section>
+
+      <div style="display:none; margin-top: 40px" class="centered step2 bottom-fixed">
+        <form autocomplete="off" class="form-inline task-form">
+          <input value="renameByText" name="type" type="hidden">
+          <input value="[]" name="areas" type="hidden">
+
+          <div class="container centered">
+            <div class="row head-space-xl">
+              <label>Navnemønster:</label>
+            </div>
+            <div style="max-width: 600px; margin: auto;" class="row">
+              <div class="input-group">
+                <input id="renamePattern" name="renamePattern" type="text" class="form-control input-lg" placeholder="Example: [TEXT2]-[TEXT1]-[BASENAME]" min="1" value="">
+                <div class="input-group-addon input-help">
+                  <a target="_blank" href="../help.html#output-file-patterns"><i class="fal fa-question-circle"></i></a>
+                </div>
+              </div>
+              
+            </div>
+            <div class="row head-space">
+              <button class="btn btn-default btn-medium" type="submit">Gi PDF nytt navn</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  
+
+    <div id="taskResultsModal" role="dialog" tabindex="-1" class="modal fade"></div>
+
+    <div style="margin-top: 60px;" class="container centered step1">
+      <div class="row">
+        <a href="../contact.html" rel="opener" target="_blank" class="btn contact-btn btn-light btn-xs get-support-btn">Kontakt kundestøtte</a>
+      </div>
+    </div>
+
+    <div id="toast-msg-box"></div>
+
+    <div class="container-fluid centered step1">
+      <footer>
+  <div>
+    <div class="row links">
+      <div class="col-sm-5">
+        <ul>
+          <li class="first">Resources</li>
+          <li><a href="upgrade.html">Pricing &amp; Upgrade</a></li>
+          <li><a href="desktop.html">Sejda for Desktop</a></li>
+          <li><a href="https://gsuite.google.com/marketplace/app/sejda_pdf_editor/8721525582">Sejda for G Suite</a></li>
+          <li><a href="teachers.html">Sejda for Education</a></li>
+          <li><a href="../press.html">About</a></li>
+          <li><a href="../blog.html">Blog</a></li>
+
+          <li style="margin-top: 30px" class="first">API</li>
+          <li><a href="html-pdf-api.html">HTML to PDF API</a></li>
+          <li><a href="../developers.html">Developer Docs</a></li>
+
+          <li style="margin-top: 30px" class="first">Legal</li>
+          <li><a href="../terms.html">Terms of Use</a></li>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../cookies.html">Cookies</a></li>
+          <li><a href="../cookies.html#privacy-settings">Privacy Settings</a></li>
+          <li><a href="../security.html">Security</a></li>
+          <li><a href="../sla.html">SLA</a></li>
+        </ul>
+
+        <div style="font-size: 16px; margin-top: 40px;">
+          <div class="location">Made in <em>Amsterdam</em></div>
+          <div class="made-in">
+            © Sejda BV 2013-present.<br><br>
+            Thank you for your time.
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <ul id="footer-all-tasks">
+          <li class="first">Tools</li>
+          <li>
+            <a href="extract-pdf-pages.html">Hent PDF-sider</a>
+          </li>
+          <li>
+            <a href="split-pdf-by-outline.html">Del PDF etter bokmerker</a>
+          </li>
+          <li>
+            <a href="split-pdf-down-the-middle.html">Del PDF i to</a>
+          </li>
+          <li>
+            <a href="split-pdf.html" class="popular">Del PDF etter sider</a>
+          </li>
+          <li>
+            <a href="split-pdf-by-size.html">Del PDF etter størrelse</a>
+          </li>
+          <li>
+            <a href="split-pdf-by-text.html">Del PDF etter tekst</a>
+          </li>
+          <li>
+            <a href="alternate-mix-pdf.html">Omrokkér og bland PDF</a>
+          </li>
+          <li>
+            <a href="visually-combine-reorder-pdf.html">Visuell kombinering og nybestilling av PDF</a>
+          </li>
+          <li>
+            <a href="merge-pdf.html" class="popular">Slå sammen PDF</a>
+          </li>
+          <li>
+            <a href="bates-numbering-pdf.html">Bates-nummerering av PDF</a>
+          </li>
+          <li>
+            <a href="compress-pdf.html">Komprimér PDF</a>
+          </li>
+          <li>
+            <a href="repair-pdf.html">Reparer PDF</a>
+          </li>
+          <li>
+            <a href="crop-pdf.html">Beskjær PDF</a>
+          </li>
+          <li>
+            <a href="delete-pdf-pages.html">Slett PDF-sider</a>
+          </li>
+          <li>
+            <a href="deskew-pdf.html">Deskew PDF</a>
+          </li>
+          <li>
+            <a href="pdf-editor.html">PDF Editor</a>
+          </li>
+          <li>
+            <a href="sign-pdf.html">Fyll ut og Signer PDF</a>
+          </li>
+          <li>
+            <a href="extract-text-from-pdf.html">PDF til Text</a>
+          </li>
+          <li>
+            <a href="header-footer-pdf.html">Topptekst og bunntekst PDF</a>
+          </li>
+          <li>
+            <a href="header-footer-pdf.html">PDF sidetall</a>
+          </li>
+          <li>
+            <a href="pdf-to-jpg.html">PDF til JPG</a>
+          </li>
+          <li>
+            <a href="jpg-to-pdf.html">JPG til PDF</a>
+          </li>
+          <li>
+            <a href="watermark-pdf.html">Watermark PDF</a>
+          </li>
+          <li>
+            <a href="pdf-to-word.html" class="popular">PDF til Word</a>
+          </li>
+          <li>
+            <a href="word-to-pdf.html" class="popular">Word til PDF</a>
+          </li>
+          <li>
+            <a href="pdf-to-excel.html" class="popular">PDF til Excel</a>
+          </li>
+          <li>
+            <a href="encrypt-pdf.html">Beskytt PDF</a>
+          </li>
+          <li>
+            <a href="rotate-pdf-pages.html">Rotér PDF</a>
+          </li>
+          <li>
+            <a href="unlock-pdf.html">Ikke beskytt PDF</a>
+          </li>
+          <li>
+            <a href="n-up-pdf.html">N-up PDF</a>
+          </li>
+          <li>
+            <a href="resize-pdf.html">Gi PDF ny størrelse</a>
+          </li>
+          <li>
+            <a href="html-to-pdf.html">HTML til PDF</a>
+          </li>
+          <li>
+            <a href="ocr-pdf.html">OCR PDF</a>
+          </li>
+          <li>
+            <a href="grayscale-pdf.html">Grayscale PDF</a>
+          </li>
+          <li>
+            <a href="extract-images-from-pdf.html">Hent ut bilder fra PDF</a>
+          </li>
+          <li>
+            <a href="flatten-pdf.html">Flatten PDF</a>
+          </li>
+          <li>
+            <a href="edit-pdf-metadata.html">Rediger PDF-metadata</a>
+          </li>
+          <li>
+            <a href="pdf-to-ppt.html" class="popular">PDF til PowerPoint</a>
+          </li>
+          <li>
+            <a href="pdf-bookmarks.html">Opprett PDF-bokmerker</a>
+          </li>
+          <li>
+            <a href="page-numbers-pdf.html">Legg til sidetall i PDF</a>
+          </li>
+          <li>
+            <a href="delete-pdf-annotations.html">Slett PDF-annoteringer</a>
+          </li>
+          <li>
+            <a href="flip-pdf.html">Flip PDF</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-2">
+        <ul>
+          <li class="first">Languages</li>
+          <li><a href="../ar/rename-pdf.html">العربية</a></li>
+          <li><a href="../id/rename-pdf.html">Bahasa Indonesia</a></li>
+          <li><a href="../de/rename-pdf.html">Deutsch</a></li>
+          <li><a href="../da/rename-pdf.html">Dansk</a></li>
+          <li><a href="../cs/rename-pdf.html">Český</a></li>
+          <li><a href="../rename-pdf.html">English</a></li>
+          <li><a href="../es/rename-pdf.html">Español</a></li>
+          <li><a href="../el/rename-pdf.html">Ελληνικά</a></li>
+          <li><a href="../fr/rename-pdf.html">Français</a></li>
+          <li><a href="../it/rename-pdf.html">Italiano</a></li>
+          <li><a href="../ja/rename-pdf.html">日本語</a></li>
+          <li><a href="../ko/rename-pdf.html">한국어</a></li>
+          <li><a href="../zh/rename-pdf.html">简体中文</a></li>
+          <li><a href="../tw/rename-pdf.html">繁體中文</a></li>
+          <li><a href="../hi/rename-pdf.html">हिन्दी</a></li>
+          <li><a href="../he/rename-pdf.html">עברית</a></li>
+          <li><a href="../hu/rename-pdf.html">Magyar</a></li>
+          <li><a href="../nl/rename-pdf.html">Nederlands</a></li>
+          <li><a href="rename-pdf.html">Norsk</a></li>
+          <li><a href="../pl/rename-pdf.html">Polski</a></li>
+          <li><a href="../pt/rename-pdf.html">Português</a></li>
+          <li><a href="../ro/rename-pdf.html">Română</a></li>
+          <li><a href="../ru/rename-pdf.html">Русский</a></li>
+          <li><a href="../fi/rename-pdf.html">Suomi</a></li>
+          <li><a href="../sv/rename-pdf.html">Svenska</a></li>
+          <li><a href="../th/rename-pdf.html">ภาษาไทย</a></li>
+          <li><a href="../vi/rename-pdf.html">Tiếng Việt</a></li>
+          <li><a href="../tr/rename-pdf.html">Türkçe</a></li>
+          <li><a href="../uk/rename-pdf.html">Українська</a></li>
+        </ul>
+
+        <ul class="contact-footer-list">
+          <li class="first">Contact</li>
+          <li><a href="mailto:hi@sejda.com?subject=Hello">hi@sejda.com</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="landscape"></div>
+</footer>
+    </div>
+
+    <div style="display: none" class="footer-contact-us-wrap step2">
+      <a title="Contact support" target="_blank" href="contact.html" rel="opener" class="get-support-btn always-new-tab"><i class="fas fa-question-circle"></i></a>
+    </div>
+
+    <section>
+  <div class="modal fade" id="contactFormModal" style="display: none">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+            <div style="margin: 20px 40px;" class="row centered contact-form-row">
+              <h3 style="margin-bottom: 10px;">Kontakt SEJDA.COM-support</h3>
+              <h5 style="margin-bottom: 30px;">Send e-post til oss på <a href="mailto:hi@sejda.com">hi@sejda.com</a> eller bruk skjemaet nedenfor</h5>
+              
+              <div style="display: none; margin-top: 50px;" class="alert alert-success" id="contactSuccess">Takk for meldingen din.</div>
+
+              <section id="support-frequent-topics">
+                <div class="form-group">
+                  <label for="contact-msg">Jeg trenger hjelp med</label>
+                  <br>
+                  <div data-topic="cancel-subscription" class="support-topic">Avbryt abonnement</div>
+                  <div data-topic="find-license-key" class="support-topic">Finn lisensnøkkel</div>
+                  <div class="support-topic">Noe annet</div>
+                </div>
+                
+                <div class="support-answers">
+                  <div class="support-answer selected" style="display: none" data-answer="find-license-key" id="support_licenseKey_accountPage">
+                    Du finner din Sejda Desktop lisensnøkkel på kontosiden din:
+                    <br>
+                    <a target="_blank" href="account@justUpgraded=desktop.html">https://www.sejda.com/account</a>
+                  </div>
+
+                  <div style="display: none" data-answer="find-license-key" class="support-answer" id="support_licenseKey_webOnly">
+                    Du kjøpte en Web-only plan som ikke inkluderer tilgang til Sejda Desktop.
+                    <br>
+                    <a target="_blank" href="upgrade.html#pricing">https://www.sejda.com/upgrade</a>
+                    <br><br>
+                    Her er planer med Desktop-tilgang:
+                    <br>
+                    <a target="_blank" href="desktop.html#pricing">https://www.sejda.com/desktop</a>
+                    <br><br>
+                    Når du har kjøpt en Desktop-plan, vil ditt Web-only kjøp bli automatisk refundert.
+                  </div>
+
+                  <div class="support-answer selected" style="display: none" data-answer="cancel-subscription" id="support_cancelSub_accountPage">
+                    Du kan avbryte abonnementet fra kontosiden din ved å klikke på &quot;Stop auto-renewal&quot; ved siden av abonnementet ditt:
+                    <br>
+                    <a target="_blank" href="account.html">https://www.sejda.com/account</a>
+                  </div>
+
+                  <div style="display: none" data-answer="cancel-subscription" class="support-answer" id="support_cancelSub_weekPass">
+                    Week Pass-planen er en engangsbetaling, ikke et løpende abonnement. Den fornyes ikke automatisk og nedgraderes til gratisversjon etter 7 dager.
+                  </div>
+                </div>
+              </section>
+              
+              <form style="display: none" id="contactForm">
+                <section id="contactFormProgressBar">
+                  <progress max="100" value="0" id="progress"></progress>
+                  <div class="step-item">1</div>
+                  <div class="step-item">2</div>
+                  <div class="step-item">3</div>
+                  <div class="step-item">4</div>
+                </section>
+                <section data-step="1" class="contact-form-step">
+                  <div class="form-group">
+                    <label for="contact-msg">Melding</label>
+                    <textarea id="contact-msg" class="form-control" name="message" style="min-height: 100px; padding: 15px" required="required" placeholder="Skriv meldingen din"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-email">Din e-postadresse</label>
+                    <input type="email" class="form-control" id="contact-email" name="email" placeholder="Valgfritt. Oppgi e-posten din hvis du vil ha svar" value="">
+                  </div>
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="completeStep1Btn" class="btn btn-default" type="button">
+                    Neste <i style="margin-left: 10px" class="fal fa-chevron-right"></i> 
+                  </button>
+                </section>
+
+                <section style="display: none" data-step="2" class="contact-form-step">
+                  <div class="loader-wrap"><img src="../images/loaders/oval-green.svg" class="loader medium"></div>
+                </section>  
+                
+                <section style="display: none" data-step="3" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">Foreslått svar</label>
+                    <div id="automaticSupportAnswer"></div>
+                  </div>
+
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="completeStep3Btn" class="btn btn-link btn-xs" type="button">
+                    Dette svarer ikke på spørsmålet mitt
+                  </button>
+                </section>
+                
+                <section style="display: none" data-step="4" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">Rapporterer du et problem?</label>
+                  </div>
+                  <div style="width: 263px; text-align: left; margin: auto;" class="form-group">
+                    <div class="radio">
+                      <label>
+                        <input value="problem" name="supportMessageKind" type="radio">
+                        Ja, jeg rapporterer et problem
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input value="other" name="supportMessageKind" type="radio">
+                        Nei, noe annet
+                      </label>
+                    </div>
+                  </div>  
+                </section>
+
+                <section style="display: none" data-step="5" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">Detaljer om problemet</label>
+                  </div>
+                  <div style="max-width: 430px; margin: auto; margin-top: -15px; text-align: left;" class="checkbox">
+                    <label><input style="margin: 5px; margin-right: 15px;" name="allowAccessLastTask" type="checkbox"> Gi tilgang til din siste Task og filene som ble brukt.</label>
+                    <p style="font-size: 12px; padding-left: 33px; margin-top: 0;" class="help-block">Vi bruker disse dataene for å hjelpe deg raskere. Konfidensielt.</p>
+                  </div>
+                  <div id="attachScreenshotFormGroup" class="form-group">
+                    <label class="light">Attach a screenshot*</label>
+                    <p style="font-size: 12px; padding-left: 33px; margin-top: -8px;" class="help-block">Del gjerne et skjermbilde av problemet slik du ser det.</p>
+                    <div>
+                      <label style="border: 1px solid #ccc;display: inline-block;padding: 6px 12px; cursor: pointer;" class="light" for="supportScreenshotFile">
+                        <i class="fal fa-plus"></i> Velg bildefil for skjermbilde
+                      </label>
+                      <input style="display: none" accept=".png,.jpg,.jpeg,.bmp" type="file" id="supportScreenshotFile">
+                      <div id="supportScreenshotFilePreview"></div>
+                    </div>
+                  </div>
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="sendMessageBtn" class="btn btn-default" type="submit">Send melding</button>
+                </section>
+                
+                <input value="iluzie" name="suflet" type="hidden">
+                <input value="" name="source" type="hidden">
+                <input value="" name="source2" type="hidden">
+                <input value="" name="lastFile" type="hidden">
+                <input value="" name="lastTask" type="hidden">
+                <input value="" name="events" type="hidden">
+                <input value="" name="consoleLogs" type="hidden">
+                <input value="" name="screenshot" type="hidden">
+                <input value="" name="os" type="hidden">
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    <section>
+  <div style="display: none" class="modal app-modal" id="optOutChoicesPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Privacy Settings
+          </div>
+        </div>
+        <div class="modal-body">
+          This feature requires loading content from an external service, <span class="external_service_name"></span>, which could access personal data, such as your IP address, set cookies and track you.<br><br>
+          Please let us know if you are okay with that.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-no btn-light btn-xs" type="button">No, cancel</button>
+          <button class="btn btn-yes btn-xs" type="button">Yes, continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal app-error-modal" id="problemLoadingPageResourcePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            There's a problem loading this page
+          </div>
+        </div>
+        <div class="modal-body">
+          There was a problem loading a critical resource, which prevents the page from continuing.<br><br>
+          Please check your internet connection and reload the page to try again.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-yes btn-xs" type="button">Reload page</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div style="display: none" class="modal app-modal app-error-modal" id="genericErrorModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+            <div class="modal-title"></div>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="display: none" class="modal app-modal app-warning-modal" id="scanPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Skannede dokumenter støttes ikke</h4>
+        </div>
+        <div class="modal-body">
+          <div data-scope="edit">
+            <strong>Redigering av skannede dokumenter støttes ikke.</strong>
+            Endring av tekst i skannede dokumenter støttes ikke. Du kan likevel bruke andre funksjoner som å legge til ny tekst, bilder og annoteringer.
+          </div>
+          <div style="display: none" data-scope="convert">
+            <strong>Konvertering av skannede dokumenter støttes ikke.</strong>
+            Skannede PDF-er er bilder av tekst og mangler tekstdataene som trengs for konvertering.
+
+            <br><br>
+            Fil: <span class="file-name"></span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="dont-show-anymore-opts">
+            <div class="checkbox">
+              <label><input style="margin-top: 5px" name="dontShowAnymore" type="checkbox"> Ikke vis igjen</label>
+            </div>
+          </div>
+          <a target="_blank" href="help.html#scans" class="btn btn-secondary btn-xs">Les mer</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="movePagePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Flytt side til ny plassering
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="form-inline">
+            <label class="light" for="moveNewPageNumber">Ny plassering for side:</label>
+            <input style="width: 55px;margin: 0 10px;vertical-align: baseline; text-align: center" class="form-control input-xs" name="moveNewPageNumber" id="moveNewPageNumber" type="text">
+            <span class="num_of_pages"></span>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <div class="modal-hint">
+            Tips: Du kan også dra og slippe siden til den nye plasseringen
+          </div>
+          <button class="btn btn-yes btn-xs" type="button">Flytt side</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="changeLanguagePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Velg språk
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-6">
+              <ul>
+                <li><a href="../ar/rename-pdf.html">العربية</a></li>
+                <li><a href="../id/rename-pdf.html">Bahasa Indonesia</a></li>
+                <li><a href="../da/rename-pdf.html">Dansk</a></li>
+                <li><a href="../de/rename-pdf.html">Deutsch</a></li>
+                <li><a href="../cs/rename-pdf.html">Čeština</a></li>
+                <li><a href="../rename-pdf.html">English</a></li>
+                <li><a href="../es/rename-pdf.html">Español</a></li>
+                <li><a href="../fr/rename-pdf.html">Français</a></li>
+                <li><a href="../it/rename-pdf.html">Italiano</a></li>
+                <li><a href="../el/rename-pdf.html">Ελληνικά</a></li>
+                <li><a href="../ja/rename-pdf.html">日本語</a></li>
+                <li><a href="../ko/rename-pdf.html">한국어</a></li>
+                <li><a href="../zh/rename-pdf.html">简体中文</a></li>
+                <li><a href="../tw/rename-pdf.html">繁體中文</a></li>
+              </ul>
+            </div>
+            <div class="col-xs-6">
+              <ul>
+                <li><a href="../hi/rename-pdf.html">हिन्दी</a></li>
+                <li><a href="../he/rename-pdf.html">עברית</a></li>
+                <li><a href="../hu/rename-pdf.html">Magyar</a></li>
+                <li><a href="../nl/rename-pdf.html">Nederlands</a></li>
+                <li><a href="rename-pdf.html">Norsk</a></li>
+                <li><a href="../pl/rename-pdf.html">Polski</a></li>
+                <li><a href="../pt/rename-pdf.html">Português</a></li>
+                <li><a href="../ro/rename-pdf.html">Română</a></li>
+                <li><a href="../ru/rename-pdf.html">Русский</a></li>
+                <li><a href="../fi/rename-pdf.html">Suomi</a></li>
+                <li><a href="../sv/rename-pdf.html">Svenska</a></li>
+                <li><a href="../th/rename-pdf.html">ภาษาไทย</a></li>
+                <li><a href="../vi/rename-pdf.html">Tiếng Việt</a></li>
+                <li><a href="../tr/rename-pdf.html">Türkçe</a></li>
+                <li><a href="../uk/rename-pdf.html">Українська</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section style="display: none" class="i18n-strings">
+    <div data-key="We're sorry, something went wrong. Please contact support at hi@sejda.com">Beklager, noe gikk galt. Vennligst kontakt support på hi@sejda.com</div>
+    <div data-key="Verification code is incorrect">Verifiseringskoden er feil</div>
+    <div data-key="Too many attempts. Please try again later">For mange forsøk. Vennligst prøv igjen senere.</div>
+    <div data-key="An error occurred. Please try again or contact support">En feil oppsto. Vennligst prøv igjen eller kontakt support.</div>
+    <div data-key="Processing, please wait...">Prosesserer, vennligst vent...</div>
+    <div data-key="Sign in">Logg inn</div>
+    <div data-key="Click to edit">Klikk for å redigere</div>
+    <div data-key="Sorry, unsupported image format:">Beklager, bildeformatet støttes ikke:</div>
+    <div data-key="We support the following image types:">Vi støtter følgende bildetyper:</div>
+    <div data-key="You already have an active monthly subscription">Du har allerede et aktivt månedsabonnement</div>
+    <div data-key="Trying to add more seats? You can do this from your account page">Vil du legge til flere plasser? Du kan gjøre dette fra kontosiden din</div>
+    <div data-key="Please verify your email address before continuing with your purchase">Vennligst verifiser e-postadressen din før du fortsetter med kjøpet</div>
+    <div data-key="We couldn't connect to GoogleDrive. Your browser (or add-ons) might be blocking the load of javascript files from GoogleDrive">Vi klarte ikke å koble til Google Drive. Nettleseren din (eller tillegg) blokkerer kanskje innlasting av javascript-filer fra Google Drive</div>
+    <div data-key="Are you sure you want to remove the recent files list?">Er du sikker på at du vil fjerne listen over nylige filer?</div>
+  </section>
+</section>
+
+    
+    <script data-src="/js/pages/rename-pdf.min.js?v=7" class="pageScripts"></script>
+    <section>
+    <script src="../cache/639/js/libs-and-partials.min.js" async="async" id="libsAndPartialsScript"></script>
+</section>
+  
+    </section>
+  
+
+
+	
+</body>
+</html>  
+  

@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="utf-8">
+
+  <link as="style" href="../css/index.min.css@v=404.css" rel="preload">
+  <link crossorigin="anonymous" type="font/woff2" as="font" href="../fonts/braille/Atkinson-Hyperlegible-Regular-102a.woff2" rel="preload">
+  <link crossorigin="anonymous" type="font/woff2" as="font" href="../fonts/braille/Atkinson-Hyperlegible-Bold-102a.woff2" rel="preload">
+  <link as="script" href="../cache/639/js/libs-and-partials.min.js" rel="preload">
+
+  <link href="../images/icon_128.png" rel="shortcut icon">
+
+  <meta content="website" property="og:type">
+  <meta content="https://www.sejda.com/" property="og:url">
+  <meta content="Sejda.com - We help with your PDF tasks" property="og:site_name">
+
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="@SejdaPDF" name="twitter:site">
+  <meta content="@SejdaPDF" name="twitter:creator">
+
+  <meta content="1762774073964212" property="fb:app_id">
+  <meta content="8721525582-fbt24du8pl38r1ht2ihu9q9vl815o5t8.apps.googleusercontent.com" name="google-signin-client_id">
+
+  <link rel="canonical" href="account@justUpgraded=desktop.html">
+
+  <link href="../css/index.min.css@v=404.css" type="text/css" rel="stylesheet">
+
+	
+<link as="script" href="../js/pages/login.min.js@v=33" rel="preload">
+
+	
+<style>
+                header {
+                    display: none;
+                }
+
+                #google-signin-wrap, #login-new-account-wrap {
+                    max-width: 350px;
+                    margin: auto;
+                }
+
+                #google-signin2 .abcRioButton {
+                    margin: auto;
+                }
+
+                #closeFrame {
+                    font-size: 50px;
+                    padding: 10px 25px;
+                    text-decoration: none;
+                    opacity: 0.5;
+                    font-weight: 100;
+                    color: #000;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+
+                .btn-login .fal,
+                .btn-login-sso .fal {
+                    margin-right: 5px;
+                }
+
+                .btn-login,
+                .btn-login-sso {
+                    padding-left: 60px;
+                    padding-right: 60px;
+                    margin-bottom: 20px;
+                    margin-top: 20px;
+                    width: 100%;
+                    text-align: center;
+                    line-height: 2;
+                }
+                
+                .center-logo {
+                    width: 60px;
+                    margin-bottom: -30px;
+                    margin-top: 30px;
+                }
+
+                .forgot, .new-account, .switch-use-pwd {
+                    text-align: left;
+                    margin-top: 10px;
+                    margin-bottom: 30px;
+                }
+
+                .forgot a, .new-account a, .switch-use-pwd a {
+                    text-decoration: underline;
+                }
+
+                #login-form, #google-signin-preload {
+                    width: 350px;
+                }
+                
+                #login-new-account-wrap {
+                    margin-top: 60px;
+                }
+                
+                .divider-line-with-text {
+                    text-align: center;
+                    position: relative;
+                    padding: 0 16px;
+                    margin-bottom: 10px;
+                    color: #acacac;
+                }
+
+                .divider-line-with-text:after {
+                    content: "";
+                    border-bottom: 2px solid #acacac;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 50%;
+                    top: 50%;
+                }
+                
+                .divider-line-with-text > p {
+                    display: inline-block;
+                    background-color: #fff;
+                    z-index: 10;
+                    position: relative;
+                    padding: 0 16px;
+                    margin-bottom: 0;
+                    font-size: 16px;
+                }
+                
+                .fine-print {
+                    margin-top: 20px; 
+                    color: #AAA;
+                    text-align: left;
+                    font-size: 15px;
+                }
+                
+                .alert-wrap {
+                    min-height: 65px;
+                }
+                
+                #login-form {
+                    margin-top: 40px;
+                }
+                
+                #google-signin-preload {
+                    margin: auto;
+                }
+                
+                .btn-login-google-preload {
+                    padding-left: 10px;
+                    margin-bottom: 20px;
+                    margin-top: 20px;
+                    width: 100%;
+                    text-align: center;
+                    height: 41px;
+                    cursor: pointer;
+                    border: 1px #333 solid;
+                    padding-top: 9px;
+                }
+
+                .btn-login-google-preload .icon {
+                    float: left;
+                    margin-top: -2px;
+                }
+                
+                .g-recaptcha {
+                    margin-top: 15px;
+                    transform: scale(1.15);
+                    transform-origin: 0;
+                }
+
+                #cf-turnstile {
+                    margin-top: 25px;
+                    transform: scale(1.15);
+                    transform-origin: top left;
+                    margin-left: -60px;
+                }
+                
+                .form-group.verification-code-group {
+                    text-align: left;
+                }
+
+                #alternativeSigninOpts {
+                    width: 350px;
+                    margin: auto;
+                }
+
+                #msft-signin-wrap {
+                    margin-top: 20px;
+                }
+                
+                #msft-signin2 {
+                    height: 41px;
+                    border: 1px #8C8C8C solid;
+                    padding-top: 9px;
+                    color: #5E5E5E;
+                    cursor: pointer;
+                }
+
+                #msft-signin2 .icon {
+                    float: left;
+                    margin-left: 12px;
+                    margin-top: -2px;
+                }
+            </style>
+
+	
+<title>로그인 - Sejda</title>
+
+	
+<meta name="description" content="SEJDA.COM &#xacc4;&#xc815;&#xc73c;&#xb85c; &#xb85c;&#xadf8;&#xc778;&#xd558;&#xc138;&#xc694;.">
+
+	
+<link rel="alternate" hreflang="en" href="../account@changeEmail=true.html">
+
+	
+<link rel="alternate" hreflang="ro" href="../ro/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="nl" href="../nl/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="no" href="../no/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="es" href="../es/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="pt" href="../pt/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="de" href="../de/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="it" href="../it/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="sv" href="../sv/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="pl" href="../pl/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="fi" href="../fi/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="fr" href="../fr/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="ja" href="../ja/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="id" href="../id/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="hu" href="../hu/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="th" href="../th/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="vi" href="../vi/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="tr" href="../tr/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="ko" href="account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="cs" href="../cs/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="zh-Hans" href="../zh/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="zh-Hant" href="../tw/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="ar" href="../ar/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="da" href="../da/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="el" href="../el/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="hi" href="../hi/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="he" href="../he/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="ru" href="../ru/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="uk" href="../uk/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="x-default" href="../en/account@justUpgraded=desktop.html">
+
+	
+</head>
+<body data-download-server="www.sejda.com" data-proxy-token="1c7cd6573b8b353c0ebb5a18ed344e74" data-pro-user="false" data-max-file-size="500" data-ipcountry="IN" data-www="www59.sejda.com">
+<section>
+  <div style="display:none" class="alert alert-meh alert-dismissible centered" id="termsNotice">
+    <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span></button>
+    We've updated our <a target="_blank" href="../terms.html">terms of service</a> and/or <a target="_blank" href="../privacy.html">privacy policy</a>. Please take a moment and review them.<br>
+    By continuing to use our services you agree to our updated terms &amp; privacy policy.
+  </div>
+</section>
+<div class="StripeBackground">
+  <div class="stripe s0"></div>
+  <div class="stripe s1"></div>
+  <div class="stripe s2"></div>
+  <div class="stripe s3"></div>
+  <div class="stripe s4"></div>
+</div>
+<div class="container-fluid">
+  <header>
+    <section>
+<div class="container">
+  <div class="pull-left">
+      <a title="Sejda.com logo" href="index.html" class="brand"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMjUycHgiIGhlaWdodD0iMjUycHgiIHZpZXdCb3g9Ii00NzkuNSAyODAuNSAyNTIgMjUyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC00NzkuNSAyODAuNSAyNTIgMjUyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxjaXJjbGUgZmlsbD0iIzAwQkI4OCIgY3g9Ii0zNTMuMjUyIiBjeT0iNDA2LjI1MiIgcj0iMTIwLjI0OCIvPg0KPGcgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAgICAiPg0KCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0tMzAwLjYzMywzNDIuOTczbC05Ljk3OSwyMy4zNjNjLTE3LjE1Ni05LjU0NC0zNC4wOTUtMTMuMTI1LTQ1Ljc5OS0xMi42OTUNCgkJYy0xNS4yMzgsMC41NTgtMjQuOTY2LDYuNjY0LTI0LjU4NSwxNy4wNDNjMS4yMzcsMzMuNzg5LDg0LjA1NCwxMi42MjEsODUuODY4LDY4LjI4MWMxLjAxMiwyNy42MDQtMjIuNjU4LDQ1LjQ5OS01Ni42NjgsNDYuNzQ0DQoJCWMtMjQuMjkyLDAuODkxLTQ3LjYyMy04LjIwNi02NC4wNTctMjIuMmwxMC40MzgtMjIuOTM4YzE2LjQzNCwxMy45OTQsMzYuNjAxLDIxLjIxNyw1My4xNjQsMjAuNjA5DQoJCWMxOC4xMDctMC42NjQsMjguNjgtNy45MDYsMjguMjQyLTE5LjgzYy0xLjI2NC0zNC40NTEtODQuMDM1LTEyLjE4MS04Ni4wNDktNjcuMTY4Yy0wLjk3MS0yNi41MDIsMjEuMTY5LTQzLjg5Niw1NC43MzYtNDUuMTI3DQoJCUMtMzM1LjIyNSwzMjguMzE4LTMxNS4zMzUsMzM0LjAwMi0zMDAuNjMzLDM0Mi45NzN6Ii8+DQo8L2c+DQo8L3N2Zz4NCg==" alt="Sejda.com logo" class="logo">
+          <span class="name">Sejda</span></a>
+      <a href="javascript://" class="header-link header-tool more-tasks">
+          모든 도구<i class="fal fa-fw fa-angle-down" style="margin-left: 3px;"></i>
+      </a>
+      <a href="compress-pdf.html" class="header-link header-tool hide-xs">압축</a>
+      <a href="pdf-editor.html" class="header-link header-tool hide-xs">편집</a>
+      <a href="sign-pdf.html" class="header-link header-tool hide-xs hide-lang-de hide-lang-hu hide-lang-ru">작성 및 서명</a>
+      <a href="merge-pdf.html" class="header-link header-tool hide-sm">병합</a>
+      <a href="delete-pdf-pages.html" class="header-link header-tool hide-md">페이지 삭제</a>
+      <a href="crop-pdf.html" class="header-link header-tool hide-md hide-lang-de hide-lang-fr hide-lang-ro hide-lang-cs hide-lang-ru">자르기</a>
+
+  </div>
+  <div id="user-header" class="pull-right">
+      <div class="header-links">
+          <a href="upgrade.html" class="header-link pricing-link">가격 책정</a>
+          <a href="desktop.html" class="header-link desktop-link hide-xs">Desktop</a>
+          <a href="account@justUpgraded=desktop.html" id="loginBtn" class="loggedout header-link">로그인</a>
+          <div style="display:none" class="dropdown loggedin header-link">
+              <a data-toggle="dropdown" class="dropdown-toggle">
+                  <i class="fas fa-user-circle"></i>
+                  <span class="caret"></span>
+              </a>
+              <ul role="menu" class="dropdown-menu pull-right dropdown-menu-right">
+                  <li role="presentation"><a href="account.html" tabindex="-1" role="menuitem">계정</a></li>
+                  <li role="presentation"><a id="logoutBtn" href="javascript://" tabindex="-1" role="menuitem">Logout</a></li>
+              </ul>
+          </div>
+          <a title="Select language" href="javascript://" class="header-link select-lang-btn hide-xs">
+              <i style="vertical-align: text-top;" class="fal fa-globe"></i>
+          </a>
+      </div>
+  </div>
+</div>
+<div id="megaMenu" style="display: none" class="container-fluid mega-menu">
+    <div class="mega-menu-inner">
+    <button aria-label="Close" class="close" type="button"><span aria-hidden="true">×</span></button>
+    <div class="container tasks-container">
+        <div class="row">
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6 col-recent-tools">
+                <ul class="popular">
+                    <li class="header">
+                        최근<i class="fal fa-history"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">병합</li>
+                    <li class="cat-merge">
+                        <a href="alternate-mix-pdf.html">
+                          <div class="caption">
+                              <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-random fa-stack-1x"></i>
+                              </span>번갈아 혼합
+                          </div>
+                          <div class="description">두 개 이상의 문서에서 페이지를 섞어서 번갈아 사용</div>
+                        </a>
+                    </li>
+                    <li class="cat-merge">
+                        <a href="merge-pdf.html">
+                          <div class="caption">
+                              <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-sitemap fa-stack-1x"></i>
+                              </span>병합
+                          </div>
+                          <div class="description">여러 PDF 및 이미지를 하나로 결합</div>
+                        </a>
+                    </li>
+                    <li class="cat-merge">
+                        <a href="organize-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-object-group fa-stack-1x"></i>
+                            </span>구성</div>
+                            <div class="description">PDF 페이지 정렬 및 재구성</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        분할
+                    </li>
+                    <li class="cat-split">
+                        <a href="extract-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-external-link fa-stack-1x"></i>
+                                  </span>페이지 추출</div>
+                            <div class="description">원하는 페이지만 포함하는 새 문서 가져오기</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-clone fa-stack-1x"></i>
+                                  </span>페이지 별로 분할</div>
+                            <div class="description">특정 페이지 범위를 분할하거나 모든 페이지를 별도의 문서로 추출</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-outline.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-bookmark fa-stack-1x"></i>
+                                  </span>북마크 별로 분할</div>
+                            <div class="description">목차의 북마크에 따라 장을 별도의 문서로 추출</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-down-the-middle.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-columns fa-stack-1x"></i>
+                                  </span>반으로 나누기</div>
+                            <div class="description">두 페이지 레이아웃 스캔 분할, A3에서 A4 두 배 또는 A4에서 A5 두 배로</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-size.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-chart-pie fa-stack-1x"></i>
+                                  </span>크기 별로 분할</div>
+                            <div class="description">특정 파일 크기의 여러 작은 문서 가져오기</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-text.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-font fa-stack-1x"></i>
+                                  </span>텍스트별 분할</div>
+                            <div class="description">페이지마다 특정 텍스트가 변경될 때 별도의 문서 추출</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        편집 및 서명
+                    </li>
+                    <li class="cat-edit">
+                        <a href="pdf-editor.html">
+                            <div class="caption">
+                                <span class="task-icon fa-stack fa-lg fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-pencil fa-stack-1x"></i>
+                                </span>편집
+                            </div>
+                            <div class="description">무료로 PDF 파일 편집. PDF 작성 및 서명. 텍스트, 링크, 이미지 및 도형 추가. 기존 PDF 텍스트 편집. PDF 주석 달기</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="sign-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-signature fa-stack-1x"></i>
+                                  </span>작성 및 서명</div>
+                            <div class="description">PDF에 서명 추가. PDF 양식 작성</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="pdf-forms.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-wpforms fa-stack-1x"></i>
+                                  </span>양식 만들기</div>
+                            <div class="description">무료 PDF 양식 생성기. 기존 PDF 문서를 채울 수 있게 만들기</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="delete-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-trash fa-stack-1x"></i>
+                                  </span>페이지 삭제</div>
+                            <div class="description">PDF 문서에서 페이지 제거</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        압축
+                    </li>
+                    <li class="cat-compress">
+                        <a href="compress-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-compress fa-stack-1x"></i>
+                                  </span>압축</div>
+                            <div class="description">PDF 크기 줄이기</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        보안
+                    </li>
+                    <li class="cat-security">
+                        <a href="encrypt-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-lock fa-stack-1x"></i>
+                                  </span>보호</div>
+                            <div class="description">파일을 비밀번호와 권한으로 보호</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="unlock-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-unlock fa-stack-1x"></i>
+                                  </span>잠금 해제</div>
+                            <div class="description">PDF 파일의 제한 및 비밀번호 제거</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="watermark-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-alt fa-stack-1x"></i>
+                                  </span>Watermark</div>
+                            <div class="description">PDF 문서에 이미지 또는 텍스트 워터마크 추가</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="flatten-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-font fa-stack-1x"></i>
+                                <i class="fal fa-slash fa-stack-1x"></i>
+                              </span>평탄화</div>
+                            <div class="description">입력 가능한 PDF를 읽기 전용으로 만들기. 인쇄 및 스캔을 한 단계로</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        PDF에서 변환
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-excel.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-excel fa-stack-1x"></i>
+                                  </span>PDF를 Excel로</div>
+                            <div class="description">온라인으로 무료로 PDF를 Excel 또는 CSV로 변환. PDF에서 테이블 데이터 추출</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-jpg.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-image fa-stack-1x"></i>
+                                  </span>PDF를 JPG로</div>
+                            <div class="description">PDF 페이지를 JPG, PNG 또는 TIFF 이미지로 변환</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-ppt.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-powerpoint fa-stack-1x"></i>
+                                  </span>PDF를 PowerPoint로</div>
+                            <div class="description">PDF를 PowerPoint로 온라인에서 변환</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="extract-text-from-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-align-left fa-stack-1x"></i>
+                                  </span>PDF를 텍스트로</div>
+                            <div class="description">PDF 문서의 모든 텍스트를 복사하여 별도의 텍스트 파일로 추출</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-word.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-word fa-stack-1x"></i>
+                                  </span>PDF를 Word로</div>
+                            <div class="description">PDF를 DOC으로 온라인에서 변환</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        PDF로 변환
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="html-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-code fa-stack-1x"></i>
+                                  </span>HTML을 PDF로</div>
+                            <div class="description">웹 페이지 또는 HTML 파일을 PDF 문서로 변환</div>
+                        </a>
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="jpg-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-image fa-stack-1x"></i>
+                                  </span>JPG를 PDF로</div>
+                            <div class="description">이미지를 PDF로 변환</div>
+                        </a>
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="word-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-word fa-stack-1x"></i>
+                                  </span>Word를 PDF로</div>
+                            <div class="description">Microsoft Word .docx에서 PDF 문서 생성</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        기타
+                    </li>
+                    <li class="cat-other">
+                        <a href="bates-numbering-pdf.html" title="">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-gavel fa-stack-1x"></i>
+                                  </span>베이츠 번호 매기기</div>
+                            <div class="description">한 번에 여러 파일에 베이츠 스탬프 찍기</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="pdf-bookmarks.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-bookmark fa-stack-1x"></i>
+                                  </span>북마크 만들기</div>
+                            <div class="description">PDF 북마크 만들기</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="crop-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-crop fa-stack-1x"></i>
+                                  </span>자르기</div>
+                            <div class="description">PDF 여백 자르기, PDF 페이지 크기 변경</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="edit-pdf-metadata.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-info-square fa-stack-1x"></i>
+                                  </span>메타데이터 편집</div>
+                            <div class="description">PDF 저자, 제목, 키워드, 주제 및 기타 메타데이터 필드 변경</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="extract-images-from-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-popular fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-external-link fa-stack-1x"></i>
+                                  </span>이미지 추출</div>
+                            <div class="description">PDF에서 이미지 추출</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="flip-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-reflect-horizontal fa-stack-1x"></i>
+                                  </span>Flip<span class="label label-success">New</span></div>
+                            <div class="description">페이지를 가로 또는 세로로 반전해요</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="grayscale-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-paint-brush fa-stack-1x"></i>
+                                  </span>그레이스케일</div>
+                            <div class="description">PDF 텍스트 및 이미지를 그레이스케일로 만들기</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="header-footer-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-heading fa-stack-1x"></i>
+                                  </span>헤더 및 푸터</div>
+                            <div class="description">PDF 파일에 페이지 번호나 텍스트 라벨 적용</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="n-up-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-th-large fa-stack-1x"></i>
+                                  </span>N-up</div>
+                            <div class="description">한 종이당 여러 페이지 인쇄. A5 plan as 4-up on A3 or A4 2-up on A3</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="page-numbers-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-sort-numeric-up fa-stack-1x"></i>
+                                  </span>페이지 번호</div>
+                            <div class="description">PDF 페이지 번호 추가</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                         
+                    </li>
+                    <li class="cat-other">
+                        <a href="rename-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-i-cursor fa-stack-1x"></i>
+                                  </span>이름 바꾸기</div>
+                            <div class="description">PDF 페이지의 텍스트를 기반으로 파일 이름 변경</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="repair-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-wrench fa-stack-1x"></i>
+                                  </span>수리</div>
+                            <div class="description">손상되거나 손상된 PDF 문서에서 데이터 복구</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="resize-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-arrows-alt fa-stack-1x"></i>
+                                  </span>크기 조정</div>
+                            <div class="description">페이지 여백 및 패딩 추가, PDF 페이지 크기 변경</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="rotate-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-repeat fa-stack-1x"></i>
+                                  </span>회전</div>
+                            <div class="description">PDF 페이지를 회전하고 영구적으로 저장</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="delete-pdf-annotations.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-highlighter fa-stack-1x"></i>
+                                  </span>주석 제거<span class="label label-success">New</span></div>
+                            <div class="description">PDF 문서에서 하이라이트, 취소선 또는 기타 모든 주석을 일괄 제거</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        스캔
+                    </li>
+                    <li class="cat-scans">
+                        <a href="deskew-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-popular fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-alt fa-stack-1x rotated-5-deg"></i>
+                                  </span>Deskew</div>
+                            <div class="description">스캔한 PDF 페이지를 자동으로 똑바로 펴고 Deskew 실행</div>
+                        </a>
+                    </li>
+                    <li class="cat-scans">
+                        <a href="ocr-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-qrcode fa-stack-1x"></i>
+                                  </span>OCR</div>
+                            <div class="description">PDF 스캔을 검색 가능한 텍스트 및 PDF로 변환. 스캔에서 텍스트 추출</div>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="header lower">
+                        자동화
+                    </li>
+                    <li>
+                        <a href="workflows.html" title="">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-robot fa-stack-1x"></i>
+                                  </span>Workflows<span class="label label-success">New</span></div>
+                            <div class="description">PDF 문서에서 일련의 Task 실행. PDF 처리를 위한 도구 체인 구성</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="centered">
+                <form autocomplete="off">
+                    <div style="display: none" class="input-group search-tools-wrap">
+                        <i class="fal fa-search"></i>
+                        <input onkeypress="if(event.keyCode === 13){ return false; }" id="searchTools" placeholder="Type to search" class="form-control input-sm" type="search" autocomplete="off">
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <a style="color: #AAA; text-decoration: underline; font-size: 14px;" class="get-support-btn" href="javascript://">Suggest a missing feature</a>
+                        <i class="fal fa-comment-lines" style="color: #AAA; vertical-align: middle;"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+  </header>
+</div>
+
+<section>
+  <div class="modal fade" id="contactFormModal" style="display: none">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+            <div style="margin: 20px 40px;" class="row centered contact-form-row">
+              <h3 style="margin-bottom: 10px;">SEJDA.COM 고객지원에 문의</h3>
+              <h5 style="margin-bottom: 30px;">다음 주소로 이메일 보내기 <a href="mailto:hi@sejda.com">hi@sejda.com</a> 또는 아래 양식을 사용해 주세요</h5>
+              
+              <div style="display: none; margin-top: 50px;" class="alert alert-success" id="contactSuccess">메시지를 보내주셔서 감사해요.</div>
+
+              <section id="support-frequent-topics">
+                <div class="form-group">
+                  <label for="contact-msg">도움이 필요한 부분</label>
+                  <br>
+                  <div data-topic="cancel-subscription" class="support-topic">구독 취소</div>
+                  <div data-topic="find-license-key" class="support-topic">라이선스 키 찾기</div>
+                  <div class="support-topic">기타 문의</div>
+                </div>
+                
+                <div class="support-answers">
+                  <div class="support-answer selected" style="display: none" data-answer="find-license-key" id="support_licenseKey_accountPage">
+                    계정 페이지에서 Sejda Desktop 라이선스 키를 찾을 수 있어요:
+                    <br>
+                    <a target="_blank" href="account@justUpgraded=desktop.html">https://www.sejda.com/account</a>
+                  </div>
+
+                  <div style="display: none" data-answer="find-license-key" class="support-answer" id="support_licenseKey_webOnly">
+                    Sejda Desktop 액세스가 포함되지 않은 Web-only 플랜을 구매하셨어요.
+                    <br>
+                    <a target="_blank" href="upgrade.html#pricing">https://www.sejda.com/upgrade</a>
+                    <br><br>
+                    Desktop 액세스가 포함된 플랜들이에요:
+                    <br>
+                    <a target="_blank" href="desktop.html#pricing">https://www.sejda.com/desktop</a>
+                    <br><br>
+                    Desktop 플랜을 구매하시면 Web-only 구매 건은 자동으로 환불돼요.
+                  </div>
+
+                  <div class="support-answer selected" style="display: none" data-answer="cancel-subscription" id="support_cancelSub_accountPage">
+                    계정 페이지의 구독 항목 옆에 있는 &quot;Stop auto-renewal&quot;을 클릭하여 구독을 취소할 수 있어요:
+                    <br>
+                    <a target="_blank" href="account.html">https://www.sejda.com/account</a>
+                  </div>
+
+                  <div style="display: none" data-answer="cancel-subscription" class="support-answer" id="support_cancelSub_weekPass">
+                    Week Pass 플랜은 정기 구독이 아닌 일회성 결제예요. 자동으로 갱신되지 않으며 7일 후에 무료 버전으로 전환돼요.
+                  </div>
+                </div>
+              </section>
+              
+              <form style="display: none" id="contactForm">
+                <section id="contactFormProgressBar">
+                  <progress max="100" value="0" id="progress"></progress>
+                  <div class="step-item">1</div>
+                  <div class="step-item">2</div>
+                  <div class="step-item">3</div>
+                  <div class="step-item">4</div>
+                </section>
+                <section data-step="1" class="contact-form-step">
+                  <div class="form-group">
+                    <label for="contact-msg">메시지</label>
+                    <textarea id="contact-msg" class="form-control" name="message" style="min-height: 100px; padding: 15px" required="required" placeholder="&#xba54;&#xc2dc;&#xc9c0;&#xb97c; &#xc785;&#xb825;&#xd558;&#xc138;&#xc694;"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-email">이메일 주소</label>
+                    <input type="email" class="form-control" id="contact-email" name="email" placeholder="&#xc120;&#xd0dd; &#xc0ac;&#xd56d;. &#xb2f5;&#xbcc0;&#xc744; &#xc6d0;&#xd558;&#xc2dc;&#xba74; &#xc774;&#xba54;&#xc77c; &#xc8fc;&#xc18c;&#xb97c; &#xc785;&#xb825;&#xd574; &#xc8fc;&#xc138;&#xc694;" value="">
+                  </div>
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="completeStep1Btn" class="btn btn-default" type="button">
+                    다음 <i style="margin-left: 10px" class="fal fa-chevron-right"></i> 
+                  </button>
+                </section>
+
+                <section style="display: none" data-step="2" class="contact-form-step">
+                  <div class="loader-wrap"><img src="../images/loaders/oval-green.svg" class="loader medium"></div>
+                </section>  
+                
+                <section style="display: none" data-step="3" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">추천 답변</label>
+                    <div id="automaticSupportAnswer"></div>
+                  </div>
+
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="completeStep3Btn" class="btn btn-link btn-xs" type="button">
+                    제 질문에 대한 답변이 아닙니다
+                  </button>
+                </section>
+                
+                <section style="display: none" data-step="4" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">문제를 신고하시나요?</label>
+                  </div>
+                  <div style="width: 263px; text-align: left; margin: auto;" class="form-group">
+                    <div class="radio">
+                      <label>
+                        <input value="problem" name="supportMessageKind" type="radio">
+                        네, 문제를 신고합니다
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input value="other" name="supportMessageKind" type="radio">
+                        아니요, 다른 내용입니다
+                      </label>
+                    </div>
+                  </div>  
+                </section>
+
+                <section style="display: none" data-step="5" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">문제 상세 내용</label>
+                  </div>
+                  <div style="max-width: 430px; margin: auto; margin-top: -15px; text-align: left;" class="checkbox">
+                    <label><input style="margin: 5px; margin-right: 15px;" name="allowAccessLastTask" type="checkbox"> 마지막 Task와 사용된 파일에 대한 접근 권한을 허용합니다.</label>
+                    <p style="font-size: 12px; padding-left: 33px; margin-top: 0;" class="help-block">더 빠른 도움을 위해 이 데이터를 사용합니다. 기밀.</p>
+                  </div>
+                  <div id="attachScreenshotFormGroup" class="form-group">
+                    <label class="light">Attach a screenshot*</label>
+                    <p style="font-size: 12px; padding-left: 33px; margin-top: -8px;" class="help-block">보시는 화면의 스크린샷을 공유해 주세요.</p>
+                    <div>
+                      <label style="border: 1px solid #ccc;display: inline-block;padding: 6px 12px; cursor: pointer;" class="light" for="supportScreenshotFile">
+                        <i class="fal fa-plus"></i> 스크린샷 이미지 파일 선택
+                      </label>
+                      <input style="display: none" accept=".png,.jpg,.jpeg,.bmp" type="file" id="supportScreenshotFile">
+                      <div id="supportScreenshotFilePreview"></div>
+                    </div>
+                  </div>
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="sendMessageBtn" class="btn btn-default" type="submit">메시지 보내기</button>
+                </section>
+                
+                <input value="iluzie" name="suflet" type="hidden">
+                <input value="" name="source" type="hidden">
+                <input value="" name="source2" type="hidden">
+                <input value="" name="lastFile" type="hidden">
+                <input value="" name="lastTask" type="hidden">
+                <input value="" name="events" type="hidden">
+                <input value="" name="consoleLogs" type="hidden">
+                <input value="" name="screenshot" type="hidden">
+                <input value="" name="os" type="hidden">
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div style="display: none" class="modal app-modal" id="optOutChoicesPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Privacy Settings
+          </div>
+        </div>
+        <div class="modal-body">
+          This feature requires loading content from an external service, <span class="external_service_name"></span>, which could access personal data, such as your IP address, set cookies and track you.<br><br>
+          Please let us know if you are okay with that.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-no btn-light btn-xs" type="button">No, cancel</button>
+          <button class="btn btn-yes btn-xs" type="button">Yes, continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal app-error-modal" id="problemLoadingPageResourcePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            There's a problem loading this page
+          </div>
+        </div>
+        <div class="modal-body">
+          There was a problem loading a critical resource, which prevents the page from continuing.<br><br>
+          Please check your internet connection and reload the page to try again.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-yes btn-xs" type="button">Reload page</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div style="display: none" class="modal app-modal app-error-modal" id="genericErrorModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+            <div class="modal-title"></div>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="display: none" class="modal app-modal app-warning-modal" id="scanPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">스캔된 문서는 지원되지 않습니다</h4>
+        </div>
+        <div class="modal-body">
+          <div data-scope="edit">
+            <strong>스캔된 문서 편집은 지원되지 않습니다.</strong>
+            스캔된 문서 내 기존 텍스트 수정은 지원되지 않습니다. 하지만 새로운 텍스트, 이미지, 주석 추가와 같은 다른 기능은 계속 사용할 수 있습니다.
+          </div>
+          <div style="display: none" data-scope="convert">
+            <strong>스캔된 문서 변환은 지원되지 않습니다.</strong>
+            스캔된 PDF는 텍스트 이미지일 뿐 변환에 필요한 실제 텍스트 데이터가 부족합니다.
+
+            <br><br>
+            파일: <span class="file-name"></span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="dont-show-anymore-opts">
+            <div class="checkbox">
+              <label><input style="margin-top: 5px" name="dontShowAnymore" type="checkbox"> 다시 보지 않기</label>
+            </div>
+          </div>
+          <a target="_blank" href="help.html#scans" class="btn btn-secondary btn-xs">더 알아보기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="movePagePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            페이지를 새 위치로 이동
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="form-inline">
+            <label class="light" for="moveNewPageNumber">새 페이지 위치:</label>
+            <input style="width: 55px;margin: 0 10px;vertical-align: baseline; text-align: center" class="form-control input-xs" name="moveNewPageNumber" id="moveNewPageNumber" type="text">
+            <span class="num_of_pages"></span>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <div class="modal-hint">
+            Tip: 페이지를 새 위치로 드래그 앤 드롭할 수도 있습니다
+          </div>
+          <button class="btn btn-yes btn-xs" type="button">페이지 이동</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="changeLanguagePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            언어 선택
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-6">
+              <ul>
+                <li><a href="../ar/account@justUpgraded=desktop.html">العربية</a></li>
+                <li><a href="../id/account@justUpgraded=desktop.html">Bahasa Indonesia</a></li>
+                <li><a href="../da/account@justUpgraded=desktop.html">Dansk</a></li>
+                <li><a href="../de/account@justUpgraded=desktop.html">Deutsch</a></li>
+                <li><a href="../cs/account@justUpgraded=desktop.html">Čeština</a></li>
+                <li><a href="../account@changeEmail=true.html">English</a></li>
+                <li><a href="../es/account@justUpgraded=desktop.html">Español</a></li>
+                <li><a href="../fr/account@justUpgraded=desktop.html">Français</a></li>
+                <li><a href="../it/account@justUpgraded=desktop.html">Italiano</a></li>
+                <li><a href="../el/account@justUpgraded=desktop.html">Ελληνικά</a></li>
+                <li><a href="../ja/account@justUpgraded=desktop.html">日本語</a></li>
+                <li><a href="account@justUpgraded=desktop.html">한국어</a></li>
+                <li><a href="../zh/account@justUpgraded=desktop.html">简体中文</a></li>
+                <li><a href="../tw/account@justUpgraded=desktop.html">繁體中文</a></li>
+              </ul>
+            </div>
+            <div class="col-xs-6">
+              <ul>
+                <li><a href="../hi/account@justUpgraded=desktop.html">हिन्दी</a></li>
+                <li><a href="../he/account@justUpgraded=desktop.html">עברית</a></li>
+                <li><a href="../hu/account@justUpgraded=desktop.html">Magyar</a></li>
+                <li><a href="../nl/account@justUpgraded=desktop.html">Nederlands</a></li>
+                <li><a href="../no/account@justUpgraded=desktop.html">Norsk</a></li>
+                <li><a href="../pl/account@justUpgraded=desktop.html">Polski</a></li>
+                <li><a href="../pt/account@justUpgraded=desktop.html">Português</a></li>
+                <li><a href="../ro/account@justUpgraded=desktop.html">Română</a></li>
+                <li><a href="../ru/account@justUpgraded=desktop.html">Русский</a></li>
+                <li><a href="../fi/account@justUpgraded=desktop.html">Suomi</a></li>
+                <li><a href="../sv/account@justUpgraded=desktop.html">Svenska</a></li>
+                <li><a href="../th/account@justUpgraded=desktop.html">ภาษาไทย</a></li>
+                <li><a href="../vi/account@justUpgraded=desktop.html">Tiếng Việt</a></li>
+                <li><a href="../tr/account@justUpgraded=desktop.html">Türkçe</a></li>
+                <li><a href="../uk/account@justUpgraded=desktop.html">Українська</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section style="display: none" class="i18n-strings">
+    <div data-key="We're sorry, something went wrong. Please contact support at hi@sejda.com">죄송합니다. 오류가 발생했습니다. 고객 지원팀(hi@sejda.com)으로 문의해 주세요</div>
+    <div data-key="Verification code is incorrect">인증 코드가 올바르지 않습니다</div>
+    <div data-key="Too many attempts. Please try again later">시도가 너무 많아요. 나중에 다시 시도해 주세요.</div>
+    <div data-key="An error occurred. Please try again or contact support">오류가 발생했습니다. 다시 시도하거나 고객 지원팀에 문의해 주세요.</div>
+    <div data-key="Processing, please wait...">처리 중입니다. 잠시만 기다려 주세요...</div>
+    <div data-key="Sign in">로그인</div>
+    <div data-key="Click to edit">클릭하여 수정</div>
+    <div data-key="Sorry, unsupported image format:">죄송합니다. 지원되지 않는 이미지 형식입니다:</div>
+    <div data-key="We support the following image types:">다음 이미지 형식을 지원합니다:</div>
+    <div data-key="You already have an active monthly subscription">이미 활성 상태인 월간 구독이 있습니다</div>
+    <div data-key="Trying to add more seats? You can do this from your account page">사용자(seat)를 더 추가하시겠어요? 계정 페이지에서 가능합니다</div>
+    <div data-key="Please verify your email address before continuing with your purchase">구매를 계속하기 전에 이메일 주소를 인증해 주세요</div>
+    <div data-key="We couldn't connect to GoogleDrive. Your browser (or add-ons) might be blocking the load of javascript files from GoogleDrive">GoogleDrive에 연결할 수 없었어. 브라우저나 확장 프로그램이 GoogleDrive의 javascript 파일 로드를 차단하고 있을 수 있어</div>
+    <div data-key="Are you sure you want to remove the recent files list?">최근 파일 목록을 정말 삭제할까?</div>
+  </section>
+</section>
+
+
+        
+        <section id="content">
+            <div class="container centered">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="row login">
+                            <div><img src="../images/icon.svg" class="center-logo"></div>
+                            <h1>계정에 로그인</h1>
+
+                            <form autocomplete="off" id="login-form" class="form">
+                                <div class="alert-wrap"><div style="display: none" class="alert alert-danger"></div></div>
+                                <input required="required" name="email" type="text" class="form-control input-lg" placeholder="Email" value="">
+
+                                <input style="margin-top: 20px;" required="required" name="password" type="password" class="form-control input-lg pwd-login-elem" placeholder="Password" value="">
+
+                                <div style="display: none" class="form-group verification-code-group">
+                                    <br>
+                                    <label style="color: #999;">이메일 인증 코드</label>
+                                    <input type="text" class="form-control" name="emailVerificationCode" placeholder="123456">
+
+                                    <p class="help-block">
+                                        본인이 맞는지 확인해 주세요.<br>
+                                        <span class="check_inbox_link">받은 편지함을 확인하세요</span>.
+                                        이메일 주소로 인증 코드를 보냈어요.
+                                        <br><br>
+                                        이메일이 안 왔나요? &quot;Spam&quot; 폴더를 확인하거나 이전에 받은 인증 코드를 사용하세요.
+                                    </p>
+                                </div>
+                                
+                                <input value="OFGVIQBDZBAK2HQYWUXM" name="csrf" id="csrf" type="hidden">
+
+                                <div class="cf-turnstile" id="cf-turnstile"></div>
+
+                                <button class="btn btn-medium form-submit btn-login pwd-login-elem" type="submit"><i class="fal fa-lock"></i> 로그인</button>
+                                
+                                <button class="btn btn-medium btn-login-sso sso-login-elem" type="button" style="display:none">Continue with SSO <i style="margin-left: 5px; margin-right: 0;" class="fal fa-chevron-right"></i> </button>
+
+                                <div class="switch-use-pwd sso-login-elem"><a href="javascript://">비밀번호로 로그인</a></div>
+                                <div class="forgot pwd-login-elem"><a target="_blank" href="reset-password.html">비밀번호 재설정</a></div>
+                            </form>
+
+                            <section id="alternativeSigninOpts">
+                                <div style="margin-bottom: 40px" class="divider-line-with-text">
+                                    <p>또는 다른 방법으로</p>
+                                </div>
+                                <section id="google-signin-preload">
+                                    <div class="btn-login-google-preload">
+                                        <img src="../images/icons/google.svg" class="icon"> Sign in with Google 
+                                    </div>
+                                </section>
+                                <section style="display: none" id="google-signin-wrap">
+                                    <div style="display: none; margin-top: 10px;" class="alert alert-danger"></div>
+                                    <div id="google-signin2"></div>
+                                </section>
+                                <section id="msft-signin-wrap">
+                                    <div style="display: none; margin-top: 10px;" class="alert alert-danger"></div>
+                                    <div id="msft-signin2"><img src="../images/icons/microsoft.svg" class="icon"> Sign in with Microsoft</div>
+                                </section>
+                                <div class="fine-print">
+                                    By signing in you agree to the <a target="_blank" href="../terms.html">terms</a> and <a target="_blank" href="../privacy.html">privacy policy</a>
+                                </div>
+                            </section>
+                            <section id="login-new-account-wrap">
+                                <div style="font-size: 22px; font-weight: bold; text-align: left;">
+                                    New here?
+                                </div>
+                                <div class="fine-print">
+                                    제한된 무료 사용에는 가입이 필요하지 않아요..<br>
+                                    유료 무제한 계정 가입하기.<br>
+                                </div>
+                                <div class="new-account"><a target="_blank" href="../upgrade.html">계정 만들기</a></div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a style="display: none" href="javascript://" id="closeFrame">×</a>
+
+            <script data-src="/js/pages/login.min.js?v=33" class="pageScripts"></script>
+            <section>
+    <script src="../cache/639/js/libs-and-partials.min.js" async="async" id="libsAndPartialsScript"></script>
+</section>
+
+            <script>
+                window.onloadTurnstileCallback = function () {
+                    turnstile.render('#cf-turnstile', {
+                        theme: 'light',
+                        action: 'login',
+                        sitekey: '0x4AAAAAAAJsCN5ioa6BPARj',
+                        callback: function(token) {
+                            //console.log('Turnstile challenge success'+ token);
+
+                            // token expires in 300 seconds
+                            setTimeout(function() {
+                                turnstile.reset()
+                            }, 290000)
+                        },
+                    });
+                };
+            </script>
+
+            <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onloadTurnstileCallback"></script>
+        </section>
+    
+
+<div id="taskResultsModal" role="dialog" tabindex="-1" class="modal fade"></div>
+
+
+
+
+	
+</body>
+</html>  
+  

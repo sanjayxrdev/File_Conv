@@ -1,0 +1,1341 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="utf-8">
+
+  <link as="style" href="../css/index.min.css@v=404.css" rel="preload">
+  <link crossorigin="anonymous" type="font/woff2" as="font" href="../fonts/braille/Atkinson-Hyperlegible-Regular-102a.woff2" rel="preload">
+  <link crossorigin="anonymous" type="font/woff2" as="font" href="../fonts/braille/Atkinson-Hyperlegible-Bold-102a.woff2" rel="preload">
+  <link as="script" href="../cache/639/js/libs-and-partials.min.js" rel="preload">
+
+  <link href="../images/icon_128.png" rel="shortcut icon">
+
+  <meta content="website" property="og:type">
+  <meta content="https://www.sejda.com/" property="og:url">
+  <meta content="Sejda.com - We help with your PDF tasks" property="og:site_name">
+
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="@SejdaPDF" name="twitter:site">
+  <meta content="@SejdaPDF" name="twitter:creator">
+
+  <meta content="1762774073964212" property="fb:app_id">
+  <meta content="8721525582-fbt24du8pl38r1ht2ihu9q9vl815o5t8.apps.googleusercontent.com" name="google-signin-client_id">
+
+  <link rel="canonical" href="account@justUpgraded=desktop.html">
+
+  <link href="../css/index.min.css@v=404.css" type="text/css" rel="stylesheet">
+
+	
+<link as="script" href="../js/pages/login.min.js@v=33" rel="preload">
+
+	
+<style>
+                header {
+                    display: none;
+                }
+
+                #google-signin-wrap, #login-new-account-wrap {
+                    max-width: 350px;
+                    margin: auto;
+                }
+
+                #google-signin2 .abcRioButton {
+                    margin: auto;
+                }
+
+                #closeFrame {
+                    font-size: 50px;
+                    padding: 10px 25px;
+                    text-decoration: none;
+                    opacity: 0.5;
+                    font-weight: 100;
+                    color: #000;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                }
+
+                .btn-login .fal,
+                .btn-login-sso .fal {
+                    margin-right: 5px;
+                }
+
+                .btn-login,
+                .btn-login-sso {
+                    padding-left: 60px;
+                    padding-right: 60px;
+                    margin-bottom: 20px;
+                    margin-top: 20px;
+                    width: 100%;
+                    text-align: center;
+                    line-height: 2;
+                }
+                
+                .center-logo {
+                    width: 60px;
+                    margin-bottom: -30px;
+                    margin-top: 30px;
+                }
+
+                .forgot, .new-account, .switch-use-pwd {
+                    text-align: left;
+                    margin-top: 10px;
+                    margin-bottom: 30px;
+                }
+
+                .forgot a, .new-account a, .switch-use-pwd a {
+                    text-decoration: underline;
+                }
+
+                #login-form, #google-signin-preload {
+                    width: 350px;
+                }
+                
+                #login-new-account-wrap {
+                    margin-top: 60px;
+                }
+                
+                .divider-line-with-text {
+                    text-align: center;
+                    position: relative;
+                    padding: 0 16px;
+                    margin-bottom: 10px;
+                    color: #acacac;
+                }
+
+                .divider-line-with-text:after {
+                    content: "";
+                    border-bottom: 2px solid #acacac;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    bottom: 50%;
+                    top: 50%;
+                }
+                
+                .divider-line-with-text > p {
+                    display: inline-block;
+                    background-color: #fff;
+                    z-index: 10;
+                    position: relative;
+                    padding: 0 16px;
+                    margin-bottom: 0;
+                    font-size: 16px;
+                }
+                
+                .fine-print {
+                    margin-top: 20px; 
+                    color: #AAA;
+                    text-align: left;
+                    font-size: 15px;
+                }
+                
+                .alert-wrap {
+                    min-height: 65px;
+                }
+                
+                #login-form {
+                    margin-top: 40px;
+                }
+                
+                #google-signin-preload {
+                    margin: auto;
+                }
+                
+                .btn-login-google-preload {
+                    padding-left: 10px;
+                    margin-bottom: 20px;
+                    margin-top: 20px;
+                    width: 100%;
+                    text-align: center;
+                    height: 41px;
+                    cursor: pointer;
+                    border: 1px #333 solid;
+                    padding-top: 9px;
+                }
+
+                .btn-login-google-preload .icon {
+                    float: left;
+                    margin-top: -2px;
+                }
+                
+                .g-recaptcha {
+                    margin-top: 15px;
+                    transform: scale(1.15);
+                    transform-origin: 0;
+                }
+
+                #cf-turnstile {
+                    margin-top: 25px;
+                    transform: scale(1.15);
+                    transform-origin: top left;
+                    margin-left: -60px;
+                }
+                
+                .form-group.verification-code-group {
+                    text-align: left;
+                }
+
+                #alternativeSigninOpts {
+                    width: 350px;
+                    margin: auto;
+                }
+
+                #msft-signin-wrap {
+                    margin-top: 20px;
+                }
+                
+                #msft-signin2 {
+                    height: 41px;
+                    border: 1px #8C8C8C solid;
+                    padding-top: 9px;
+                    color: #5E5E5E;
+                    cursor: pointer;
+                }
+
+                #msft-signin2 .icon {
+                    float: left;
+                    margin-left: 12px;
+                    margin-top: -2px;
+                }
+            </style>
+
+	
+<title>Bejelentkezés - Sejda</title>
+
+	
+<meta name="description" content="Jelentkezz be a SEJDA.COM fi&#x00f3;kodba">
+
+	
+<link rel="alternate" hreflang="en" href="../account@changeEmail=true.html">
+
+	
+<link rel="alternate" hreflang="ro" href="../ro/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="nl" href="../nl/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="no" href="../no/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="es" href="../es/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="pt" href="../pt/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="de" href="../de/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="it" href="../it/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="sv" href="../sv/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="pl" href="../pl/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="fi" href="../fi/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="fr" href="../fr/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="ja" href="../ja/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="id" href="../id/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="hu" href="account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="th" href="../th/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="vi" href="../vi/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="tr" href="../tr/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="ko" href="../ko/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="cs" href="../cs/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="zh-Hans" href="../zh/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="zh-Hant" href="../tw/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="ar" href="../ar/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="da" href="../da/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="el" href="../el/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="hi" href="../hi/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="he" href="../he/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="ru" href="../ru/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="uk" href="../uk/account@justUpgraded=desktop.html">
+
+	
+<link rel="alternate" hreflang="x-default" href="../en/account@justUpgraded=desktop.html">
+
+	
+</head>
+<body data-download-server="www.sejda.com" data-proxy-token="1c7cd6573b8b353c0ebb5a18ed344e74" data-pro-user="false" data-max-file-size="500" data-ipcountry="IN" data-www="www59.sejda.com">
+<section>
+  <div style="display:none" class="alert alert-meh alert-dismissible centered" id="termsNotice">
+    <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span></button>
+    We've updated our <a target="_blank" href="../terms.html">terms of service</a> and/or <a target="_blank" href="../privacy.html">privacy policy</a>. Please take a moment and review them.<br>
+    By continuing to use our services you agree to our updated terms &amp; privacy policy.
+  </div>
+</section>
+<div class="StripeBackground">
+  <div class="stripe s0"></div>
+  <div class="stripe s1"></div>
+  <div class="stripe s2"></div>
+  <div class="stripe s3"></div>
+  <div class="stripe s4"></div>
+</div>
+<div class="container-fluid">
+  <header>
+    <section>
+<div class="container">
+  <div class="pull-left">
+      <a title="Sejda.com logo" href="index.html" class="brand"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMjUycHgiIGhlaWdodD0iMjUycHgiIHZpZXdCb3g9Ii00NzkuNSAyODAuNSAyNTIgMjUyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC00NzkuNSAyODAuNSAyNTIgMjUyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxjaXJjbGUgZmlsbD0iIzAwQkI4OCIgY3g9Ii0zNTMuMjUyIiBjeT0iNDA2LjI1MiIgcj0iMTIwLjI0OCIvPg0KPGcgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAgICAiPg0KCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0tMzAwLjYzMywzNDIuOTczbC05Ljk3OSwyMy4zNjNjLTE3LjE1Ni05LjU0NC0zNC4wOTUtMTMuMTI1LTQ1Ljc5OS0xMi42OTUNCgkJYy0xNS4yMzgsMC41NTgtMjQuOTY2LDYuNjY0LTI0LjU4NSwxNy4wNDNjMS4yMzcsMzMuNzg5LDg0LjA1NCwxMi42MjEsODUuODY4LDY4LjI4MWMxLjAxMiwyNy42MDQtMjIuNjU4LDQ1LjQ5OS01Ni42NjgsNDYuNzQ0DQoJCWMtMjQuMjkyLDAuODkxLTQ3LjYyMy04LjIwNi02NC4wNTctMjIuMmwxMC40MzgtMjIuOTM4YzE2LjQzNCwxMy45OTQsMzYuNjAxLDIxLjIxNyw1My4xNjQsMjAuNjA5DQoJCWMxOC4xMDctMC42NjQsMjguNjgtNy45MDYsMjguMjQyLTE5LjgzYy0xLjI2NC0zNC40NTEtODQuMDM1LTEyLjE4MS04Ni4wNDktNjcuMTY4Yy0wLjk3MS0yNi41MDIsMjEuMTY5LTQzLjg5Niw1NC43MzYtNDUuMTI3DQoJCUMtMzM1LjIyNSwzMjguMzE4LTMxNS4zMzUsMzM0LjAwMi0zMDAuNjMzLDM0Mi45NzN6Ii8+DQo8L2c+DQo8L3N2Zz4NCg==" alt="Sejda.com logo" class="logo">
+          <span class="name">Sejda</span></a>
+      <a href="javascript://" class="header-link header-tool more-tasks">
+          Minden eszköz<i class="fal fa-fw fa-angle-down" style="margin-left: 3px;"></i>
+      </a>
+      <a href="compress-pdf.html" class="header-link header-tool hide-xs">Tömörítés</a>
+      <a href="pdf-editor.html" class="header-link header-tool hide-xs">Szerkesztés</a>
+      <a href="sign-pdf.html" class="header-link header-tool hide-xs hide-lang-de hide-lang-hu hide-lang-ru">Kitöltés és aláírás</a>
+      <a href="merge-pdf.html" class="header-link header-tool hide-sm">Összefűzés</a>
+      <a href="delete-pdf-pages.html" class="header-link header-tool hide-md">Oldalak törlése</a>
+      <a href="crop-pdf.html" class="header-link header-tool hide-md hide-lang-de hide-lang-fr hide-lang-ro hide-lang-cs hide-lang-ru">Levágás</a>
+
+  </div>
+  <div id="user-header" class="pull-right">
+      <div class="header-links">
+          <a href="upgrade.html" class="header-link pricing-link">Árazás</a>
+          <a href="desktop.html" class="header-link desktop-link hide-xs">Desktop</a>
+          <a href="account@justUpgraded=desktop.html" id="loginBtn" class="loggedout header-link">Bejelentkezés</a>
+          <div style="display:none" class="dropdown loggedin header-link">
+              <a data-toggle="dropdown" class="dropdown-toggle">
+                  <i class="fas fa-user-circle"></i>
+                  <span class="caret"></span>
+              </a>
+              <ul role="menu" class="dropdown-menu pull-right dropdown-menu-right">
+                  <li role="presentation"><a href="account.html" tabindex="-1" role="menuitem">Fiók</a></li>
+                  <li role="presentation"><a id="logoutBtn" href="javascript://" tabindex="-1" role="menuitem">Logout</a></li>
+              </ul>
+          </div>
+          <a title="Select language" href="javascript://" class="header-link select-lang-btn hide-xs">
+              <i style="vertical-align: text-top;" class="fal fa-globe"></i>
+          </a>
+      </div>
+  </div>
+</div>
+<div id="megaMenu" style="display: none" class="container-fluid mega-menu">
+    <div class="mega-menu-inner">
+    <button aria-label="Close" class="close" type="button"><span aria-hidden="true">×</span></button>
+    <div class="container tasks-container">
+        <div class="row">
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6 col-recent-tools">
+                <ul class="popular">
+                    <li class="header">
+                        Legutóbbi<i class="fal fa-history"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">Összefűzés</li>
+                    <li class="cat-merge">
+                        <a href="alternate-mix-pdf.html">
+                          <div class="caption">
+                              <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-random fa-stack-1x"></i>
+                              </span>Váltakozva összekeverés
+                          </div>
+                          <div class="description">Több dokumentum oldalainak összekeverése, váltakozva a dokumentumok között</div>
+                        </a>
+                    </li>
+                    <li class="cat-merge">
+                        <a href="merge-pdf.html">
+                          <div class="caption">
+                              <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-sitemap fa-stack-1x"></i>
+                              </span>Összefűzés
+                          </div>
+                          <div class="description">Több dokumentum vagy kép kombinálása</div>
+                        </a>
+                    </li>
+                    <li class="cat-merge">
+                        <a href="organize-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-object-group fa-stack-1x"></i>
+                            </span>Rendezés</div>
+                            <div class="description">PDF oldalak elrendezése és sorrendje</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Szétválasztás
+                    </li>
+                    <li class="cat-split">
+                        <a href="extract-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-external-link fa-stack-1x"></i>
+                                  </span>Oldalak kiolvasása</div>
+                            <div class="description">Új dokumentum, csak a kívánt oldalakkal</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-clone fa-stack-1x"></i>
+                                  </span>Oldalankénti szétválasztás</div>
+                            <div class="description">Kiválasztott oldaltartomány szétválasztása vagy külön dokumentumban való létrehozása</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-outline.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-bookmark fa-stack-1x"></i>
+                                  </span>Könyvjelzők alapján való szétválasztás</div>
+                            <div class="description">A tartalomjegyzék alapján a fejezetek külön dokumentumba való kiszedése</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-down-the-middle.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-columns fa-stack-1x"></i>
+                                  </span>Félbevágás</div>
+                            <div class="description">Kétoldalas szkennelt dokumentumok szétválaszása, A3-ból A4-be vagy A4-ből A5-be</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-size.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-chart-pie fa-stack-1x"></i>
+                                  </span>Szétvágás méret alapján</div>
+                            <div class="description">Több kisebb dokumentum létrehozása megadott fájlmérettel</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-text.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-font fa-stack-1x"></i>
+                                  </span>Szétvágás szöveg alapján</div>
+                            <div class="description">Bizonyos szöveg változásakor külön dokumentum létrehozása</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        Szerkesztés és aláírás
+                    </li>
+                    <li class="cat-edit">
+                        <a href="pdf-editor.html">
+                            <div class="caption">
+                                <span class="task-icon fa-stack fa-lg fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-pencil fa-stack-1x"></i>
+                                </span>Szerkesztés
+                            </div>
+                            <div class="description">Ingyenes PDF szerkesztés. PDF kitöltése és aláírása. Szöveg, link, kép vagy forma hozzáadása. PDF szöveg szerkesztése. Jegyzet hozzáadása</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="sign-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-signature fa-stack-1x"></i>
+                                  </span>Kitöltés és aláírás</div>
+                            <div class="description">Aláírás hozzáadása a PDF-hez. Töltsön ki PDF nyomtatványokat</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="pdf-forms.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-wpforms fa-stack-1x"></i>
+                                  </span>Űrlapok készítése</div>
+                            <div class="description">Ingyenes PDF űrlap készítő. Meglévő PDF dokumentumok kitölthetővé tétele</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="delete-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-trash fa-stack-1x"></i>
+                                  </span>Oldalak törlése</div>
+                            <div class="description">PDF oldalak eltávolítása</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Tömörítés
+                    </li>
+                    <li class="cat-compress">
+                        <a href="compress-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-compress fa-stack-1x"></i>
+                                  </span>Tömörítés</div>
+                            <div class="description">PDF méretének csökkentése</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Biztonság
+                    </li>
+                    <li class="cat-security">
+                        <a href="encrypt-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-lock fa-stack-1x"></i>
+                                  </span>Védelem</div>
+                            <div class="description">Fájl jelszóval való védelme</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="unlock-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-unlock fa-stack-1x"></i>
+                                  </span>Korlátozás eltávolítása</div>
+                            <div class="description">Korlátozás és jelszó eltávolítása PDF fájlról</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="watermark-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-alt fa-stack-1x"></i>
+                                  </span>Watermark</div>
+                            <div class="description">Vízjel hozzáadása PDF dokumentumokhoz</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="flatten-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-font fa-stack-1x"></i>
+                                <i class="fal fa-slash fa-stack-1x"></i>
+                              </span>Lapítás</div>
+                            <div class="description">Kitölthető PDF-ek csak olvashatóvá tétele. Nyomtatás és szkennelés egy lépésben</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        Konvertálás PDF-ből
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-excel.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-excel fa-stack-1x"></i>
+                                  </span>PDF-ből Excelbe konvertálás</div>
+                            <div class="description">Ingyenes online konvertálás PDF-ből Excelbe vagy CSV-be. Táblázati adatok kiolvasása PDF-ből</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-jpg.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-image fa-stack-1x"></i>
+                                  </span>PDF-ből JPG konvertálás</div>
+                            <div class="description">PDF oldalak konvertálása JPG, PNG vagy TIFF formátumba</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-ppt.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-powerpoint fa-stack-1x"></i>
+                                  </span>PDF-ből PowerPointba</div>
+                            <div class="description">PDF konvertálása PowerPointba online</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="extract-text-from-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-align-left fa-stack-1x"></i>
+                                  </span>PDF-ből szöveges dokumentum konvertálás</div>
+                            <div class="description">PDF teljes szövegének kimásolása szöveges dokumentumba.</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-word.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-word fa-stack-1x"></i>
+                                  </span>PDF-ből Word konvertálás</div>
+                            <div class="description">PDF konvertálása DOC-ba online</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        PDF konvertálás
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="html-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-code fa-stack-1x"></i>
+                                  </span>HTML-ből PDF konvertálás</div>
+                            <div class="description">Weblapok vagy HTML fájlok konvertálása PDF-be</div>
+                        </a>
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="jpg-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-image fa-stack-1x"></i>
+                                  </span>JPG-ből PDF konvertálás</div>
+                            <div class="description">Képkonvertálás PDF-be</div>
+                        </a>
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="word-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-word fa-stack-1x"></i>
+                                  </span>Word-ből PDF konvertálás</div>
+                            <div class="description">Microsoft Word-ből PDF dokumentum készítése</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        Egyéb
+                    </li>
+                    <li class="cat-other">
+                        <a href="bates-numbering-pdf.html" title="">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-gavel fa-stack-1x"></i>
+                                  </span>Vízjelezés</div>
+                            <div class="description">Vízjel elhelyezése egyszerre több fájlon</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="pdf-bookmarks.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-bookmark fa-stack-1x"></i>
+                                  </span>Könyvjelzők létrehozása</div>
+                            <div class="description">PDF könyvjelzők létrehozása</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="crop-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-crop fa-stack-1x"></i>
+                                  </span>Levágás</div>
+                            <div class="description">A margók levágása, oldalméret megváltoztatása</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="edit-pdf-metadata.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-info-square fa-stack-1x"></i>
+                                  </span>Metaadatok szerkesztése</div>
+                            <div class="description">PDF Szerző, Cím, Kulcsszavak, Tárgy és egyéb metaadatok módosítása</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="extract-images-from-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-popular fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-external-link fa-stack-1x"></i>
+                                  </span>Képek kinyerése</div>
+                            <div class="description">Képek kinyerése PDF-ből</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="flip-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-reflect-horizontal fa-stack-1x"></i>
+                                  </span>Tükrözés<span class="label label-success">New</span></div>
+                            <div class="description">Oldalak tükrözése vízszintesen vagy függőlegesen</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="grayscale-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-paint-brush fa-stack-1x"></i>
+                                  </span>Fekete-fehér</div>
+                            <div class="description">PDF fekete-fehérré alakítása</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="header-footer-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-heading fa-stack-1x"></i>
+                                  </span>Élőfej és élőláb</div>
+                            <div class="description">Oldalszám vagy címke hozzáadása</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="n-up-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-th-large fa-stack-1x"></i>
+                                  </span>N-up</div>
+                            <div class="description">Több oldal nyomtatása oldalanként. A5 plan as 4-up on A3 or A4 2-up on A3</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="page-numbers-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-sort-numeric-up fa-stack-1x"></i>
+                                  </span>Oldalszámok</div>
+                            <div class="description">PDF oldalszámozás hozzáadása</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                         
+                    </li>
+                    <li class="cat-other">
+                        <a href="rename-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-i-cursor fa-stack-1x"></i>
+                                  </span>Átnevezés</div>
+                            <div class="description">Fájlnév módosítása a PDF szövege alapján</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="repair-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-wrench fa-stack-1x"></i>
+                                  </span>Javítás</div>
+                            <div class="description">Adatok megmentése hibás PDF fájlból</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="resize-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-arrows-alt fa-stack-1x"></i>
+                                  </span>Újraméretezés</div>
+                            <div class="description">Margó hozzáadása, oldalméret megváltoztatása</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="rotate-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-repeat fa-stack-1x"></i>
+                                  </span>Elforgatás</div>
+                            <div class="description">PDF oldalak elforgatása és mentése</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="delete-pdf-annotations.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-highlighter fa-stack-1x"></i>
+                                  </span>Annotációk eltávolítása<span class="label label-success">New</span></div>
+                            <div class="description">Kiemelések, áthúzások és egyéb annotációk tömeges törlése</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Szkennelések
+                    </li>
+                    <li class="cat-scans">
+                        <a href="deskew-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-popular fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-alt fa-stack-1x rotated-5-deg"></i>
+                                  </span>Deskew</div>
+                            <div class="description">Szkennelt PDF oldalak automatikus kiegyenesítése és Deskew-zása</div>
+                        </a>
+                    </li>
+                    <li class="cat-scans">
+                        <a href="ocr-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-qrcode fa-stack-1x"></i>
+                                  </span>OCR</div>
+                            <div class="description">Beszkennelt PDF-ből kereshető szövegű PDF konvertálás. Szöveg kiolvasása a beszkennelt fájlból</div>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="header lower">
+                        Automatizálás
+                    </li>
+                    <li>
+                        <a href="workflows.html" title="">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-robot fa-stack-1x"></i>
+                                  </span>Workflow-k<span class="label label-success">New</span></div>
+                            <div class="description">Task-ok sorozatának végrehajtása PDF-eken. Eszközláncok beállítása PDF-ek feldolgozásához</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="centered">
+                <form autocomplete="off">
+                    <div style="display: none" class="input-group search-tools-wrap">
+                        <i class="fal fa-search"></i>
+                        <input onkeypress="if(event.keyCode === 13){ return false; }" id="searchTools" placeholder="Type to search" class="form-control input-sm" type="search" autocomplete="off">
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <a style="color: #AAA; text-decoration: underline; font-size: 14px;" class="get-support-btn" href="javascript://">Suggest a missing feature</a>
+                        <i class="fal fa-comment-lines" style="color: #AAA; vertical-align: middle;"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+  </header>
+</div>
+
+<section>
+  <div class="modal fade" id="contactFormModal" style="display: none">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+            <div style="margin: 20px 40px;" class="row centered contact-form-row">
+              <h3 style="margin-bottom: 10px;">Kapcsolat a SEJDA.COM supporttal</h3>
+              <h5 style="margin-bottom: 30px;">Írj nekünk ide: <a href="mailto:hi@sejda.com">hi@sejda.com</a> vagy használd az alábbi űrlapot</h5>
+              
+              <div style="display: none; margin-top: 50px;" class="alert alert-success" id="contactSuccess">Köszönjük az üzeneted.</div>
+
+              <section id="support-frequent-topics">
+                <div class="form-group">
+                  <label for="contact-msg">Segítségre van szükségem ehhez:</label>
+                  <br>
+                  <div data-topic="cancel-subscription" class="support-topic">Előfizetés lemondása</div>
+                  <div data-topic="find-license-key" class="support-topic">Licenckulcs keresése</div>
+                  <div class="support-topic">Valami más</div>
+                </div>
+                
+                <div class="support-answers">
+                  <div class="support-answer selected" style="display: none" data-answer="find-license-key" id="support_licenseKey_accountPage">
+                    A Sejda Desktop licenckulcsodat a fiókod oldalán találod:
+                    <br>
+                    <a target="_blank" href="account@justUpgraded=desktop.html">https://www.sejda.com/account</a>
+                  </div>
+
+                  <div style="display: none" data-answer="find-license-key" class="support-answer" id="support_licenseKey_webOnly">
+                    Web-only csomagot vásároltál, amihez nem jár Sejda Desktop hozzáférés.
+                    <br>
+                    <a target="_blank" href="upgrade.html#pricing">https://www.sejda.com/upgrade</a>
+                    <br><br>
+                    Itt vannak a Desktop hozzáférést nyújtó csomagok:
+                    <br>
+                    <a target="_blank" href="desktop.html#pricing">https://www.sejda.com/desktop</a>
+                    <br><br>
+                    Ha vásárolsz egy Desktop csomagot, a Web-only vásárlásod árát visszatérítjük.
+                  </div>
+
+                  <div class="support-answer selected" style="display: none" data-answer="cancel-subscription" id="support_cancelSub_accountPage">
+                    Az előfizetésedet a fiókodban mondhatod le a &quot;Stop auto-renewal&quot; gombra kattintva:
+                    <br>
+                    <a target="_blank" href="account.html">https://www.sejda.com/account</a>
+                  </div>
+
+                  <div style="display: none" data-answer="cancel-subscription" class="support-answer" id="support_cancelSub_weekPass">
+                    A Week Pass csomag egyszeri díj, nem megújuló előfizetés. Nem újul meg automatikusan, 7 nap után ingyenesre vált.
+                  </div>
+                </div>
+              </section>
+              
+              <form style="display: none" id="contactForm">
+                <section id="contactFormProgressBar">
+                  <progress max="100" value="0" id="progress"></progress>
+                  <div class="step-item">1</div>
+                  <div class="step-item">2</div>
+                  <div class="step-item">3</div>
+                  <div class="step-item">4</div>
+                </section>
+                <section data-step="1" class="contact-form-step">
+                  <div class="form-group">
+                    <label for="contact-msg">Üzenet</label>
+                    <textarea id="contact-msg" class="form-control" name="message" style="min-height: 100px; padding: 15px" required="required" placeholder="&#x00cd;rd ide az &#x00fc;zeneted"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-email">Az email címed</label>
+                    <input type="email" class="form-control" id="contact-email" name="email" placeholder="Opcion&#x00e1;lis. Ha szeretn&#x00e9;d, hogy v&#x00e1;laszoljunk, add meg az emailed" value="">
+                  </div>
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="completeStep1Btn" class="btn btn-default" type="button">
+                    Következő <i style="margin-left: 10px" class="fal fa-chevron-right"></i> 
+                  </button>
+                </section>
+
+                <section style="display: none" data-step="2" class="contact-form-step">
+                  <div class="loader-wrap"><img src="../images/loaders/oval-green.svg" class="loader medium"></div>
+                </section>  
+                
+                <section style="display: none" data-step="3" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">Javasolt válasz</label>
+                    <div id="automaticSupportAnswer"></div>
+                  </div>
+
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="completeStep3Btn" class="btn btn-link btn-xs" type="button">
+                    Ez nem válaszol a kérdésemre
+                  </button>
+                </section>
+                
+                <section style="display: none" data-step="4" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">Hibát jelentesz?</label>
+                  </div>
+                  <div style="width: 263px; text-align: left; margin: auto;" class="form-group">
+                    <div class="radio">
+                      <label>
+                        <input value="problem" name="supportMessageKind" type="radio">
+                        Igen, hibát jelentek
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input value="other" name="supportMessageKind" type="radio">
+                        Nem, valami mást
+                      </label>
+                    </div>
+                  </div>  
+                </section>
+
+                <section style="display: none" data-step="5" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">Hiba részletei</label>
+                  </div>
+                  <div style="max-width: 430px; margin: auto; margin-top: -15px; text-align: left;" class="checkbox">
+                    <label><input style="margin: 5px; margin-right: 15px;" name="allowAccessLastTask" type="checkbox"> Hozzáférés biztosítása az utolsó Task-hoz és a fájlokhoz.</label>
+                    <p style="font-size: 12px; padding-left: 33px; margin-top: 0;" class="help-block">Ezeket az adatokat a gyorsabb segítséghez használjuk. Bizalmas.</p>
+                  </div>
+                  <div id="attachScreenshotFormGroup" class="form-group">
+                    <label class="light">Attach a screenshot*</label>
+                    <p style="font-size: 12px; padding-left: 33px; margin-top: -8px;" class="help-block">Kérlek, ossz meg egy screenshotot a hibáról.</p>
+                    <div>
+                      <label style="border: 1px solid #ccc;display: inline-block;padding: 6px 12px; cursor: pointer;" class="light" for="supportScreenshotFile">
+                        <i class="fal fa-plus"></i> Válaszd ki a screenshot képfájlt
+                      </label>
+                      <input style="display: none" accept=".png,.jpg,.jpeg,.bmp" type="file" id="supportScreenshotFile">
+                      <div id="supportScreenshotFilePreview"></div>
+                    </div>
+                  </div>
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="sendMessageBtn" class="btn btn-default" type="submit">Üzenet küldése</button>
+                </section>
+                
+                <input value="iluzie" name="suflet" type="hidden">
+                <input value="" name="source" type="hidden">
+                <input value="" name="source2" type="hidden">
+                <input value="" name="lastFile" type="hidden">
+                <input value="" name="lastTask" type="hidden">
+                <input value="" name="events" type="hidden">
+                <input value="" name="consoleLogs" type="hidden">
+                <input value="" name="screenshot" type="hidden">
+                <input value="" name="os" type="hidden">
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div style="display: none" class="modal app-modal" id="optOutChoicesPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Privacy Settings
+          </div>
+        </div>
+        <div class="modal-body">
+          This feature requires loading content from an external service, <span class="external_service_name"></span>, which could access personal data, such as your IP address, set cookies and track you.<br><br>
+          Please let us know if you are okay with that.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-no btn-light btn-xs" type="button">No, cancel</button>
+          <button class="btn btn-yes btn-xs" type="button">Yes, continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal app-error-modal" id="problemLoadingPageResourcePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            There's a problem loading this page
+          </div>
+        </div>
+        <div class="modal-body">
+          There was a problem loading a critical resource, which prevents the page from continuing.<br><br>
+          Please check your internet connection and reload the page to try again.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-yes btn-xs" type="button">Reload page</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div style="display: none" class="modal app-modal app-error-modal" id="genericErrorModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+            <div class="modal-title"></div>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="display: none" class="modal app-modal app-warning-modal" id="scanPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Szkennelt dokumentumok nem támogatottak</h4>
+        </div>
+        <div class="modal-body">
+          <div data-scope="edit">
+            <strong>Szkennelt dokumentumok szerkesztése nem támogatott.</strong>
+            Meglévő szöveg módosítása szkennelt dokumentumokban nem támogatott. Azonban használhatsz más funkciókat, például új szöveg, képek és annotációk hozzáadását.
+          </div>
+          <div style="display: none" data-scope="convert">
+            <strong>Szkennelt dokumentumok konvertálása nem támogatott.</strong>
+            A szkennelt PDF-ek szövegképek, és hiányzik belőlük a konvertáláshoz szükséges szöveges adat.
+
+            <br><br>
+            Fájl: <span class="file-name"></span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="dont-show-anymore-opts">
+            <div class="checkbox">
+              <label><input style="margin-top: 5px" name="dontShowAnymore" type="checkbox"> Ne mutasd többet</label>
+            </div>
+          </div>
+          <a target="_blank" href="help.html#scans" class="btn btn-secondary btn-xs">Tudj meg többet</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="movePagePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Oldal mozgatása új helyre
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="form-inline">
+            <label class="light" for="moveNewPageNumber">Új oldal helye:</label>
+            <input style="width: 55px;margin: 0 10px;vertical-align: baseline; text-align: center" class="form-control input-xs" name="moveNewPageNumber" id="moveNewPageNumber" type="text">
+            <span class="num_of_pages"></span>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <div class="modal-hint">
+            Tipp: Drag and drop módszerrel is áthelyezheted az oldalt
+          </div>
+          <button class="btn btn-yes btn-xs" type="button">Oldal mozgatása</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="changeLanguagePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Nyelv kiválasztása
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-6">
+              <ul>
+                <li><a href="../ar/account@justUpgraded=desktop.html">العربية</a></li>
+                <li><a href="../id/account@justUpgraded=desktop.html">Bahasa Indonesia</a></li>
+                <li><a href="../da/account@justUpgraded=desktop.html">Dansk</a></li>
+                <li><a href="../de/account@justUpgraded=desktop.html">Deutsch</a></li>
+                <li><a href="../cs/account@justUpgraded=desktop.html">Čeština</a></li>
+                <li><a href="../account@changeEmail=true.html">English</a></li>
+                <li><a href="../es/account@justUpgraded=desktop.html">Español</a></li>
+                <li><a href="../fr/account@justUpgraded=desktop.html">Français</a></li>
+                <li><a href="../it/account@justUpgraded=desktop.html">Italiano</a></li>
+                <li><a href="../el/account@justUpgraded=desktop.html">Ελληνικά</a></li>
+                <li><a href="../ja/account@justUpgraded=desktop.html">日本語</a></li>
+                <li><a href="../ko/account@justUpgraded=desktop.html">한국어</a></li>
+                <li><a href="../zh/account@justUpgraded=desktop.html">简体中文</a></li>
+                <li><a href="../tw/account@justUpgraded=desktop.html">繁體中文</a></li>
+              </ul>
+            </div>
+            <div class="col-xs-6">
+              <ul>
+                <li><a href="../hi/account@justUpgraded=desktop.html">हिन्दी</a></li>
+                <li><a href="../he/account@justUpgraded=desktop.html">עברית</a></li>
+                <li><a href="account@justUpgraded=desktop.html">Magyar</a></li>
+                <li><a href="../nl/account@justUpgraded=desktop.html">Nederlands</a></li>
+                <li><a href="../no/account@justUpgraded=desktop.html">Norsk</a></li>
+                <li><a href="../pl/account@justUpgraded=desktop.html">Polski</a></li>
+                <li><a href="../pt/account@justUpgraded=desktop.html">Português</a></li>
+                <li><a href="../ro/account@justUpgraded=desktop.html">Română</a></li>
+                <li><a href="../ru/account@justUpgraded=desktop.html">Русский</a></li>
+                <li><a href="../fi/account@justUpgraded=desktop.html">Suomi</a></li>
+                <li><a href="../sv/account@justUpgraded=desktop.html">Svenska</a></li>
+                <li><a href="../th/account@justUpgraded=desktop.html">ภาษาไทย</a></li>
+                <li><a href="../vi/account@justUpgraded=desktop.html">Tiếng Việt</a></li>
+                <li><a href="../tr/account@justUpgraded=desktop.html">Türkçe</a></li>
+                <li><a href="../uk/account@justUpgraded=desktop.html">Українська</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section style="display: none" class="i18n-strings">
+    <div data-key="We're sorry, something went wrong. Please contact support at hi@sejda.com">Sajnáljuk, valami hiba történt. Kérlek, keresd a supportot a hi@sejda.com címen</div>
+    <div data-key="Verification code is incorrect">A hitelesítő kód hibás</div>
+    <div data-key="Too many attempts. Please try again later">Túl sok próbálkozás. Próbáld újra később.</div>
+    <div data-key="An error occurred. Please try again or contact support">Hiba történt. Kérlek, próbáld újra, vagy keresd a supportot.</div>
+    <div data-key="Processing, please wait...">Feldolgozás, kérlek várj...</div>
+    <div data-key="Sign in">Bejelentkezés</div>
+    <div data-key="Click to edit">Kattints a szerkesztéshez</div>
+    <div data-key="Sorry, unsupported image format:">Sajnáljuk, nem támogatott képformátum:</div>
+    <div data-key="We support the following image types:">A következő képtípusokat támogatjuk:</div>
+    <div data-key="You already have an active monthly subscription">Már van aktív havi előfizetésed</div>
+    <div data-key="Trying to add more seats? You can do this from your account page">Több seat-et szeretnél? Ezt a fiókod oldalán teheted meg</div>
+    <div data-key="Please verify your email address before continuing with your purchase">Kérlek, igazold vissza az email címed a vásárlás előtt</div>
+    <div data-key="We couldn't connect to GoogleDrive. Your browser (or add-ons) might be blocking the load of javascript files from GoogleDrive">Nem sikerült csatlakozni a GoogleDrive-hoz. Lehet, hogy a böngésződ (vagy bővítményeid) blokkolják a javascript fájlok betöltését a GoogleDrive-ról</div>
+    <div data-key="Are you sure you want to remove the recent files list?">Biztosan törölni szeretnéd a legutóbbi fájlok listáját?</div>
+  </section>
+</section>
+
+
+        
+        <section id="content">
+            <div class="container centered">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="row login">
+                            <div><img src="../images/icon.svg" class="center-logo"></div>
+                            <h1>Jelentkezzen be fiókjába</h1>
+
+                            <form autocomplete="off" id="login-form" class="form">
+                                <div class="alert-wrap"><div style="display: none" class="alert alert-danger"></div></div>
+                                <input required="required" name="email" type="text" class="form-control input-lg" placeholder="Email" value="">
+
+                                <input style="margin-top: 20px;" required="required" name="password" type="password" class="form-control input-lg pwd-login-elem" placeholder="Password" value="">
+
+                                <div style="display: none" class="form-group verification-code-group">
+                                    <br>
+                                    <label style="color: #999;">E-mail ellenőrző kód</label>
+                                    <input type="text" class="form-control" name="emailVerificationCode" placeholder="123456">
+
+                                    <p class="help-block">
+                                        Kérjük, igazold, hogy te vagy az.<br>
+                                        <span class="check_inbox_link">Nézze meg az email-jeit</span>.
+                                        Küldtünk egy ellenőrző kódot az e-mail-címedre.
+                                        <br><br>
+                                        Nincs e-mail? Nézd meg a &quot;Spam&quot; mappát, vagy használd a régi kódot.
+                                    </p>
+                                </div>
+                                
+                                <input value="T3RDCB54BSXRPFTFSEIH" name="csrf" id="csrf" type="hidden">
+
+                                <div class="cf-turnstile" id="cf-turnstile"></div>
+
+                                <button class="btn btn-medium form-submit btn-login pwd-login-elem" type="submit"><i class="fal fa-lock"></i> Bejelentkezés</button>
+                                
+                                <button class="btn btn-medium btn-login-sso sso-login-elem" type="button" style="display:none">Continue with SSO <i style="margin-left: 5px; margin-right: 0;" class="fal fa-chevron-right"></i> </button>
+
+                                <div class="switch-use-pwd sso-login-elem"><a href="javascript://">Bejelentkezés jelszóval</a></div>
+                                <div class="forgot pwd-login-elem"><a target="_blank" href="reset-password.html">Jelszó visszaállítása</a></div>
+                            </form>
+
+                            <section id="alternativeSigninOpts">
+                                <div style="margin-bottom: 40px" class="divider-line-with-text">
+                                    <p>vagy válaszd ezt</p>
+                                </div>
+                                <section id="google-signin-preload">
+                                    <div class="btn-login-google-preload">
+                                        <img src="../images/icons/google.svg" class="icon"> Sign in with Google 
+                                    </div>
+                                </section>
+                                <section style="display: none" id="google-signin-wrap">
+                                    <div style="display: none; margin-top: 10px;" class="alert alert-danger"></div>
+                                    <div id="google-signin2"></div>
+                                </section>
+                                <section id="msft-signin-wrap">
+                                    <div style="display: none; margin-top: 10px;" class="alert alert-danger"></div>
+                                    <div id="msft-signin2"><img src="../images/icons/microsoft.svg" class="icon"> Sign in with Microsoft</div>
+                                </section>
+                                <div class="fine-print">
+                                    By signing in you agree to the <a target="_blank" href="../terms.html">terms</a> and <a target="_blank" href="../privacy.html">privacy policy</a>
+                                </div>
+                            </section>
+                            <section id="login-new-account-wrap">
+                                <div style="font-size: 22px; font-weight: bold; text-align: left;">
+                                    New here?
+                                </div>
+                                <div class="fine-print">
+                                    Nincs szükség regisztrációra a korlátozott, ingyenes használathoz.<br>
+                                    Regisztrálj fizetős, korlátlan fiókért.<br>
+                                </div>
+                                <div class="new-account"><a target="_blank" href="../upgrade.html">Fiók létrehozása</a></div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a style="display: none" href="javascript://" id="closeFrame">×</a>
+
+            <script data-src="/js/pages/login.min.js?v=33" class="pageScripts"></script>
+            <section>
+    <script src="../cache/639/js/libs-and-partials.min.js" async="async" id="libsAndPartialsScript"></script>
+</section>
+
+            <script>
+                window.onloadTurnstileCallback = function () {
+                    turnstile.render('#cf-turnstile', {
+                        theme: 'light',
+                        action: 'login',
+                        sitekey: '0x4AAAAAAAJsCN5ioa6BPARj',
+                        callback: function(token) {
+                            //console.log('Turnstile challenge success'+ token);
+
+                            // token expires in 300 seconds
+                            setTimeout(function() {
+                                turnstile.reset()
+                            }, 290000)
+                        },
+                    });
+                };
+            </script>
+
+            <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onloadTurnstileCallback"></script>
+        </section>
+    
+
+<div id="taskResultsModal" role="dialog" tabindex="-1" class="modal fade"></div>
+
+
+
+
+	
+</body>
+</html>  
+  

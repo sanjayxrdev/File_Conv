@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="utf-8">
+
+  <link as="style" href="../css/index.min.css@v=404.css" rel="preload">
+  <link crossorigin="anonymous" type="font/woff2" as="font" href="../fonts/braille/Atkinson-Hyperlegible-Regular-102a.woff2" rel="preload">
+  <link crossorigin="anonymous" type="font/woff2" as="font" href="../fonts/braille/Atkinson-Hyperlegible-Bold-102a.woff2" rel="preload">
+  <link as="script" href="../cache/639/js/libs-and-partials.min.js" rel="preload">
+
+  <link href="../images/icon_128.png" rel="shortcut icon">
+
+  <meta content="website" property="og:type">
+  <meta content="https://www.sejda.com/" property="og:url">
+  <meta content="Sejda.com - We help with your PDF tasks" property="og:site_name">
+
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="@SejdaPDF" name="twitter:site">
+  <meta content="@SejdaPDF" name="twitter:creator">
+
+  <meta content="1762774073964212" property="fb:app_id">
+  <meta content="8721525582-fbt24du8pl38r1ht2ihu9q9vl815o5t8.apps.googleusercontent.com" name="google-signin-client_id">
+
+  <link rel="canonical" href="security-responsible-disclosure.html">
+
+  <link href="../css/index.min.css@v=404.css" type="text/css" rel="stylesheet">
+
+	
+<meta content="noindex" name="robots">
+
+	
+<title>Responsible Disclosure of Security Vulnerabilities</title>
+
+	
+<link href="../css/legal.css@v=2.css" type="text/css" rel="stylesheet">
+
+	
+<style>
+                .more-tasks {
+                    display: none
+                }
+
+                header {
+                    display: none;
+                }
+
+                .logo {
+                    display: none;
+                }
+            </style>
+
+	
+</head>
+<body data-download-server="www.sejda.com" data-proxy-token="1c7cd6573b8b353c0ebb5a18ed344e74" data-pro-user="false" data-max-file-size="500" data-ipcountry="IN" data-www="www59.sejda.com">
+<section>
+  <div style="display:none" class="alert alert-meh alert-dismissible centered" id="termsNotice">
+    <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span></button>
+    We've updated our <a target="_blank" href="../terms.html">terms of service</a> and/or <a target="_blank" href="../privacy.html">privacy policy</a>. Please take a moment and review them.<br>
+    By continuing to use our services you agree to our updated terms &amp; privacy policy.
+  </div>
+</section>
+<div class="StripeBackground">
+  <div class="stripe s0"></div>
+  <div class="stripe s1"></div>
+  <div class="stripe s2"></div>
+  <div class="stripe s3"></div>
+  <div class="stripe s4"></div>
+</div>
+<div class="container-fluid">
+  <header>
+    <section>
+<div class="container">
+  <div class="pull-left">
+      <a title="Sejda.com logo" href="index.html" class="brand"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMjUycHgiIGhlaWdodD0iMjUycHgiIHZpZXdCb3g9Ii00NzkuNSAyODAuNSAyNTIgMjUyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC00NzkuNSAyODAuNSAyNTIgMjUyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxjaXJjbGUgZmlsbD0iIzAwQkI4OCIgY3g9Ii0zNTMuMjUyIiBjeT0iNDA2LjI1MiIgcj0iMTIwLjI0OCIvPg0KPGcgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAgICAiPg0KCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0tMzAwLjYzMywzNDIuOTczbC05Ljk3OSwyMy4zNjNjLTE3LjE1Ni05LjU0NC0zNC4wOTUtMTMuMTI1LTQ1Ljc5OS0xMi42OTUNCgkJYy0xNS4yMzgsMC41NTgtMjQuOTY2LDYuNjY0LTI0LjU4NSwxNy4wNDNjMS4yMzcsMzMuNzg5LDg0LjA1NCwxMi42MjEsODUuODY4LDY4LjI4MWMxLjAxMiwyNy42MDQtMjIuNjU4LDQ1LjQ5OS01Ni42NjgsNDYuNzQ0DQoJCWMtMjQuMjkyLDAuODkxLTQ3LjYyMy04LjIwNi02NC4wNTctMjIuMmwxMC40MzgtMjIuOTM4YzE2LjQzNCwxMy45OTQsMzYuNjAxLDIxLjIxNyw1My4xNjQsMjAuNjA5DQoJCWMxOC4xMDctMC42NjQsMjguNjgtNy45MDYsMjguMjQyLTE5LjgzYy0xLjI2NC0zNC40NTEtODQuMDM1LTEyLjE4MS04Ni4wNDktNjcuMTY4Yy0wLjk3MS0yNi41MDIsMjEuMTY5LTQzLjg5Niw1NC43MzYtNDUuMTI3DQoJCUMtMzM1LjIyNSwzMjguMzE4LTMxNS4zMzUsMzM0LjAwMi0zMDAuNjMzLDM0Mi45NzN6Ii8+DQo8L2c+DQo8L3N2Zz4NCg==" alt="Sejda.com logo" class="logo">
+          <span class="name">Sejda</span></a>
+      <a href="javascript://" class="header-link header-tool more-tasks">
+          เครื่องมือทั้งหมด<i class="fal fa-fw fa-angle-down" style="margin-left: 3px;"></i>
+      </a>
+      <a href="compress-pdf.html" class="header-link header-tool hide-xs">ย่อ</a>
+      <a href="pdf-editor.html" class="header-link header-tool hide-xs">แก้ไข</a>
+      <a href="sign-pdf.html" class="header-link header-tool hide-xs hide-lang-de hide-lang-hu hide-lang-ru">กรอกและเซ็น</a>
+      <a href="merge-pdf.html" class="header-link header-tool hide-sm">รวม</a>
+      <a href="delete-pdf-pages.html" class="header-link header-tool hide-md">ลบหน้า</a>
+      <a href="crop-pdf.html" class="header-link header-tool hide-md hide-lang-de hide-lang-fr hide-lang-ro hide-lang-cs hide-lang-ru">คร8บตัด</a>
+
+  </div>
+  <div id="user-header" class="pull-right">
+      <div class="header-links">
+          <a href="upgrade.html" class="header-link pricing-link">ราคา</a>
+          <a href="desktop.html" class="header-link desktop-link hide-xs">Desktop</a>
+          <a href="account@justUpgraded=desktop.html" id="loginBtn" class="loggedout header-link">เข้าสู่ระบบ</a>
+          <div style="display:none" class="dropdown loggedin header-link">
+              <a data-toggle="dropdown" class="dropdown-toggle">
+                  <i class="fas fa-user-circle"></i>
+                  <span class="caret"></span>
+              </a>
+              <ul role="menu" class="dropdown-menu pull-right dropdown-menu-right">
+                  <li role="presentation"><a href="account.html" tabindex="-1" role="menuitem">บัญชี</a></li>
+                  <li role="presentation"><a id="logoutBtn" href="javascript://" tabindex="-1" role="menuitem">Logout</a></li>
+              </ul>
+          </div>
+          <a title="Select language" href="javascript://" class="header-link select-lang-btn hide-xs">
+              <i style="vertical-align: text-top;" class="fal fa-globe"></i>
+          </a>
+      </div>
+  </div>
+</div>
+<div id="megaMenu" style="display: none" class="container-fluid mega-menu">
+    <div class="mega-menu-inner">
+    <button aria-label="Close" class="close" type="button"><span aria-hidden="true">×</span></button>
+    <div class="container tasks-container">
+        <div class="row">
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6 col-recent-tools">
+                <ul class="popular">
+                    <li class="header">
+                        ล่าสุด<i class="fal fa-history"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">รวม</li>
+                    <li class="cat-merge">
+                        <a href="alternate-mix-pdf.html">
+                          <div class="caption">
+                              <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-random fa-stack-1x"></i>
+                              </span>สลับและผสม
+                          </div>
+                          <div class="description">ผสมหน้าของเอกสาร 2 ชิ้นหรือมากกว่า และสลับระหว่างทั้งคู่</div>
+                        </a>
+                    </li>
+                    <li class="cat-merge">
+                        <a href="merge-pdf.html">
+                          <div class="caption">
+                              <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-sitemap fa-stack-1x"></i>
+                              </span>รวม
+                          </div>
+                          <div class="description">รวมไฟล์ PDF และรูปหลายไฟล์ให้เป็นหนึ่ง</div>
+                        </a>
+                    </li>
+                    <li class="cat-merge">
+                        <a href="organize-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-object-group fa-stack-1x"></i>
+                            </span>จัดการ</div>
+                            <div class="description">จัดเรียงและสลับหน้า PDF</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        แยก
+                    </li>
+                    <li class="cat-split">
+                        <a href="extract-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-external-link fa-stack-1x"></i>
+                                  </span>แยกหน้าออก</div>
+                            <div class="description">สร้างเอกสารใหม่ที่มีเพียงหน้าที่ต้องการ</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-clone fa-stack-1x"></i>
+                                  </span>แยกตามเลขหน้า</div>
+                            <div class="description">แยกเลขหน้าที่ต้องการหรือทุกหน้ามาใส่เอกสารใหม่</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-outline.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-bookmark fa-stack-1x"></i>
+                                  </span>แยกตามบุ๊กมาร์ด</div>
+                            <div class="description">แยกบทใส่เอกสารใหม่ตามที่ได้บุ๊กมาร์กในสารบัญ</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-down-the-middle.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-columns fa-stack-1x"></i>
+                                  </span>แยกออกครึ่ง</div>
+                            <div class="description">แยกการวางสแกนของหน้า A3 ใส่ A4 สองหน้า หรือ A4 ใส่ A5 สองหน้า</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-size.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-chart-pie fa-stack-1x"></i>
+                                  </span>แยกตามขนาด</div>
+                            <div class="description">สร้างเอกสารเล็กหลายไฟล์ที่มีขนาดที่กำหนด</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-text.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-font fa-stack-1x"></i>
+                                  </span>แยกตามข้อความ</div>
+                            <div class="description">แยกเอกสารออกเมื่อข้อความเปลี่ยนตามหน้าต่อหน้า</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        แก้ไขและเซ็น
+                    </li>
+                    <li class="cat-edit">
+                        <a href="pdf-editor.html">
+                            <div class="caption">
+                                <span class="task-icon fa-stack fa-lg fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-pencil fa-stack-1x"></i>
+                                </span>แก้ไข
+                            </div>
+                            <div class="description">แก้ไขไฟล์ PDF ฟรี. กรอกและเซ็น PDF. เพิ่มข้อความ ลิงก์ รูปภาพ และรูปร่าง. แก้ไขข้อความใน PDF. เขียนคำอธิบายใน PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="sign-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-signature fa-stack-1x"></i>
+                                  </span>กรอกและเซ็น</div>
+                            <div class="description">เพิ่มลายเซ็นใน PDF. กรอกฟอร์มใน PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="pdf-forms.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-wpforms fa-stack-1x"></i>
+                                  </span>สร้างแบบฟอร์ม</div>
+                            <div class="description">เครื่องมือสร้างแบบฟอร์ม PDF ฟรี. ทำให้เอกสาร PDF ที่มีอยู่กรอกข้อมูลได้</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="delete-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-trash fa-stack-1x"></i>
+                                  </span>ลบหน้า</div>
+                            <div class="description">ลบหน้าจากเอกสาร PDF</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        ย่อ
+                    </li>
+                    <li class="cat-compress">
+                        <a href="compress-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-compress fa-stack-1x"></i>
+                                  </span>ย่อ</div>
+                            <div class="description">ลดขนาดของ PDF</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        ความปลอดภัย
+                    </li>
+                    <li class="cat-security">
+                        <a href="encrypt-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-lock fa-stack-1x"></i>
+                                  </span>ป้องกัน</div>
+                            <div class="description">ป้องกันไฟล์ตัวรหัสและการอนุญาต</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="unlock-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-unlock fa-stack-1x"></i>
+                                  </span>ปลดล๊อก</div>
+                            <div class="description">นำข้อจำกัดและรหัสออกจาก PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="watermark-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-alt fa-stack-1x"></i>
+                                  </span>Watermark</div>
+                            <div class="description">เพิ่มรูป ข้อความลายน้ำใส่เอกสาร PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="flatten-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-font fa-stack-1x"></i>
+                                <i class="fal fa-slash fa-stack-1x"></i>
+                              </span>ฟอร์มแมต</div>
+                            <div class="description">ทำให้ PDF ที่กรอกได้เป็นแบบอ่านอย่างเดียว. พิมพ์และสแกนในขั้นตอนเดียว</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        แปลงไฟล์จาก PDF
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-excel.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-excel fa-stack-1x"></i>
+                                  </span>PDF เป็น Excel</div>
+                            <div class="description">แปลงไฟล์ PDF เป็น Excel หรือ CSV ออนไลน์ฟรี. แยกข้อมูลตารางออกจาก PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-jpg.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-image fa-stack-1x"></i>
+                                  </span>PDF เป็น JPG</div>
+                            <div class="description">แปลงไฟล์ PDF เป็น JPG PNG หรือ TIFF</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-ppt.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-powerpoint fa-stack-1x"></i>
+                                  </span>PDF เป็น PowerPoint</div>
+                            <div class="description">แปลง PDF เป็น PowerPoint ออนไลน์</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="extract-text-from-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-align-left fa-stack-1x"></i>
+                                  </span>PDF เป็น Text</div>
+                            <div class="description">คัดลอกข้อความทั้งหมดจากเอกสาร PDF และวางลงบนไฟล์ Text แยก</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-word.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-word fa-stack-1x"></i>
+                                  </span>PDF เป็น Word</div>
+                            <div class="description">แปลงจาก PDF เป็น DOC ออนไลน์</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        เปลี่ยนเป็น PDF
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="html-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-code fa-stack-1x"></i>
+                                  </span>HTML เป็น PDF</div>
+                            <div class="description">แปลงหน้าเว็บหรือไฟล์ HTML เป็นเอกสาร PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="jpg-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-image fa-stack-1x"></i>
+                                  </span>JPG เป็น PDF</div>
+                            <div class="description">แปลงรูปเป็น PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="word-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-word fa-stack-1x"></i>
+                                  </span>Word เป็น PDF</div>
+                            <div class="description">สร้างเอกสาร PDF จาก Microsoft Word .docx</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        อื่นๆ
+                    </li>
+                    <li class="cat-other">
+                        <a href="bates-numbering-pdf.html" title="">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-gavel fa-stack-1x"></i>
+                                  </span>ไล่เลข Bates</div>
+                            <div class="description">สแตมป์ Bates หลายไฟล์ในครั้งเดียว</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="pdf-bookmarks.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-bookmark fa-stack-1x"></i>
+                                  </span>สร้าง Bookmarks</div>
+                            <div class="description">สร้าง PDF Bookmarks</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="crop-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-crop fa-stack-1x"></i>
+                                  </span>คร8บตัด</div>
+                            <div class="description">ย่อขอบหน้าการดาษ PDF เปลี่ยนขนาดหน้า PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="edit-pdf-metadata.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-info-square fa-stack-1x"></i>
+                                  </span>แก้ไข Metadata</div>
+                            <div class="description">เปลี่ยน PDF Author, Title, Keywords, Subject และฟิลด์ Metadata อื่นๆ</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="extract-images-from-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-popular fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-external-link fa-stack-1x"></i>
+                                  </span>Extract รูปภาพ</div>
+                            <div class="description">Extract รูปภาพจาก PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="flip-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-reflect-horizontal fa-stack-1x"></i>
+                                  </span>พลิก<span class="label label-success">New</span></div>
+                            <div class="description">กลับด้านหน้ากระดาษตามแนวนอนหรือแนวตั้ง</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="grayscale-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-paint-brush fa-stack-1x"></i>
+                                  </span>ขาวดำ</div>
+                            <div class="description">แปลงข้อความ PDF และรูปให้เป็นขาวดำ</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="header-footer-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-heading fa-stack-1x"></i>
+                                  </span>ข้อความหัวและท้ายกระดาษ</div>
+                            <div class="description">เพิ่มเลขหน้าหรือป้ายข้อความลงในไฟล์ PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="n-up-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-th-large fa-stack-1x"></i>
+                                  </span>N-up</div>
+                            <div class="description">พิมพ์หลายหน้าต่อแผ่น. A5 plan as 4-up on A3 or A4 2-up on A3</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="page-numbers-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-sort-numeric-up fa-stack-1x"></i>
+                                  </span>เลขหน้า</div>
+                            <div class="description">ใส่เลขหน้า PDF</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                         
+                    </li>
+                    <li class="cat-other">
+                        <a href="rename-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-i-cursor fa-stack-1x"></i>
+                                  </span>เปลี่ยนชื่อ</div>
+                            <div class="description">เปลี่ยนชื่อไฟล์เอกสารตามข้อความจากหน้า PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="repair-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-wrench fa-stack-1x"></i>
+                                  </span>ซ่อมแซม</div>
+                            <div class="description">กู้ข้อมูลจากเอกสาร PDF ที่เสีย</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="resize-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-arrows-alt fa-stack-1x"></i>
+                                  </span>ปรับขนาน</div>
+                            <div class="description">เพิ่มขอบหน้าและเปลี่ยนขนาดหน้า PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="rotate-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-repeat fa-stack-1x"></i>
+                                  </span>หมุน</div>
+                            <div class="description">หมุนและบันทึกหน้า PDF ถาวร</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="delete-pdf-annotations.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-highlighter fa-stack-1x"></i>
+                                  </span>ลบ Annotations<span class="label label-success">New</span></div>
+                            <div class="description">ลบ highlights, strikeouts หรือ Annotations อื่นๆ จากเอกสาร PDF แบบเป็นชุด</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        การสแกน
+                    </li>
+                    <li class="cat-scans">
+                        <a href="deskew-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-popular fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-alt fa-stack-1x rotated-5-deg"></i>
+                                  </span>Deskew</div>
+                            <div class="description">ปรับหน้า PDF ที่สแกนมาให้ตรงและ Deskew อัตโนมัติ</div>
+                        </a>
+                    </li>
+                    <li class="cat-scans">
+                        <a href="ocr-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-qrcode fa-stack-1x"></i>
+                                  </span>OCR</div>
+                            <div class="description">แปลง PDF สแกนในช่องข้อความค้นหาและ PDFs. แยกข้อความออกจากการสแกนอย่างรวดเร็ว</div>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="header lower">
+                        Automate
+                    </li>
+                    <li>
+                        <a href="workflows.html" title="">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-robot fa-stack-1x"></i>
+                                  </span>Workflows<span class="label label-success">New</span></div>
+                            <div class="description">รันชุด Task บนเอกสาร PDF. ตั้งค่าลำดับเครื่องมือเพื่อประมวลผล PDF</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="centered">
+                <form autocomplete="off">
+                    <div style="display: none" class="input-group search-tools-wrap">
+                        <i class="fal fa-search"></i>
+                        <input onkeypress="if(event.keyCode === 13){ return false; }" id="searchTools" placeholder="Type to search" class="form-control input-sm" type="search" autocomplete="off">
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <a style="color: #AAA; text-decoration: underline; font-size: 14px;" class="get-support-btn" href="javascript://">Suggest a missing feature</a>
+                        <i class="fal fa-comment-lines" style="color: #AAA; vertical-align: middle;"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+  </header>
+</div>
+
+<section>
+  <div class="modal fade" id="contactFormModal" style="display: none">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+            <div style="margin: 20px 40px;" class="row centered contact-form-row">
+              <h3 style="margin-bottom: 10px;">ติดต่อฝ่ายสนับสนุน SEJDA.COM</h3>
+              <h5 style="margin-bottom: 30px;">อีเมลหาเราที่ <a href="mailto:hi@sejda.com">hi@sejda.com</a> หรือใช้แบบฟอร์มด้านล่าง</h5>
+              
+              <div style="display: none; margin-top: 50px;" class="alert alert-success" id="contactSuccess">ขอบคุณสำหรับข้อความของคุณ.</div>
+
+              <section id="support-frequent-topics">
+                <div class="form-group">
+                  <label for="contact-msg">ฉันต้องการความช่วยเหลือเรื่อง</label>
+                  <br>
+                  <div data-topic="cancel-subscription" class="support-topic">ยกเลิก subscription</div>
+                  <div data-topic="find-license-key" class="support-topic">หา license key</div>
+                  <div class="support-topic">เรื่องอื่นๆ</div>
+                </div>
+                
+                <div class="support-answers">
+                  <div class="support-answer selected" style="display: none" data-answer="find-license-key" id="support_licenseKey_accountPage">
+                    คุณสามารถหา Sejda Desktop license key ได้ในหน้าบัญชีของคุณ:
+                    <br>
+                    <a target="_blank" href="account@justUpgraded=desktop.html">https://www.sejda.com/account</a>
+                  </div>
+
+                  <div style="display: none" data-answer="find-license-key" class="support-answer" id="support_licenseKey_webOnly">
+                    คุณซื้อแพลน Web-only ซึ่งไม่รวมการเข้าถึง Sejda Desktop.
+                    <br>
+                    <a target="_blank" href="upgrade.html#pricing">https://www.sejda.com/upgrade</a>
+                    <br><br>
+                    นี่คือแพลนที่เข้าถึง Desktop ได้:
+                    <br>
+                    <a target="_blank" href="desktop.html#pricing">https://www.sejda.com/desktop</a>
+                    <br><br>
+                    เมื่อคุณซื้อแพลน Desktop แล้ว ยอดซื้อ Web-only จะถูกคืนเงินให้อัตโนมัติ.
+                  </div>
+
+                  <div class="support-answer selected" style="display: none" data-answer="cancel-subscription" id="support_cancelSub_accountPage">
+                    คุณสามารถยกเลิก subscription ได้จากหน้าบัญชีโดยคลิก &quot;Stop auto-renewal&quot; ข้างๆ subscription ของคุณ:
+                    <br>
+                    <a target="_blank" href="account.html">https://www.sejda.com/account</a>
+                  </div>
+
+                  <div style="display: none" data-answer="cancel-subscription" class="support-answer" id="support_cancelSub_weekPass">
+                    แพลน Week Pass เป็นการจ่ายครั้งเดียว ไม่ใช่ subscription แบบต่อเนื่อง. จะไม่มีการต่ออายุอัตโนมัติและจะเปลี่ยนเป็นแบบฟรีหลังผ่านไป 7 วัน.
+                  </div>
+                </div>
+              </section>
+              
+              <form style="display: none" id="contactForm">
+                <section id="contactFormProgressBar">
+                  <progress max="100" value="0" id="progress"></progress>
+                  <div class="step-item">1</div>
+                  <div class="step-item">2</div>
+                  <div class="step-item">3</div>
+                  <div class="step-item">4</div>
+                </section>
+                <section data-step="1" class="contact-form-step">
+                  <div class="form-group">
+                    <label for="contact-msg">ข้อความ</label>
+                    <textarea id="contact-msg" class="form-control" name="message" style="min-height: 100px; padding: 15px" required="required" placeholder="&#x0e1e;&#x0e34;&#x0e21;&#x0e1e;&#x0e4c;&#x0e02;&#x0e49;&#x0e2d;&#x0e04;&#x0e27;&#x0e32;&#x0e21;&#x0e02;&#x0e2d;&#x0e07;&#x0e04;&#x0e38;&#x0e13;"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-email">อีเมลของคุณ</label>
+                    <input type="email" class="form-control" id="contact-email" name="email" placeholder="&#x0e44;&#x0e21;&#x0e48;&#x0e1a;&#x0e31;&#x0e07;&#x0e04;&#x0e31;&#x0e1a;. &#x0e16;&#x0e49;&#x0e32;&#x0e2d;&#x0e22;&#x0e32;&#x0e01;&#x0e43;&#x0e2b;&#x0e49;&#x0e40;&#x0e23;&#x0e32;&#x0e15;&#x0e2d;&#x0e1a;&#x0e01;&#x0e25;&#x0e31;&#x0e1a; &#x0e1a;&#x0e2d;&#x0e01;&#x0e2d;&#x0e35;&#x0e40;&#x0e21;&#x0e25;&#x0e02;&#x0e2d;&#x0e07;&#x0e04;&#x0e38;&#x0e13;&#x0e44;&#x0e27;&#x0e49;&#x0e44;&#x0e14;&#x0e49;&#x0e40;&#x0e25;&#x0e22;" value="">
+                  </div>
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="completeStep1Btn" class="btn btn-default" type="button">
+                    ต่อไป <i style="margin-left: 10px" class="fal fa-chevron-right"></i> 
+                  </button>
+                </section>
+
+                <section style="display: none" data-step="2" class="contact-form-step">
+                  <div class="loader-wrap"><img src="../images/loaders/oval-green.svg" class="loader medium"></div>
+                </section>  
+                
+                <section style="display: none" data-step="3" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">คำตอบที่แนะนำ</label>
+                    <div id="automaticSupportAnswer"></div>
+                  </div>
+
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="completeStep3Btn" class="btn btn-link btn-xs" type="button">
+                    นี่ยังไม่ใช่คำตอบที่ฉันต้องการ
+                  </button>
+                </section>
+                
+                <section style="display: none" data-step="4" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">แจ้งปัญหาการใช้งาน?</label>
+                  </div>
+                  <div style="width: 263px; text-align: left; margin: auto;" class="form-group">
+                    <div class="radio">
+                      <label>
+                        <input value="problem" name="supportMessageKind" type="radio">
+                        ใช่ ฉันต้องการแจ้งปัญหา
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input value="other" name="supportMessageKind" type="radio">
+                        เปล่า เป็นเรื่องอื่น
+                      </label>
+                    </div>
+                  </div>  
+                </section>
+
+                <section style="display: none" data-step="5" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">รายละเอียดปัญหา</label>
+                  </div>
+                  <div style="max-width: 430px; margin: auto; margin-top: -15px; text-align: left;" class="checkbox">
+                    <label><input style="margin: 5px; margin-right: 15px;" name="allowAccessLastTask" type="checkbox"> อนุญาตให้เข้าถึง Task ล่าสุดและไฟล์ที่ใช้.</label>
+                    <p style="font-size: 12px; padding-left: 33px; margin-top: 0;" class="help-block">เราจะใช้ข้อมูลนี้เพื่อให้ช่วยเหลือคุณได้ไวขึ้น. เป็นความลับ.</p>
+                  </div>
+                  <div id="attachScreenshotFormGroup" class="form-group">
+                    <label class="light">Attach a screenshot*</label>
+                    <p style="font-size: 12px; padding-left: 33px; margin-top: -8px;" class="help-block">ช่วยแชร์ภาพหน้าจอของปัญหาที่พบหน่อยนะ.</p>
+                    <div>
+                      <label style="border: 1px solid #ccc;display: inline-block;padding: 6px 12px; cursor: pointer;" class="light" for="supportScreenshotFile">
+                        <i class="fal fa-plus"></i> เลือกไฟล์ภาพหน้าจอ
+                      </label>
+                      <input style="display: none" accept=".png,.jpg,.jpeg,.bmp" type="file" id="supportScreenshotFile">
+                      <div id="supportScreenshotFilePreview"></div>
+                    </div>
+                  </div>
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="sendMessageBtn" class="btn btn-default" type="submit">ส่งข้อความ</button>
+                </section>
+                
+                <input value="iluzie" name="suflet" type="hidden">
+                <input value="" name="source" type="hidden">
+                <input value="" name="source2" type="hidden">
+                <input value="" name="lastFile" type="hidden">
+                <input value="" name="lastTask" type="hidden">
+                <input value="" name="events" type="hidden">
+                <input value="" name="consoleLogs" type="hidden">
+                <input value="" name="screenshot" type="hidden">
+                <input value="" name="os" type="hidden">
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div style="display: none" class="modal app-modal" id="optOutChoicesPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Privacy Settings
+          </div>
+        </div>
+        <div class="modal-body">
+          This feature requires loading content from an external service, <span class="external_service_name"></span>, which could access personal data, such as your IP address, set cookies and track you.<br><br>
+          Please let us know if you are okay with that.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-no btn-light btn-xs" type="button">No, cancel</button>
+          <button class="btn btn-yes btn-xs" type="button">Yes, continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal app-error-modal" id="problemLoadingPageResourcePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            There's a problem loading this page
+          </div>
+        </div>
+        <div class="modal-body">
+          There was a problem loading a critical resource, which prevents the page from continuing.<br><br>
+          Please check your internet connection and reload the page to try again.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-yes btn-xs" type="button">Reload page</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div style="display: none" class="modal app-modal app-error-modal" id="genericErrorModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+            <div class="modal-title"></div>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="display: none" class="modal app-modal app-warning-modal" id="scanPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">ไม่รองรับเอกสารที่มาจากการสแกน</h4>
+        </div>
+        <div class="modal-body">
+          <div data-scope="edit">
+            <strong>ไม่รองรับการแก้ไขเอกสารสแกน.</strong>
+            ไม่รองรับการเปลี่ยนข้อความเดิมในเอกสารสแกน. แต่คุณยังสามารถเพิ่มข้อความใหม่ รูปภาพ และคำอธิบายประกอบได้.
+          </div>
+          <div style="display: none" data-scope="convert">
+            <strong>ไม่รองรับการแปลงเอกสารสแกน.</strong>
+            PDF ที่สแกนมาคือรูปภาพของข้อความและไม่มีข้อมูลตัวอักษรจริงที่ใช้ในการแปลงไฟล์.
+
+            <br><br>
+            ไฟล์: <span class="file-name"></span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="dont-show-anymore-opts">
+            <div class="checkbox">
+              <label><input style="margin-top: 5px" name="dontShowAnymore" type="checkbox"> ไม่ต้องแสดงอีก</label>
+            </div>
+          </div>
+          <a target="_blank" href="help.html#scans" class="btn btn-secondary btn-xs">เรียนรู้เพิ่มเติม</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="movePagePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            ย้ายหน้าไปยังตำแหน่งใหม่
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="form-inline">
+            <label class="light" for="moveNewPageNumber">ตำแหน่งหน้าใหม่:</label>
+            <input style="width: 55px;margin: 0 10px;vertical-align: baseline; text-align: center" class="form-control input-xs" name="moveNewPageNumber" id="moveNewPageNumber" type="text">
+            <span class="num_of_pages"></span>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <div class="modal-hint">
+            Tip: สามารถลากและวางหน้าไปยังตำแหน่งใหม่ได้เลย
+          </div>
+          <button class="btn btn-yes btn-xs" type="button">ย้ายหน้า</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="changeLanguagePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            เลือกภาษา
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-6">
+              <ul>
+                <li><a href="../ar/security-responsible-disclosure.html">العربية</a></li>
+                <li><a href="../id/security-responsible-disclosure.html">Bahasa Indonesia</a></li>
+                <li><a href="../da/security-responsible-disclosure.html">Dansk</a></li>
+                <li><a href="../de/security-responsible-disclosure.html">Deutsch</a></li>
+                <li><a href="../cs/security-responsible-disclosure.html">Čeština</a></li>
+                <li><a href="../security-responsible-disclosure.html">English</a></li>
+                <li><a href="../es/security-responsible-disclosure.html">Español</a></li>
+                <li><a href="../fr/security-responsible-disclosure.html">Français</a></li>
+                <li><a href="../it/security-responsible-disclosure.html">Italiano</a></li>
+                <li><a href="../el/security-responsible-disclosure.html">Ελληνικά</a></li>
+                <li><a href="../ja/security-responsible-disclosure.html">日本語</a></li>
+                <li><a href="../ko/security-responsible-disclosure.html">한국어</a></li>
+                <li><a href="../zh/security-responsible-disclosure.html">简体中文</a></li>
+                <li><a href="../tw/security-responsible-disclosure.html">繁體中文</a></li>
+              </ul>
+            </div>
+            <div class="col-xs-6">
+              <ul>
+                <li><a href="../hi/security-responsible-disclosure.html">हिन्दी</a></li>
+                <li><a href="../he/security-responsible-disclosure.html">עברית</a></li>
+                <li><a href="../hu/security-responsible-disclosure.html">Magyar</a></li>
+                <li><a href="../nl/security-responsible-disclosure.html">Nederlands</a></li>
+                <li><a href="../no/security-responsible-disclosure.html">Norsk</a></li>
+                <li><a href="../pl/security-responsible-disclosure.html">Polski</a></li>
+                <li><a href="../pt/security-responsible-disclosure.html">Português</a></li>
+                <li><a href="../ro/security-responsible-disclosure.html">Română</a></li>
+                <li><a href="../ru/security-responsible-disclosure.html">Русский</a></li>
+                <li><a href="../fi/security-responsible-disclosure.html">Suomi</a></li>
+                <li><a href="../sv/security-responsible-disclosure.html">Svenska</a></li>
+                <li><a href="security-responsible-disclosure.html">ภาษาไทย</a></li>
+                <li><a href="../vi/security-responsible-disclosure.html">Tiếng Việt</a></li>
+                <li><a href="../tr/security-responsible-disclosure.html">Türkçe</a></li>
+                <li><a href="../uk/security-responsible-disclosure.html">Українська</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section style="display: none" class="i18n-strings">
+    <div data-key="We're sorry, something went wrong. Please contact support at hi@sejda.com">ขออภัย เกิดข้อผิดพลาดบางอย่าง. โปรดติดต่อฝ่ายสนับสนุนที่ hi@sejda.com</div>
+    <div data-key="Verification code is incorrect">รหัสยืนยันไม่ถูกต้อง</div>
+    <div data-key="Too many attempts. Please try again later">พยายามหลายครั้งเกินไป. โปรดลองใหม่ภายหลัง.</div>
+    <div data-key="An error occurred. Please try again or contact support">เกิดข้อผิดพลาด. โปรดลองอีกครั้งหรือติดต่อฝ่ายสนับสนุน.</div>
+    <div data-key="Processing, please wait...">กำลังประมวลผล รอสักครู่นะ...</div>
+    <div data-key="Sign in">เข้าระบบ</div>
+    <div data-key="Click to edit">คลิกเพื่อแก้ไข</div>
+    <div data-key="Sorry, unsupported image format:">ขออภัย ไม่รองรับรูปแบบรูปภาพนี้:</div>
+    <div data-key="We support the following image types:">เรารองรับประเภทรูปภาพดังนี้:</div>
+    <div data-key="You already have an active monthly subscription">คุณมีการสมัครสมาชิกรายเดือนที่ใช้งานอยู่แล้ว</div>
+    <div data-key="Trying to add more seats? You can do this from your account page">ต้องการเพิ่มจำนวนผู้ใช้ใช่ไหม? ทำได้ที่หน้าบัญชีของคุณเลย</div>
+    <div data-key="Please verify your email address before continuing with your purchase">โปรดยืนยันอีเมลของคุณก่อนดำเนินการสั่งซื้อ</div>
+    <div data-key="We couldn't connect to GoogleDrive. Your browser (or add-ons) might be blocking the load of javascript files from GoogleDrive">เราไม่สามารถเชื่อมต่อกับ Google Drive ได้. เบราว์เซอร์ของคุณ (หรือส่วนขยาย) อาจกำลังบล็อกการโหลดไฟล์ javascript จาก Google Drive</div>
+    <div data-key="Are you sure you want to remove the recent files list?">คุณแน่ใจหรือไม่ว่าต้องการลบรายการไฟล์ล่าสุด?</div>
+  </section>
+</section>
+
+
+        
+        <section id="content">
+            <div class="container legal">
+                <div class="row">
+                    <h1 style="margin-bottom: 40px;">Responsible Disclosure of Security Vulnerabilities</h1>
+
+                    <p>We want to keep Sejda safe for everyone. If you've discovered a security vulnerability in Sejda, we appreciate your help in disclosing it to us in a responsible manner.</p>
+
+                    <p>Would like to disclose a security vulnerability? Please contact us by email at <script>document.write('hi@sejda.com')</script></p>
+                    <p>We provide bug bounty rewards, based on the severity of the issue being disclosed. Once a vulnerability is reported, if we consider it valid, and we evaluate it to have a high enough severity, we might offer a bounty reward.</p>
+                    
+                    
+                    <h2>Out of scope</h2>
+                    
+                    <p>The following domains are out of scope, unless the vulnerability allows attacking the main site:</p>
+                    
+                    <ul>
+                        <li>blog.sejda.com</li>
+                        <li>status.sejda.com</li>
+                    </ul>
+
+                    <h2>Responsible Disclosure Acknowledgements</h2>
+                    <p>
+                        Sejda wishes to thank the following security researchers who have responsibly disclosed vulnerabilities:
+                    </p>
+                    <ul>
+                        <li>Danang Avan Maulana</li>
+                        <li>Darshan Jogi</li>
+                        <li>Shivansh Jambhdas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    
+
+<div id="taskResultsModal" role="dialog" tabindex="-1" class="modal fade"></div>
+
+
+
+
+	
+</body>
+</html>  
+  

@@ -1,0 +1,2126 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="utf-8">
+
+  <link as="style" href="../css/index.min.css@v=404.css" rel="preload">
+  <link crossorigin="anonymous" type="font/woff2" as="font" href="../fonts/braille/Atkinson-Hyperlegible-Regular-102a.woff2" rel="preload">
+  <link crossorigin="anonymous" type="font/woff2" as="font" href="../fonts/braille/Atkinson-Hyperlegible-Bold-102a.woff2" rel="preload">
+  <link as="script" href="../cache/639/js/libs-and-partials.min.js" rel="preload">
+
+  <link href="../images/icon_128.png" rel="shortcut icon">
+
+  <meta content="website" property="og:type">
+  <meta content="https://www.sejda.com/" property="og:url">
+  <meta content="Sejda.com - We help with your PDF tasks" property="og:site_name">
+
+  <meta content="summary_large_image" name="twitter:card">
+  <meta content="@SejdaPDF" name="twitter:site">
+  <meta content="@SejdaPDF" name="twitter:creator">
+
+  <meta content="1762774073964212" property="fb:app_id">
+  <meta content="8721525582-fbt24du8pl38r1ht2ihu9q9vl815o5t8.apps.googleusercontent.com" name="google-signin-client_id">
+
+  <link rel="canonical" href="developers.html">
+
+  <link href="../css/index.min.css@v=404.css" type="text/css" rel="stylesheet">
+
+	
+<link as="script" href="../js/pages/developers.min.js@v=8" rel="preload">
+
+	
+<title>Developers - API Docs</title>
+
+	
+<meta name="description" content="Developer documentatie voor onze HTML naar PDF API, web-integraties zoals 'Opslaan als PDF' links en deep links om je bestanden te openen met SEJDA.COM tools.">
+
+	
+<style>
+        h1, h2, h3, h4, h5 {
+          font-weight: bold;
+        }
+
+        .StripeBackground {
+          display: none;
+        }
+
+        header {
+          display: none;
+        }
+
+        .article {
+          text-align: left;
+          margin: auto;
+        }
+
+        .max-width {
+          max-width: 600px;
+        }
+
+        .article h3 {
+          color: #999;
+          margin-top: 40px;
+          margin-bottom: 30px;;
+          font-size: 25px;
+        }
+
+        .features h3 {
+          color: #0b8;
+        }
+
+        .features h4 {
+          color: #777;
+          line-height: 1.4em;
+        }
+
+        .features .icon {
+          width: 100%;
+          height: 100px;
+          margin-bottom: 30px;
+        }
+
+        .grouped-items {
+          background-color: #F8F8F8;
+          margin-bottom: 40px;
+          padding: 20px;
+          border-radius: 5px;
+        }
+
+        #webIntegrationLink {
+          font-size: 13px;
+          font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+        }
+
+        ol.with-disks li {
+          list-style: disc !important;
+        }
+
+        .copy-code-panel {
+          background-color: #FAFAFA;
+          margin-bottom: 40px;
+          padding: 20px;
+          border: 2px solid #F2F2F2;
+          border-radius: 5px;
+        }
+
+        .form-control[readonly] {
+          cursor: default;
+          background-color: #FFF;
+        }
+
+        pre {
+          background-color: #F8F8F8;
+          border-color: transparent;
+        }
+
+        code {
+          color: inherit;
+          background-color: #F8F8F8;
+        }
+
+        .form-control.pre-like {
+          font-size: 12px;
+          font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+          padding: 12px;
+          height: auto;
+          line-height: 20px;
+          border-color: transparent;
+          box-shadow: none;
+          background-color: #F8F8F8;
+          color: #333;
+          word-wrap: break-word;
+        }
+
+        .form-control.pre-like {
+          margin-bottom: 20px;
+        }
+
+        #webSaveToPdfLink {
+
+        }
+
+        #docs-toc h3 a {
+          font-size: 19px;
+          color: black;
+        }
+
+        #docs-toc ul {
+          padding: 0;
+        }
+
+        #docs-toc {
+          padding: 25px;
+          padding-right: 5px;
+          background-color: #F8F8F8;
+          width: 100%;
+          position: relative;
+          top: 0;
+          font-size: 17px;
+          height: 100%;
+        }
+
+        @media (min-width: 768px) {
+          #docs-toc {
+            width: 300px;
+            position: fixed;
+          }
+
+          #docs-content {
+            margin-left: 300px;
+            padding: 25px;
+            padding-left: 50px;
+          }
+        }
+
+        #docs-content {
+          position: relative;
+          padding: 25px;
+          max-width: 800px;
+        }
+
+        #docs-toc-title {
+          border-bottom: 1px #E9E9E9 solid;
+          padding-bottom: 20px;
+          margin-bottom: 20px;
+        }
+
+        #docs-toc-title h1 {
+          font-weight: 900;
+          font-size: 20px;
+          margin-top: 10px;
+        }
+
+        #docs-toc-title img {
+          height: 30px;
+          margin-top: -3px;
+          margin-right: 5px;
+        }
+
+        #docs-content h2 {
+          color: black;
+          font-weight: bold;
+          font-size: 22px;
+        }
+
+        #docs-content h3 {
+          color: #0b8;
+          font-weight: bold;
+          font-size: 22px;
+          margin-top: 20px;
+          margin-bottom: 20px;
+        }
+
+        #docs-content h4 {
+          margin-top: 30px;
+          font-size: 18px;
+          color: #428bca;
+          margin-bottom: 20px;
+        }
+
+        #docs-content h5 {
+          margin-bottom: 20px;
+          margin-top: 40px;
+          font-size: 18px;
+          color: #000;
+        }
+
+        .arrow-down-wrap {
+          margin-top: 30px;
+          margin-bottom: 30px;
+          text-align: center;
+        }
+
+        .arrow-down-wrap .fa {
+          font-size: 30px;
+          color: #eee;
+          margin-top: -7px;
+        }
+
+        hr.section-break {
+          margin-top: 70px;
+          margin-bottom: 70px;
+        }
+
+        span.badge {
+          font-weight: 100;
+          color: #CCC;
+          border: 1px #CCC solid;
+          background-color: transparent;
+        }
+
+        #docs-content .table {
+          margin-top: 20px;
+        }
+
+        #docs-content .table thead {
+          background-color: #F2F2F2;
+        }
+
+        #docs-content .table tbody {
+          color: #666;
+        }
+
+        #docs-content .table tbody tr td:first-child {
+          color: #333;
+        }
+
+        .coloured {
+          padding: 3px 6px;
+          border-radius: 3px;
+          margin: 3px;
+        }
+
+        .coloured.orange {
+          background-color: rgba(243, 156, 18, 0.1);
+        }
+
+        .coloured.blue {
+          background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .coloured.violet {
+          background-color: rgba(155, 89, 182, 0.1);
+        }
+
+        .coloured.red {
+          background-color: rgba(236, 112, 99, 0.1);
+        }
+
+        .coloured.yellow {
+          background-color: rgba(241, 196, 15, 0.1);
+        }
+
+        .coloured.gray {
+          background-color: rgba(187, 187, 187, 0.1);
+        }
+
+        p.light {
+          color: #999;
+        }
+
+        .pro-only {
+          background-color: #EEE;
+          padding: 3px 6px;
+          border-radius: 5px;
+        }
+        
+        #docs-content h5 a.bookmark, #docs-content h5 a:active.bookmark, #docs-content h5 a:visited.bookmark {
+            color: #DDD;
+        }
+        
+        .fileLocationHint {
+            line-height: 20px;
+            font-size: 15px;
+            color: #AAA;
+            margin-bottom: 10px;
+        }
+
+      </style>
+
+	
+</head>
+<body data-download-server="www.sejda.com" data-proxy-token="1c7cd6573b8b353c0ebb5a18ed344e74" data-pro-user="false" data-max-file-size="500" data-ipcountry="IN" data-www="www59.sejda.com">
+<section>
+  <div style="display:none" class="alert alert-meh alert-dismissible centered" id="termsNotice">
+    <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true">×</span></button>
+    We've updated our <a target="_blank" href="../terms.html">terms of service</a> and/or <a target="_blank" href="../privacy.html">privacy policy</a>. Please take a moment and review them.<br>
+    By continuing to use our services you agree to our updated terms &amp; privacy policy.
+  </div>
+</section>
+<div class="StripeBackground">
+  <div class="stripe s0"></div>
+  <div class="stripe s1"></div>
+  <div class="stripe s2"></div>
+  <div class="stripe s3"></div>
+  <div class="stripe s4"></div>
+</div>
+<div class="container-fluid">
+  <header>
+    <section>
+<div class="container">
+  <div class="pull-left">
+      <a title="Sejda.com logo" href="index.html" class="brand"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMjUycHgiIGhlaWdodD0iMjUycHgiIHZpZXdCb3g9Ii00NzkuNSAyODAuNSAyNTIgMjUyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IC00NzkuNSAyODAuNSAyNTIgMjUyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxjaXJjbGUgZmlsbD0iIzAwQkI4OCIgY3g9Ii0zNTMuMjUyIiBjeT0iNDA2LjI1MiIgcj0iMTIwLjI0OCIvPg0KPGcgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAgICAiPg0KCTxwYXRoIGZpbGw9IiNGRkZGRkYiIGQ9Ik0tMzAwLjYzMywzNDIuOTczbC05Ljk3OSwyMy4zNjNjLTE3LjE1Ni05LjU0NC0zNC4wOTUtMTMuMTI1LTQ1Ljc5OS0xMi42OTUNCgkJYy0xNS4yMzgsMC41NTgtMjQuOTY2LDYuNjY0LTI0LjU4NSwxNy4wNDNjMS4yMzcsMzMuNzg5LDg0LjA1NCwxMi42MjEsODUuODY4LDY4LjI4MWMxLjAxMiwyNy42MDQtMjIuNjU4LDQ1LjQ5OS01Ni42NjgsNDYuNzQ0DQoJCWMtMjQuMjkyLDAuODkxLTQ3LjYyMy04LjIwNi02NC4wNTctMjIuMmwxMC40MzgtMjIuOTM4YzE2LjQzNCwxMy45OTQsMzYuNjAxLDIxLjIxNyw1My4xNjQsMjAuNjA5DQoJCWMxOC4xMDctMC42NjQsMjguNjgtNy45MDYsMjguMjQyLTE5LjgzYy0xLjI2NC0zNC40NTEtODQuMDM1LTEyLjE4MS04Ni4wNDktNjcuMTY4Yy0wLjk3MS0yNi41MDIsMjEuMTY5LTQzLjg5Niw1NC43MzYtNDUuMTI3DQoJCUMtMzM1LjIyNSwzMjguMzE4LTMxNS4zMzUsMzM0LjAwMi0zMDAuNjMzLDM0Mi45NzN6Ii8+DQo8L2c+DQo8L3N2Zz4NCg==" alt="Sejda.com logo" class="logo">
+          <span class="name">Sejda</span></a>
+      <a href="javascript://" class="header-link header-tool more-tasks">
+          Alle Tools<i class="fal fa-fw fa-angle-down" style="margin-left: 3px;"></i>
+      </a>
+      <a href="compress-pdf.html" class="header-link header-tool hide-xs">Comprimeren</a>
+      <a href="pdf-editor.html" class="header-link header-tool hide-xs">Bewerken</a>
+      <a href="sign-pdf.html" class="header-link header-tool hide-xs hide-lang-de hide-lang-hu hide-lang-ru">Invullen &amp; Ondertekenen</a>
+      <a href="merge-pdf.html" class="header-link header-tool hide-sm">Samenvoegen</a>
+      <a href="delete-pdf-pages.html" class="header-link header-tool hide-md">Pagina's Verwijderen</a>
+      <a href="crop-pdf.html" class="header-link header-tool hide-md hide-lang-de hide-lang-fr hide-lang-ro hide-lang-cs hide-lang-ru">Bijsnijden</a>
+
+  </div>
+  <div id="user-header" class="pull-right">
+      <div class="header-links">
+          <a href="upgrade.html" class="header-link pricing-link">Prijzen</a>
+          <a href="desktop.html" class="header-link desktop-link hide-xs">Desktop</a>
+          <a href="account@justUpgraded=desktop.html" id="loginBtn" class="loggedout header-link">Inloggen</a>
+          <div style="display:none" class="dropdown loggedin header-link">
+              <a data-toggle="dropdown" class="dropdown-toggle">
+                  <i class="fas fa-user-circle"></i>
+                  <span class="caret"></span>
+              </a>
+              <ul role="menu" class="dropdown-menu pull-right dropdown-menu-right">
+                  <li role="presentation"><a href="account.html" tabindex="-1" role="menuitem">Account</a></li>
+                  <li role="presentation"><a id="logoutBtn" href="javascript://" tabindex="-1" role="menuitem">Logout</a></li>
+              </ul>
+          </div>
+          <a title="Select language" href="javascript://" class="header-link select-lang-btn hide-xs">
+              <i style="vertical-align: text-top;" class="fal fa-globe"></i>
+          </a>
+      </div>
+  </div>
+</div>
+<div id="megaMenu" style="display: none" class="container-fluid mega-menu">
+    <div class="mega-menu-inner">
+    <button aria-label="Close" class="close" type="button"><span aria-hidden="true">×</span></button>
+    <div class="container tasks-container">
+        <div class="row">
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6 col-recent-tools">
+                <ul class="popular">
+                    <li class="header">
+                        Recent<i class="fal fa-history"></i>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">Samenvoegen</li>
+                    <li class="cat-merge">
+                        <a href="alternate-mix-pdf.html">
+                          <div class="caption">
+                              <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-random fa-stack-1x"></i>
+                              </span>Afwisselen &amp; Mixen
+                          </div>
+                          <div class="description">Mengt pagina's uit 2 documenten, afwisselen tussen hen</div>
+                        </a>
+                    </li>
+                    <li class="cat-merge">
+                        <a href="merge-pdf.html">
+                          <div class="caption">
+                              <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-sitemap fa-stack-1x"></i>
+                              </span>Samenvoegen
+                          </div>
+                          <div class="description">Meerdere documenten samenvoegen in één PDF bestand</div>
+                        </a>
+                    </li>
+                    <li class="cat-merge">
+                        <a href="organize-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-merge fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-object-group fa-stack-1x"></i>
+                            </span>Organiseren</div>
+                            <div class="description">PDF-pagina's rangschikken en herordenen</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Splitsen
+                    </li>
+                    <li class="cat-split">
+                        <a href="extract-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-external-link fa-stack-1x"></i>
+                                  </span>Pagina's Extraheren</div>
+                            <div class="description">Krijg een nieuw document dat alleen de gewenste pagina's bevat</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-clone fa-stack-1x"></i>
+                                  </span>Splitsen per pagina</div>
+                            <div class="description">Splitsen specifieke pagina's of nem elke pagina uit in een afzonderlijk document</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-outline.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-bookmark fa-stack-1x"></i>
+                                  </span>Splitsen door bladwijzers</div>
+                            <div class="description">Uittrekken hoofdstukken naar afzonderlijke documenten op basis van de bladwijzers in de hoofdzaak</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-down-the-middle.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-columns fa-stack-1x"></i>
+                                  </span>Doormidden splitsen</div>
+                            <div class="description">Split twee pagina-indeling scans, A3 naar dubbele A4 of A4 naar dubbele A5</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-size.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-chart-pie fa-stack-1x"></i>
+                                  </span>Splitsen op grootte</div>
+                            <div class="description">Krijg meerdere kleinere documenten met een specifieke bestandsgrootte</div>
+                        </a>
+                    </li>
+                    <li class="cat-split">
+                        <a href="split-pdf-by-text.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-split fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-font fa-stack-1x"></i>
+                                  </span>Splitsen op tekst</div>
+                            <div class="description">Uittrekken afzonderlijke documenten wanneer specifieke tekst verandert van pagina naar pagina</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        Bewerken &amp; Ondertekenen
+                    </li>
+                    <li class="cat-edit">
+                        <a href="pdf-editor.html">
+                            <div class="caption">
+                                <span class="task-icon fa-stack fa-lg fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-pencil fa-stack-1x"></i>
+                                </span>Bewerken
+                            </div>
+                            <div class="description">PDF-bestanden gratis bewerken. PDF invullen &amp; ondertekenen. Tekst, links, afbeeldingen en vormen toevoegen. Bestaande PDF-tekst bewerken. PDF annoteren</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="sign-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-signature fa-stack-1x"></i>
+                                  </span>Invullen &amp; Ondertekenen</div>
+                            <div class="description">Handtekening toevoegen aan PDF. PDF-formulieren invullen</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="pdf-forms.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fab fa-wpforms fa-stack-1x"></i>
+                                  </span>Formulieren Maken</div>
+                            <div class="description">Gratis PDF-formulierenmaker. Bestaande PDF-documenten invulbaar maken</div>
+                        </a>
+                    </li>
+                    <li class="cat-edit">
+                        <a href="delete-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-trash fa-stack-1x"></i>
+                                  </span>Pagina's Verwijderen</div>
+                            <div class="description">Pagina's uit een PDF-document verwijderen</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Comprimeren
+                    </li>
+                    <li class="cat-compress">
+                        <a href="compress-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-compress fa-stack-1x"></i>
+                                  </span>Comprimeren</div>
+                            <div class="description">Verminder de grootte van uw PDF-bestand</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Beveiliging
+                    </li>
+                    <li class="cat-security">
+                        <a href="encrypt-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-lock fa-stack-1x"></i>
+                                  </span>Beveiligen</div>
+                            <div class="description">Bescherm bestand met een wachtwoord en machtigingen</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="unlock-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-unlock fa-stack-1x"></i>
+                                  </span>Ontgrendelen</div>
+                            <div class="description">Verwijderen toestemming beperkingen en wachtwoord van PDF bestanden</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="watermark-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-alt fa-stack-1x"></i>
+                                  </span>Watermark</div>
+                            <div class="description">Afbeelding- of tekstwatermerk toevoegen aan PDF's</div>
+                        </a>
+                    </li>
+                    <li class="cat-security">
+                        <a href="flatten-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fal fa-font fa-stack-1x"></i>
+                                <i class="fal fa-slash fa-stack-1x"></i>
+                              </span>Flatten</div>
+                            <div class="description">Maakt invulbare PDF's alleen-lezen. Printen &amp; scannen in één stap</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        Converteren van PDF
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-excel.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-excel fa-stack-1x"></i>
+                                  </span>PDF naar Excel</div>
+                            <div class="description">Converteer PDF naar Excel of CSV gratis online. Tabelgegevens uit PDF extraheren</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-jpg.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-image fa-stack-1x"></i>
+                                  </span>PDF naar JPG</div>
+                            <div class="description">Krijg pagina's geconverteerd naar JPEG, PNG of TIFF-afbeeldingen</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-ppt.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-powerpoint fa-stack-1x"></i>
+                                  </span>PDF naar PowerPoint</div>
+                            <div class="description">PDF naar PowerPoint online converteren</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="extract-text-from-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-align-left fa-stack-1x"></i>
+                                  </span>PDF naar Tekst</div>
+                            <div class="description">Kopieert alle tekst uit het PDF document en haalt er een apart tekstbestand</div>
+                        </a>
+                    </li>
+                    <li class="cat-from-pdf">
+                        <a href="pdf-to-word.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-word fa-stack-1x"></i>
+                                  </span>PDF naar Word</div>
+                            <div class="description">Online van PDF naar DOC converteren</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Converteren naar PDF
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="html-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-code fa-stack-1x"></i>
+                                  </span>HTML naar PDF</div>
+                            <div class="description">Webpagina's of HTML-bestanden naar PDF converteren</div>
+                        </a>
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="jpg-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-image fa-stack-1x"></i>
+                                  </span>JPG naar PDF</div>
+                            <div class="description">Afbeeldingen naar PDF converteren</div>
+                        </a>
+                    </li>
+                    <li class="cat-to-pdf">
+                        <a href="word-to-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-office fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-word fa-stack-1x"></i>
+                                  </span>Word naar PDF</div>
+                            <div class="description">Maakt een PDF van Microsoft Word .docx</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                        Overig
+                    </li>
+                    <li class="cat-other">
+                        <a href="bates-numbering-pdf.html" title="">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-gavel fa-stack-1x"></i>
+                                  </span>Bates Numbering</div>
+                            <div class="description">Bates stempel meerdere bestanden tegelijk</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="pdf-bookmarks.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-bookmark fa-stack-1x"></i>
+                                  </span>Bladwijzers maken</div>
+                            <div class="description">PDF-bladwijzers maken</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="crop-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-crop fa-stack-1x"></i>
+                                  </span>Bijsnijden</div>
+                            <div class="description">PDF-marges trimmen, paginagrootte wijzigen</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="edit-pdf-metadata.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-info-square fa-stack-1x"></i>
+                                  </span>Metadata bewerken</div>
+                            <div class="description">Wijzig PDF-auteur, titel, trefwoorden, onderwerp en andere metadata</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="extract-images-from-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-popular fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-external-link fa-stack-1x"></i>
+                                  </span>Afbeeldingen extraheren</div>
+                            <div class="description">Afbeeldingen uit PDF extraheren</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="flip-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-reflect-horizontal fa-stack-1x"></i>
+                                  </span>Flip<span class="label label-success">New</span></div>
+                            <div class="description">Pagina's horizontaal of verticaal spiegelen</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="grayscale-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-paint-brush fa-stack-1x"></i>
+                                  </span>Grijswaarden</div>
+                            <div class="description">Maak PDF-tekst en afbeeldingen in grijswaarden</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="header-footer-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-heading fa-stack-1x"></i>
+                                  </span>Koptekst &amp; voettekst</div>
+                            <div class="description">Voeg pagina nummers of tekstlabels om PDF bestanden</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="n-up-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-th-large fa-stack-1x"></i>
+                                  </span>N-up</div>
+                            <div class="description">Meerdere pagina's per vel afdrukken. A5 plan as 4-up on A3 or A4 2-up on A3</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="page-numbers-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-sort-numeric-up fa-stack-1x"></i>
+                                  </span>Paginanummers</div>
+                            <div class="description">PDF-paginanummers toevoegen</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <ul>
+                    <li class="header">
+                         
+                    </li>
+                    <li class="cat-other">
+                        <a href="rename-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-i-cursor fa-stack-1x"></i>
+                                  </span>Hernoemen</div>
+                            <div class="description">Bestandsnaam wijzigen op basis van tekst uit de PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="repair-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-wrench fa-stack-1x"></i>
+                                  </span>Repareren</div>
+                            <div class="description">Herstel gegevens uit een beschadigde PDF</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="resize-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-arrows-alt fa-stack-1x"></i>
+                                  </span>Formaat wijzigen</div>
+                            <div class="description">Marges en opvulling toevoegen, paginagrootte wijzigen</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="rotate-pdf-pages.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-repeat fa-stack-1x"></i>
+                                  </span>Draaien</div>
+                            <div class="description">Roteren PDF pagina's</div>
+                        </a>
+                    </li>
+                    <li class="cat-other">
+                        <a href="delete-pdf-annotations.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-highlighter fa-stack-1x"></i>
+                                  </span>Annotaties verwijderen<span class="label label-success">New</span></div>
+                            <div class="description">Verwijder highlights, doorhalingen of andere annotaties uit een PDF</div>
+                        </a>
+                    </li>
+                    <li class="header lower">
+                        Scans
+                    </li>
+                    <li class="cat-scans">
+                        <a href="deskew-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-popular fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-file-alt fa-stack-1x rotated-5-deg"></i>
+                                  </span>Deskew</div>
+                            <div class="description">Gescande PDF-pagina's automatisch rechtzetten en deskew</div>
+                        </a>
+                    </li>
+                    <li class="cat-scans">
+                        <a href="ocr-pdf.html">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-qrcode fa-stack-1x"></i>
+                                  </span>OCR</div>
+                            <div class="description">Converteer PDF-scans naar doorzoekbare tekst en PDF's. Tekst uit scans extraheren</div>
+                        </a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="header lower">
+                        Automatiseren
+                    </li>
+                    <li>
+                        <a href="workflows.html" title="">
+                            <div class="caption">
+                                <span class="fa-stack fa-lg icon-edit fa-fw">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fal fa-robot fa-stack-1x"></i>
+                                  </span>Workflows<span class="label label-success">New</span></div>
+                            <div class="description">Voer een reeks tasks uit op PDF-documenten. Configureer tool-chains om PDF's te verwerken</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="centered">
+                <form autocomplete="off">
+                    <div style="display: none" class="input-group search-tools-wrap">
+                        <i class="fal fa-search"></i>
+                        <input onkeypress="if(event.keyCode === 13){ return false; }" id="searchTools" placeholder="Type to search" class="form-control input-sm" type="search" autocomplete="off">
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <a style="color: #AAA; text-decoration: underline; font-size: 14px;" class="get-support-btn" href="javascript://">Suggest a missing feature</a>
+                        <i class="fal fa-comment-lines" style="color: #AAA; vertical-align: middle;"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+  </header>
+</div>
+
+<section>
+  <div class="modal fade" id="contactFormModal" style="display: none">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+            <div style="margin: 20px 40px;" class="row centered contact-form-row">
+              <h3 style="margin-bottom: 10px;">Contacteer SEJDA.COM support</h3>
+              <h5 style="margin-bottom: 30px;">E-mail ons op <a href="mailto:hi@sejda.com">hi@sejda.com</a> of gebruik het formulier hieronder</h5>
+              
+              <div style="display: none; margin-top: 50px;" class="alert alert-success" id="contactSuccess">Bedankt voor je bericht.</div>
+
+              <section id="support-frequent-topics">
+                <div class="form-group">
+                  <label for="contact-msg">Ik heb hulp nodig bij</label>
+                  <br>
+                  <div data-topic="cancel-subscription" class="support-topic">Abonnement opzeggen</div>
+                  <div data-topic="find-license-key" class="support-topic">Licentiesleutel vinden</div>
+                  <div class="support-topic">Iets anders</div>
+                </div>
+                
+                <div class="support-answers">
+                  <div class="support-answer selected" style="display: none" data-answer="find-license-key" id="support_licenseKey_accountPage">
+                    Je vindt je Sejda Desktop licentiesleutel op je accountpagina:
+                    <br>
+                    <a target="_blank" href="account@justUpgraded=desktop.html">https://www.sejda.com/account</a>
+                  </div>
+
+                  <div style="display: none" data-answer="find-license-key" class="support-answer" id="support_licenseKey_webOnly">
+                    Je hebt een Web-only plan gekocht zonder toegang tot Sejda Desktop.
+                    <br>
+                    <a target="_blank" href="upgrade.html#pricing">https://www.sejda.com/upgrade</a>
+                    <br><br>
+                    Hier zijn plannen met Desktop-toegang:
+                    <br>
+                    <a target="_blank" href="desktop.html#pricing">https://www.sejda.com/desktop</a>
+                    <br><br>
+                    Zodra je een Desktop-plan hebt gekocht, wordt je Web-only aankoop automatisch terugbetaald.
+                  </div>
+
+                  <div class="support-answer selected" style="display: none" data-answer="cancel-subscription" id="support_cancelSub_accountPage">
+                    Je kunt je abonnement opzeggen op je accountpagina door op &quot;Stop auto-renewal&quot; te klikken naast je abonnement:
+                    <br>
+                    <a target="_blank" href="account.html">https://www.sejda.com/account</a>
+                  </div>
+
+                  <div style="display: none" data-answer="cancel-subscription" class="support-answer" id="support_cancelSub_weekPass">
+                    Het Week Pass-plan is een eenmalige betaling, geen terugkerend abonnement. Het wordt niet automatisch verlengd en wordt na 7 dagen gratis.
+                  </div>
+                </div>
+              </section>
+              
+              <form style="display: none" id="contactForm">
+                <section id="contactFormProgressBar">
+                  <progress max="100" value="0" id="progress"></progress>
+                  <div class="step-item">1</div>
+                  <div class="step-item">2</div>
+                  <div class="step-item">3</div>
+                  <div class="step-item">4</div>
+                </section>
+                <section data-step="1" class="contact-form-step">
+                  <div class="form-group">
+                    <label for="contact-msg">Bericht</label>
+                    <textarea id="contact-msg" class="form-control" name="message" style="min-height: 100px; padding: 15px" required="required" placeholder="Typ je bericht"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-email">Je e-mailadres</label>
+                    <input type="email" class="form-control" id="contact-email" name="email" placeholder="Optioneel. Laat je e-mailadres achter als je een antwoord wilt" value="">
+                  </div>
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="completeStep1Btn" class="btn btn-default" type="button">
+                    Volgende <i style="margin-left: 10px" class="fal fa-chevron-right"></i> 
+                  </button>
+                </section>
+
+                <section style="display: none" data-step="2" class="contact-form-step">
+                  <div class="loader-wrap"><img src="../images/loaders/oval-green.svg" class="loader medium"></div>
+                </section>  
+                
+                <section style="display: none" data-step="3" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">Voorgesteld antwoord</label>
+                    <div id="automaticSupportAnswer"></div>
+                  </div>
+
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="completeStep3Btn" class="btn btn-link btn-xs" type="button">
+                    Dit beantwoordt mijn vraag niet
+                  </button>
+                </section>
+                
+                <section style="display: none" data-step="4" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">Een probleem melden?</label>
+                  </div>
+                  <div style="width: 263px; text-align: left; margin: auto;" class="form-group">
+                    <div class="radio">
+                      <label>
+                        <input value="problem" name="supportMessageKind" type="radio">
+                        Ja, ik meld een probleem
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input value="other" name="supportMessageKind" type="radio">
+                        Nee, iets anders
+                      </label>
+                    </div>
+                  </div>  
+                </section>
+
+                <section style="display: none" data-step="5" class="contact-form-step">
+                  <div class="form-group">
+                    <label style="margin-top: 10px;" for="contact-email">Details van het probleem</label>
+                  </div>
+                  <div style="max-width: 430px; margin: auto; margin-top: -15px; text-align: left;" class="checkbox">
+                    <label><input style="margin: 5px; margin-right: 15px;" name="allowAccessLastTask" type="checkbox"> Geef toegang tot je laatste task en de gebruikte bestanden.</label>
+                    <p style="font-size: 12px; padding-left: 33px; margin-top: 0;" class="help-block">We gebruiken deze data om je sneller te helpen. Vertrouwelijk.</p>
+                  </div>
+                  <div id="attachScreenshotFormGroup" class="form-group">
+                    <label class="light">Attach a screenshot*</label>
+                    <p style="font-size: 12px; padding-left: 33px; margin-top: -8px;" class="help-block">Deel een screenshot van het probleem zoals jij het ziet.</p>
+                    <div>
+                      <label style="border: 1px solid #ccc;display: inline-block;padding: 6px 12px; cursor: pointer;" class="light" for="supportScreenshotFile">
+                        <i class="fal fa-plus"></i> Kies screenshot-bestand
+                      </label>
+                      <input style="display: none" accept=".png,.jpg,.jpeg,.bmp" type="file" id="supportScreenshotFile">
+                      <div id="supportScreenshotFilePreview"></div>
+                    </div>
+                  </div>
+                  <button style="margin-top: 20px; padding-left: 30px; padding-right: 30px;" id="sendMessageBtn" class="btn btn-default" type="submit">Stuur bericht</button>
+                </section>
+                
+                <input value="iluzie" name="suflet" type="hidden">
+                <input value="" name="source" type="hidden">
+                <input value="" name="source2" type="hidden">
+                <input value="" name="lastFile" type="hidden">
+                <input value="" name="lastTask" type="hidden">
+                <input value="" name="events" type="hidden">
+                <input value="" name="consoleLogs" type="hidden">
+                <input value="" name="screenshot" type="hidden">
+                <input value="" name="os" type="hidden">
+              </form>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div style="display: none" class="modal app-modal" id="optOutChoicesPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Privacy Settings
+          </div>
+        </div>
+        <div class="modal-body">
+          This feature requires loading content from an external service, <span class="external_service_name"></span>, which could access personal data, such as your IP address, set cookies and track you.<br><br>
+          Please let us know if you are okay with that.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-no btn-light btn-xs" type="button">No, cancel</button>
+          <button class="btn btn-yes btn-xs" type="button">Yes, continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal app-error-modal" id="problemLoadingPageResourcePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            There's a problem loading this page
+          </div>
+        </div>
+        <div class="modal-body">
+          There was a problem loading a critical resource, which prevents the page from continuing.<br><br>
+          Please check your internet connection and reload the page to try again.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-yes btn-xs" type="button">Reload page</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div style="display: none" class="modal app-modal app-error-modal" id="genericErrorModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+            <div class="modal-title"></div>
+          </div>
+          <div class="modal-body">
+          </div>
+          <div class="modal-footer">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div style="display: none" class="modal app-modal app-warning-modal" id="scanPrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">Gescande documenten worden niet ondersteund</h4>
+        </div>
+        <div class="modal-body">
+          <div data-scope="edit">
+            <strong>Bewerken van gescande documenten wordt niet ondersteund.</strong>
+            Bestaande tekst in gescande documenten wijzigen wordt niet ondersteund. Je kunt echter wel andere functies gebruiken zoals het toevoegen van nieuwe tekst, afbeeldingen en annotaties.
+          </div>
+          <div style="display: none" data-scope="convert">
+            <strong>Converteren van gescande documenten wordt niet ondersteund.</strong>
+            Gescande PDF's zijn afbeeldingen van tekst en bevatten niet de tekstdata die nodig is voor conversie.
+
+            <br><br>
+            Bestand: <span class="file-name"></span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="dont-show-anymore-opts">
+            <div class="checkbox">
+              <label><input style="margin-top: 5px" name="dontShowAnymore" type="checkbox"> Niet meer tonen</label>
+            </div>
+          </div>
+          <a target="_blank" href="help.html#scans" class="btn btn-secondary btn-xs">Meer informatie</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="movePagePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Pagina verplaatsen naar een nieuwe locatie
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="form-inline">
+            <label class="light" for="moveNewPageNumber">Nieuwe paginalocatie:</label>
+            <input style="width: 55px;margin: 0 10px;vertical-align: baseline; text-align: center" class="form-control input-xs" name="moveNewPageNumber" id="moveNewPageNumber" type="text">
+            <span class="num_of_pages"></span>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <div class="modal-hint">
+            Tip: Je kunt de pagina ook naar de nieuwe locatie slepen
+          </div>
+          <button class="btn btn-yes btn-xs" type="button">Pagina verplaatsen</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display: none" class="modal app-modal" id="changeLanguagePrompt">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button aria-label="Close" data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span></button>
+          <div class="modal-title">
+            Selecteer taal
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-6">
+              <ul>
+                <li><a href="../ar/developers.html">العربية</a></li>
+                <li><a href="../id/developers.html">Bahasa Indonesia</a></li>
+                <li><a href="../da/developers.html">Dansk</a></li>
+                <li><a href="../de/developers.html">Deutsch</a></li>
+                <li><a href="../cs/developers.html">Čeština</a></li>
+                <li><a href="../developers.html">English</a></li>
+                <li><a href="../es/developers.html">Español</a></li>
+                <li><a href="../fr/developers.html">Français</a></li>
+                <li><a href="../it/developers.html">Italiano</a></li>
+                <li><a href="../el/developers.html">Ελληνικά</a></li>
+                <li><a href="../ja/developers.html">日本語</a></li>
+                <li><a href="../ko/developers.html">한국어</a></li>
+                <li><a href="../zh/developers.html">简体中文</a></li>
+                <li><a href="../tw/developers.html">繁體中文</a></li>
+              </ul>
+            </div>
+            <div class="col-xs-6">
+              <ul>
+                <li><a href="../hi/developers.html">हिन्दी</a></li>
+                <li><a href="../he/developers.html">עברית</a></li>
+                <li><a href="../hu/developers.html">Magyar</a></li>
+                <li><a href="developers.html">Nederlands</a></li>
+                <li><a href="../no/developers.html">Norsk</a></li>
+                <li><a href="../pl/developers.html">Polski</a></li>
+                <li><a href="../pt/developers.html">Português</a></li>
+                <li><a href="../ro/developers.html">Română</a></li>
+                <li><a href="../ru/developers.html">Русский</a></li>
+                <li><a href="../fi/developers.html">Suomi</a></li>
+                <li><a href="../sv/developers.html">Svenska</a></li>
+                <li><a href="../th/developers.html">ภาษาไทย</a></li>
+                <li><a href="../vi/developers.html">Tiếng Việt</a></li>
+                <li><a href="../tr/developers.html">Türkçe</a></li>
+                <li><a href="../uk/developers.html">Українська</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section style="display: none" class="i18n-strings">
+    <div data-key="We're sorry, something went wrong. Please contact support at hi@sejda.com">Sorry, er is iets misgegaan. Neem contact op met support via hi@sejda.com</div>
+    <div data-key="Verification code is incorrect">Verificatiecode is onjuist</div>
+    <div data-key="Too many attempts. Please try again later">Te veel pogingen. Probeer het later opnieuw.</div>
+    <div data-key="An error occurred. Please try again or contact support">Er is een fout opgetreden. Probeer het opnieuw of neem contact op met support.</div>
+    <div data-key="Processing, please wait...">Verwerken, even geduld...</div>
+    <div data-key="Sign in">Inloggen</div>
+    <div data-key="Click to edit">Klik om te bewerken</div>
+    <div data-key="Sorry, unsupported image format:">Sorry, niet-ondersteund afbeeldingsformaat:</div>
+    <div data-key="We support the following image types:">We ondersteunen de volgende afbeeldingstypen:</div>
+    <div data-key="You already have an active monthly subscription">Je hebt al een actief maandelijks abonnement</div>
+    <div data-key="Trying to add more seats? You can do this from your account page">Wil je meer seats toevoegen? Dit kan via je accountpagina</div>
+    <div data-key="Please verify your email address before continuing with your purchase">Verifieer je e-mailadres voordat je doorgaat met je aankoop</div>
+    <div data-key="We couldn't connect to GoogleDrive. Your browser (or add-ons) might be blocking the load of javascript files from GoogleDrive">We konden geen verbinding maken met GoogleDrive. Je browser (of add-ons) blokkeert mogelijk het laden van javascript-bestanden van GoogleDrive</div>
+    <div data-key="Are you sure you want to remove the recent files list?">Weet je zeker dat je de lijst met recente bestanden wilt verwijderen?</div>
+  </section>
+</section>
+
+
+    
+    <section id="content">
+      <div class="container-fluid">
+        <section id="docs-toc">
+          <section id="docs-toc-title">
+            <div class="title">
+              <h1>Developer Docs</h1>
+            </div>
+          </section>
+
+          <h3><a href="developers.html#web-integration">For your website</a></h3>
+          <ul>
+            <li>
+              <a href="developers.html#web-open-files">Edit PDF link</a>
+            </li>
+            <li>
+              <a href="developers.html#web-save-to-pdf-link">Save as PDF link</a>
+            </li>
+          </ul>
+
+          <h3><a href="developers.html#html-pdf-api">HTML to PDF – API Docs</a></h3>
+          <ul>
+            <li>
+              <a href="developers.html#html-pdf-api">Get started</a>
+            </li>
+            <li>
+              <a href="developers.html#html-pdf-api-options">Options</a>
+            </li>
+            <li>
+              <a href="developers.html#html-pdf-api-response-codes">Response codes</a>
+            </li>
+            <li>
+              <a href="developers.html#html-pdf-api-css-tricks">CSS tricks</a>
+            </li>
+            <li>
+              <a href="developers.html#html-pdf-api-samples">Code samples</a>
+            </li>
+          </ul>
+
+        </section>
+        <section id="docs-content">
+          <div>
+            <a name="web-integration"></a>
+            <h2>Web Integrations</h2>
+
+            <a name="web-open-files"></a>
+            <h3>Edit PDFs from your website</h3>
+
+            <p>
+              Create a special link that anyone can use to fill out your document and send it back to you.<br>
+              Share the link on your website or in your emails.
+            </p>
+
+            <section class="article">
+              <h4>Link Generator</h4>
+
+              <div class="max-width grouped-items">
+                <div class="form-group">
+                  <label>1. Where is the file located?</label>
+                  <div class="form-group">
+                    <div class="radio">
+                      <label>
+                        <input checked="" value="website" name="fileLocation" type="radio">On my website
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input value="gdrive" name="fileLocation" type="radio"> Google Drive
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input value="dropbox" name="fileLocation" type="radio"> Dropbox
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input value="computer" name="fileLocation" type="radio"> My computer
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input value="other" name="fileLocation" type="radio"> Other
+                      </label>
+                    </div>
+                  </div>
+                  
+                  <div data-for="website" class="fileLocationHint">
+                    The publicly accessible URL where the file is available on your website:
+                  </div>
+                  <div style="display: none" data-for="gdrive" class="fileLocationHint">
+                    Right click the file in Google Drive and choose &quot;Share&quot;. Under &quot;General access&quot; choose &quot;Anyone with the link&quot;. Click on &quot;Copy link&quot; and paste it below:
+                  </div>
+                  <div style="display: none" data-for="dropbox" class="fileLocationHint">
+                    Right click the file in Dropbox and choose &quot;Share&quot; &gt; &quot;Share with Dropbox&quot;. Then click on &quot;Create and copy link&quot; and paste it below:
+                  </div>
+                  <div style="display: none" data-for="computer" class="fileLocationHint">
+                    We don't offer document storage. Please upload the file to Google Drive or Dropbox, then select the respective option above for detailed instructions.
+                  </div>
+                  <div style="display: none" data-for="other" class="fileLocationHint">
+                    The publicly accessible URL for the file is:
+                  </div>
+                  <input placeholder="https://www.example.com/path/to/my-file.pdf" value="" class="form-control input-xs" type="text" id="pdfFileURL">
+                </div>
+                <div style="margin-top: 30px" class="form-group">
+                  <label>2. Which features?</label>
+                  <div class="form-group">
+                    <div class="radio">
+                      <label>
+                        <input checked="" value="sign-pdf" name="selectedTool" type="radio">Only Fill &amp; Sign
+                      </label>
+                    </div>
+                    <div class="radio">
+                      <label>
+                        <input value="pdf-editor" name="selectedTool" type="radio"> Full editing
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div style="margin-top: 30px" id="returnEmailFormGroup" class="form-group">
+                  <label for="returnEmail">3. Receive results by email?</label>
+                  <input style="width: 300px" placeholder="name@example.com" name="returnEmail" id="returnEmail" class="form-control input-xs" type="email">
+                  <p class="small-letters">We'll ask the user if they want to send the edited document to this email address.</p>
+                </div>
+
+                <div class="arrow-down-wrap">
+                  <i class="fal fa-arrow-down"></i>
+                </div>
+
+                <div style="margin-bottom: 20px;" class="result-area max-width">
+                  <label>The generated link</label>
+                  <div class="form-group">
+                    <textarea data-clipboard-text="" id="webIntegrationLink" rows="3" class="form-control" readonly="readonly"></textarea>
+                  </div>
+                  <a style="margin-left: 5px;" data-clipboard-target="#webIntegrationLink" class="btn btn-default btn-medium btn-secondary btn-xs clipboard-btn">Copy code</a>
+                  <a target="_blank" id="clickToTryBtn" class="btn btn-default btn-medium btn-xs" href="javascript://">Click to try</a>
+                </div>
+              </div>
+
+              <h4>Link Setup</h4>
+
+              <p>Pass input files as <code>GET</code> parameters, in <code>JSON</code> format:</p>
+
+              <div class="form-control pre-like">https://www.sejda.com/pdf-editor?<span class="coloured violet">files=[{&quot;downloadUrl&quot;:&quot;https://www.example.com/download/sample.pdf&quot;}]</span></div>
+
+              <p>Don't forget to <code>URL encode</code> the <code>JSON</code> value:</p>
+              <div class="form-control pre-like">?files=<span class="coloured yellow">%5B%7B%22downloadUrl%22%3A%22https%3A%2F%2Fwww.example.com%2Fdownload%2Fsample.pdf%22%7D%5D</span></div>
+
+              <p>Add a <code>returnEmail</code> parameter to the URL if you would like the user to be asked if they want to send the edited document by email back to you.</p>
+
+              <div class="form-control pre-like">https://www.sejda.com/pdf-editor?files=[{&quot;downloadUrl&quot;:&quot;https://www.example.com/download/sample.pdf&quot;}]&amp;<span class="coloured blue">returnEmail=name@example.com</span></div>
+
+              <p>Remember to URL encode the email address value passed in:</p>
+              <div class="form-control pre-like">&amp;returnEmail=name%40example.com</div>
+
+            </section>
+          </div>
+
+          <hr class="section-break">
+
+          <div>
+            <a name="web-save-to-pdf-link"></a>
+            <h3>'Save as PDF' link for your website</h3>
+
+            <p>Let your visitors save pages from your website to PDF.</p>
+            <p>Using the 'Save as PDF' link is free and does not require a paid plan.<br>Each of your website visitors will be able to use the link and 'Save as PDF' up to 10 times per hour.</p>
+
+            <section class="article">
+              <h4>How it works</h4>
+
+              <div class="grouped-items">
+                <div class="form-group">
+                  <label>Your web page</label>
+                  <input placeholder="https://www.example.com/page" value="https://www.example.com/page" class="form-control input-xs" type="text" id="saveToPDFExampleSource">
+                </div>
+                <div class="form-group">
+                  <label>Save as PDF link</label>
+                  <div id="saveToPDFExampleLink" class="form-control pre-like" style="padding-left: 0; padding-right: 0;" contenteditable="true">&lt;a href=&quot;https://www.sejda.com/html-to-pdf?<span class="coloured orange">save-link=https://www.example.com/page</span>&quot;&gt;Save as PDF&lt;/a&gt;</div>
+                </div>
+              </div>
+
+              <h4>Copy &amp; paste snippet</h4>
+              <p>Always save the current page as PDF:</p>
+
+              <pre data-lang="html">&lt;a id=&quot;saveAsPdfBtn&quot; href=&quot;https://www.sejda.com/html-to-pdf&quot;&gt;Save as PDF&lt;/a&gt;
+&lt;script&gt;
+document.getElementById('saveAsPdfBtn').addEventListener('click', function(e){
+  var pageUrl = encodeURIComponent(window.location.href);
+  var opts = ['save-link=' + pageUrl, 'pageOrientation=auto'];
+  window.open('https://www.sejda.com/html-to-pdf?' + opts.join('&amp;'));
+  e.preventDefault();
+});
+&lt;/script&gt;</pre>
+              
+              <br>
+
+              <h4>Customize</h4>
+              <p>More options can be specified:</p>
+
+              <div class="form-control pre-like light">https://www.sejda.com/html-to-pdf?save-link=https://example.com&amp;<span class="coloured violet">viewportWidth=1440</span>&amp;<span class="coloured blue">pageSize=A3</span></div>
+
+              <table class="table">
+                <thead>
+                <tr>
+                  <td>Name</td>
+                  <td colspan="2">Description</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>save-link</td>
+                  <td>Web page URL to convert to PDF. Eg: <code>https://example.com/my-page</code>. Mandatory. Don't forget to URL encode.</td>
+                </tr>
+                <tr>
+                  <td>pageSize</td>
+                  <td>One of the standard page sizes: <code>a0</code>, <code>a1</code>, <code>a2</code>, <code>a3</code>, <code>a4</code>, <code>a5</code>, <code>letter</code>, <code>legal</code>. Defaults to one long page.</td>
+                </tr>
+                <tr>
+                  <td>viewportWidth</td>
+                  <td>The width, in pixels, for the rendered HTML page. Eg: <code>1440</code>. Defaults to browser's <code>window.innerWidth</code></td>
+                </tr>
+                <tr>
+                  <td>pageOrientation</td>
+                  <td>One of <code>portrait</code>, <code>landscape</code> or <code>auto</code> (default). Eg: <code>auto</code></td>
+                </tr>
+                <tr>
+                  <td>pageMargin</td>
+                  <td>Size of page margin, including units (<code>px</code>, <code>in</code>, <code>cm</code> or <code>mm</code>). Eg: <code>100px</code>. Defaults to no margin.</td>
+                </tr>
+                <tr>
+                  <td>usePrintMedia</td>
+                  <td>Use the print stylesheet. Eg: <code>true</code>. Defaults to <code>false</code>.</td>
+                </tr>
+                <tr>
+                  <td>delay</td>
+                  <td>Seconds (0 to 5) to wait before starting to convert. Eg: <code>2</code>. Defaults to <code>0</code>.</td>
+                </tr>
+                </tbody>
+              </table>
+            </section>
+
+            <p></p>
+          </div>
+
+          <hr class="section-break">
+
+          <div>
+            <a name="html-pdf-api"></a>
+            <h2>HTML to PDF – API Docs</h2>
+
+            <section class="article">
+              <h4>Authentication</h4>
+
+              <p><a href="../html-pdf-api.html">Sign up for an account</a> to get started and get your API key.</p>
+              <p>Provide your API key in the <code>Authorization</code> header of each request:</p>
+              <pre>Authorization: Token: api_Y0URAP1K3YH3R3</pre>
+
+              <br>
+
+              <p>Want to use in the browser/client side javascript? Use the publishable key instead: <a href="developers.html#html-pdf-api-samples-cors">see CORS sample code</a>.</p>
+
+              <h4>Get started</h4>
+
+              <p>Run this CURL command in your console:</p>
+<pre style="font-size: 12px;" data-lang="bash">$&gt; curl -i https://api.sejda.com/v2/html-pdf\
+  --fail --silent --show-error \
+  --header &quot;Content-Type: application/json&quot; \
+  --header &quot;Authorization: Token: api_Y0URAP1K3YH3R3&quot; \
+  --data '{&quot;url&quot;: &quot;https://www.example.com&quot;, &quot;viewportWidth&quot;:1200 }' &gt; example_com.pdf
+
+</pre>
+
+              <h4>Endpoint URL</h4>
+
+              <p>The API is organized around REST.</p>
+
+              <pre>https://api.sejda.com/v2/html-pdf</pre>
+
+              <h4>Request</h4>
+
+              <p>Make a <code>POST</code> request with <code>JSON</code> body:</p>
+
+              <pre>Content-Type: application/json</pre>
+
+              <p>Examples:</p>
+
+              <pre data-lang="js">{&quot;url&quot;:&quot;example.com&quot;}</pre>
+
+              <p>Converting HTML code (instead of an URL) to PDF:</p>
+              <pre data-lang="js">{&quot;htmlCode&quot;:&quot;&lt;strong&gt;HTML&lt;\/strong&gt;&quot;}</pre>
+
+              <a name="html-pdf-api-options"></a>
+              <h4>HTML to PDF Options</h4>
+
+              <table class="table">
+                <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Type</td>
+                  <td>Default</td>
+                  <td colspan="2">Description</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>url</td>
+                  <td>string</td>
+                  <td>optional</td>
+                  <td>Web page URL to convert to PDF.</td>
+                  <td>Eg: <code>https://example.com</code></td>
+                </tr>
+                <tr>
+                  <td>htmlCode</td>
+                  <td>string</td>
+                  <td>optional</td>
+                  <td>HTML source code to convert to PDF.</td>
+                  <td>Eg: <code>&lt;strong&gt;HTML&lt;/strong&gt;</code></td>
+                </tr>
+                <tr>
+                  <td>pageSize</td>
+                  <td>string</td>
+                  <td>
+                    <code>one_long_page</code>
+                  </td>
+                  <td colspan="2">
+                    <code>one_long_page</code>, a standard page size: <code>a0</code>, <code>a1</code>, <code>a2</code>, <code>a3</code>, 
+                    <code>a4</code>, <code>a5</code>, <code>a6</code> <code>letter</code>, <code>legal</code>, <code>tabloid</code>, <code>ledger</code> 
+                    or a custom page size: <code>30x40mm</code>. 
+                    Possible units are: <code>px</code>, <code>cm</code>, <code>mm</code> or <code>in</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td>pageOrientation</td>
+                  <td>string</td>
+                  <td>
+                    <code>auto</code>
+                  </td>
+                  <td colspan="2">
+                    <code>landscape</code>, <code>portrait</code> or <code>auto</code>.
+                  </td>
+                </tr>
+                <tr>
+                  <td>viewportWidth</td>
+                  <td>integer</td>
+                  <td>optional</td>
+                  <td>The width in pixels for the rendered web page.</td>
+                  <td>Eg: <code>1600</code></td>
+                </tr>
+                <tr>
+                  <td>pageMargin</td>
+                  <td>double</td>
+                  <td>optional</td>
+                  <td>Specifies the size of the margin around the PDF page. To be used together with <code>pageMarginUnits</code>.</td>
+                  <td>Eg: <code>2.2</code></td>
+                </tr>
+                <tr>
+                  <td>pageMarginUnits</td>
+                  <td>string</td>
+                  <td>optional</td>
+                  <td>Specifies the units to be used for the margin size. One of <code>px</code>, <code>in</code>, <code>cm</code> or <code>mm</code>. To be used together with <code>pageMargin</code>.</td>
+                  <td>Eg: <code>px</code> for a margin size specified in pixels.</td>
+                </tr>
+                <tr>
+                  <td>hideNotices</td>
+                  <td>boolean</td>
+                  <td><code>false</code></td>
+                  <td>Attempt to automatically hide cookie notices and similar overlays.</td>
+                  <td>Eg: <code>true</code></td>
+                </tr>
+                <tr>
+                  <td>usePrintMedia</td>
+                  <td>boolean</td>
+                  <td><code>false</code></td>
+                  <td>Use the print stylesheet.</td>
+                  <td>Eg: <code>true</code></td>
+                </tr>
+                <tr>
+                  <td>delay</td>
+                  <td>int</td>
+                  <td><code>0</code></td>
+                  <td colspan="2">Seconds (0 to 5) to wait before starting to convert. Useful if your website has an intro animation, etc.</td>
+                </tr>
+                <tr>
+                  <td>scrollPage</td>
+                  <td>boolean</td>
+                  <td><code>false</code></td>
+                  <td>Lazy loading of resources. Scroll page all the way down before converting.</td>
+                  <td>Eg: <code>true</code></td>
+                </tr>
+                <tr>
+                  <td>authUsername</td>
+                  <td>string</td>
+                  <td>optional</td>
+                  <td>Username for HTTP authentication.</td>
+                  <td>Eg: <code>Admin</code></td>
+                </tr>
+                <tr>
+                  <td>authPassword</td>
+                  <td>string</td>
+                  <td>optional</td>
+                  <td>Password for HTTP authentication.</td>
+                  <td>Eg: <code>!S3cr3t</code></td>
+                </tr>
+                <tr>
+                  <td>waitForSelector</td>
+                  <td>string</td>
+                  <td><span class="pro-only">pro-only</span></td>
+                  <td>Wait for the selector to appear in page, then begin the PDF conversion.</td>
+                  <td>Eg: <code>#pageFullyLoaded</code></td>
+                </tr>
+                <tr>
+                  <td>timezone</td>
+                  <td>string</td>
+                  <td>optional</td>
+                  <td>A <a rel="nofollow noopener" target="_blank" href="https://en.wikipedia.org/wiki/List_of_tz_database_time_zones" title="List of timezones">timezone id</a></td>
+                  <td>Eg: <code>America/New_York</code></td>
+                </tr>
+                <tr>
+                  <td>shims</td>
+                  <td>string</td>
+                  <td>optional</td>
+                  <td>Hints to attempt workarounds for rendering issues.</td>
+                  <td>Eg: <code>css-viewport-percent-units</code></td>
+                </tr>
+                <tr>
+                  <td>lang</td>
+                  <td>string</td>
+                  <td>optional</td>
+                  <td>Browser language/locale.</td>
+                  <td>Eg: <code>ar</code>, <code>am</code>, <code>bg</code>, <code>bn</code>, <code>ca</code>, <code>cs</code>, <code>da</code>, <code>de</code>, <code>el</code>, <code>en</code>, <code>en_AU</code>, <code>en_GB</code>, <code>en_US</code>, <code>es</code>, <code>es_419</code>, <code>et</code>, <code>fa</code>, <code>fi</code>, <code>fil</code>, <code>fr</code>, <code>gu</code>, <code>he</code>, <code>hi</code>, <code>hr</code>, <code>hu</code>, <code>id</code>, <code>it</code>, <code>ja</code>, <code>kn</code>, <code>ko</code>, <code>lt</code>, <code>lv</code>, <code>ml</code>, <code>mr</code>, <code>ms</code>, <code>nl</code>, <code>no</code>, <code>pl</code>, <code>pt_BR</code>, <code>pt_PT</code>, <code>ro</code>, <code>ru</code>, <code>sk</code>, <code>sl</code>, <code>sr</code>, <code>sv</code>, <code>sw</code>, <code>ta</code>, <code>te</code>, <code>th</code>, <code>tr</code>, <code>uk</code>, <code>vi</code>, <code>zh_CN</code>, <code>zh_TW</code>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+
+              <a name="html-pdf-api-response-codes"></a>
+              <h4>HTTP Response Codes</h4>
+
+              <table class="table">
+                <tbody><tr>
+                  <td>200</td>
+                  <td>All OK. Response contents will be the PDF document stream.</td>
+                </tr>
+                <tr>
+                  <td>400</td>
+                  <td>Invalid request.</td>
+                </tr>
+                <tr>
+                  <td>403</td>
+                  <td>Account unconfirmed, no api key provided, CORS origin not allowed etc. Details provided in the response body.</td>
+                </tr>
+                <tr>
+                  <td>413</td>
+                  <td>Request size too large. Current limit is 50MB. Try converting by URL instead of providing the HTML body.</td>
+                </tr>
+                <tr>
+                  <td>429</td>
+                  <td>Rate limit reached (per hour or concurrency limit). You should retry the request. Details provided in the response body.</td>
+                </tr>
+                <tr>
+                  <td>450</td>
+                  <td>Pro-only parameter used with free account. Parameters marked with pro-only are available on paid plans only.</td>
+                </tr>
+                <tr>
+                  <td>500</td>
+                  <td>An error on our side. You should retry the request.</td>
+                </tr>
+                <tr>
+                  <td>550</td>
+                  <td>Failed to convert (Eg: Web page was not reachable, could not be loaded). Details provided in the response body.</td>
+                </tr>
+              </tbody></table>
+
+              <a name="html-pdf-api-css-tricks"></a>
+              <h4>CSS Tricks</h4>
+
+              <h5>Hide elements in PDF</h5>
+
+              <p>Add the CSS class <code>--hide-from-pdf</code> to remove that element from the PDF.</p>
+
+              <pre data-lang="html">&lt;div class=&quot;--hide-from-pdf&quot;&gt;Hide me&lt;/div&gt;</pre>
+
+              <h5>Show elements only in PDF</h5>
+
+              <p>Use the CSS class <code>--show-in-pdf</code> and the inline CSS <code>style=&quot;display: none&quot;</code> to show in PDF an element that is hidden in HTML. When rendering the PDF the inline style will be changed to <code>display: block</code>.</p>
+
+              <pre data-lang="html">&lt;div class=&quot;--show-in-pdf&quot; style=&quot;display:none&quot;&gt;Show me&lt;/div&gt;</pre>
+
+              <h5>Page breaks &amp; footer <a href="developers.html#html-pdf-api-css-page-breaks" name="html-pdf-api-css-page-breaks" class="bookmark"><i class="fal fa-bookmark"></i></a></h5>
+
+              <p>Try this CSS style to force page breaks:</p>
+
+              <pre data-lang="html">&lt;style&gt;
+  .with-page-break {
+    page-break-before: always;
+    page-break-after: always;
+  }
+&lt;/style&gt;
+              </pre>
+
+              <p>Example: Same footer on each page:</p>
+
+              <pre data-lang="html">&lt;style&gt;
+  .with-page-break {
+    page-break-before: always;
+    page-break-after: always;
+  }
+  .footer {
+    position: fixed;
+    bottom: 0;
+  }
+&lt;/style&gt;
+&lt;div class=&quot;with-page-break&quot;&gt;Page 1&lt;/div&gt;
+&lt;div class=&quot;with-page-break&quot;&gt;Page 2&lt;/div&gt;
+&lt;div class=&quot;with-page-break&quot;&gt;Page 3&lt;/div&gt;
+&lt;div class=&quot;footer&quot;&gt;This is a footer&lt;/div&gt;
+              </pre>
+
+              <p>Example: Different footer each page, at the bottom:</p>
+
+              <pre data-lang="html">&lt;style&gt;
+  html,body { height: 100%; margin: 0; }  
+  .page {
+    page-break-before: always;
+    page-break-after: always;
+    height: 100%;
+    overflow: hidden;  
+    margin: 0;
+    position: relative;
+  }
+  .page-footer {
+    position: absolute;
+    bottom: 5px;
+  }
+&lt;/style&gt;
+&lt;div class=&quot;page&quot;&gt;
+  &lt;div class=&quot;page-contents&quot;&gt;Page 1&lt;/div&gt;
+  &lt;div class=&quot;page-footer&quot;&gt;Page 1 footer&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;page&quot;&gt;
+  &lt;div class=&quot;page-contents&quot;&gt;Page 2&lt;/div&gt;
+  &lt;div class=&quot;page-footer&quot;&gt;Page 2 footer&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+              <p>Make sure you specify a <code>pageSize</code> (eg: <code>a4</code>) and the <code>hideNotices</code> parameter is not set (or is set to <code>false</code>)</p>
+
+              <h5>Page numbers <a href="developers.html#html-pdf-api-css-page-numbers" name="html-pdf-api-css-page-numbers" class="bookmark"><i class="fal fa-bookmark"></i></a></h5>
+
+              <p>To add current page numbers and total pages count to a page footer (eg: &quot;Page 1 of 5&quot;) you can use Javascript. Here's an example:</p>
+
+<pre data-lang="html">&lt;style&gt;
+    html,body { height: 100%; margin: 0; }
+    .page {
+        page-break-before: always;
+        page-break-after: always;
+        height: 100%;
+        overflow: hidden;
+        margin: 0;
+        position: relative;
+    }
+    .page-footer {
+        position: absolute;
+        bottom: 5px;
+    }
+&lt;/style&gt;
+&lt;div class=&quot;page&quot;&gt;
+  &lt;div class=&quot;page-contents&quot;&gt;Page 1&lt;/div&gt;
+  &lt;div class=&quot;page-footer&quot;&gt;
+    &lt;span class=&quot;js-page-number&quot;&gt;&lt;/span&gt; / &lt;span class=&quot;js-pages-total&quot;&gt;&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;page&quot;&gt;
+  &lt;div class=&quot;page-contents&quot;&gt;Page 2&lt;/div&gt;
+  &lt;div class=&quot;page-footer&quot;&gt;
+    &lt;span class=&quot;js-page-number&quot;&gt;&lt;/span&gt; / &lt;span class=&quot;js-pages-total&quot;&gt;&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;page&quot;&gt;
+  &lt;div class=&quot;page-contents&quot;&gt;Page 3&lt;/div&gt;
+  &lt;div class=&quot;page-footer&quot;&gt;
+    &lt;span class=&quot;js-page-number&quot;&gt;&lt;/span&gt; / &lt;span class=&quot;js-pages-total&quot;&gt;&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+  (function() {
+    let pageCounter = 1;
+    const pageNumElems = document.getElementsByClassName('js-page-number');
+    Array.from(pageNumElems).forEach((elem) =&gt; {
+      elem.innerHTML = pageCounter;
+      pageCounter++;
+    });
+
+    const totalPagesCount = document.querySelectorAll('.page').length;
+    const pageTotals = document.getElementsByClassName('js-pages-total');
+    Array.from(pageTotals).forEach((elem) =&gt; {
+      elem.innerHTML = totalPagesCount;
+    });
+  })()
+&lt;/script&gt;
+</pre>
+
+<h5>Using Google web fonts in your PDF documents</h5>
+
+<p>Here's an example on how to use Google web fonts.</p>
+              
+<pre data-lang="html">&lt;html&gt;
+&lt;head&gt;
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Merriweather&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;style&gt;
+body {
+ font-family: 'Merriweather', serif;
+ font-size: 30px;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;Almost before we knew it, we had left the ground.&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+              <h5>Specific page size (A4, Letter) <a href="developers.html#html-pdf-api-css-a4-page" name="html-pdf-api-css-a4-page" class="bookmark"><i class="fal fa-bookmark"></i></a></h5>
+
+              <p>Ensure your HTML will render well in a specific page size (A4, Letter, etc.) when converted to PDF.</p>
+
+              <pre data-lang="html">&lt;style&gt;
+@page {
+    size: A4;
+    margin: 0;
+}
+.page {
+    width: 210mm;
+    height: 297mm;
+    margin: 0;
+}
+&lt;/style&gt;
+
+&lt;div class=&quot;page&quot;&gt;Page 1&lt;/div&gt;
+&lt;div class=&quot;page&quot;&gt;Page 2&lt;/div&gt;
+              </pre>              
+
+              <h5>Stronger guarantee that page is fully loaded</h5>
+
+              <p>On complex pages, ensure all content is fully loaded before converting to PDF. Avoids potential partial content issues.</p>
+              <p>When you decide the page finished loading (eg: your last ajax section was rendered), inject a special dom element on page.</p>
+
+              <pre data-lang="js">var el = document.createElement('div');
+
+el.style.display = 'none';
+el.id = 'pageFullyLoaded';
+
+document.body.appendChild(el);
+              </pre>
+
+              <p>Then make your API requests include <code>&quot;waitForSelector&quot;:&quot;#pageFullyLoaded&quot;</code>.</p>
+              <p>We'll wait for the selector to appear in page, then begin the PDF conversion.</p>
+              <p>Using the &quot;waitForSelector&quot; will not extend the timeout for the API request, the maximum time we wait for the page to load and convert it to PDF stays the same.</p>
+
+              <a name="html-pdf-api-samples"></a>
+              <h4>Code Samples</h4>
+
+              <h5>HTML to PDF in Bash Curl</h5>
+              <pre style="font-size: 12px;" data-lang="bash">$&gt; curl -i https://api.sejda.com/v2/html-pdf\
+  --fail --silent --show-error \
+  --header &quot;Content-Type: application/json&quot; \
+  --header &quot;Authorization: Token: api_Y0URAP1K3YH3R3&quot; \
+  --data '{&quot;url&quot;: &quot;https://example.com&quot;, &quot;viewportWidth&quot;:1200 }' &gt; out.pdf</pre>
+
+              <h5>HTML to PDF in Node.js Javascript</h5>
+
+              <pre style="font-size: 12px;" data-lang="javascript">// npm install request
+const request = require('request');
+const fs = require('fs');
+
+var opts = {
+  uri: 'https://api.sejda.com/v2/html-pdf',
+  headers: {
+    'Authorization' : 'Token: ' + apiKey,
+  },
+  json: {
+    'url': 'https://example.com',
+    'viewportWidth': 1200
+  }
+};
+
+request.post(opts)
+  .on('error', function(err){
+    return console.error(err);
+  })
+  .on('response', function(response) {
+    if (response.statusCode === 200) {
+      response.pipe(fs.createWriteStream('/tmp/out.pdf'))
+        .on('finish', function () {
+          console.log('PDF saved to disk');
+        });
+    } else {
+      return console.error('Got code: ' + response.statusCode);
+    }
+  });
+</pre>
+
+              <h5>HTML to PDF in Python</h5>
+
+              <pre data-lang="python">import requests
+
+url = 'https://api.sejda.com/v2/html-pdf'
+r = requests.post(url, json = {
+    'url': 'https://example.com',
+    'viewportWidth': 1200
+  }, headers = {
+    'Authorization': 'Token: {}'.format(apiKey)
+  })
+open('/tmp/out.pdf', 'wb').write(r.content)
+</pre>
+
+              <a name="html-pdf-api-samples-cors"></a>
+              <h5>HTML to PDF in Javascript with CORS</h5>
+
+              <pre style="" data-lang="js">&lt;script src=&quot;//www.sejda.com/js/sejda-js-api.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+  document.getElementById('downloadPdfBtn')
+    .addEventListener('click', function(e){
+      SejdaJsApi.htmlToPdf({
+        filename: 'out.pdf',
+        /* leave blank for one long page */
+        pageSize: 'a4',
+        publishableKey: 'api_public_y0urap1k3yh3r3',
+        htmlCode: document.querySelector('html').innerHTML,
+        /* url: window.location.href */
+        always: function() {
+          // PDF download should have started
+        },
+        error: function(err) {
+          console.error(err);
+          alert('An error occurred');
+        }
+      });
+    })
+&lt;/script&gt;
+/* Don't forget to configure your API Allowed domains, on your account page. */
+</pre>
+
+              <h5>HTML to PDF in Java</h5>
+
+              <pre style="font-size: 12px" data-lang="java">&lt;!-- Maven dependency --&gt;
+&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.httpcomponents&lt;/groupId&gt;
+  &lt;artifactId&gt;httpclient&lt;/artifactId&gt;
+	&lt;version&gt;4.5.8&lt;/version&gt;
+&lt;/dependency&gt;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+
+CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+HttpPost request = new HttpPost(&quot;https://api.sejda.com/v2/html-pdf&quot;);
+request.setHeader(HttpHeaders.AUTHORIZATION, &quot;Token: &quot; + apiKey);
+request.setEntity(new StringEntity(
+    &quot;{\&quot;url\&quot;: \&quot;https://example.com\&quot;, \&quot;viewportWidth\&quot;:1200 }&quot;,
+    ContentType.APPLICATION_JSON));
+
+HttpResponse response = httpClient.execute(request);
+if (response.getStatusLine().getStatusCode() == 200) {
+
+    try (InputStream in = response.getEntity().getContent();
+         OutputStream out = new FileOutputStream(new File(&quot;/tmp/out.pdf&quot;))) {
+        byte[] buffer = new byte[8 * 1024];
+        int bytesRead;
+        while ((bytesRead = in.read(buffer)) != -1) {
+            out.write(buffer, 0, bytesRead);
+        }
+    }
+}
+</pre>
+
+              <h5>HTML to PDF in PHP</h5>
+
+              <pre style="font-size: 12px" data-lang="php">$url = &quot;https://api.sejda.com/v2/html-pdf&quot;;
+$content = json_encode(array('url' =&gt; 'https://example.com'));
+
+$curl = curl_init($url);
+curl_setopt($curl, CURLOPT_HEADER, false);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+  &quot;Content-type: application/json&quot;,
+  &quot;Authorization: Token: &quot; . $apiKey));
+
+curl_setopt($curl, CURLOPT_POST, true);
+curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
+
+$response = curl_exec($curl);
+
+$status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+if ($status == 200) {
+  $fp = fopen(&quot;out.pdf&quot;, &quot;w&quot;);
+  fwrite($fp, $response);
+  fclose($fp);
+  print(&quot;PDF saved to disk&quot;);
+} else {
+  print(&quot;Error: failed with status $status, response $response, curl_error &quot; . curl_error($curl) . &quot;, curl_errno &quot; . curl_errno($curl));
+}
+</pre>
+              <h5>HTML to PDF in C# .NET</h5>
+
+<pre style="font-size: 12px" data-lang="csharp">using System.Net.Http;
+using Newtonsoft.Json.Linq;
+
+var baseUrl = &quot;https://api.sejda.com/v2/html-pdf&quot;;
+
+using (var client = new HttpClient())
+{
+  client.DefaultRequestHeaders.TryAddWithoutValidation(
+      &quot;Authorization&quot;, &quot;Token: &quot; + apiKey
+  );
+
+  var json = new JObject();
+  json.Add(&quot;url&quot;, &quot;https://example.com&quot;);
+  json.Add(&quot;viewportWidth&quot;, 1200);
+  //json.Add(&quot;htmlCode&quot;, File.ReadAllText(@&quot;c:\doc.html&quot;, Encoding.UTF8));
+
+  var content = new StringContent(json.ToString(), Encoding.UTF8, &quot;application/json&quot;);
+
+  using (var res = await client.PostAsync(baseUrl, content))
+  {
+    var statusCode = (int)res.StatusCode;
+
+    if (statusCode == 200)
+    {
+      var httpStream = await res.Content.ReadAsStreamAsync();
+      var outputFilePath = Path.GetTempFileName();
+      using (var fileStream = File.Create(outputFilePath))
+      using (var reader = new StreamReader(httpStream))
+      {
+        httpStream.CopyTo(fileStream);
+        fileStream.Flush();
+      }
+      // outputFilePath contains the PDF output
+    }
+    else
+    {
+      // retry, then handle error
+      throw new Exception(&quot;Unexpected response code: &quot; + statusCode);
+    }
+  }
+}
+</pre>
+
+              <section style="margin-top: 50px; margin-bottom: 50px">
+                <a name="api-other"></a>
+                <h3>API access to other PDF tools?</h3>
+
+                <p>We do not offer API access to other PDF tools at the moment (Eg: merge, compress, etc).</p>
+              </section>
+            </section>
+          </div>
+        </section>
+      </div>
+
+      <script data-src="/js/pages/developers.min.js?v=9" class="pageScripts"></script>
+      <section>
+    <script src="../cache/639/js/libs-and-partials.min.js" async="async" id="libsAndPartialsScript"></script>
+</section>
+    </section>
+  
+
+<div id="taskResultsModal" role="dialog" tabindex="-1" class="modal fade"></div>
+
+
+
+
+	
+</body>
+</html>  
+  
