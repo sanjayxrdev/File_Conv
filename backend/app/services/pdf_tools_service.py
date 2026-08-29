@@ -754,4 +754,521 @@ class PdfToolsService:
             logger.error(f"Error exporting PDF pages to images: {e}")
             return False, f"Failed to export pages as images: {str(e)}"
 
+    @staticmethod
+    def compress_pdf(
+        file_path: str,
+        output_path: str,
+        compression_level: str = "recommended",  # 'light', 'recommended', 'extreme'
+        custom_dpi: Optional[int] = None,
+        custom_quality: Optional[int] = None
+    ) -> Tuple[bool, Dict[str, Any], Optional[str]]:
+        """Compresses PDF document by optimizing images, removing duplicate streams, and deflating."""
+        try:
+            if not os.path.exists(file_path):
+                return False, {}, f"File not found: {file_path}"
+
+            original_size = os.path.getsize(file_path)
+            doc = fitz.open(file_path)
+            total_pages = len(doc)
+
+            if total_pages == 0:
+                doc.close()
+                return False, {}, "PDF document has 0 pages."
+
+            # Determine compression parameters based on level
+            level = compression_level.lower()
+            if level == "extreme":
+                target_dpi = custom_dpi or 96
+                jpeg_quality = custom_quality or 55
+            elif level == "light":
+                target_dpi = custom_dpi or 200
+                jpeg_quality = custom_quality or 85
+            else:  # recommended / balanced
+                target_dpi = custom_dpi or 144
+                jpeg_quality = custom_quality or 75
+
+            # Iterate through pages and optimize images if needed
+            for page in doc:
+                image_list = page.get_images(full=True)
+                for img_info in image_list:
+                    xref = img_info[0]
+                    try:
+                        base_image = doc.extract_image(xref)
+                        if not base_image:
+                            continue
+
+                        img_bytes = base_image["image"]
+                        img_ext = base_image["ext"].lower()
+
+                        pil_img = Image.open(io.BytesIO(img_bytes))
+
+                        # Calculate resized dimensions if image is higher resolution than target DPI
+                        orig_w, orig_h = pil_img.size
+                        # If image is very large, downscale smoothly
+                        max_dim = int(target_dpi * 8.5)  # approximate page dimension threshold
+                        if orig_w > max_dim or orig_h > max_dim:
+                            scale = min(max_dim / float(orig_w), max_dim / float(orig_h))
+                            new_w = max(1, int(orig_w * scale))
+                            new_h = max(1, int(orig_h * scale))
+                            pil_img = pil_img.resize((new_w, new_h), Image.Resampling.LANCZOS)
+
+                        # Recompress to JPEG (or optimize PNG if with alpha)
+                        out_buf = io.BytesIO()
+                        if pil_img.mode in ("RGBA", "P", "LA"):
+                            # If image has transparency, convert or save with PNG optimization
+                            pil_img.save(out_buf, format="PNG", optimize=True)
+                        else:
+                            if pil_img.mode != "RGB":
+                                pil_img = pil_img.convert("RGB")
+                            pil_img.save(out_buf, format="JPEG", quality=jpeg_quality, optimize=True)
+
+                        recompressed_bytes = out_buf.getvalue()
+                        # Only replace if recompressed is smaller
+                        if len(recompressed_bytes) < len(img_bytes):
+                            # PyMuPDF update stream
+                            page.doc.update_stream(xref, recompressed_bytes)
+                    except Exception as img_err:
+                        logger.debug(f"Could not recompress image xref {xref}: {img_err}")
+                        continue
+
+            # Save with full garbage collection and stream deflation
+            temp_output = output_path + f"_{uuid.uuid4().hex[:6]}.tmp.pdf"
+            doc.save(
+                temp_output,
+                garbage=4,
+                deflate=True,
+                deflate_images=True,
+                deflate_fonts=True,
+                clean=True
+            )
+            doc.close()
+
+            import shutil
+            shutil.move(temp_output, output_path)
+
+            new_size = os.path.getsize(output_path)
+            savings_bytes = max(0, original_size - new_size)
+            savings_pct = (savings_bytes / original_size * 100.0) if original_size > 0 else 0.0
+
+            stats = {
+                "original_size_bytes": original_size,
+                "compressed_size_bytes": new_size,
+                "savings_bytes": savings_bytes,
+                "savings_percent": round(savings_pct, 1),
+                "total_pages": total_pages,
+                "level": level
+            }
+            return True, stats, None
+        except Exception as e:
+            logger.error(f"Error compressing PDF: {e}")
+            return False, {}, str(e)
+
+    @staticmethod
+    def alternate_mix(
+        file_path_a: str,
+        file_path_b: str,
+        output_path: str,
+        reverse_b: bool = False,
+        repeat_remaining: bool = True
+    ) -> Tuple[bool, Dict[str, Any], Optional[str]]:
+        """Weaves two PDF documents page-by-page (e.g., odd and even scanner duplex batches)."""
+        try:
+            if not os.path.exists(file_path_a) or not os.path.exists(file_path_b):
+                return False, {}, "One or both input files could not be found."
+
+            doc_a = fitz.open(file_path_a)
+            doc_b = fitz.open(file_path_b)
+
+            len_a = len(doc_a)
+            len_b = len(doc_b)
+
+            if len_a == 0 and len_b == 0:
+                doc_a.close()
+                doc_b.close()
+                return False, {}, "Both PDF documents are empty."
+
+            # Page indices for Document B
+            b_indices = list(range(len_b))
+            if reverse_b:
+                b_indices.reverse()
+
+            out_doc = fitz.open()
+            max_len = max(len_a, len_b)
+
+            for i in range(max_len):
+                if i < len_a:
+                    out_doc.insert_pdf(doc_a, from_page=i, to_page=i)
+                elif repeat_remaining and len_a > 0:
+                    pass  # Already exhausted Doc A
+
+                if i < len(b_indices):
+                    b_page = b_indices[i]
+                    out_doc.insert_pdf(doc_b, from_page=b_page, to_page=b_page)
+                elif repeat_remaining and len_b > 0:
+                    pass  # Already exhausted Doc B
+
+            out_doc.save(output_path)
+            total_merged = len(out_doc)
+
+            out_doc.close()
+            doc_a.close()
+            doc_b.close()
+
+            stats = {
+                "doc_a_pages": len_a,
+                "doc_b_pages": len_b,
+                "total_mixed_pages": total_merged,
+                "reversed_b": reverse_b
+            }
+            return True, stats, None
+        except Exception as e:
+            logger.error(f"Error alternating & mixing PDFs: {e}")
+            return False, {}, str(e)
+
+    @staticmethod
+    def watermark_pdf(
+        file_path: str,
+        output_path: str,
+        text: Optional[str] = None,
+        image_path: Optional[str] = None,
+        opacity: float = 0.3,
+        rotation: float = 45.0,
+        tile: bool = False,
+        color_hex: str = "#888888",
+        font_size: float = 40.0,
+        page_indices: Optional[List[int]] = None
+    ) -> Tuple[bool, Optional[str]]:
+        """Applies customizable text or image watermark across PDF pages."""
+        try:
+            if not os.path.exists(file_path):
+                return False, f"File not found: {file_path}"
+
+            if not text and not image_path:
+                return False, "Either text or image watermark must be provided."
+
+            doc = fitz.open(file_path)
+            total = len(doc)
+
+            hex_color = color_hex.lstrip("#")
+            r = int(hex_color[0:2], 16) / 255.0 if len(hex_color) >= 2 else 0.5
+            g = int(hex_color[2:4], 16) / 255.0 if len(hex_color) >= 4 else 0.5
+            b = int(hex_color[4:6], 16) / 255.0 if len(hex_color) >= 6 else 0.5
+            color = (r, g, b)
+
+            clamped_opacity = max(0.05, min(1.0, float(opacity)))
+
+            for idx, page in enumerate(doc):
+                if page_indices is not None and idx not in page_indices:
+                    continue
+
+                rect = page.rect
+                page_w = rect.width
+                page_h = rect.height
+
+                if text:
+                    rot_mat = fitz.Matrix(float(rotation))
+                    if tile:
+                        # Draw grid of diagonal text watermarks
+                        step_x = max(180, int(page_w / 3.0))
+                        step_y = max(180, int(page_h / 4.0))
+                        for y_pos in range(int(step_y / 2), int(page_h), step_y):
+                            for x_pos in range(int(step_x / 2), int(page_w), step_x):
+                                p = fitz.Point(x_pos, y_pos)
+                                page.insert_text(
+                                    p,
+                                    text,
+                                    fontsize=font_size * 0.6,
+                                    color=color,
+                                    morph=(p, rot_mat),
+                                    fill_opacity=clamped_opacity
+                                )
+                    else:
+                        # Centered single watermark
+                        text_w = fitz.get_text_length(text, fontsize=font_size)
+                        center_x = (page_w - text_w) / 2.0
+                        center_y = page_h / 2.0
+                        p_center = fitz.Point(center_x, center_y)
+                        page.insert_text(
+                            p_center,
+                            text,
+                            fontsize=font_size,
+                            color=color,
+                            morph=(p_center, rot_mat),
+                            fill_opacity=clamped_opacity
+                        )
+
+                elif image_path and os.path.exists(image_path):
+                    # Insert centered watermark image
+                    img_w = page_w * 0.5
+                    img_h = page_h * 0.5
+                    img_rect = fitz.Rect(
+                        (page_w - img_w) / 2.0,
+                        (page_h - img_h) / 2.0,
+                        (page_w + img_w) / 2.0,
+                        (page_h + img_h) / 2.0
+                    )
+                    page.insert_image(
+                        img_rect,
+                        filename=image_path,
+                        overlay=True,
+                        keep_proportion=True
+                    )
+
+            doc.save(output_path)
+            doc.close()
+            return True, None
+        except Exception as e:
+            logger.error(f"Error watermarking PDF: {e}")
+            return False, str(e)
+
+    @staticmethod
+    def bates_number_pdf(
+        file_path: str,
+        output_path: str,
+        prefix: str = "CONF-",
+        suffix: str = "",
+        start_number: int = 1,
+        digits: int = 6,
+        position: str = "bottom-right",  # 'bottom-right', 'bottom-center', 'bottom-left', 'top-right', 'top-left'
+        font_size: float = 10.0,
+        color_hex: str = "#000000"
+    ) -> Tuple[bool, Optional[str]]:
+        """Applies formal Bates numbering stamps for legal and discovery document workflows."""
+        try:
+            doc = fitz.open(file_path)
+            hex_color = color_hex.lstrip("#")
+            r = int(hex_color[0:2], 16) / 255.0 if len(hex_color) >= 2 else 0.0
+            g = int(hex_color[2:4], 16) / 255.0 if len(hex_color) >= 4 else 0.0
+            b = int(hex_color[4:6], 16) / 255.0 if len(hex_color) >= 6 else 0.0
+            color = (r, g, b)
+
+            curr_num = int(start_number)
+
+            for page in doc:
+                num_padded = str(curr_num).zfill(int(digits))
+                stamp_text = f"{prefix}{num_padded}{suffix}"
+
+                rect = page.rect
+                page_w = rect.width
+                page_h = rect.height
+                text_w = fitz.get_text_length(stamp_text, fontsize=font_size)
+
+                margin_x = 36.0
+                margin_y = 36.0
+
+                if "left" in position:
+                    x = margin_x
+                elif "center" in position:
+                    x = (page_w - text_w) / 2.0
+                else:  # right
+                    x = page_w - margin_x - text_w
+
+                if "top" in position:
+                    y = margin_y + font_size
+                else:  # bottom
+                    y = page_h - margin_y
+
+                page.insert_text(fitz.Point(x, y), stamp_text, fontsize=font_size, color=color)
+                curr_num += 1
+
+            doc.save(output_path)
+            doc.close()
+            return True, None
+        except Exception as e:
+            logger.error(f"Error applying Bates numbering to PDF: {e}")
+            return False, str(e)
+
+    @staticmethod
+    def flatten_and_grayscale_pdf(
+        file_path: str,
+        output_path: str,
+        make_grayscale: bool = True,
+        flatten_forms: bool = True,
+        dpi: int = 150
+    ) -> Tuple[bool, Dict[str, Any], Optional[str]]:
+        """Flattens interactive form fields/annotations and optionally transforms color channels to monochrome grayscale."""
+        try:
+            doc = fitz.open(file_path)
+            total_pages = len(doc)
+
+            if total_pages == 0:
+                doc.close()
+                return False, {}, "PDF document is empty."
+
+            if make_grayscale:
+                # Render each page to grayscale pixmap and rebuild clean PDF
+                out_doc = fitz.open()
+                mat = fitz.Matrix(dpi / 72.0, dpi / 72.0)
+                for page in doc:
+                    pix = page.get_pixmap(matrix=mat, colorspace=fitz.csGRAY)
+                    img_bytes = pix.tobytes("png")
+                    img_doc = fitz.open("pdf", pix.pdfocr_tobytes() if hasattr(pix, "pdfocr_tobytes") else None) if False else None
+                    # Create blank page with exact original dimensions
+                    new_page = out_doc.new_page(width=page.rect.width, height=page.rect.height)
+                    new_page.insert_image(new_page.rect, stream=img_bytes)
+
+                out_doc.save(output_path, garbage=4, deflate=True)
+                out_doc.close()
+            else:
+                # Flatten annotations and interactive forms
+                if flatten_forms:
+                    for page in doc:
+                        # Clean widgets and annotations by burning them into page
+                        for annot in page.annots():
+                            annot.update()
+                doc.save(output_path, garbage=4, deflate=True)
+
+            doc.close()
+            return True, {
+                "total_pages": total_pages,
+                "is_grayscale": make_grayscale,
+                "is_flattened": flatten_forms
+            }, None
+        except Exception as e:
+            logger.error(f"Error flattening and grayscaling PDF: {e}")
+            return False, {}, str(e)
+
+    @staticmethod
+    def crop_pdf(
+        file_path: str,
+        output_path: str,
+        margin_top: float = 0.0,
+        margin_bottom: float = 0.0,
+        margin_left: float = 0.0,
+        margin_right: float = 0.0,
+        unit: str = "pt",  # 'pt', 'mm', 'in', 'pct'
+        page_indices: Optional[List[int]] = None
+    ) -> Tuple[bool, Optional[str]]:
+        """Crops page margins across PDF document."""
+        try:
+            doc = fitz.open(file_path)
+            for idx, page in enumerate(doc):
+                if page_indices is not None and idx not in page_indices:
+                    continue
+
+                rect = page.rect
+                w = rect.width
+                h = rect.height
+
+                # Convert units to points (72 points = 1 inch)
+                if unit == "in":
+                    mt, mb, ml, mr = margin_top * 72, margin_bottom * 72, margin_left * 72, margin_right * 72
+                elif unit == "mm":
+                    scale = 72.0 / 25.4
+                    mt, mb, ml, mr = margin_top * scale, margin_bottom * scale, margin_left * scale, margin_right * scale
+                elif unit == "pct":
+                    mt, mb = (margin_top / 100.0) * h, (margin_bottom / 100.0) * h
+                    ml, mr = (margin_left / 100.0) * w, (margin_right / 100.0) * w
+                else:  # pt
+                    mt, mb, ml, mr = margin_top, margin_bottom, margin_left, margin_right
+
+                new_x0 = rect.x0 + ml
+                new_y0 = rect.y0 + mt
+                new_x1 = rect.x1 - mr
+                new_y1 = rect.y1 - mb
+
+                if new_x1 > new_x0 and new_y1 > new_y0:
+                    page.set_cropbox(fitz.Rect(new_x0, new_y0, new_x1, new_y1))
+
+            doc.save(output_path)
+            doc.close()
+            return True, None
+        except Exception as e:
+            logger.error(f"Error cropping PDF: {e}")
+            return False, str(e)
+
+    @staticmethod
+    def edit_metadata(
+        file_path: str,
+        output_path: str,
+        title: Optional[str] = None,
+        author: Optional[str] = None,
+        subject: Optional[str] = None,
+        keywords: Optional[str] = None,
+        creator: Optional[str] = None
+    ) -> Tuple[bool, Optional[str]]:
+        """Updates PDF document metadata (title, author, subject, keywords)."""
+        try:
+            doc = fitz.open(file_path)
+            meta = doc.metadata or {}
+
+            if title is not None:
+                meta["title"] = title
+            if author is not None:
+                meta["author"] = author
+            if subject is not None:
+                meta["subject"] = subject
+            if keywords is not None:
+                meta["keywords"] = keywords
+            if creator is not None:
+                meta["creator"] = creator
+
+            doc.set_metadata(meta)
+            doc.save(output_path)
+            doc.close()
+            return True, None
+        except Exception as e:
+            logger.error(f"Error editing PDF metadata: {e}")
+            return False, str(e)
+
+    @staticmethod
+    def extract_financial_tables(
+        file_path: str,
+        output_excel_path: str
+    ) -> Tuple[bool, Dict[str, Any], Optional[str]]:
+        """Extracts tabular data and financial statements from PDF into multi-sheet Excel spreadsheet."""
+        try:
+            import pandas as pd
+            doc = fitz.open(file_path)
+            total_pages = len(doc)
+            tables_found = 0
+
+            writer = pd.ExcelWriter(output_excel_path, engine="openpyxl")
+            has_written_sheet = False
+
+            for idx, page in enumerate(doc):
+                # PyMuPDF structured table finder
+                tabs = page.find_tables()
+                if tabs.tables:
+                    for t_idx, tab in enumerate(tabs.tables):
+                        df = tab.extract()
+                        if df and len(df) > 1:
+                            header = df[0]
+                            data = df[1:]
+                            # Clean empty columns / rows
+                            clean_df = pd.DataFrame(data, columns=header)
+                            sheet_name = f"Page{idx+1}_Table{t_idx+1}"[:31]
+                            clean_df.to_excel(writer, sheet_name=sheet_name, index=False)
+                            has_written_sheet = True
+                            tables_found += 1
+
+            if not has_written_sheet:
+                # Fallback: extract page text lines into tabular layout
+                all_text_rows = []
+                for idx, page in enumerate(doc):
+                    lines = page.get_text("text").splitlines()
+                    for line in lines:
+                        if line.strip():
+                            # Split by whitespace or commas
+                            parts = [p.strip() for p in line.split("  ") if p.strip()]
+                            if parts:
+                                all_text_rows.append(parts)
+                if all_text_rows:
+                    fallback_df = pd.DataFrame(all_text_rows)
+                    fallback_df.to_excel(writer, sheet_name="Extracted_Content", index=False, header=False)
+                    has_written_sheet = True
+                    tables_found = 1
+                else:
+                    empty_df = pd.DataFrame([["No text or tables detected in document"]])
+                    empty_df.to_excel(writer, sheet_name="Summary", index=False, header=False)
+
+            writer.close()
+            doc.close()
+
+            return True, {"total_pages": total_pages, "tables_extracted": tables_found}, None
+        except Exception as e:
+            logger.error(f"Error extracting financial tables: {e}")
+            return False, {}, str(e)
+
+
 

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import {
   Scan,
   FileText,
@@ -31,6 +31,8 @@ type ActiveTab = 'markdown' | 'tables' | 'text' | 'ast' | 'html';
 
 export const OcrStudio: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const returnHash = (location.state as any)?.returnHash || '#tools-directory';
   const { addHistoryItem } = useHistory();
   const [file, setFile] = useState<File | null>(null);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
@@ -157,7 +159,7 @@ export const OcrStudio: React.FC = () => {
       {/* Breadcrumb & Hero */}
       <div ref={heroRef} className="max-w-5xl mx-auto px-4 pt-8">
         <button
-          onClick={() => navigate('/')}
+          onClick={() => navigate(`/${returnHash}`)}
           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-card bg-surface-raised border border-surface-border text-xs font-medium text-ink-muted hover:text-ink-primary hover:bg-surface-border/50 transition-all mb-8"
         >
           <ArrowLeft className="w-3.5 h-3.5" weight="bold" />
@@ -210,8 +212,8 @@ export const OcrStudio: React.FC = () => {
               onClick={() => fileInputRef.current?.click()}
               className={`cursor-pointer rounded-card-lg p-12 text-center transition-all duration-200 border-2 border-dashed ${
                 isDragOver
-                  ? 'border-purple-600 bg-purple-50/50'
-                  : 'border-surface-border hover:border-purple-300 bg-surface-card'
+                  ? 'border-purple-500 bg-surface-raised'
+                  : 'border-surface-border hover:border-purple-500/60 bg-surface-card'
               }`}
             >
               <input

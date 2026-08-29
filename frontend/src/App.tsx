@@ -19,10 +19,15 @@ import { ProtectPdfPage } from './pages/pdf/ProtectPdfPage';
 import { TransparentSignaturePage } from './pages/pdf/TransparentSignaturePage';
 import { RenamePdfPage } from './pages/pdf/RenamePdfPage';
 import { ExportPdfImagesPage } from './pages/pdf/ExportPdfImagesPage';
-import { AuthProvider } from './context/AuthContext';
+import { CompressPdfPage } from './pages/pdf/CompressPdfPage';
+import { AlternateMixPage } from './pages/pdf/AlternateMixPage';
+import { WatermarkPdfPage } from './pages/pdf/WatermarkPdfPage';
+import { BatesNumberingPage } from './pages/pdf/BatesNumberingPage';
+import { FlattenGrayscalePage } from './pages/pdf/FlattenGrayscalePage';
+import { CropPdfPage } from './pages/pdf/CropPdfPage';
+import { FinancialTableExtractorPage } from './pages/pdf/FinancialTableExtractorPage';
 import { HistoryProvider } from './context/HistoryContext';
 import { ThemeProvider } from './context/ThemeContext';
-import { AuthModal } from './components/AuthModal';
 import { HistoryDrawer } from './components/HistoryDrawer';
 import { QuickCommandPalette } from './components/QuickCommandPalette';
 
@@ -143,6 +148,13 @@ export const AppContent: React.FC = () => {
           <Route path="/pdf/transparent-signature" element={<TransparentSignaturePage />} />
           <Route path="/pdf/rename" element={<RenamePdfPage />} />
           <Route path="/pdf/export-images" element={<ExportPdfImagesPage />} />
+          <Route path="/pdf/compress" element={<CompressPdfPage />} />
+          <Route path="/pdf/alternate-mix" element={<AlternateMixPage />} />
+          <Route path="/pdf/watermark" element={<WatermarkPdfPage />} />
+          <Route path="/pdf/bates-numbering" element={<BatesNumberingPage />} />
+          <Route path="/pdf/flatten-grayscale" element={<FlattenGrayscalePage />} />
+          <Route path="/pdf/crop" element={<CropPdfPage />} />
+          <Route path="/pdf/financial-extractor" element={<FinancialTableExtractorPage />} />
           <Route
             path="/:categorySlug"
             element={<ConverterPage registry={registry} />}
@@ -150,9 +162,8 @@ export const AppContent: React.FC = () => {
         </Routes>
       </main>
 
-      {/* History Drawer, Auth Modal & Quick Command Palette */}
+      {/* History Drawer & Quick Command Palette */}
       <HistoryDrawer />
-      <AuthModal />
       <QuickCommandPalette />
 
       {/* Minimal Footer */}
@@ -182,13 +193,11 @@ export const App: React.FC = () => {
   return (
     <ErrorBoundary>
       <ThemeProvider>
-        <AuthProvider>
-          <HistoryProvider>
-            <BrowserRouter>
-              <AppContent />
-            </BrowserRouter>
-          </HistoryProvider>
-        </AuthProvider>
+        <HistoryProvider>
+          <BrowserRouter>
+            <AppContent />
+          </BrowserRouter>
+        </HistoryProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );

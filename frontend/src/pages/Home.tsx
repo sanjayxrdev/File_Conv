@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FormatsRegistryResponse } from '../types';
 import { FileDropzone } from '../components/FileDropzone';
@@ -40,7 +40,12 @@ import {
   Globe,
   Database,
   Cube,
-  Perspective
+  Perspective,
+  ArrowsInLineVertical,
+  Stamp,
+  IdentificationCard,
+  DropHalf,
+  Crop
 } from '@phosphor-icons/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -174,6 +179,78 @@ export const TOOLS_LIST: ToolConfig[] = [
     route: '/pdf/rename',
   },
   {
+    id: 'compress-pdf',
+    title: 'Compress PDF Document',
+    category: 'PDF Tools',
+    description: 'Reduce PDF file size significantly while preserving crisp text and high visual clarity.',
+    iconName: 'ArrowsInLineVertical',
+    accentBg: 'bg-accent-green',
+    accentText: 'text-accent-green-text',
+    route: '/pdf/compress',
+    badge: 'Popular',
+  },
+  {
+    id: 'alternate-mix-pdf',
+    title: 'Alternate & Mix PDF (Duplex)',
+    category: 'PDF Tools',
+    description: 'Weave odd and even scanned PDF batches together into a single sorted duplex document.',
+    iconName: 'GitMerge',
+    accentBg: 'bg-accent-blue',
+    accentText: 'text-accent-blue-text',
+    route: '/pdf/alternate-mix',
+  },
+  {
+    id: 'watermark-pdf',
+    title: 'Watermark PDF Studio',
+    category: 'PDF Tools',
+    description: 'Stamp custom text or logo image watermarks with precise opacity, angle, and tile settings.',
+    iconName: 'Stamp',
+    accentBg: 'bg-accent-yellow',
+    accentText: 'text-accent-yellow-text',
+    route: '/pdf/watermark',
+  },
+  {
+    id: 'bates-numbering-pdf',
+    title: 'Bates Numbering for PDF',
+    category: 'PDF Tools',
+    description: 'Apply standardized, sequential Bates numbering stamps for legal and corporate archives.',
+    iconName: 'IdentificationCard',
+    accentBg: 'bg-accent-purple',
+    accentText: 'text-accent-purple-text',
+    route: '/pdf/bates-numbering',
+  },
+  {
+    id: 'financial-extractor-pdf',
+    title: 'Bank Statement to Excel (.xlsx)',
+    category: 'OCR & AI',
+    description: 'Extract tables, transactions, and balance sheets from PDF into formatted Microsoft Excel workbooks.',
+    iconName: 'Table',
+    accentBg: 'bg-accent-green',
+    accentText: 'text-accent-green-text',
+    route: '/pdf/financial-extractor',
+    badge: 'Smart AI',
+  },
+  {
+    id: 'flatten-grayscale-pdf',
+    title: 'Flatten & Grayscale (Print Optimizer)',
+    category: 'PDF Tools',
+    description: 'Convert colored documents to ink-saving monochrome grayscale and lock interactive form fields.',
+    iconName: 'DropHalf',
+    accentBg: 'bg-accent-blue',
+    accentText: 'text-accent-blue-text',
+    route: '/pdf/flatten-grayscale',
+  },
+  {
+    id: 'crop-pdf',
+    title: 'Crop PDF Margins & Bleed',
+    category: 'PDF Tools',
+    description: 'Trim scanner borders and excessive page margins across all or selected PDF pages.',
+    iconName: 'Crop',
+    accentBg: 'bg-accent-red',
+    accentText: 'text-accent-red-text',
+    route: '/pdf/crop',
+  },
+  {
     id: 'merge-converter',
     title: 'Multi-Format File Merger',
     category: 'Merging',
@@ -252,6 +329,20 @@ interface HomeProps {
 
 export const Home: React.FC<HomeProps> = ({ registry }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Auto-scroll to directory/tool if returning from converter page with a hash
+  useEffect(() => {
+    if (location.hash) {
+      const targetId = location.hash.replace('#', '');
+      const elem = document.getElementById(targetId);
+      if (elem) {
+        setTimeout(() => {
+          elem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      }
+    }
+  }, [location.hash, location.key]);
 
   // Search & Category Filters
   const [searchQuery, setSearchQuery] = useState('');
@@ -333,17 +424,28 @@ export const Home: React.FC<HomeProps> = ({ registry }) => {
 
     try {
       const resp = await startBatchConversion(selectedFiles, targetExt);
+      
+      // Pre-populate files so every file immediately shows in the list with live converting state
+      const initialSubFiles = selectedFiles.map((f, idx) => ({
+        job_id: resp.job_ids?.[idx] || `job_${idx}`,
+        original_filename: f.name,
+        status: 'processing',
+        progress: 10,
+      }));
+
       setBatchState({
         batch_id: resp.batch_id,
         status: 'processing',
-        progress: 0,
+        progress: 10,
         total_files: resp.total_files,
         completed_files: 0,
         failed_files: 0,
-        files: [],
+        files: initialSubFiles,
       });
 
-      const pollInterval = window.setInterval(async () => {
+      let pollIntervalId: number | null = null;
+
+      const fetchStatus = async () => {
         try {
           const status = await getBatchStatus(resp.batch_id);
           setBatchState({
@@ -354,19 +456,22 @@ export const Home: React.FC<HomeProps> = ({ registry }) => {
             completed_files: status.completed_files,
             failed_files: status.failed_files,
             zip_download_url: status.zip_download_url,
-            files: status.files,
+            files: status.files && status.files.length > 0 ? status.files : initialSubFiles,
           });
 
           if (status.status === 'completed' || status.status === 'failed') {
-            clearInterval(pollInterval);
+            if (pollIntervalId) clearInterval(pollIntervalId);
             setIsBatchSubmitting(false);
           }
         } catch {
-          clearInterval(pollInterval);
+          if (pollIntervalId) clearInterval(pollIntervalId);
           setIsBatchSubmitting(false);
           setBatchError('Error polling batch status.');
         }
-      }, 1000);
+      };
+
+      pollIntervalId = window.setInterval(fetchStatus, 300);
+      fetchStatus();
     } catch (err: any) {
       setIsBatchSubmitting(false);
       setBatchError(err.message || 'Failed to start batch conversion.');
@@ -405,6 +510,16 @@ export const Home: React.FC<HomeProps> = ({ registry }) => {
         return <GitMerge className={className} weight="bold" />;
       case 'Lock':
         return <Lock className={className} weight="bold" />;
+      case 'ArrowsInLineVertical':
+        return <ArrowsInLineVertical className={className} weight="bold" />;
+      case 'Stamp':
+        return <Stamp className={className} weight="bold" />;
+      case 'IdentificationCard':
+        return <IdentificationCard className={className} weight="bold" />;
+      case 'DropHalf':
+        return <DropHalf className={className} weight="bold" />;
+      case 'Crop':
+        return <Crop className={className} weight="bold" />;
       default:
         return <ArrowsLeftRight className={className} weight="bold" />;
     }
@@ -816,7 +931,7 @@ export const Home: React.FC<HomeProps> = ({ registry }) => {
       </div>
 
       {/* Complete Tools & Formats Directory */}
-      <div ref={toolsSectionRef} className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 scroll-mt-20">
+      <div ref={toolsSectionRef} id="tools-directory" className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10 scroll-mt-20">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div className="space-y-1">
             <h2 className="font-serif text-3xl sm:text-4xl text-ink-primary tracking-tight">
@@ -865,15 +980,17 @@ export const Home: React.FC<HomeProps> = ({ registry }) => {
             {filteredTools.map((tool) => (
               <motion.div
                 key={tool.id}
+                id={`tool-${tool.id}`}
                 layout
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.2 }}
+                className="scroll-mt-24"
               >
                 <Card3DTilt maxRotation={6} scale={1.02}>
                   <div
-                    onClick={() => navigate(tool.route)}
+                    onClick={() => navigate(tool.route, { state: { returnHash: `#tool-${tool.id}` } })}
                     className="p-5 rounded-card-lg bg-surface-card border border-surface-border hover:border-ink-muted transition-all cursor-pointer space-y-3 group shadow-xs h-full flex flex-col justify-between"
                   >
                     <div className="space-y-3">

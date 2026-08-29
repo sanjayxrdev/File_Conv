@@ -109,7 +109,7 @@ export const MergeDropzone: React.FC<MergeDropzoneProps> = ({ onMergeSubmit, isS
       <div
         ref={dropAreaRef}
         onClick={() => fileInputRef.current?.click()}
-        className="cursor-pointer rounded-card-lg bg-surface-card p-10 text-center transition-all duration-200 border-2 border-dashed border-surface-border hover:border-ink-faint"
+        className="cursor-pointer rounded-card-lg bg-surface-card p-10 text-center transition-all duration-200 border-2 border-dashed border-surface-border hover:border-ink-primary"
       >
         <input
           type="file"

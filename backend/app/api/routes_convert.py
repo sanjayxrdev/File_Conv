@@ -350,28 +350,53 @@ async def download_converted_file(job_id: str, custom_filename: Optional[str] = 
 
     import zipfile
     base_name = job.original_filename.rsplit(".", 1)[0]
-    is_zip = zipfile.is_zipfile(job.output_path)
+    target_format = job.target_format.lower().lstrip(".")
 
-    if is_zip:
-        output_filename = f"{base_name}_all_pages.zip"
+    mime_map = {
+        "docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "doc": "application/msword",
+        "pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+        "ppt": "application/vnd.ms-powerpoint",
+        "xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "xls": "application/vnd.ms-excel",
+        "pdf": "application/pdf",
+        "png": "image/png",
+        "jpg": "image/jpeg",
+        "jpeg": "image/jpeg",
+        "webp": "image/webp",
+        "txt": "text/plain; charset=utf-8",
+        "md": "text/markdown; charset=utf-8",
+        "csv": "text/csv; charset=utf-8",
+        "html": "text/html; charset=utf-8",
+        "mp4": "video/mp4",
+        "webm": "video/webm",
+        "mp3": "audio/mpeg",
+        "wav": "audio/wav",
+        "zip": "application/zip",
+    }
+
+    # Only treat as ZIP if target format is explicitly zip OR multi-page image export package
+    is_multi_page_image_zip = (
+        target_format in ["png", "jpg", "jpeg"]
+        and zipfile.is_zipfile(job.output_path)
+    )
+
+    if target_format == "zip" or is_multi_page_image_zip:
+        output_filename = f"{base_name}_all_pages.zip" if is_multi_page_image_zip else f"{base_name}.zip"
         media_type = "application/zip"
     elif custom_filename:
         # Sanitize custom filename and ensure correct extension
         clean_name = custom_filename.replace("/", "_").replace("\\", "_").replace(":", "_").replace("*", "_").replace("?", "_").replace('"', "_").replace("<", "_").replace(">", "_").replace("|", "_").strip()
-        target_ext = f".{job.target_format.lower()}"
-        # Strip repeated target extension
+        target_ext = f".{target_format}"
         while clean_name.lower().endswith(f"{target_ext}{target_ext}"):
             clean_name = clean_name[:-len(target_ext)]
         if not clean_name.lower().endswith(target_ext):
-            if "." in clean_name and clean_name.rsplit(".", 1)[1].lower() == job.target_format.lower():
-                pass
-            else:
-                clean_name = f"{clean_name.rsplit('.', 1)[0] if '.' in clean_name else clean_name}{target_ext}"
+            clean_name = f"{clean_name.rsplit('.', 1)[0] if '.' in clean_name else clean_name}{target_ext}"
         output_filename = clean_name
-        media_type = "application/octet-stream"
+        media_type = mime_map.get(target_format, "application/octet-stream")
     else:
-        output_filename = f"{base_name}.{job.target_format}"
-        media_type = "application/octet-stream"
+        output_filename = f"{base_name}.{target_format}"
+        media_type = mime_map.get(target_format, "application/octet-stream")
 
     return FileResponse(
         path=job.output_path,

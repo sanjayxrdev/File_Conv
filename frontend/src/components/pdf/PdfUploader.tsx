@@ -73,8 +73,8 @@ export const PdfUploader: React.FC<PdfUploaderProps> = ({
           onClick={() => fileInputRef.current?.click()}
           className={`relative border-2 border-dashed rounded-card-lg p-8 sm:p-12 text-center cursor-pointer transition-all duration-200 ${
             isDragOver
-              ? 'border-ink-primary bg-[#F7F6F3]'
-              : 'border-surface-border bg-surface-card hover:border-ink-primary/40 hover:bg-[#FDFDFD]'
+              ? 'border-ink-primary bg-surface-raised'
+              : 'border-surface-border bg-surface-card hover:border-ink-primary'
           }`}
         >
           <input

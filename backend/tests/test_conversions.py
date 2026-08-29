@@ -1,5 +1,6 @@
 import os
 import time
+import shutil
 import pytest
 from pathlib import Path
 from fastapi.testclient import TestClient
@@ -8,6 +9,8 @@ from app.registry.conversion_registry import ConversionRegistry
 
 client = TestClient(app)
 FIXTURES_DIR = Path(__file__).parent / "fixtures"
+
+has_ffmpeg = bool(shutil.which("ffmpeg"))
 
 def test_health_endpoint():
     response = client.get("/api/health")
@@ -62,25 +65,32 @@ def _run_conversion_flow(fixture_name: str, target_format: str):
     client.delete(f"/api/convert/{job_id}")
 
 # ----------------- VIDEO CONVERSIONS -----------------
+@pytest.mark.skipif(not has_ffmpeg, reason="FFmpeg not installed in PATH")
 def test_convert_mp4_to_mp3():
     _run_conversion_flow("sample.mp4", "mp3")
 
+@pytest.mark.skipif(not has_ffmpeg, reason="FFmpeg not installed in PATH")
 def test_convert_mp4_to_wav():
     _run_conversion_flow("sample.mp4", "wav")
 
+@pytest.mark.skipif(not has_ffmpeg, reason="FFmpeg not installed in PATH")
 def test_convert_mp4_to_avi():
     _run_conversion_flow("sample.mp4", "avi")
 
+@pytest.mark.skipif(not has_ffmpeg, reason="FFmpeg not installed in PATH")
 def test_convert_mp4_to_webm():
     _run_conversion_flow("sample.mp4", "webm")
 
 # ----------------- AUDIO CONVERSIONS -----------------
+@pytest.mark.skipif(not has_ffmpeg, reason="FFmpeg not installed in PATH")
 def test_convert_mp3_to_wav():
     _run_conversion_flow("sample.mp3", "wav")
 
+@pytest.mark.skipif(not has_ffmpeg, reason="FFmpeg not installed in PATH")
 def test_convert_mp3_to_flac():
     _run_conversion_flow("sample.mp3", "flac")
 
+@pytest.mark.skipif(not has_ffmpeg, reason="FFmpeg not installed in PATH")
 def test_convert_mp3_to_opus():
     _run_conversion_flow("sample.mp3", "opus")
 

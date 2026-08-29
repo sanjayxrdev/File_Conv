@@ -768,3 +768,516 @@ async def export_pdf_images(
     }
 
 
+@router.post("/pdf/compress")
+async def compress_pdf_endpoint(
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...),
+    compression_level: str = Form("recommended"),  # 'light', 'recommended', 'extreme'
+    custom_dpi: Optional[int] = Form(None),
+    custom_quality: Optional[int] = Form(None)
+):
+    """Compresses PDF document using multi-level optimization."""
+    job_id = str(uuid.uuid4())
+    original_name = ValidationService.sanitize_filename(file.filename or "document.pdf")
+    base_name = original_name.rsplit(".", 1)[0]
+
+    input_path, bytes_len = await FileService.save_uploaded_file(file, job_id, "pdf")
+
+    job = conversion_service.create_job(
+        job_id=job_id,
+        original_filename=f"{base_name}_compressed.pdf",
+        source_ext="pdf",
+        target_ext="pdf",
+        input_path=input_path,
+        file_size_bytes=bytes_len
+    )
+
+    async def async_worker():
+        job.status = JobStatus.PROCESSING
+        job.progress = 25
+        job.message = "Compressing images and deflating PDF streams..."
+
+        success, stats, err = PdfToolsService.compress_pdf(
+            file_path=input_path,
+            output_path=job.output_path,
+            compression_level=compression_level,
+            custom_dpi=custom_dpi,
+            custom_quality=custom_quality
+        )
+
+        try:
+            os.remove(input_path)
+        except Exception:
+            pass
+
+        if success and os.path.exists(job.output_path):
+            job.status = JobStatus.COMPLETED
+            job.progress = 100
+            job.message = f"PDF compressed successfully! Saved {stats.get('savings_percent', 0)}% of file size."
+            job.output_size_bytes = os.path.getsize(job.output_path)
+        else:
+            job.status = JobStatus.FAILED
+            job.progress = 0
+            job.error = err or "Could not compress PDF document."
+
+    background_tasks.add_task(async_worker)
+
+    return {
+        "job_id": job_id,
+        "status": job.status,
+        "message": "Compress PDF job submitted."
+    }
+
+
+@router.post("/pdf/alternate-mix")
+async def alternate_mix_endpoint(
+    background_tasks: BackgroundTasks,
+    file_a: UploadFile = File(...),
+    file_b: UploadFile = File(...),
+    reverse_b: bool = Form(False),
+    repeat_remaining: bool = Form(True)
+):
+    """Weaves two PDF documents page-by-page (odd and even duplex scanner pages)."""
+    job_id = str(uuid.uuid4())
+    name_a = ValidationService.sanitize_filename(file_a.filename or "doc_a.pdf").rsplit(".", 1)[0]
+
+    input_path_a, len_a = await FileService.save_uploaded_file(file_a, f"{job_id}_a", "pdf")
+    input_path_b, len_b = await FileService.save_uploaded_file(file_b, f"{job_id}_b", "pdf")
+
+    job = conversion_service.create_job(
+        job_id=job_id,
+        original_filename=f"{name_a}_mixed.pdf",
+        source_ext="pdf",
+        target_ext="pdf",
+        input_path=input_path_a,
+        file_size_bytes=len_a + len_b
+    )
+
+    async def async_worker():
+        job.status = JobStatus.PROCESSING
+        job.progress = 30
+        job.message = "Weaving odd and even pages sequentially..."
+
+        success, stats, err = PdfToolsService.alternate_mix(
+            file_path_a=input_path_a,
+            file_path_b=input_path_b,
+            output_path=job.output_path,
+            reverse_b=reverse_b,
+            repeat_remaining=repeat_remaining
+        )
+
+        for p in [input_path_a, input_path_b]:
+            try:
+                os.remove(p)
+            except Exception:
+                pass
+
+        if success and os.path.exists(job.output_path):
+            job.status = JobStatus.COMPLETED
+            job.progress = 100
+            job.message = f"Mixed {stats.get('total_mixed_pages', 0)} pages into combined document successfully."
+            job.output_size_bytes = os.path.getsize(job.output_path)
+        else:
+            job.status = JobStatus.FAILED
+            job.progress = 0
+            job.error = err or "Could not alternate & mix PDF documents."
+
+    background_tasks.add_task(async_worker)
+
+    return {
+        "job_id": job_id,
+        "status": job.status,
+        "message": "Alternate & Mix PDF job submitted."
+    }
+
+
+@router.post("/pdf/watermark")
+async def watermark_pdf_endpoint(
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...),
+    watermark_image: Optional[UploadFile] = File(None),
+    text: Optional[str] = Form(None),
+    opacity: float = Form(0.3),
+    rotation: float = Form(45.0),
+    tile: bool = Form(False),
+    color_hex: str = Form("#888888"),
+    font_size: float = Form(40.0)
+):
+    """Applies customizable text or image watermark across PDF document."""
+    job_id = str(uuid.uuid4())
+    original_name = ValidationService.sanitize_filename(file.filename or "document.pdf")
+    base_name = original_name.rsplit(".", 1)[0]
+
+    input_path, bytes_len = await FileService.save_uploaded_file(file, job_id, "pdf")
+
+    watermark_img_path = None
+    if watermark_image and watermark_image.filename:
+        watermark_img_path, _ = await FileService.save_uploaded_file(watermark_image, f"{job_id}_wm", "png")
+
+    job = conversion_service.create_job(
+        job_id=job_id,
+        original_filename=f"{base_name}_watermarked.pdf",
+        source_ext="pdf",
+        target_ext="pdf",
+        input_path=input_path,
+        file_size_bytes=bytes_len
+    )
+
+    async def async_worker():
+        job.status = JobStatus.PROCESSING
+        job.progress = 30
+        job.message = "Applying watermark overlay..."
+
+        success, err = PdfToolsService.watermark_pdf(
+            file_path=input_path,
+            output_path=job.output_path,
+            text=text,
+            image_path=watermark_img_path,
+            opacity=opacity,
+            rotation=rotation,
+            tile=tile,
+            color_hex=color_hex,
+            font_size=font_size
+        )
+
+        for p in [input_path, watermark_img_path]:
+            if p:
+                try:
+                    os.remove(p)
+                except Exception:
+                    pass
+
+        if success and os.path.exists(job.output_path):
+            job.status = JobStatus.COMPLETED
+            job.progress = 100
+            job.message = "Watermark applied successfully!"
+            job.output_size_bytes = os.path.getsize(job.output_path)
+        else:
+            job.status = JobStatus.FAILED
+            job.progress = 0
+            job.error = err or "Could not apply watermark to PDF."
+
+    background_tasks.add_task(async_worker)
+
+    return {
+        "job_id": job_id,
+        "status": job.status,
+        "message": "Watermark PDF job submitted."
+    }
+
+
+@router.post("/pdf/bates-numbering")
+async def bates_numbering_endpoint(
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...),
+    prefix: str = Form("CONF-"),
+    suffix: str = Form(""),
+    start_number: int = Form(1),
+    digits: int = Form(6),
+    position: str = Form("bottom-right"),
+    font_size: float = Form(10.0),
+    color_hex: str = Form("#000000")
+):
+    """Applies Bates numbering stamps for legal workflows."""
+    job_id = str(uuid.uuid4())
+    original_name = ValidationService.sanitize_filename(file.filename or "document.pdf")
+    base_name = original_name.rsplit(".", 1)[0]
+
+    input_path, bytes_len = await FileService.save_uploaded_file(file, job_id, "pdf")
+
+    job = conversion_service.create_job(
+        job_id=job_id,
+        original_filename=f"{base_name}_bates_stamped.pdf",
+        source_ext="pdf",
+        target_ext="pdf",
+        input_path=input_path,
+        file_size_bytes=bytes_len
+    )
+
+    async def async_worker():
+        job.status = JobStatus.PROCESSING
+        job.progress = 30
+        job.message = "Applying Bates numbering stamps..."
+
+        success, err = PdfToolsService.bates_number_pdf(
+            file_path=input_path,
+            output_path=job.output_path,
+            prefix=prefix,
+            suffix=suffix,
+            start_number=start_number,
+            digits=digits,
+            position=position,
+            font_size=font_size,
+            color_hex=color_hex
+        )
+
+        try:
+            os.remove(input_path)
+        except Exception:
+            pass
+
+        if success and os.path.exists(job.output_path):
+            job.status = JobStatus.COMPLETED
+            job.progress = 100
+            job.message = "Bates numbering stamps applied successfully!"
+            job.output_size_bytes = os.path.getsize(job.output_path)
+        else:
+            job.status = JobStatus.FAILED
+            job.progress = 0
+            job.error = err or "Could not apply Bates numbering."
+
+    background_tasks.add_task(async_worker)
+
+    return {
+        "job_id": job_id,
+        "status": job.status,
+        "message": "Bates numbering job submitted."
+    }
+
+
+@router.post("/pdf/flatten-grayscale")
+async def flatten_grayscale_endpoint(
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...),
+    make_grayscale: bool = Form(True),
+    flatten_forms: bool = Form(True)
+):
+    """Flattens annotations/forms and optionally converts PDF color to monochrome grayscale."""
+    job_id = str(uuid.uuid4())
+    original_name = ValidationService.sanitize_filename(file.filename or "document.pdf")
+    base_name = original_name.rsplit(".", 1)[0]
+
+    input_path, bytes_len = await FileService.save_uploaded_file(file, job_id, "pdf")
+
+    suffix = "grayscale" if make_grayscale else "flattened"
+    job = conversion_service.create_job(
+        job_id=job_id,
+        original_filename=f"{base_name}_{suffix}.pdf",
+        source_ext="pdf",
+        target_ext="pdf",
+        input_path=input_path,
+        file_size_bytes=bytes_len
+    )
+
+    async def async_worker():
+        job.status = JobStatus.PROCESSING
+        job.progress = 30
+        job.message = "Processing color channels and flattening form elements..."
+
+        success, stats, err = PdfToolsService.flatten_and_grayscale_pdf(
+            file_path=input_path,
+            output_path=job.output_path,
+            make_grayscale=make_grayscale,
+            flatten_forms=flatten_forms
+        )
+
+        try:
+            os.remove(input_path)
+        except Exception:
+            pass
+
+        if success and os.path.exists(job.output_path):
+            job.status = JobStatus.COMPLETED
+            job.progress = 100
+            job.message = "Document flattened & optimized successfully!"
+            job.output_size_bytes = os.path.getsize(job.output_path)
+        else:
+            job.status = JobStatus.FAILED
+            job.progress = 0
+            job.error = err or "Could not flatten/grayscale PDF."
+
+    background_tasks.add_task(async_worker)
+
+    return {
+        "job_id": job_id,
+        "status": job.status,
+        "message": "Flatten/Grayscale PDF job submitted."
+    }
+
+
+@router.post("/pdf/crop")
+async def crop_pdf_endpoint(
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...),
+    margin_top: float = Form(0.0),
+    margin_bottom: float = Form(0.0),
+    margin_left: float = Form(0.0),
+    margin_right: float = Form(0.0),
+    unit: str = Form("pt")
+):
+    """Crops margins across PDF pages."""
+    job_id = str(uuid.uuid4())
+    original_name = ValidationService.sanitize_filename(file.filename or "document.pdf")
+    base_name = original_name.rsplit(".", 1)[0]
+
+    input_path, bytes_len = await FileService.save_uploaded_file(file, job_id, "pdf")
+
+    job = conversion_service.create_job(
+        job_id=job_id,
+        original_filename=f"{base_name}_cropped.pdf",
+        source_ext="pdf",
+        target_ext="pdf",
+        input_path=input_path,
+        file_size_bytes=bytes_len
+    )
+
+    async def async_worker():
+        job.status = JobStatus.PROCESSING
+        job.progress = 30
+        job.message = "Cropping document margins..."
+
+        success, err = PdfToolsService.crop_pdf(
+            file_path=input_path,
+            output_path=job.output_path,
+            margin_top=margin_top,
+            margin_bottom=margin_bottom,
+            margin_left=margin_left,
+            margin_right=margin_right,
+            unit=unit
+        )
+
+        try:
+            os.remove(input_path)
+        except Exception:
+            pass
+
+        if success and os.path.exists(job.output_path):
+            job.status = JobStatus.COMPLETED
+            job.progress = 100
+            job.message = "PDF cropped successfully!"
+            job.output_size_bytes = os.path.getsize(job.output_path)
+        else:
+            job.status = JobStatus.FAILED
+            job.progress = 0
+            job.error = err or "Could not crop PDF."
+
+    background_tasks.add_task(async_worker)
+
+    return {
+        "job_id": job_id,
+        "status": job.status,
+        "message": "Crop PDF job submitted."
+    }
+
+
+@router.post("/pdf/metadata")
+async def edit_metadata_endpoint(
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...),
+    title: Optional[str] = Form(None),
+    author: Optional[str] = Form(None),
+    subject: Optional[str] = Form(None),
+    keywords: Optional[str] = Form(None),
+    creator: Optional[str] = Form(None)
+):
+    """Updates PDF document metadata."""
+    job_id = str(uuid.uuid4())
+    original_name = ValidationService.sanitize_filename(file.filename or "document.pdf")
+    base_name = original_name.rsplit(".", 1)[0]
+
+    input_path, bytes_len = await FileService.save_uploaded_file(file, job_id, "pdf")
+
+    job = conversion_service.create_job(
+        job_id=job_id,
+        original_filename=f"{base_name}_metadata_updated.pdf",
+        source_ext="pdf",
+        target_ext="pdf",
+        input_path=input_path,
+        file_size_bytes=bytes_len
+    )
+
+    async def async_worker():
+        job.status = JobStatus.PROCESSING
+        job.progress = 30
+        job.message = "Updating document metadata headers..."
+
+        success, err = PdfToolsService.edit_metadata(
+            file_path=input_path,
+            output_path=job.output_path,
+            title=title,
+            author=author,
+            subject=subject,
+            keywords=keywords,
+            creator=creator
+        )
+
+        try:
+            os.remove(input_path)
+        except Exception:
+            pass
+
+        if success and os.path.exists(job.output_path):
+            job.status = JobStatus.COMPLETED
+            job.progress = 100
+            job.message = "PDF metadata updated successfully!"
+            job.output_size_bytes = os.path.getsize(job.output_path)
+        else:
+            job.status = JobStatus.FAILED
+            job.progress = 0
+            job.error = err or "Could not update PDF metadata."
+
+    background_tasks.add_task(async_worker)
+
+    return {
+        "job_id": job_id,
+        "status": job.status,
+        "message": "Update PDF metadata job submitted."
+    }
+
+
+@router.post("/pdf/bank-statement-to-excel")
+async def bank_statement_to_excel_endpoint(
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...)
+):
+    """Extracts tables and financial statements from PDF into multi-sheet Excel spreadsheet."""
+    job_id = str(uuid.uuid4())
+    original_name = ValidationService.sanitize_filename(file.filename or "document.pdf")
+    base_name = original_name.rsplit(".", 1)[0]
+
+    input_path, bytes_len = await FileService.save_uploaded_file(file, job_id, "pdf")
+
+    job = conversion_service.create_job(
+        job_id=job_id,
+        original_filename=f"{base_name}_extracted_tables.xlsx",
+        source_ext="pdf",
+        target_ext="xlsx",
+        input_path=input_path,
+        file_size_bytes=bytes_len
+    )
+
+    async def async_worker():
+        job.status = JobStatus.PROCESSING
+        job.progress = 30
+        job.message = "Extracting structured financial tables to Excel..."
+
+        success, stats, err = PdfToolsService.extract_financial_tables(
+            file_path=input_path,
+            output_excel_path=job.output_path
+        )
+
+        try:
+            os.remove(input_path)
+        except Exception:
+            pass
+
+        if success and os.path.exists(job.output_path):
+            job.status = JobStatus.COMPLETED
+            job.progress = 100
+            job.message = f"Extracted {stats.get('tables_extracted', 0)} table(s) to formatted Excel workbook!"
+            job.output_size_bytes = os.path.getsize(job.output_path)
+        else:
+            job.status = JobStatus.FAILED
+            job.progress = 0
+            job.error = err or "Could not extract tables from PDF."
+
+    background_tasks.add_task(async_worker)
+
+    return {
+        "job_id": job_id,
+        "status": job.status,
+        "message": "Financial table extraction job submitted."
+    }
+
+
+

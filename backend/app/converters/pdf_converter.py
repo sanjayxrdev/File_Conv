@@ -166,86 +166,54 @@ class PDFConverter(BaseConverter):
                     return True, None
 
             # ----------------------------------------------------
-            # 4. PDF -> DOCX (Universal High-Fidelity Conversion)
+            # 4. PDF -> DOCX / DOC (Universal High-Fidelity Conversion)
             # ----------------------------------------------------
-            elif target_ext == "docx":
+            elif target_ext in ["docx", "doc"]:
                 if progress_callback:
                     progress_callback(20, "Analyzing PDF page geometry, headers, footers & layout...")
 
-                # A. Execute pdf2docx Conversion Engine (High-Fidelity 1:1 Layout & Geometry Extraction)
-                pdf2docx_success = False
+                # If PDF has no extractable text (e.g. scanned pages), extract high-resolution page layout
+                if not has_text:
+                    if progress_callback:
+                        progress_callback(40, "Scanned document detected. Extracting high-res page image layout...")
+                    return self._fallback_image_render_docx(input_path, output_path, progress_callback)
+
+                # Execute pure pdf2docx conversion directly for 100% native image and layout preservation
                 try:
                     from pdf2docx import Converter
                     if progress_callback:
-                        progress_callback(40, "Extracting document structure, tables, fonts & images...")
+                        progress_callback(50, "Extracting document structure, tables, fonts & images...")
 
                     cv = Converter(input_path)
                     cv.convert(output_path)
                     cv.close()
-                    pdf2docx_success = True
+
+                    if os.path.exists(output_path) and os.path.getsize(output_path) > 0:
+                        # Ensure all embedded images are visible (fix behindDoc="1" hiding images behind text/canvas)
+                        try:
+                            import docx
+                            word_doc = docx.Document(output_path)
+                            anchors = word_doc._element.xpath('.//*[local-name()="anchor"]')
+                            modified = False
+                            for a in anchors:
+                                if a.get('behindDoc') == '1':
+                                    a.set('behindDoc', '0')
+                                    a.set('relativeHeight', '251658240')
+                                    modified = True
+                            if modified:
+                                word_doc.save(output_path)
+                        except Exception as anchor_err:
+                            logger.warning(f"Failed to normalize anchor visibility: {anchor_err}")
+
+                        doc.close()
+                        if progress_callback:
+                            progress_callback(100, "PDF to Word conversion completed successfully.")
+                        return True, None
                 except Exception as p2d_err:
-                    logger.warning(f"pdf2docx engine conversion failed: {p2d_err}, falling back to custom renderer.")
+                    logger.warning(f"pdf2docx engine conversion failed: {p2d_err}, falling back to custom extractor.")
 
-                # B. Post-Process DOCX with python-docx (Safe Cleanup & Table cantSplit)
-                if pdf2docx_success and os.path.exists(output_path) and os.path.getsize(output_path) > 0:
-                    try:
-                        if progress_callback:
-                            progress_callback(80, "Applying layout refinements & cleaning document...")
-
-                        import docx
-                        from docx.oxml import OxmlElement
-
-                        word_doc = docx.Document(output_path)
-
-                        # Clean bullet symbols if unreadable glyphs appear
-                        for p in word_doc.paragraphs:
-                            if "\ufffd" in p.text or "\uF0B7" in p.text or "\uF0A7" in p.text:
-                                for r in p.runs:
-                                    r.text = r.text.replace("\ufffd", "• ").replace("\uF0B7", "• ").replace("\uF0A7", "• ")
-
-                        # Prevent row splitting mid-line across pages for tables
-                        for tbl in word_doc.tables:
-                            for row in tbl.rows:
-                                trPr = row._element.get_or_add_trPr()
-                                trPr.append(OxmlElement('w:cantSplit'))
-
-                        # Clean leading empty paragraphs at start of document body
-                        while len(word_doc.paragraphs) > 0:
-                            first_p = word_doc.paragraphs[0]
-                            first_txt = first_p.text.strip()
-                            first_drawings = first_p._element.xpath('.//w:drawing | .//w:pict')
-                            if not first_txt and not first_drawings:
-                                try:
-                                    first_p._element.getparent().remove(first_p._element)
-                                except Exception:
-                                    break
-                            else:
-                                break
-
-                        # Clean trailing empty paragraphs at end of document body
-                        while len(word_doc.paragraphs) > 0:
-                            last_p = word_doc.paragraphs[-1]
-                            last_txt = last_p.text.strip()
-                            last_drawings = last_p._element.xpath('.//w:drawing | .//w:pict')
-                            if not last_txt and not last_drawings:
-                                try:
-                                    last_p._element.getparent().remove(last_p._element)
-                                except Exception:
-                                    break
-                            else:
-                                break
-
-                        word_doc.save(output_path)
-                        if progress_callback:
-                            progress_callback(100, "PDF to DOCX high-fidelity conversion completed successfully.")
-                        return True, None
-                    except Exception as post_err:
-                        logger.warning(f"DOCX post-processing error: {post_err}")
-                        if progress_callback:
-                            progress_callback(100, "PDF to DOCX conversion completed.")
-                        return True, None
-
-                # Fallback rendering if pdf2docx failed
+                # Fallback to high-fidelity extractor if pdf2docx encountered an issue
+                doc.close()
                 return self._fallback_image_render_docx(input_path, output_path, progress_callback)
 
             else:
@@ -262,7 +230,7 @@ class PDFConverter(BaseConverter):
         output_path: str,
         progress_callback: Optional[Callable[[int, str], None]] = None
     ) -> Tuple[bool, Optional[str]]:
-        """Fallback renderer for scanned PDFs or when pdf2docx engine fails."""
+        """High-fidelity fallback extractor using PyMuPDF and python-docx for text and images."""
         try:
             import fitz
             import docx
@@ -270,34 +238,66 @@ class PDFConverter(BaseConverter):
 
             doc = fitz.open(input_path)
             word_doc = docx.Document()
+            processed_xrefs = set()
 
             for section in word_doc.sections:
-                section.top_margin = Inches(0.5)
-                section.bottom_margin = Inches(0.5)
-                section.left_margin = Inches(0.5)
-                section.right_margin = Inches(0.5)
+                section.top_margin = Inches(0.75)
+                section.bottom_margin = Inches(0.75)
+                section.left_margin = Inches(0.75)
+                section.right_margin = Inches(0.75)
 
             total_pages = len(doc)
             for idx, page in enumerate(doc):
                 if idx > 0:
                     word_doc.add_page_break()
 
-                pix = page.get_pixmap(dpi=180)
-                img_bytes = pix.tobytes("png")
-                img_stream = io.BytesIO(img_bytes)
+                # Extract text blocks
+                blocks = page.get_text("blocks")
+                for b in blocks:
+                    block_text = str(b[4]).strip()
+                    if block_text:
+                        word_doc.add_paragraph(block_text)
 
-                p = word_doc.add_paragraph()
-                p.alignment = docx.enum.text.WD_ALIGN_PARAGRAPH.CENTER
-                p.add_run().add_picture(img_stream, width=Inches(7.5))
+                # Extract embedded images on page
+                images = page.get_images(full=True)
+                for img_info in images:
+                    try:
+                        xref = img_info[0]
+                        if xref in processed_xrefs:
+                            continue
+                        processed_xrefs.add(xref)
+
+                        base_img = doc.extract_image(xref)
+                        if base_img and "image" in base_img:
+                            w = base_img.get("width", 100)
+                            h = base_img.get("height", 100)
+                            if w >= 20 and h >= 20:
+                                img_bytes = base_img["image"]
+                                img_stream = io.BytesIO(img_bytes)
+                                p = word_doc.add_paragraph()
+                                p.alignment = docx.enum.text.WD_ALIGN_PARAGRAPH.CENTER
+                                target_width = min(6.5, max(1.5, w / 96.0))
+                                p.add_run().add_picture(img_stream, width=Inches(target_width))
+                    except Exception as img_err:
+                        logger.warning(f"Failed to extract image xref {img_info[0]}: {img_err}")
+
+                # If no text blocks and no embedded images on page (scanned raster page), render page pixmap
+                if not blocks and not images:
+                    pix = page.get_pixmap(dpi=180)
+                    img_bytes = pix.tobytes("png")
+                    img_stream = io.BytesIO(img_bytes)
+                    p = word_doc.add_paragraph()
+                    p.alignment = docx.enum.text.WD_ALIGN_PARAGRAPH.CENTER
+                    p.add_run().add_picture(img_stream, width=Inches(6.8))
 
                 if progress_callback:
                     pct = int(50 + (idx + 1) / total_pages * 50)
-                    progress_callback(pct, f"Rendering scanned page {idx + 1}/{total_pages}...")
+                    progress_callback(pct, f"Extracting page {idx + 1}/{total_pages}...")
 
             doc.close()
             word_doc.save(output_path)
             if progress_callback:
-                progress_callback(100, "PDF to DOCX fallback rendering completed.")
+                progress_callback(100, "PDF to DOCX conversion completed.")
             return True, None
         except Exception as e:
             return False, f"Fallback PDF rendering failed: {str(e)}"

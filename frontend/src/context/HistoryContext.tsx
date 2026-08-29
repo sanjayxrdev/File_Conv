@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react';
 import { HistoryEntry } from '../types';
 import { apiGetHistory, apiRecordHistory, apiDeleteHistory, apiClearHistory } from '../services/api';
-import { useAuth } from './AuthContext';
 
 interface HistoryContextType {
   history: HistoryEntry[];
@@ -25,28 +24,41 @@ interface HistoryContextType {
 const HistoryContext = createContext<HistoryContextType | undefined>(undefined);
 
 export const HistoryProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const { sessionId, token, user } = useAuth();
+  // Clean up any legacy permanent localStorage history
+  try {
+    localStorage.removeItem('fileconv_local_history');
+    localStorage.removeItem('fileconv_session_id');
+  } catch {}
+
+  const [sessionId] = useState<string>(() => {
+    const existing = sessionStorage.getItem('fileconv_session_id');
+    if (existing) return existing;
+    const newId = 'sess_' + Math.random().toString(36).substring(2, 9) + '_' + Date.now();
+    sessionStorage.setItem('fileconv_session_id', newId);
+    return newId;
+  });
+
   const [history, setHistory] = useState<HistoryEntry[]>(() => {
-    const local = localStorage.getItem('fileconv_local_history');
-    return local ? JSON.parse(local) : [];
+    const session = sessionStorage.getItem('fileconv_session_history');
+    return session ? JSON.parse(session) : [];
   });
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const refreshHistory = useCallback(async () => {
     try {
-      const serverHistory = await apiGetHistory(sessionId, token);
+      const serverHistory = await apiGetHistory(sessionId);
       if (serverHistory && serverHistory.length > 0) {
         setHistory(serverHistory);
-        localStorage.setItem('fileconv_local_history', JSON.stringify(serverHistory));
+        sessionStorage.setItem('fileconv_session_history', JSON.stringify(serverHistory));
       }
     } catch (e) {
       console.warn('Failed syncing server history:', e);
     }
-  }, [sessionId, token]);
+  }, [sessionId]);
 
   useEffect(() => {
     refreshHistory();
-  }, [refreshHistory, user?.id]);
+  }, [refreshHistory]);
 
   const addHistoryItem = async (entry: {
     job_id: string;
@@ -67,25 +79,21 @@ export const HistoryProvider: React.FC<{ children: ReactNode }> = ({ children })
       download_url: entry.download_url,
       output_size_bytes: entry.output_size_bytes,
       created_at: new Date().toISOString(),
-      user_id: user?.id,
       session_id: sessionId,
     };
 
     setHistory((prev) => {
       const filtered = prev.filter((h) => h.job_id !== entry.job_id);
       const next = [newItem, ...filtered].slice(0, 50);
-      localStorage.setItem('fileconv_local_history', JSON.stringify(next));
+      sessionStorage.setItem('fileconv_session_history', JSON.stringify(next));
       return next;
     });
 
     try {
-      await apiRecordHistory(
-        {
-          ...entry,
-          session_id: sessionId,
-        },
-        token
-      );
+      await apiRecordHistory({
+        ...entry,
+        session_id: sessionId,
+      });
     } catch (e) {
       console.warn('Failed recording history on backend:', e);
     }
@@ -94,12 +102,12 @@ export const HistoryProvider: React.FC<{ children: ReactNode }> = ({ children })
   const removeHistoryItem = async (jobId: string) => {
     setHistory((prev) => {
       const next = prev.filter((h) => h.job_id !== jobId);
-      localStorage.setItem('fileconv_local_history', JSON.stringify(next));
+      sessionStorage.setItem('fileconv_session_history', JSON.stringify(next));
       return next;
     });
 
     try {
-      await apiDeleteHistory(jobId, sessionId, token);
+      await apiDeleteHistory(jobId, sessionId);
     } catch (e) {
       console.warn('Failed deleting history item:', e);
     }
@@ -107,9 +115,9 @@ export const HistoryProvider: React.FC<{ children: ReactNode }> = ({ children })
 
   const clearHistory = async () => {
     setHistory([]);
-    localStorage.removeItem('fileconv_local_history');
+    sessionStorage.removeItem('fileconv_session_history');
     try {
-      await apiClearHistory(sessionId, token);
+      await apiClearHistory(sessionId);
     } catch (e) {
       console.warn('Failed clearing history:', e);
     }

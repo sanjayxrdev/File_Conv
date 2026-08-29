@@ -35,10 +35,27 @@ It provides single-file and multi-file batch conversions across **video**, **aud
 - **Merge PPTX**: Combines slide decks while preserving shape frames, notes, and layouts.
 - **Merge DOCX**: Merges Word documents sequentially while preserving paragraph formatting.
 
-### 4. Verified Single-Source-of-Truth Conversion Matrix
+### 4. Comprehensive PDF Workspace & Pre-Press Suite
+- **PDF Compressor**: Multi-tier optimization (Recommended 144 DPI, Extreme 96 DPI, Light Lossless) with image downsampling and stream deflation.
+- **Alternate & Mix (Duplex Weaver)**: Automatically interleave odd and even page batches from duplex scanner runs with reverse-order handling.
+- **Watermark Studio**: Customizable text and uploaded logo watermarks with opacity sliders, rotation angles (-90° to +90°), and 2D tile grid repeat.
+- **Bates Numbering**: Standardized legal and corporate discovery stamping with custom prefixes, zero-padded digits, and 5-way positioning.
+- **Flatten & Grayscale**: Transform colored artwork to ink-saving monochrome grayscale and permanently lock interactive form fields and annotations.
+- **Margin & Bleed Crop**: 4-way precision margin trimmer supporting percentages, inches, millimeters, or points.
+- **Visual Page Rearrange & Split**: Interactive drag-and-drop page reordering, chapter splitting, and multi-range extraction.
+- **Side-by-Side PDF Compare**: Page-by-page visual heatmap diffs and text line diffing between revisions.
+- **Transparent Signature Stamper**: Automatic background removal from photographed signatures with drag-and-drop placement on any page.
+- **Protect & Password Encrypt**: AES-256 password protection with granular print, copy, and modify permission controls.
+- **Export Pages as Images**: Render all PDF pages into high-resolution JPG, PNG, or WebP images packaged into a single-click ZIP archive.
+
+### 5. Bank Statement & Financial Table to Excel
+- Automatic detection of tabular transaction grids, debit/credit columns, balances, and multi-column accounting reports.
+- Exports structured, multi-sheet formatted **Microsoft Excel (`.xlsx`)** workbooks and CSVs.
+
+### 6. Verified Single-Source-of-Truth Conversion Matrix
 - Enforces valid conversion routes before exposing options to the user, preventing invalid or corrupt conversions.
 
-### 5. Awwwards-Level Modern UI Architecture
+### 7. Awwwards-Level Modern UI Architecture
 - **Three.js Interactive 3D Canvas**: Floating wireframe geometries responding to cursor motion with parallax lerping.
 - **GSAP Fluid Animations**: Floating glass navbar, smooth page transitions, and staggered grid reveals.
 - **Anime.js Micro-Interactions**: Dynamic dropzone scaling, elastic success badges, and ripple effects.
@@ -50,7 +67,8 @@ It provides single-file and multi-file batch conversions across **video**, **aud
 
 | Category | Source Formats | Target Options | Engine |
 | :--- | :--- | :--- | :--- |
-| **OCR & AI** | `.pdf`, `.png`, `.jpg`, `.jpeg`, `.webp`, `.docx`, `.pptx`, `.xlsx` | `.md`, `.txt`, `.json` (Docling AST), `.html`, `.docx` | Docling AI OCR |
+| **OCR & AI** | `.pdf`, `.png`, `.jpg`, `.jpeg`, `.webp`, `.docx`, `.pptx`, `.xlsx` | `.md`, `.txt`, `.json` (Docling AST), `.html`, `.docx`, `.xlsx` (Tables) | Docling AI / PyMuPDF Tables |
+| **PDF Tools** | `.pdf` | Compressed `.pdf`, Mixed `.pdf`, Watermarked `.pdf`, Bates `.pdf`, Grayscale `.pdf`, Cropped `.pdf`, Images `.zip` | PyMuPDF Suite / Pillow |
 | **Video** | `.mp4`, `.webm`, `.avi`, `.mkv` | `.mp4`, `.avi`, `.mkv`, `.mov`, `.webm`, `.mp3` (extract), `.wav` (extract), `.flac`, `.gif` | FFmpeg |
 | **Audio** | `.mp3`, `.wav`, `.flac`, `.ogg` | `.mp3`, `.wav`, `.flac`, `.ogg`, `.opus`, `.aac` | FFmpeg |
 | **Image** | `.png`, `.jpg`, `.jpeg`, `.webp` | `.png`, `.jpg`, `.webp`, `.bmp`, `.pdf`, `.md` (OCR), `.txt` (OCR), `.json` (AST) | Pillow / Docling |
@@ -73,7 +91,8 @@ It provides single-file and multi-file batch conversions across **video**, **aud
      ├── Three.js 3D Background                      ├── Single-Source Matrix
      ├── GSAP & Anime.js Animations                  ├── Asynchronous Task Workers
      ├── Multi-File Batch Dropzone                   ├── FFmpeg Media Transcoder
-     └── Reorder & Merge UI                          ├── PyMuPDF & COM Engine
+     ├── PDF Workspace (Compress/Mix/Watermark)      ├── PyMuPDF & Pre-Press Engine
+     └── Docling OCR & Table Viewer                  ├── Docling AI & Table Parser
                                                      └── ZIP Archiving Service
 ```
 
@@ -82,9 +101,9 @@ It provides single-file and multi-file batch conversions across **video**, **aud
 ## 🚀 Quickstart & Local Installation Guide
 
 ### Prerequisites
-- **Python**: 3.12+
+- **Python**: 3.11+ or 3.12+
 - **Node.js**: v18+ (npm v9+)
-- **FFmpeg**: Installed and available in PATH (or WinGet standard location)
+- **FFmpeg**: Installed and available in PATH (optional, for video/audio transcoding)
 
 ---
 
@@ -96,18 +115,19 @@ cd File_Conv
 
 ---
 
-### 2. Backend Setup & Startup (with uv)
+### 2. Backend Setup & Startup
 
 ```bash
 # Navigate to backend directory
 cd backend
 
-# Create virtual environment and install dependencies ultra-fast with uv
-uv venv .venv
-uv pip install -r requirements.txt
+# Create virtual environment and install dependencies
+python -m venv .venv
+.\.venv\Scripts\activate
+pip install -r requirements.txt
 
 # Start FastAPI backend server
-uv run uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
 Backend API will be running at: `http://127.0.0.1:8000`  
@@ -128,6 +148,9 @@ npm install
 
 # Start Vite development server
 npm run dev
+
+# (Tip for Windows PowerShell if script execution is restricted):
+# npm.cmd run dev
 ```
 
 Frontend application will be running at: `http://localhost:5173`
@@ -136,20 +159,24 @@ Frontend application will be running at: `http://localhost:5173`
 
 ## 📖 How to Use
 
-### Single File Conversion
+### Single & Multi-File Batch Conversion
 1. Open `http://localhost:5173`.
-2. Drag and drop any supported file (e.g. `document.pptx`, `video.mp4`, `script.txt`).
-3. Select the target format and customize options (resolution, bitrate, DPI).
-4. Click **Convert File Now** and download the converted output.
+2. Drag and drop any supported file or multi-file batch (e.g. `document.pptx`, `video.mp4`, `sample.pdf`).
+3. Select the target format and customize options.
+4. Click **Convert File Now** (or **Convert All Files Now**) and download the output or complete ZIP archive.
 
-### Multi-File Batch Conversion
-1. Drag and drop **multiple files** (1 to N) or click **Select Folder**.
-2. Select a universal target format (e.g. `PDF`, `Markdown (.md)`, `DOCX`, `JSON`).
-3. Click **Convert All Files Now**.
-4. Track per-file progress and click **Download All Converted Files (.ZIP)**.
+### Dedicated PDF Tools Suite
+1. Press <kbd>Ctrl</kbd>+<kbd>K</kbd> (or click **PDF Tools** in the top navigation) to launch any specialized tool:
+   - **Compress PDF**: Select compression level (*Recommended*, *Extreme*, or *Light*) and compress in 1 click.
+   - **Alternate & Mix (Duplex)**: Upload Doc 1 (Odd) and Doc 2 (Even) to weave pages together.
+   - **Watermark PDF**: Add custom text or logo overlay with custom opacity, rotation, and tile grids.
+   - **Bates Numbering**: Apply sequential legal discovery stamps (e.g. `CONF-000001-US`).
+   - **Bank Statement to Excel**: Extract structured transaction tables directly into a multi-sheet `.xlsx` workbook.
+   - **Flatten & Grayscale**: Convert to ink-saving monochrome gray and lock form fields.
+   - **Crop Margins**: Trim borders and whitespace margins.
 
 ### Merging PDF, PPTX, or Word DOCX
-1. Click the **Merge Files** tab in the top navigation header.
+1. Click the **Merge** tab in the top navigation header.
 2. Select the merge type (`PDF`, `PPTX`, or `DOCX`).
 3. Upload 2 or more files, reorder them using the Up/Down controls if needed.
 4. Click **Merge Files Now** to download the combined document.
@@ -158,14 +185,11 @@ Frontend application will be running at: `http://localhost:5173`
 
 ## 🧪 Automated Testing
 
-The repository includes a comprehensive Pytest suite covering single conversions, PPTX COM fallback, multi-file merging, batch processing, HTML parsing, spreadsheet extraction, and Docling OCR & layout validation.
+The repository includes a comprehensive Pytest suite covering single conversions, PDF tools, duplex mixing, watermarking, Bates numbering, compression, multi-file merging, batch processing, spreadsheet extraction, and Docling OCR validation.
 
 ```bash
 # Navigate to backend directory with active virtual environment
 cd backend
-
-# Generate test fixtures
-python tests/generate_fixtures.py
 
 # Run full automated test suite
 pytest tests -v
@@ -179,19 +203,19 @@ pytest tests -v
 File_Conv/
 ├── backend/
 │   ├── app/
-│   │   ├── api/                # FastAPI router endpoints (convert, batch, merge, formats, health)
-│   │   ├── converters/         # Engine modules (docling ocr, ffmpeg, pdf, image, document, pptx, html, spreadsheet)
+│   │   ├── api/                # FastAPI routers (convert, pdf_tools, ocr, formats, health)
+│   │   ├── converters/         # Converters (docling ocr, ffmpeg, pdf, image, document, pptx, html, spreadsheet)
 │   │   ├── core/               # Settings & configuration
 │   │   ├── models/             # Pydantic schemas & job data structures
 │   │   ├── registry/           # Single source of truth conversion matrix
-│   │   └── services/           # File, batch, and merge services
-│   ├── tests/                  # Pytest test suite & fixture generator
+│   │   └── services/           # PDF tools, file, cleanup, and conversion services
+│   ├── tests/                  # Pytest test suite (test_advanced_pdf_tools.py, test_conversions.py, etc.)
 │   └── requirements.txt
 ├── frontend/
 │   ├── src/
-│   │   ├── components/         # Dropzones, Progress, Result cards, Three.js canvas, Navbar
-│   │   ├── pages/              # Home, Merge, Formats matrix, About
-│   │   ├── services/           # API fetch client
+│   │   ├── components/         # Dropzones, Progress, Result cards, 3D Canvas, Quick Command Palette
+│   │   ├── pages/              # Home, OcrStudio, Merge, Formats, and pages/pdf/* (Compress, Mix, Watermark, Bates, Crop, Financial)
+│   │   ├── services/           # API fetch client (api.ts, pdfApi.ts)
 │   │   ├── App.tsx
 │   │   └── main.tsx
 │   ├── package.json
@@ -205,4 +229,3 @@ File_Conv/
 ## 📄 License
 
 Distributed under the MIT License. See [`LICENSE`](LICENSE) for details.
-#

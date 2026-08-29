@@ -101,7 +101,7 @@ export const FileDropzone: React.FC<FileDropzoneProps> = ({
         className={`cursor-pointer rounded-card-lg p-10 sm:p-14 text-center transition-all duration-200 border-2 border-dashed relative overflow-hidden ${
           isDragOver
             ? "border-ink-primary bg-surface-raised"
-            : "border-surface-border hover:border-ink-muted bg-surface-card hover:bg-surface-raised/50"
+            : "border-surface-border hover:border-ink-primary bg-surface-card"
         }`}
       >
         <input

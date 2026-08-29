@@ -156,9 +156,8 @@ export const AddPageNumbersPage: React.FC = () => {
       {/* Header */}
       <div className="flex items-center gap-3 border-b border-surface-border pb-4">
         <button
-          type="button"
-          onClick={() => navigate('/')}
-          className="p-2 rounded-card bg-surface-card border border-surface-border text-ink-muted hover:text-ink-primary transition-colors"
+          onClick={() => navigate('/#tools-directory')}
+          className="inline-flex items-center gap-2 text-xs font-semibold text-ink-muted hover:text-ink-primary transition-colors"
         >
           <ArrowLeft className="w-4 h-4" weight="bold" />
         </button>

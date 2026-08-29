@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { FormatsRegistryResponse } from '../types';
 import { FileDropzone } from '../components/FileDropzone';
 import { ConversionCard } from '../components/ConversionCard';
@@ -133,6 +133,8 @@ interface ConverterPageProps {
 export const ConverterPage: React.FC<ConverterPageProps> = ({ categorySlug: propSlug, registry }) => {
   const { categorySlug: urlSlug } = useParams<{ categorySlug: string }>();
   const navigate = useNavigate();
+  const location = useLocation();
+  const returnHash = (location.state as any)?.returnHash || '#tools-directory';
 
   const slug = propSlug || urlSlug || 'pdf-converter';
   const categoryConfig = CONVERTER_CATEGORIES[slug] || CONVERTER_CATEGORIES['pdf-converter'];
@@ -179,14 +181,14 @@ export const ConverterPage: React.FC<ConverterPageProps> = ({ categorySlug: prop
       .from(heroRef.current!.querySelector('h1'), {
         y: 20,
         opacity: 0,
-        duration: 0.5,
-      }, "-=0.3")
+        duration: 0.4,
+      }, "-=0.2")
       .from(heroRef.current!.querySelector('p'), {
         y: 15,
         opacity: 0,
         duration: 0.4,
-      }, "-=0.3")
-      .from(heroRef.current!.querySelector('.formats-badge'), {
+      }, "-=0.2")
+      .from(heroRef.current!.querySelector('.stats-pills'), {
         y: 8,
         opacity: 0,
         duration: 0.3,
@@ -218,58 +220,86 @@ export const ConverterPage: React.FC<ConverterPageProps> = ({ categorySlug: prop
     if (files.length === 1) {
       handleSelectFile(files[0]);
       setSelectedFiles([]);
-    } else {
+      setBatchState(null);
+    } else if (files.length > 1) {
       setSelectedFiles(files);
       handleSingleClear();
+      setBatchState(null);
     }
   };
 
   const handleBatchClear = () => {
-    if (batchPollTimerRef.current) {
-      clearInterval(batchPollTimerRef.current);
-      batchPollTimerRef.current = null;
-    }
     setSelectedFiles([]);
     setBatchState(null);
     setBatchError(null);
-    setIsBatchSubmitting(false);
+    if (batchPollTimerRef.current) {
+      clearInterval(batchPollTimerRef.current);
+    }
   };
 
-  const handleRemoveFile = (index: number) => {
-    const next = selectedFiles.filter((_, i) => i !== index);
-    if (next.length === 1) {
-      handleSelectFile(next[0]);
+  const handleRemoveBatchFile = (index: number) => {
+    const updated = [...selectedFiles];
+    updated.splice(index, 1);
+    if (updated.length === 1) {
+      handleSelectFile(updated[0]);
       setSelectedFiles([]);
     } else {
-      setSelectedFiles(next);
+      setSelectedFiles(updated);
     }
   };
 
   const handleStartBatch = async (targetFormat: string) => {
+    if (selectedFiles.length === 0) return;
     setIsBatchSubmitting(true);
     setBatchError(null);
 
     try {
-      const initResp = await startBatchConversion(selectedFiles, targetFormat);
-      const batchId = initResp.batch_id;
+      const resp = await startBatchConversion(selectedFiles, targetFormat);
+      
+      const initialSubFiles = selectedFiles.map((f, idx) => ({
+        job_id: resp.job_ids?.[idx] || `job_${idx}`,
+        original_filename: f.name,
+        status: 'processing',
+        progress: 15,
+      }));
 
-      batchPollTimerRef.current = setInterval(async () => {
+      setBatchState({
+        batch_id: resp.batch_id,
+        status: 'processing',
+        progress: 10,
+        total_files: resp.total_files,
+        completed_files: 0,
+        failed_files: 0,
+        files: initialSubFiles,
+      });
+
+      const fetchStatus = async () => {
         try {
-          const statusResp = await getBatchStatus(batchId);
-          setBatchState(statusResp);
+          const status = await getBatchStatus(resp.batch_id);
+          setBatchState({
+            batch_id: status.batch_id,
+            status: status.status,
+            progress: status.progress,
+            total_files: status.total_files,
+            completed_files: status.completed_files,
+            failed_files: status.failed_files,
+            zip_download_url: status.zip_download_url,
+            files: status.files && status.files.length > 0 ? status.files : initialSubFiles,
+          });
 
-          if (statusResp.status === 'completed' || statusResp.status === 'failed') {
+          if (status.status === 'completed' || status.status === 'failed') {
             clearInterval(batchPollTimerRef.current);
-            batchPollTimerRef.current = null;
             setIsBatchSubmitting(false);
           }
-        } catch (e: any) {
+        } catch {
           clearInterval(batchPollTimerRef.current);
-          batchPollTimerRef.current = null;
           setIsBatchSubmitting(false);
-          setBatchError(e.message || 'Batch status update failed.');
+          setBatchError('Error polling batch status.');
         }
-      }, 500);
+      };
+
+      fetchStatus();
+      batchPollTimerRef.current = setInterval(fetchStatus, 300);
     } catch (e: any) {
       setIsBatchSubmitting(false);
       setBatchError(e.message || 'Could not start batch conversion.');
@@ -282,7 +312,7 @@ export const ConverterPage: React.FC<ConverterPageProps> = ({ categorySlug: prop
       {/* Breadcrumb & Hero */}
       <div ref={heroRef} className="max-w-4xl mx-auto px-4 pt-8 relative z-10">
         <button
-          onClick={() => navigate('/')}
+          onClick={() => navigate(`/${returnHash}`)}
           className="back-btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-card bg-surface-raised border border-surface-border text-xs font-medium text-ink-muted hover:text-ink-primary hover:bg-surface-border/50 transition-all mb-8"
         >
           <ArrowLeft className="w-3.5 h-3.5" weight="bold" />
@@ -358,7 +388,7 @@ export const ConverterPage: React.FC<ConverterPageProps> = ({ categorySlug: prop
             registry={registry!}
             onConvertBatch={handleStartBatch}
             onClear={handleBatchClear}
-            onRemoveFile={handleRemoveFile}
+            onRemoveFile={handleRemoveBatchFile}
             isSubmitting={isBatchSubmitting}
             defaultTargetFormat={categoryConfig.defaultTargetFormat}
             categorySlug={slug}

@@ -85,40 +85,66 @@ export const BatchProgressBar: React.FC<BatchProgressBarProps> = ({
       </div>
 
       {/* Per File Status List */}
-      <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
-        {files.map((file) => (
-          <div
-            key={file.job_id}
-            className="p-2.5 rounded-card bg-surface-raised border border-surface-border flex items-center justify-between text-xs"
-          >
-            <span className="text-ink-primary truncate font-medium max-w-[60%]">
-              {file.original_filename}
-            </span>
+      <div className="space-y-2.5 max-h-72 overflow-y-auto pr-1">
+        {files.map((file) => {
+          const isDone = file.status === 'completed';
+          const isFailed = file.status === 'failed';
+          const isConverting = file.status === 'processing' || file.status === 'queued';
+          const filePct = isDone ? 100 : (file.progress || 10);
 
-            <div className="flex items-center gap-2">
-              {file.status === 'completed' && (
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-accent-green text-accent-green-text font-medium text-[11px]">
-                  <CheckCircle className="w-3 h-3" weight="fill" /> Done
-                </span>
-              )}
+          return (
+            <div
+              key={file.job_id}
+              className="p-3 rounded-card bg-surface-raised border border-surface-border space-y-2 text-xs transition-all"
+            >
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex items-center gap-2 truncate max-w-[65%]">
+                  <span className="font-medium text-ink-primary truncate">
+                    {file.original_filename}
+                  </span>
+                </div>
 
-              {file.status === 'failed' && (
-                <span
-                  className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-accent-red text-accent-red-text font-medium text-[11px]"
-                  title={file.error}
-                >
-                  <XCircle className="w-3 h-3" weight="fill" /> Failed
-                </span>
-              )}
+                <div className="flex items-center gap-2 shrink-0">
+                  {isDone && (
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent-green text-accent-green-text font-semibold text-[10px]">
+                      <CheckCircle className="w-3.5 h-3.5" weight="fill" /> Completed
+                    </span>
+                  )}
 
-              {(file.status === 'queued' || file.status === 'processing') && (
-                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-border text-ink-muted font-mono text-[11px]">
-                  <Spinner className="w-3 h-3 animate-spin" weight="bold" /> {file.progress}%
-                </span>
-              )}
+                  {isFailed && (
+                    <span
+                      className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent-red text-accent-red-text font-semibold text-[10px]"
+                      title={file.error}
+                    >
+                      <XCircle className="w-3.5 h-3.5" weight="fill" /> Failed
+                    </span>
+                  )}
+
+                  {isConverting && (
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-card border border-surface-border text-ink-primary font-mono font-semibold text-[10px]">
+                      <Spinner className="w-3 h-3 animate-spin text-ink-muted" weight="bold" />
+                      <span>{filePct}%</span>
+                    </span>
+                  )}
+                </div>
+              </div>
+
+              {/* Individual File Progress Bar */}
+              <div className="w-full h-1.5 rounded-full bg-surface-raised overflow-hidden border border-surface-border">
+                <div
+                  className={`h-full rounded-full transition-all duration-300 ${
+                    isDone
+                      ? 'bg-emerald-500'
+                      : isFailed
+                      ? 'bg-rose-500'
+                      : 'bg-ink-primary'
+                  }`}
+                  style={{ width: `${filePct}%` }}
+                />
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

@@ -92,7 +92,7 @@ export const ExportPdfImagesPage: React.FC = () => {
       {/* Top Header */}
       <div className="flex items-center justify-between border-b border-surface-border pb-4">
         <button
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/#tools-directory')}
           className="inline-flex items-center gap-2 text-xs font-semibold text-ink-muted hover:text-ink-primary transition-colors"
         >
           <ArrowLeft className="w-4 h-4" weight="bold" />

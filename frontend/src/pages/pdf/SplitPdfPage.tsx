@@ -305,7 +305,7 @@ export const SplitPdfPage: React.FC = () => {
       <div className="flex items-center gap-3 border-b border-surface-border pb-4">
         <button
           type="button"
-          onClick={() => navigate('/')}
+          onClick={() => navigate('/#tools-directory')}
           className="p-2 rounded-card bg-surface-card border border-surface-border text-ink-muted hover:text-ink-primary transition-colors"
         >
           <ArrowLeft className="w-4 h-4" weight="bold" />

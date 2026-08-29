@@ -64,7 +64,7 @@ export const FormatSelector: React.FC<FormatSelectorProps> = ({
                 className={`p-3.5 rounded-card text-left border transition-all relative overflow-hidden ${
                   isSelected
                     ? "border-ink-primary bg-ink-primary text-surface-canvas shadow-sm scale-[1.01]"
-                    : "border-surface-border bg-surface-card hover:border-ink-faint text-ink-secondary hover:bg-surface-raised"
+                    : "border-surface-border bg-surface-card hover:border-ink-primary/60 text-ink-secondary"
                 }`}
               >
                 <div className="flex items-center justify-between gap-1 mb-1">

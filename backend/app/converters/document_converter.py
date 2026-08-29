@@ -29,55 +29,49 @@ class DocumentConverter(BaseConverter):
                 progress_callback(10, f"Starting document conversion {source_ext.upper()} -> {target_ext.upper()}...")
 
             # ----------------------------------------------------
-            # PDF Target Conversion via Native LibreOffice CLI (Pixel-Perfect 1:1 Layout)
-            # ----------------------------------------------------
-            if target_ext == "pdf":
-                if progress_callback:
-                    progress_callback(30, "Converting document to PDF via native engine...")
-                
-                # Attempt native LibreOffice conversion first for 1:1 format preservation
-                if self._convert_native_libreoffice(input_path, output_path):
-                    if progress_callback:
-                        progress_callback(100, f"{source_ext.upper()} converted to PDF successfully.")
-                    return True, None
-
-            # ----------------------------------------------------
             # 1. DOCX / DOC Conversions
             # ----------------------------------------------------
             if source_ext in ["docx", "doc"]:
                 if target_ext == "pdf":
-                    # Attempt Windows MS Word COM Automation if available
-                    if os.name == "nt":
-                        if await self._convert_native_word_com(input_path, output_path):
+                    # Attempt native LibreOffice conversion if installed in system
+                    if shutil.which("libreoffice") or shutil.which("soffice"):
+                        if progress_callback:
+                            progress_callback(30, "Converting document to PDF via LibreOffice...")
+                        if self._convert_native_libreoffice(input_path, output_path):
                             if progress_callback:
-                                progress_callback(100, "DOCX converted to PDF via Word COM engine.")
+                                progress_callback(100, f"{source_ext.upper()} converted to PDF successfully.")
                             return True, None
 
-                # Extract elements (text, tables, inline images, headers/footers) using python-docx
-                temp_img_dir = input_path + "_extracted_imgs"
-                os.makedirs(temp_img_dir, exist_ok=True)
-                footers_headers = {}
-                try:
-                    elements, plain_paragraphs, footers_headers = self._extract_docx_elements(input_path, temp_img_dir)
-                except Exception as e:
-                    logger.warning(f"Could not parse DOCX with python-docx, trying text fallback: {e}")
-                    elements = []
-                    plain_paragraphs = []
-                    with open(input_path, "r", encoding="utf-8", errors="ignore") as f:
-                        for line in f:
-                            if line.strip():
-                                elements.append({"type": "text", "content": line.strip()})
-                                plain_paragraphs.append(line.strip())
+                    if progress_callback:
+                        progress_callback(30, "Extracting text, tables, and document elements...")
 
-                if target_ext == "pdf":
+                    temp_img_dir = input_path + "_extracted_imgs"
+                    os.makedirs(temp_img_dir, exist_ok=True)
+                    footers_headers = {}
+                    try:
+                        elements, plain_paragraphs, footers_headers = self._extract_docx_elements(input_path, temp_img_dir)
+                    except Exception as e:
+                        logger.warning(f"Could not parse DOCX with python-docx, trying text fallback: {e}")
+                        elements = []
+                        plain_paragraphs = []
+                        with open(input_path, "r", encoding="utf-8", errors="ignore") as f:
+                            for line in f:
+                                if line.strip():
+                                    elements.append({"type": "text", "content": line.strip()})
+                                    plain_paragraphs.append(line.strip())
+
+                    if progress_callback:
+                        progress_callback(65, "Rendering layout, tables, and typography into PDF...")
+
                     success = self._render_elements_to_pdf(elements, output_path, footers_headers)
+                    
                     # Clean up temp image folder
                     if os.path.exists(temp_img_dir):
                         shutil.rmtree(temp_img_dir, ignore_errors=True)
 
                     if success:
                         if progress_callback:
-                            progress_callback(100, "DOCX converted to PDF successfully with headers and footers.")
+                            progress_callback(100, "DOCX converted to PDF successfully.")
                         return True, None
                     return False, "Failed to render PDF from Word document."
 
@@ -242,16 +236,42 @@ class DocumentConverter(BaseConverter):
             return False
 
     def _extract_docx_elements(self, input_path: str, temp_dir: str) -> Tuple[list, list, Dict[str, str]]:
-        """Extracts text paragraphs, tables, inline images, and footers/headers in layout order."""
+        """Extracts text paragraphs, tables, inline/floating images, and footers/headers in layout order."""
         import docx
+        import zipfile
         from docx.text.paragraph import Paragraph
         from docx.table import Table
 
-        doc = docx.Document(input_path)
         elements = []
         plain_paragraphs = []
         footers_headers = {"footer_left": "", "footer_right": "", "header": ""}
+        extracted_media = set()
         img_counter = 0
+
+        # Step 1: Open docx as a zip package and extract any raw images in word/media/
+        media_map = {}
+        try:
+            with zipfile.ZipFile(input_path, 'r') as zf:
+                for item in zf.namelist():
+                    if item.startswith('word/media/') and not item.endswith('/'):
+                        img_counter += 1
+                        ext = item.rsplit('.', 1)[-1].lower() if '.' in item else 'png'
+                        img_filename = f"extracted_img_{img_counter}.{ext}"
+                        img_dest = os.path.join(temp_dir, img_filename)
+                        with open(img_dest, 'wb') as f_out:
+                            f_out.write(zf.read(item))
+                        media_map[item] = img_dest
+                        media_map[os.path.basename(item)] = img_dest
+        except Exception as e:
+            logger.warning(f"Failed extracting raw zip media from DOCX: {e}")
+
+        try:
+            doc = docx.Document(input_path)
+        except Exception as e:
+            logger.warning(f"python-docx could not open {input_path}: {e}")
+            for img_path in media_map.values():
+                elements.append({"type": "image", "path": img_path})
+            return elements, plain_paragraphs, footers_headers
 
         # Extract section headers & footers
         for section in doc.sections:
@@ -270,9 +290,9 @@ class DocumentConverter(BaseConverter):
                 if h_texts:
                     footers_headers["header"] = " ".join(h_texts)
 
-        def process_paragraph(p):
+        def extract_images_from_element(elem):
             nonlocal img_counter
-            rids = p._element.xpath('.//a:blip/@r:embed')
+            rids = elem.xpath('.//*[local-name()="blip"]/@*[local-name()="embed"] | .//*[local-name()="imagedata"]/@*[local-name()="id" or local-name()="href"]')
             for rid in rids:
                 try:
                     if rid in doc.part.related_parts:
@@ -284,30 +304,22 @@ class DocumentConverter(BaseConverter):
                         img_path = os.path.join(temp_dir, img_filename)
                         with open(img_path, "wb") as f_img:
                             f_img.write(img_bytes)
+                        extracted_media.add(img_part.partname)
                         elements.append({"type": "image", "path": img_path})
                 except Exception as e:
                     logger.warning(f"Failed extracting inline image rId {rid}: {e}")
 
-            text = p.text.strip()
-            if text:
-                # Check for footer patterns (e.g. SANJAY S or numeric ID) if section footer was missing
-                if ("SANJAY" in text.upper() or (text.isdigit() and len(text) >= 8)) and len(text) <= 40:
-                    if not footers_headers["footer_left"]:
-                        footers_headers["footer_left"] = text
-                        return
-                    elif not footers_headers["footer_right"] and text != footers_headers["footer_left"]:
-                        footers_headers["footer_right"] = text
-                        return
-
-                elements.append({"type": "text", "content": text})
-                plain_paragraphs.append(text)
-
         for child in doc.element.body:
             if child.tag.endswith('p'):
                 p = Paragraph(child, doc)
-                process_paragraph(p)
+                extract_images_from_element(child)
+                text = p.text.strip()
+                if text:
+                    elements.append({"type": "text", "content": text})
+                    plain_paragraphs.append(text)
             elif child.tag.endswith('tbl'):
                 tbl = Table(child, doc)
+                extract_images_from_element(child)
                 table_matrix = []
                 for row in tbl.rows:
                     row_cells = [cell.text.strip() for cell in row.cells]
@@ -318,12 +330,19 @@ class DocumentConverter(BaseConverter):
                 if table_matrix:
                     elements.append({"type": "table", "matrix": table_matrix})
 
+        # Append any remaining images from word/media that were not matched by XML IDs
+        for key, img_dest in media_map.items():
+            if not any(el.get("path") == img_dest for el in elements if el.get("type") == "image"):
+                elements.append({"type": "image", "path": img_dest})
+
         return elements, plain_paragraphs, footers_headers
 
     def _render_elements_to_pdf(self, elements: list, output_path: str, footers_headers: Optional[dict] = None) -> bool:
         """Renders structured text blocks, tables, images, and headers/footers into clean A4 PDF pages."""
         try:
             import fitz
+            from PIL import Image as PILImage
+
             pdf = fitz.open()
             width, height = 595.28, 841.89  # A4 standard points
             margin_left = 40.0
@@ -424,14 +443,23 @@ class DocumentConverter(BaseConverter):
                     if not os.path.exists(img_path):
                         continue
                     try:
-                        img_doc = fitz.open(img_path)
-                        img_page = img_doc[0]
-                        img_w, img_h = img_page.rect.width, img_page.rect.height
-                        img_doc.close()
+                        valid_img_path = img_path
+                        img_w, img_h = 400.0, 300.0
+                        try:
+                            with PILImage.open(img_path) as pil_img:
+                                img_w, img_h = float(pil_img.width), float(pil_img.height)
+                                if pil_img.format not in ["JPEG", "PNG", "WEBP"]:
+                                    png_path = img_path + "_converted.png"
+                                    pil_img.convert("RGB").save(png_path, "PNG")
+                                    valid_img_path = png_path
+                        except Exception:
+                            img_doc = fitz.open(img_path)
+                            img_w, img_h = img_doc[0].rect.width, img_doc[0].rect.height
+                            img_doc.close()
 
                         max_w = content_width
                         max_h = 380.0
-                        scale = min(max_w / img_w, max_h / img_h, 1.0)
+                        scale = min(max_w / max(1.0, img_w), max_h / max(1.0, img_h), 1.0)
                         display_w = img_w * scale
                         display_h = img_h * scale
 
@@ -440,7 +468,7 @@ class DocumentConverter(BaseConverter):
                             y = margin_top
 
                         img_rect = fitz.Rect(margin_left, y, margin_left + display_w, y + display_h)
-                        current_page.insert_image(img_rect, filename=img_path)
+                        current_page.insert_image(img_rect, filename=valid_img_path)
                         y += display_h + 10
                     except Exception as img_err:
                         logger.warning(f"Error rendering image in PDF: {img_err}")

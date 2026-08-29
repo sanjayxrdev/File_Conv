@@ -313,3 +313,214 @@ export async function apiExportPdfPagesAsImages(
 
   return res.json();
 }
+
+export async function apiCompressPdf(
+  file: File,
+  compressionLevel: string = 'recommended',
+  customDpi?: number,
+  customQuality?: number
+): Promise<{ job_id: string; status: string }> {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('compression_level', compressionLevel);
+  if (customDpi) formData.append('custom_dpi', customDpi.toString());
+  if (customQuality) formData.append('custom_quality', customQuality.toString());
+
+  const res = await fetch(`${API_BASE}/pdf/compress`, {
+    method: 'POST',
+    body: formData,
+  });
+
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail?.message || 'Failed to compress PDF.');
+  }
+
+  return res.json();
+}
+
+export async function apiAlternateMix(
+  fileA: File,
+  fileB: File,
+  reverseB: boolean = false,
+  repeatRemaining: boolean = true
+): Promise<{ job_id: string; status: string }> {
+  const formData = new FormData();
+  formData.append('file_a', fileA);
+  formData.append('file_b', fileB);
+  formData.append('reverse_b', reverseB.toString());
+  formData.append('repeat_remaining', repeatRemaining.toString());
+
+  const res = await fetch(`${API_BASE}/pdf/alternate-mix`, {
+    method: 'POST',
+    body: formData,
+  });
+
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail?.message || 'Failed to alternate & mix PDFs.');
+  }
+
+  return res.json();
+}
+
+export async function apiWatermarkPdf(
+  file: File,
+  text?: string,
+  watermarkImage?: File,
+  opacity: number = 0.3,
+  rotation: number = 45.0,
+  tile: boolean = false,
+  colorHex: string = '#888888',
+  fontSize: number = 40.0
+): Promise<{ job_id: string; status: string }> {
+  const formData = new FormData();
+  formData.append('file', file);
+  if (text) formData.append('text', text);
+  if (watermarkImage) formData.append('watermark_image', watermarkImage);
+  formData.append('opacity', opacity.toString());
+  formData.append('rotation', rotation.toString());
+  formData.append('tile', tile.toString());
+  formData.append('color_hex', colorHex);
+  formData.append('font_size', fontSize.toString());
+
+  const res = await fetch(`${API_BASE}/pdf/watermark`, {
+    method: 'POST',
+    body: formData,
+  });
+
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail?.message || 'Failed to apply watermark.');
+  }
+
+  return res.json();
+}
+
+export async function apiBatesNumbering(
+  file: File,
+  prefix: string = 'CONF-',
+  suffix: string = '',
+  startNumber: number = 1,
+  digits: number = 6,
+  position: string = 'bottom-right',
+  fontSize: number = 10.0,
+  colorHex: string = '#000000'
+): Promise<{ job_id: string; status: string }> {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('prefix', prefix);
+  formData.append('suffix', suffix);
+  formData.append('start_number', startNumber.toString());
+  formData.append('digits', digits.toString());
+  formData.append('position', position);
+  formData.append('font_size', fontSize.toString());
+  formData.append('color_hex', colorHex);
+
+  const res = await fetch(`${API_BASE}/pdf/bates-numbering`, {
+    method: 'POST',
+    body: formData,
+  });
+
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail?.message || 'Failed to apply Bates numbering.');
+  }
+
+  return res.json();
+}
+
+export async function apiFlattenGrayscale(
+  file: File,
+  makeGrayscale: boolean = true,
+  flattenForms: boolean = true
+): Promise<{ job_id: string; status: string }> {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('make_grayscale', makeGrayscale.toString());
+  formData.append('flatten_forms', flattenForms.toString());
+
+  const res = await fetch(`${API_BASE}/pdf/flatten-grayscale`, {
+    method: 'POST',
+    body: formData,
+  });
+
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail?.message || 'Failed to flatten/grayscale PDF.');
+  }
+
+  return res.json();
+}
+
+export async function apiCropPdf(
+  file: File,
+  marginTop: number = 0.0,
+  marginBottom: number = 0.0,
+  marginLeft: number = 0.0,
+  marginRight: number = 0.0,
+  unit: string = 'pt'
+): Promise<{ job_id: string; status: string }> {
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('margin_top', marginTop.toString());
+  formData.append('margin_bottom', marginBottom.toString());
+  formData.append('margin_left', marginLeft.toString());
+  formData.append('margin_right', marginRight.toString());
+  formData.append('unit', unit);
+
+  const res = await fetch(`${API_BASE}/pdf/crop`, {
+    method: 'POST',
+    body: formData,
+  });
+
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail?.message || 'Failed to crop PDF margins.');
+  }
+
+  return res.json();
+}
+
+export async function apiEditMetadata(
+  file: File,
+  metadata: { title?: string; author?: string; subject?: string; keywords?: string; creator?: string }
+): Promise<{ job_id: string; status: string }> {
+  const formData = new FormData();
+  formData.append('file', file);
+  if (metadata.title) formData.append('title', metadata.title);
+  if (metadata.author) formData.append('author', metadata.author);
+  if (metadata.subject) formData.append('subject', metadata.subject);
+  if (metadata.keywords) formData.append('keywords', metadata.keywords);
+  if (metadata.creator) formData.append('creator', metadata.creator);
+
+  const res = await fetch(`${API_BASE}/pdf/metadata`, {
+    method: 'POST',
+    body: formData,
+  });
+
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail?.message || 'Failed to update PDF metadata.');
+  }
+
+  return res.json();
+}
+
+export async function apiBankStatementToExcel(file: File): Promise<{ job_id: string; status: string }> {
+  const formData = new FormData();
+  formData.append('file', file);
+
+  const res = await fetch(`${API_BASE}/pdf/bank-statement-to-excel`, {
+    method: 'POST',
+    body: formData,
+  });
+
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail?.message || 'Failed to extract financial tables.');
+  }
+
+  return res.json();
+}
+
